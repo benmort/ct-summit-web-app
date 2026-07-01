@@ -17,7 +17,8 @@
     "test:uploads": "tsx --test tests/uploads/**/*.test.ts",
     "loadtest:uploads": "tsx scripts/load-test-upload.ts",
     "generate:summit-qr": "tsx scripts/generate-summit-qr.ts",
-    "import:highlights": "tsx scripts/import-highlights.ts"
+    "import:highlights": "tsx scripts/import-highlights.ts",
+    "rebuild:moments": "tsx scripts/rebuild-moments.ts"
   },
   "dependencies": {
     "@flaticon/flaticon-uicons": "^3.3.1",

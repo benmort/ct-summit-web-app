@@ -32,12 +32,19 @@ const IMAGE_MIME_BY_EXT: Record<string, string> = {
   ".gif": "image/gif",
 };
 
-type Arg = { wipe: boolean; dry: boolean; src: string; baseIso: string };
+type Arg = {
+  wipe: boolean;
+  dry: boolean;
+  dedupe: boolean;
+  src: string;
+  baseIso: string;
+};
 
 function parseArgs(argv: string[]): Arg {
   const out: Arg = {
     wipe: false,
     dry: false,
+    dedupe: false,
     src: DEFAULT_SRC,
     baseIso: DEFAULT_BASE_ISO,
   };
@@ -45,6 +52,7 @@ function parseArgs(argv: string[]): Arg {
     const a = argv[i];
     if (a === "--wipe") out.wipe = true;
     else if (a === "--dry" || a === "--dry-run") out.dry = true;
+    else if (a === "--dedupe") out.dedupe = true;
     else if (a === "--src") out.src = argv[++i] ?? out.src;
     else if (a === "--base") out.baseIso = argv[++i] ?? out.baseIso;
   }
@@ -96,21 +104,24 @@ async function collectOrderedFiles(src: string): Promise<string[]> {
   return files;
 }
 
-async function wipeAll(storage: ReturnType<typeof getPhotoStorage>, dry: boolean) {
-  const existing = await storage.list();
-  console.log(`Wiping ${existing.length} existing photo(s)...`);
+async function deletePhotos(
+  storage: ReturnType<typeof getPhotoStorage>,
+  photos: { id: string; filename: string }[],
+  dry: boolean,
+) {
+  console.log(`Deleting ${photos.length} existing non-highlight photo(s)...`);
   if (dry) return;
   let removed = 0;
-  for (const p of existing) {
+  for (const p of photos) {
     try {
       await storage.deleteById(p.id);
       removed++;
-      if (removed % 20 === 0) console.log(`  deleted ${removed}/${existing.length}`);
+      if (removed % 10 === 0) console.log(`  deleted ${removed}/${photos.length}`);
     } catch (e) {
       console.error(`  failed to delete ${p.id}: ${(e as Error).message}`);
     }
   }
-  console.log(`Wiped ${removed}/${existing.length}.`);
+  console.log(`Deleted ${removed}/${photos.length}.`);
 }
 
 async function main() {
@@ -153,46 +164,99 @@ async function main() {
   }
   console.log(`Total images to import: ${files.length}`);
 
+  // Deterministic per-file metadata. Strictly-decreasing timestamps so
+  // descending-by-uploadedAt sort (Blob) yields Day 1 first -> Day 3 last.
+  const items = files.map((filePath, i) => ({
+    filePath,
+    filename: filePath.split("/").pop() || `photo-${i + 1}.jpg`,
+    uploadedAt: new Date(baseMs - i * STEP_MS).toISOString(),
+    index: i,
+  }));
+  const highlightNames = new Set(items.map((x) => x.filename));
+
   const storage = getPhotoStorage();
 
+  // Dedupe/repair mode: keep exactly one record per highlight filename and remove
+  // any non-highlight photos. Duplicate highlight records share an identical
+  // uploadedAt (deterministic by index), so keeping any one preserves order.
+  // Idempotent — re-run until it reports 0 duplicates / 0 non-highlight.
+  if (args.dedupe) {
+    const all = await storage.list();
+    const seen = new Set<string>();
+    const toDelete: { id: string; filename: string }[] = [];
+    let nonHighlight = 0;
+    let duplicates = 0;
+    for (const p of all) {
+      if (!highlightNames.has(p.filename)) {
+        toDelete.push(p);
+        nonHighlight++;
+      } else if (seen.has(p.filename)) {
+        toDelete.push(p);
+        duplicates++;
+      } else {
+        seen.add(p.filename);
+      }
+    }
+    console.log(
+      `Dedupe: listed ${all.length}; unique highlights ${seen.size}/${items.length}; ` +
+        `duplicates ${duplicates}; non-highlight ${nonHighlight}; deleting ${toDelete.length}.`,
+    );
+    await deletePhotos(storage, toDelete, args.dry);
+    console.log(
+      `Dedupe done. Missing highlights: ${items.length - seen.size} (if >0, run without --dedupe to import them).`,
+    );
+    return;
+  }
+
+  // Resumability: skip highlights already imported (matched by filename), so a
+  // re-run after an interruption tops up the remainder without duplicating.
+  const existing = await storage.list();
+  const existingNames = new Set(existing.map((p) => p.filename));
+  const alreadyImported = items.filter((x) => existingNames.has(x.filename)).length;
+
   if (args.wipe) {
-    await wipeAll(storage, args.dry);
+    // Remove only the pre-existing non-highlight photos; keep already-imported highlights.
+    const toDelete = existing.filter((p) => !highlightNames.has(p.filename));
+    await deletePhotos(storage, toDelete, args.dry);
   }
 
   if (args.dry) {
-    console.log("--dry: skipping import. Order (first 5):");
-    files.slice(0, 5).forEach((f, i) => console.log(`  ${i + 1}. ${f.split("/").pop()}`));
+    console.log(
+      `--dry: ${alreadyImported} already present, ${items.length - alreadyImported} would import. Order (first 5):`,
+    );
+    items.slice(0, 5).forEach((x) => console.log(`  ${x.index + 1}. ${x.filename}`));
     console.log("  ...");
     return;
   }
 
-  // Assign strictly-decreasing timestamps so descending-by-uploadedAt sort (Blob)
-  // yields Day 1 first -> Day 3 last. Process in reverse so the filesystem
-  // backend's unshift produces the same array order too.
+  console.log(`Already imported: ${alreadyImported}/${items.length}. Importing the rest...`);
+
+  // Process in reverse so the filesystem backend's unshift preserves array order.
   let ok = 0;
+  let skipped = 0;
   const failures: string[] = [];
-  for (let i = files.length - 1; i >= 0; i--) {
-    const filePath = files[i];
-    const filename = filePath.split("/").pop() || `photo-${i + 1}.jpg`;
+  for (let i = items.length - 1; i >= 0; i--) {
+    const { filePath, filename, uploadedAt } = items[i];
+    if (existingNames.has(filename)) {
+      skipped++;
+      continue;
+    }
     const mime = IMAGE_MIME_BY_EXT[extname(filename).toLowerCase()] || "image/jpeg";
     if (!isAllowedImageType(mime)) {
       failures.push(`${filename} (unsupported type ${mime})`);
       continue;
     }
-    const uploadedAt = new Date(baseMs - i * STEP_MS).toISOString();
     try {
       const buffer = await readFile(filePath);
       await storage.createFromBuffer({ buffer, filename, mime, uploadedAt });
       ok++;
-      const done = files.length - i;
-      if (done % 10 === 0 || done === files.length) {
-        console.log(`  imported ${done}/${files.length}`);
-      }
+      if (ok % 5 === 0) console.log(`  imported ${ok} new (of ${items.length - alreadyImported} remaining)`);
     } catch (e) {
       failures.push(`${filename}: ${(e as Error).message}`);
       console.error(`  failed ${filename}: ${(e as Error).message}`);
     }
   }
+  console.log(`Newly imported: ${ok}, skipped (already present): ${skipped}.`);
 
   console.log(
     JSON.stringify(

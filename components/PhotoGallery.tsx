@@ -1,16 +1,21 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import { useSearchParams } from "next/navigation";
-import { useRef, useEffect, useState, type ReactNode } from "react";
+import {
+  useRef,
+  useEffect,
+  useState,
+  type ReactNode,
+  type RefObject,
+} from "react";
 import type { Photo } from "@/lib/types/photo";
 import { galleryImageSrcSet } from "@/utils/galleryImageSrcSet";
 import { galleryPath, type GalleryMode } from "@/utils/galleryUrl";
 import { useLastViewedPhoto } from "@/utils/useLastViewedPhoto";
 
 type Props = {
-  /** First masonry cell (e.g. Share a moment hero) */
+  /** Optional full-width block above the grid (e.g. moderation controls). */
   lead: ReactNode;
   photos: Photo[] | null;
   photosLoading?: boolean;
@@ -22,6 +27,129 @@ type Props = {
 };
 
 const VIDEO_POSTER_FALLBACK = "/images/video-poster-fallback.svg";
+
+function Spinner({ className = "" }: { className?: string }) {
+  return (
+    <span
+      className={`animate-spin rounded-full border-2 border-white/25 border-t-white/80 ${className}`}
+      aria-hidden
+    />
+  );
+}
+
+type TileProps = {
+  photo: Photo;
+  number: number;
+  mode: GalleryMode;
+  moderationMode: boolean;
+  isBroken: boolean;
+  selected: boolean;
+  onToggleSelect?: (id: string) => void;
+  isMobileViewport: boolean;
+  innerRef?: RefObject<HTMLAnchorElement>;
+};
+
+function GalleryTile({
+  photo,
+  number,
+  mode,
+  moderationMode,
+  isBroken,
+  selected,
+  onToggleSelect,
+  isMobileViewport,
+  innerRef,
+}: TileProps) {
+  const [loaded, setLoaded] = useState(false);
+
+  return (
+    <div
+      className={`group relative aspect-[3/2] break-inside-avoid${isBroken ? " opacity-40" : ""}`}
+    >
+      {isBroken && moderationMode && (
+        <span className="absolute right-2 top-2 z-20 rounded-md bg-red-900/80 px-2 py-1 text-[10px] font-semibold uppercase tracking-wider text-red-200 ring-1 ring-red-500/40">
+          Missing file
+        </span>
+      )}
+      {!moderationMode && (
+        <span className="pointer-events-none absolute left-2 top-2 z-20 rounded-md bg-black/60 px-2 py-1 text-xs font-semibold tabular-nums text-white ring-1 ring-white/20 backdrop-blur-sm">
+          {number}
+        </span>
+      )}
+      {moderationMode && onToggleSelect && (
+        <label
+          className="absolute left-2 top-2 z-20 flex cursor-pointer items-center gap-2 rounded-md bg-black/60 px-2 py-1 text-xs text-white backdrop-blur-sm ring-1 ring-white/20"
+          onClick={(e) => e.stopPropagation()}
+        >
+          <input
+            type="checkbox"
+            checked={selected}
+            onChange={() => onToggleSelect(photo.id)}
+            className="h-4 w-4 rounded border-white/40"
+            aria-label={`Select ${photo.filename}`}
+          />
+          Select
+        </label>
+      )}
+      <Link
+        href={galleryPath(photo.id, mode)}
+        scroll={false}
+        ref={innerRef}
+        onClick={(event) => {
+          if (!isMobileViewport) return;
+          event.preventDefault();
+        }}
+        className="relative block h-full w-full cursor-default overflow-hidden rounded-xl border border-white/10 bg-zinc-900/60 sm:cursor-zoom-in"
+        style={
+          photo.blurDataUrl
+            ? {
+                backgroundImage: `url(${photo.blurDataUrl})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+              }
+            : undefined
+        }
+      >
+        {!loaded && (
+          <span className="absolute inset-0 z-10 flex items-center justify-center bg-black/20">
+            <Spinner className="h-6 w-6" />
+          </span>
+        )}
+        {photo.kind === "video" ? (
+          <video
+            src={photo.url}
+            poster={photo.thumbUrl ?? VIDEO_POSTER_FALLBACK}
+            muted
+            playsInline
+            preload="metadata"
+            className={`h-full w-full object-cover transition-opacity duration-700 ease-out ${
+              loaded ? "opacity-100" : "opacity-0"
+            }`}
+            width={photo.width ?? 1280}
+            height={photo.height ?? 720}
+            aria-label={photo.filename}
+            onLoadedData={() => setLoaded(true)}
+          />
+        ) : (
+          // eslint-disable-next-line @next/next/no-img-element -- custom srcSet not supported on next/image here
+          <img
+            src={photo.wallUrl ?? photo.thumbUrl ?? photo.url}
+            srcSet={galleryImageSrcSet(photo) || undefined}
+            sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+            alt={photo.filename}
+            loading="lazy"
+            decoding="async"
+            className={`h-full w-full object-cover transition-opacity duration-700 ease-out group-hover:brightness-105 ${
+              loaded ? "opacity-100" : "opacity-0"
+            }`}
+            onLoad={() => setLoaded(true)}
+            onError={() => setLoaded(true)}
+          />
+        )}
+      </Link>
+    </div>
+  );
+}
 
 export default function PhotoGallery({
   lead,
@@ -56,106 +184,35 @@ export default function PhotoGallery({
   }, [lastViewedPhoto, photoIdOpen, setLastViewedPhoto]);
 
   return (
-    <div className="columns-1 gap-3 sm:columns-2 sm:gap-4 lg:columns-3">
+    <>
       {lead}
       {photosLoading && (
-        <div className="relative mb-3 flex break-inside-avoid flex-col items-center justify-center gap-3 rounded-xl bg-white/5 py-20 text-center text-sm text-stone-400 ring-1 ring-inset ring-white/10 sm:mb-4">
-          <span
-            className="h-6 w-6 animate-spin rounded-full border-2 border-white/25 border-t-white/80"
-            aria-hidden
-          />
+        <div className="flex flex-col items-center justify-center gap-3 rounded-xl bg-white/5 py-20 text-center text-sm text-stone-400 ring-1 ring-inset ring-white/10">
+          <Spinner className="h-6 w-6" />
           Loading photos…
         </div>
       )}
-      {photos?.map((photo, i) => {
-        const isBroken = brokenIds.has(photo.id);
-        if (isBroken && !moderationMode) return null;
-
-        return (
-          <div
-            key={photo.id}
-            className={`group relative mb-3 break-inside-avoid sm:mb-4${isBroken ? " opacity-40" : ""}`}
-          >
-            {isBroken && moderationMode && (
-              <span className="absolute right-2 top-2 z-20 rounded-md bg-red-900/80 px-2 py-1 text-[10px] font-semibold uppercase tracking-wider text-red-200 ring-1 ring-red-500/40">
-                Missing file
-              </span>
-            )}
-            {!moderationMode && (
-              <span className="pointer-events-none absolute left-2 top-2 z-20 rounded-md bg-black/60 px-2 py-1 text-xs font-semibold tabular-nums text-white ring-1 ring-white/20 backdrop-blur-sm">
-                {i + 1}
-              </span>
-            )}
-            {moderationMode && onToggleSelect && (
-              <label
-                className="absolute left-2 top-2 z-20 flex cursor-pointer items-center gap-2 rounded-md bg-black/60 px-2 py-1 text-xs text-white backdrop-blur-sm ring-1 ring-white/20"
-                onClick={(e) => e.stopPropagation()}
-              >
-                <input
-                  type="checkbox"
-                  checked={selectedIds.has(photo.id)}
-                  onChange={() => onToggleSelect(photo.id)}
-                  className="h-4 w-4 rounded border-white/40"
-                  aria-label={`Select ${photo.filename}`}
-                />
-                Select
-              </label>
-            )}
-            <Link
-              href={galleryPath(photo.id, mode)}
-              scroll={false}
-              ref={photo.id === lastViewedPhoto ? lastRef : undefined}
-              onClick={(event) => {
-                if (!isMobileViewport) return;
-                event.preventDefault();
-              }}
-              className="after:content relative block w-full cursor-default overflow-hidden rounded-xl border border-white/10 bg-zinc-900/60 after:pointer-events-none after:absolute after:inset-0 after:rounded-xl after:shadow-[inset_0_0_0_1px_rgba(255,255,255,0.08)] sm:cursor-zoom-in"
-            >
-              {photo.kind === "video" ? (
-                <video
-                  src={photo.url}
-                  poster={photo.thumbUrl ?? VIDEO_POSTER_FALLBACK}
-                  muted
-                  playsInline
-                  preload="metadata"
-                  className="w-full transform brightness-[0.97] transition will-change-auto group-hover:brightness-100"
-                  style={{ transform: "translate3d(0, 0, 0)" }}
-                  width={photo.width ?? 1280}
-                  height={photo.height ?? 720}
-                  aria-label={photo.filename}
-                />
-              ) : galleryImageSrcSet(photo) ? (
-                // eslint-disable-next-line @next/next/no-img-element -- custom srcSet not supported on next/image here
-                <img
-                  src={photo.wallUrl ?? photo.thumbUrl ?? photo.url}
-                  srcSet={galleryImageSrcSet(photo)}
-                  sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 33vw"
-                  alt={photo.filename}
-                  width={photo.width ?? 720}
-                  height={photo.height ?? 480}
-                  loading="lazy"
-                  decoding="async"
-                  className="h-auto w-full transform brightness-[0.97] transition will-change-auto group-hover:brightness-100"
-                  style={{ transform: "translate3d(0, 0, 0)" }}
-                />
-              ) : (
-                <Image
-                  alt={photo.filename}
-                  className="transform brightness-[0.97] transition will-change-auto group-hover:brightness-100"
-                  style={{ transform: "translate3d(0, 0, 0)" }}
-                  placeholder={photo.blurDataUrl ? "blur" : "empty"}
-                  blurDataURL={photo.blurDataUrl}
-                  src={photo.wallUrl ?? photo.thumbUrl ?? photo.url}
-                  width={photo.width ?? 720}
-                  height={photo.height ?? 480}
-                  sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 33vw"
-                  unoptimized
-                />
-              )}
-            </Link>
-          </div>
-        );
-      })}
-    </div>
+      {/* Row-major grid: photos read left-to-right, top-to-bottom (numbers in order). */}
+      <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-4">
+        {photos?.map((photo, i) => {
+          const isBroken = brokenIds.has(photo.id);
+          if (isBroken && !moderationMode) return null;
+          return (
+            <GalleryTile
+              key={photo.id}
+              photo={photo}
+              number={i + 1}
+              mode={mode}
+              moderationMode={moderationMode}
+              isBroken={isBroken}
+              selected={selectedIds.has(photo.id)}
+              onToggleSelect={onToggleSelect}
+              isMobileViewport={isMobileViewport}
+              innerRef={photo.id === lastViewedPhoto ? lastRef : undefined}
+            />
+          );
+        })}
+      </div>
+    </>
   );
 }

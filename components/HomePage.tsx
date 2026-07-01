@@ -19,7 +19,8 @@ import ScrollToTop from "./ScrollToTop";
 import ShowreelCarousel from "./ShowreelCarousel";
 import ShowreelFooter from "./ShowreelFooter";
 
-const PAGE = 48;
+const INITIAL_PAGE = 12;
+const PAGE = 30;
 
 type Props = {
   mode?: GalleryMode;
@@ -88,7 +89,7 @@ export default function HomePage({ mode = "gallery" }: Props) {
     const needsFullList = !!photoId;
     const url = needsFullList
       ? "/api/photos"
-      : `/api/photos?offset=0&limit=${PAGE}`;
+      : `/api/photos?offset=0&limit=${INITIAL_PAGE}`;
     return fetch(url)
       .then((r) => {
         if (!r.ok) throw new Error("bad");
