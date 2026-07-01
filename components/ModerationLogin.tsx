@@ -1,5 +1,6 @@
 "use client";
 
+import { EyeIcon, EyeSlashIcon } from "@heroicons/react/24/outline";
 import { useCallback, useState } from "react";
 
 type Props = {
@@ -10,6 +11,7 @@ export default function ModerationLogin({ onSuccess }: Props) {
   const [password, setPassword] = useState("");
   const [error, setError] = useState<string | null>(null);
   const [loading, setLoading] = useState(false);
+  const [show, setShow] = useState(true);
 
   const submit = useCallback(
     async (e: React.FormEvent) => {
@@ -48,16 +50,34 @@ export default function ModerationLogin({ onSuccess }: Props) {
         <label className="sr-only" htmlFor="mod-password">
           Password
         </label>
-        <input
-          id="mod-password"
-          type="password"
-          autoComplete="current-password"
-          value={password}
-          onChange={(e) => setPassword(e.target.value)}
-          className="rounded-lg border border-white/20 bg-black/40 px-3 py-2 text-stone-100 placeholder:text-stone-500 focus:outline-none focus:ring-2 focus:ring-amber-400/80"
-          placeholder="Password"
-          required
-        />
+        <div className="relative">
+          <input
+            id="mod-password"
+            type={show ? "text" : "password"}
+            autoComplete="off"
+            autoCapitalize="none"
+            autoCorrect="off"
+            spellCheck={false}
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            className="w-full rounded-lg border border-white/20 bg-black/40 px-3 py-2 pr-11 text-stone-100 placeholder:text-stone-500 focus:outline-none focus:ring-2 focus:ring-amber-400/80"
+            placeholder="Password"
+            required
+          />
+          <button
+            type="button"
+            onClick={() => setShow((v) => !v)}
+            className="absolute inset-y-0 right-0 flex items-center px-3 text-stone-400 transition hover:text-stone-100"
+            aria-label={show ? "Hide password" : "Show password"}
+            aria-pressed={show}
+          >
+            {show ? (
+              <EyeSlashIcon className="h-5 w-5" aria-hidden />
+            ) : (
+              <EyeIcon className="h-5 w-5" aria-hidden />
+            )}
+          </button>
+        </div>
         {error && (
           <p className="text-sm text-red-300" role="alert">
             {error}
