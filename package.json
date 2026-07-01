@@ -18,7 +18,8 @@
     "loadtest:uploads": "tsx scripts/load-test-upload.ts",
     "generate:summit-qr": "tsx scripts/generate-summit-qr.ts",
     "import:highlights": "tsx scripts/import-highlights.ts",
-    "rebuild:moments": "tsx scripts/rebuild-moments.ts"
+    "rebuild:moments": "tsx scripts/rebuild-moments.ts",
+    "import:day-photos": "tsx scripts/import-day-photos.ts"
   },
   "dependencies": {
     "@flaticon/flaticon-uicons": "^3.3.1",
