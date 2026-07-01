@@ -135,7 +135,7 @@ function GalleryTile({
           <img
             src={photo.wallUrl ?? photo.thumbUrl ?? photo.url}
             srcSet={galleryImageSrcSet(photo) || undefined}
-            sizes="(max-width: 640px) 50vw, (max-width: 1024px) 33vw, 25vw"
+            sizes="(max-width: 1024px) 33vw, 400px"
             alt={photo.filename}
             loading="lazy"
             decoding="async"
@@ -193,7 +193,7 @@ export default function PhotoGallery({
         </div>
       )}
       {/* Row-major grid: photos read left-to-right, top-to-bottom (numbers in order). */}
-      <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-4">
+      <div className="grid grid-cols-3 gap-2 sm:gap-4">
         {photos?.map((photo, i) => {
           const isBroken = brokenIds.has(photo.id);
           if (isBroken && !moderationMode) return null;
