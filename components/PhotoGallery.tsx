@@ -59,11 +59,15 @@ export default function PhotoGallery({
     <div className="columns-1 gap-3 sm:columns-2 sm:gap-4 lg:columns-3">
       {lead}
       {photosLoading && (
-        <div className="relative mb-3 break-inside-avoid rounded-xl bg-white/5 py-20 text-center text-sm text-stone-400 ring-1 ring-inset ring-white/10 sm:mb-4">
+        <div className="relative mb-3 flex break-inside-avoid flex-col items-center justify-center gap-3 rounded-xl bg-white/5 py-20 text-center text-sm text-stone-400 ring-1 ring-inset ring-white/10 sm:mb-4">
+          <span
+            className="h-6 w-6 animate-spin rounded-full border-2 border-white/25 border-t-white/80"
+            aria-hidden
+          />
           Loading photos…
         </div>
       )}
-      {photos?.map((photo) => {
+      {photos?.map((photo, i) => {
         const isBroken = brokenIds.has(photo.id);
         if (isBroken && !moderationMode) return null;
 
@@ -75,6 +79,11 @@ export default function PhotoGallery({
             {isBroken && moderationMode && (
               <span className="absolute right-2 top-2 z-20 rounded-md bg-red-900/80 px-2 py-1 text-[10px] font-semibold uppercase tracking-wider text-red-200 ring-1 ring-red-500/40">
                 Missing file
+              </span>
+            )}
+            {!moderationMode && (
+              <span className="pointer-events-none absolute left-2 top-2 z-20 rounded-md bg-black/60 px-2 py-1 text-xs font-semibold tabular-nums text-white ring-1 ring-white/20 backdrop-blur-sm">
+                {i + 1}
               </span>
             )}
             {moderationMode && onToggleSelect && (

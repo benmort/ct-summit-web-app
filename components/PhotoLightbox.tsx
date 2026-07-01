@@ -455,6 +455,15 @@ export default function PhotoLightbox({
                     onTouchEnd={onMediaTouchEnd}
                     style={{ touchAction: zoom > 1 ? "none" : "auto" }}
                   >
+                    {!loaded && (
+                      <div className="pointer-events-none absolute inset-0 z-10 flex items-center justify-center">
+                        <span
+                          className="h-10 w-10 animate-spin rounded-full border-2 border-white/25 border-t-white/80"
+                          aria-hidden
+                        />
+                        <span className="sr-only">Loading image…</span>
+                      </div>
+                    )}
                     <div
                       className="absolute inset-0"
                       style={{

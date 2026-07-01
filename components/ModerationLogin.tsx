@@ -40,9 +40,9 @@ export default function ModerationLogin({ onSuccess }: Props) {
 
   return (
     <div className="mx-auto mb-8 max-w-md rounded-xl border border-white/15 bg-white/5 px-4 py-6 text-center ring-1 ring-white/10">
-      <h2 className="text-lg font-semibold text-stone-100">Moderation</h2>
+      <h2 className="text-lg font-semibold text-stone-100">Protected</h2>
       <p className="mt-2 text-sm text-stone-400">
-        Enter the moderation password to review and remove items.
+        Enter the password to view Moments.
       </p>
       <form onSubmit={(e) => void submit(e)} className="mt-4 flex flex-col gap-3">
         <label className="sr-only" htmlFor="mod-password">

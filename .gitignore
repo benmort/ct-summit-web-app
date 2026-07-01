@@ -6,3 +6,4 @@ out
 data/uploads/*
 !data/uploads/.gitkeep
 data/photos.json
+.vercel

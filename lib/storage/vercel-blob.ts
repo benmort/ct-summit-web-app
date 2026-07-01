@@ -529,7 +529,7 @@ export function createVercelBlobPhotoStorage(token: string): PhotoStorage {
       const ext = extensionForMime(mime);
       const storedName = `${id}.${ext}`;
       const pathname = `${IMG_PREFIX}${storedName}`;
-      const uploadedAt = new Date().toISOString();
+      const uploadedAt = input.uploadedAt ?? new Date().toISOString();
       const isVideo = isAllowedVideoType(mime);
 
       await put(pathname, buffer, {

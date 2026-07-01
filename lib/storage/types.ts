@@ -33,6 +33,8 @@ export interface PhotoStorage {
     buffer: Buffer;
     filename: string;
     mime: string;
+    /** Override the stored timestamp (defaults to now). Controls gallery order. */
+    uploadedAt?: string;
   }): Promise<Photo>;
   /** Size and MIME for Range requests and headers (no full body read). */
   getFileMeta(id: string, variant?: FileVariant): Promise<FileMeta | null>;

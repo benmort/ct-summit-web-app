@@ -2,6 +2,7 @@ import { createHmac, randomBytes, timingSafeEqual } from "crypto";
 
 const COOKIE = "ct_mod";
 const MAX_AGE_MS = 7 * 24 * 60 * 60 * 1000;
+const MIN_PASSWORD_LENGTH = 6;
 
 function getSecret(): string | null {
   const s = process.env.MODERATION_SECRET;
@@ -46,7 +47,7 @@ export function verifyModerationToken(token: string): boolean {
 
 export function verifyModerationPassword(password: string): boolean {
   const expected = process.env.MODERATION_PASSWORD;
-  if (!expected || expected.length < 8) {
+  if (!expected || expected.length < MIN_PASSWORD_LENGTH) {
     return false;
   }
   const a = Buffer.from(password, "utf8");
@@ -60,7 +61,7 @@ export function isModerationConfigured(): boolean {
     process.env.MODERATION_SECRET &&
     process.env.MODERATION_SECRET.length >= 16 &&
     process.env.MODERATION_PASSWORD &&
-    process.env.MODERATION_PASSWORD.length >= 8
+    process.env.MODERATION_PASSWORD.length >= MIN_PASSWORD_LENGTH
   );
 }
 

@@ -156,6 +156,7 @@ export function createFilesystemStorage(): PhotoStorage {
 
     async createFromBuffer(input) {
       const { buffer, filename, mime } = input;
+      const uploadedAt = input.uploadedAt ?? new Date().toISOString();
       if (!isAllowedMediaType(mime)) {
         throw new Error("Unsupported media type");
       }
@@ -193,7 +194,7 @@ export function createFilesystemStorage(): PhotoStorage {
       const record: PhotoRecord = {
         id,
         filename: filename || (isVideo ? `video.${ext}` : `photo.${ext}`),
-        uploadedAt: new Date().toISOString(),
+        uploadedAt,
         storedName,
         mime,
         blurDataUrl,

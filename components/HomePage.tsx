@@ -16,7 +16,6 @@ import ModerationLogin from "./ModerationLogin";
 import PhotoGallery from "./PhotoGallery";
 import PhotoModal from "./PhotoModal";
 import ScrollToTop from "./ScrollToTop";
-import ShareMomentGridBlock from "./ShareMomentGridBlock";
 import ShowreelCarousel from "./ShowreelCarousel";
 import ShowreelFooter from "./ShowreelFooter";
 
@@ -31,14 +30,16 @@ export default function HomePage({ mode = "gallery" }: Props) {
   const searchParams = useSearchParams();
   const showreel = mode === "showreel";
   const moderation = mode === "moderation";
+  // Gallery and moderation both require the password; showreel stays public (kiosk).
+  const gated = mode !== "showreel";
 
   const homeHref = galleryPath(null, "gallery");
 
   const [photos, setPhotos] = useState<Photo[] | null>(null);
   const [total, setTotal] = useState(0);
   const [error, setError] = useState<string | null>(null);
-  const [moderationChecked, setModerationChecked] = useState(!moderation);
-  const [moderationOk, setModerationOk] = useState(!moderation);
+  const [moderationChecked, setModerationChecked] = useState(!gated);
+  const [moderationOk, setModerationOk] = useState(!gated);
   const [moderationConfigured, setModerationConfigured] = useState(true);
   const [selectedIds, setSelectedIds] = useState<Set<string>>(new Set());
   const [deleteConfirmOpen, setDeleteConfirmOpen] = useState(false);
@@ -162,29 +163,12 @@ export default function HomePage({ mode = "gallery" }: Props) {
     return () => obs.disconnect();
   }, [photos, total, loadMore]);
 
-  const mergeUploadedPhotos = useCallback(
-    (uploaded: Photo[]) => {
-      if (!uploaded.length) return;
-      const normalized = uploaded.map(normalizePhoto);
-      let added = normalized.length;
-      setPhotos((prev) => {
-        if (!prev) return normalized;
-        const ids = new Set(normalized.map((p) => p.id));
-        const existing = new Set(prev.map((p) => p.id));
-        added = normalized.filter((p) => !existing.has(p.id)).length;
-        return [...normalized, ...prev.filter((p) => !ids.has(p.id))];
-      });
-      setTotal((t) => t + added);
-    },
-    [normalizePhoto],
-  );
-
   useEffect(() => {
     load();
   }, [load]);
 
   useEffect(() => {
-    if (!moderation) {
+    if (!gated) {
       setModerationChecked(true);
       setModerationOk(true);
       return;
@@ -206,7 +190,7 @@ export default function HomePage({ mode = "gallery" }: Props) {
     return () => {
       cancelled = true;
     };
-  }, [moderation]);
+  }, [gated]);
 
   useEffect(() => {
     if (!photoId || photos === null || photos.length === 0) return;
@@ -300,7 +284,7 @@ export default function HomePage({ mode = "gallery" }: Props) {
   }
 
   const showGallery =
-    !moderation ||
+    !gated ||
     (moderationChecked &&
       (moderationOk || !moderationConfigured));
   const moderationActive =
@@ -312,7 +296,7 @@ export default function HomePage({ mode = "gallery" }: Props) {
       <main className="mx-auto w-full max-w-[460px] px-0 pb-16 pt-3 sm:max-w-[1024px] sm:px-0 sm:pt-5 lg:max-w-[1240px]">
         {errorBanner}
 
-        {moderation && moderationChecked && !moderationConfigured && (
+        {gated && moderationChecked && !moderationConfigured && (
           <div
             role="alert"
             className="mx-auto mb-6 max-w-lg rounded-xl bg-amber-950/40 px-4 py-3 text-center text-sm text-amber-100 ring-1 ring-amber-500/30"
@@ -322,14 +306,14 @@ export default function HomePage({ mode = "gallery" }: Props) {
               Set <code className="rounded bg-black/30 px-1 py-0.5 text-xs">MODERATION_SECRET</code>{" "}
               (16+ characters) and{" "}
               <code className="rounded bg-black/30 px-1 py-0.5 text-xs">MODERATION_PASSWORD</code>{" "}
-              (8+ characters). Locally: add them to{" "}
+              (6+ characters). Locally: add them to{" "}
               <code className="rounded bg-black/30 px-1 py-0.5 text-xs">.env.local</code> and restart
               the dev server. On Vercel: Project → Settings → Environment Variables, then redeploy.
             </p>
           </div>
         )}
 
-        {moderation &&
+        {gated &&
           moderationChecked &&
           moderationConfigured &&
           !moderationOk && (
@@ -366,14 +350,7 @@ export default function HomePage({ mode = "gallery" }: Props) {
                       )}
                     </div>
                   </div>
-                ) : (
-                  <ShareMomentGridBlock
-                    onUploadSuccess={(uploaded) => {
-                      if (uploaded?.length) mergeUploadedPhotos(uploaded);
-                      else void load();
-                    }}
-                  />
-                )
+                ) : null
               }
               photos={photos}
               photosLoading={photos === null && !error}
