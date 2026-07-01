@@ -84,26 +84,16 @@ export default function HomePage({ mode = "gallery" }: Props) {
 
   const photoId = searchParams?.get("photoId") ?? null;
 
+  // Load only the first page. Opening/closing a photo must NOT reload or reset the
+  // wall — deep-links to an off-page photo are handled separately below.
   const load = useCallback((): Promise<void> => {
     setError(null);
-    const needsFullList = !!photoId;
-    const url = needsFullList
-      ? "/api/photos"
-      : `/api/photos?offset=0&limit=${INITIAL_PAGE}`;
-    return fetch(url)
+    return fetch(`/api/photos?offset=0&limit=${INITIAL_PAGE}`)
       .then((r) => {
         if (!r.ok) throw new Error("bad");
         return r.json();
       })
       .then((data: unknown) => {
-        if (needsFullList) {
-          if (!Array.isArray(data)) throw new Error("bad");
-          const list = (data as Photo[]).map(normalizePhoto);
-          setPhotos(list);
-          setTotal(list.length);
-          validatePhotos(list);
-          return;
-        }
         const body = data as {
           photos?: Photo[];
           total?: number;
@@ -121,9 +111,10 @@ export default function HomePage({ mode = "gallery" }: Props) {
         setPhotos(null);
         setTotal(0);
       });
-  }, [normalizePhoto, photoId, validatePhotos]);
+  }, [normalizePhoto, validatePhotos]);
 
   const loadMoreInFlight = useRef(false);
+  const fullListLoadedRef = useRef(false);
 
   const loadMore = useCallback(() => {
     if (loadMoreInFlight.current || !photos || photos.length >= total) return;
@@ -193,10 +184,32 @@ export default function HomePage({ mode = "gallery" }: Props) {
     };
   }, [gated]);
 
+  // Deep-link: a requested photo that isn't in the first page needs the full list.
+  // Only fires when opening such a photo — never on close — so the wall is preserved.
+  useEffect(() => {
+    if (!photoId || photos === null) return;
+    if (photos.some((p) => p.id === photoId)) return;
+    if (fullListLoadedRef.current) return;
+    fullListLoadedRef.current = true;
+    void fetch("/api/photos")
+      .then((r) => (r.ok ? r.json() : Promise.reject(new Error("bad"))))
+      .then((data: unknown) => {
+        if (!Array.isArray(data)) return;
+        const list = (data as Photo[]).map(normalizePhoto);
+        setPhotos(list);
+        setTotal(list.length);
+        validatePhotos(list);
+      })
+      .catch(() => {
+        /* fall through to the redirect effect below */
+      });
+  }, [photoId, photos, normalizePhoto, validatePhotos]);
+
   useEffect(() => {
     if (!photoId || photos === null || photos.length === 0) return;
     const ok = photos.some((p) => p.id === photoId);
-    if (!ok) {
+    // Only bail out once we've tried the full list, so deep-links aren't bounced early.
+    if (!ok && fullListLoadedRef.current) {
       router.replace(galleryPath(null, mode), { scroll: false });
     }
   }, [photoId, photos, router, mode]);

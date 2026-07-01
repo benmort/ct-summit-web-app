@@ -28,6 +28,11 @@ type Props = {
 
 const VIDEO_POSTER_FALLBACK = "/images/video-poster-fallback.svg";
 
+// Masonry grid tuning: photos keep their natural aspect ratio via row spans.
+const COLS = 3;
+const ROW_PX = 8; // grid-auto-rows height
+const GAP_PX = 8; // gutter between tiles
+
 function Spinner({ className = "" }: { className?: string }) {
   return (
     <span
@@ -40,6 +45,7 @@ function Spinner({ className = "" }: { className?: string }) {
 type TileProps = {
   photo: Photo;
   number: number;
+  colWidth: number;
   mode: GalleryMode;
   moderationMode: boolean;
   isBroken: boolean;
@@ -52,6 +58,7 @@ type TileProps = {
 function GalleryTile({
   photo,
   number,
+  colWidth,
   mode,
   moderationMode,
   isBroken,
@@ -62,9 +69,16 @@ function GalleryTile({
 }: TileProps) {
   const [loaded, setLoaded] = useState(false);
 
+  const w = photo.width && photo.width > 0 ? photo.width : 3;
+  const h = photo.height && photo.height > 0 ? photo.height : 2;
+  // Reserve enough grid rows to hold the tile at its natural aspect ratio.
+  const cardHeight = (colWidth || 300) * (h / w);
+  const span = Math.max(1, Math.ceil((cardHeight + GAP_PX) / ROW_PX));
+
   return (
     <div
-      className={`group relative aspect-[3/2] break-inside-avoid${isBroken ? " opacity-40" : ""}`}
+      className={`group relative${isBroken ? " opacity-40" : ""}`}
+      style={{ gridRowEnd: `span ${span}`, marginBottom: GAP_PX }}
     >
       {isBroken && moderationMode && (
         <span className="absolute right-2 top-2 z-20 rounded-md bg-red-900/80 px-2 py-1 text-[10px] font-semibold uppercase tracking-wider text-red-200 ring-1 ring-red-500/40">
@@ -99,16 +113,17 @@ function GalleryTile({
           if (!isMobileViewport) return;
           event.preventDefault();
         }}
-        className="relative block h-full w-full cursor-default overflow-hidden rounded-xl border border-white/10 bg-zinc-900/60 sm:cursor-zoom-in"
-        style={
-          photo.blurDataUrl
+        className="relative block w-full cursor-default overflow-hidden rounded-xl border border-white/10 bg-zinc-900/60 sm:cursor-zoom-in"
+        style={{
+          aspectRatio: `${w} / ${h}`,
+          ...(photo.blurDataUrl
             ? {
                 backgroundImage: `url(${photo.blurDataUrl})`,
                 backgroundSize: "cover",
                 backgroundPosition: "center",
               }
-            : undefined
-        }
+            : {}),
+        }}
       >
         {!loaded && (
           <span className="absolute inset-0 z-10 flex items-center justify-center bg-black/20">
@@ -125,8 +140,6 @@ function GalleryTile({
             className={`h-full w-full object-cover transition-opacity duration-700 ease-out ${
               loaded ? "opacity-100" : "opacity-0"
             }`}
-            width={photo.width ?? 1280}
-            height={photo.height ?? 720}
             aria-label={photo.filename}
             onLoadedData={() => setLoaded(true)}
           />
@@ -166,7 +179,10 @@ export default function PhotoGallery({
   const photoIdOpen = searchParams?.get("photoId") ?? null;
   const [lastViewedPhoto, setLastViewedPhoto] = useLastViewedPhoto();
   const [isMobileViewport, setIsMobileViewport] = useState(false);
+  const [colWidth, setColWidth] = useState(0);
   const lastRef = useRef<HTMLAnchorElement>(null);
+  const gridRef = useRef<HTMLDivElement>(null);
+  const hasPhotos = photos !== null;
 
   useEffect(() => {
     const mq = window.matchMedia("(max-width: 639px)");
@@ -175,6 +191,20 @@ export default function PhotoGallery({
     mq.addEventListener("change", apply);
     return () => mq.removeEventListener("change", apply);
   }, []);
+
+  // Track a single column's width so tiles can reserve the right number of rows.
+  useEffect(() => {
+    const el = gridRef.current;
+    if (!el) return;
+    const measure = () => {
+      const total = el.clientWidth;
+      setColWidth((total - GAP_PX * (COLS - 1)) / COLS);
+    };
+    measure();
+    const ro = new ResizeObserver(measure);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, [hasPhotos]);
 
   useEffect(() => {
     if (lastViewedPhoto && !photoIdOpen && lastRef.current) {
@@ -192,8 +222,17 @@ export default function PhotoGallery({
           Loading photos…
         </div>
       )}
-      {/* Row-major grid: photos read left-to-right, top-to-bottom (numbers in order). */}
-      <div className="grid grid-cols-3 gap-2 sm:gap-4">
+      {/* Masonry grid: row-major order (numbers read left-to-right), tiles keep
+          their natural portrait/landscape aspect ratio via grid row spans. */}
+      <div
+        ref={gridRef}
+        className="grid"
+        style={{
+          gridTemplateColumns: `repeat(${COLS}, minmax(0, 1fr))`,
+          gridAutoRows: `${ROW_PX}px`,
+          columnGap: `${GAP_PX}px`,
+        }}
+      >
         {photos?.map((photo, i) => {
           const isBroken = brokenIds.has(photo.id);
           if (isBroken && !moderationMode) return null;
@@ -202,6 +241,7 @@ export default function PhotoGallery({
               key={photo.id}
               photo={photo}
               number={i + 1}
+              colWidth={colWidth}
               mode={mode}
               moderationMode={moderationMode}
               isBroken={isBroken}
