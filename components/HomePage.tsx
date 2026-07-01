@@ -1,7 +1,7 @@
 "use client";
 
 import { Dialog } from "@headlessui/react";
-import { ArrowDownTrayIcon, ArrowLeftIcon } from "@heroicons/react/24/outline";
+import { ArrowLeftIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import {
@@ -369,14 +369,11 @@ export default function HomePage({ mode = "gallery" }: Props) {
                   className="h-px w-full max-w-md"
                   aria-hidden
                 />
-                <button
-                  type="button"
-                  onClick={() => loadMore()}
-                  className="inline-flex min-h-11 items-center justify-center gap-2 rounded-md border border-white/15 bg-zinc-900/80 px-5 py-2.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-stone-100 transition hover:bg-zinc-800/90 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-200/80"
-                >
-                  <ArrowDownTrayIcon className="h-3.5 w-3.5" aria-hidden />
-                  Load more moments
-                </button>
+                <span
+                  className="h-6 w-6 animate-spin rounded-full border-2 border-white/25 border-t-white/80"
+                  role="status"
+                  aria-label="Loading more moments"
+                />
                 <p className="text-[11px] text-stone-500">
                   Showing {photos.length} of {total}
                 </p>
