@@ -131,6 +131,26 @@ export default function PhotoLightbox({
     resetZoom();
   }, [index, resetZoom]);
 
+  // Preload the display images around the current photo (5 each side, nearest
+  // first) so next/prev navigation shows them instantly from cache.
+  useEffect(() => {
+    if (typeof window === "undefined" || !photos.length) return;
+    const RADIUS = 5;
+    for (let d = 1; d <= RADIUS; d++) {
+      for (const j of [index + d, index - d]) {
+        const p = photos[j];
+        if (!p || p.kind === "video") continue;
+        const img = new window.Image();
+        const srcset = lightboxImageSrcSet(p);
+        if (srcset) {
+          img.srcset = srcset;
+          img.sizes = "(max-width: 640px) 100vw, min(90vw, 1280px)";
+        }
+        img.src = p.displayUrl ?? p.url;
+      }
+    }
+  }, [index, photos]);
+
   useEffect(() => {
     setMobileUiOpen(false);
   }, [index]);
