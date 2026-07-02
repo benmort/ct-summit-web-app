@@ -29,9 +29,17 @@ type Props = {
 const VIDEO_POSTER_FALLBACK = "/images/video-poster-fallback.svg";
 
 // Masonry grid tuning: photos keep their natural aspect ratio via row spans.
-const COLS = 3;
 const ROW_PX = 8; // grid-auto-rows height
 const GAP_PX = 8; // gutter between tiles
+
+/** Derive the summit day (1-3) from the photo's filename, else 0 (unknown). */
+function dayNumber(filename: string): number {
+  const n = filename.toLowerCase();
+  if (/day\s*(one|1)\b/.test(n)) return 1;
+  if (/day\s*(two|2)\b/.test(n)) return 2;
+  if (/day\s*(three|3)\b/.test(n)) return 3;
+  return 0;
+}
 
 function Spinner({ className = "" }: { className?: string }) {
   return (
@@ -46,6 +54,7 @@ type TileProps = {
   photo: Photo;
   number: number;
   colWidth: number;
+  sizes: string;
   mode: GalleryMode;
   moderationMode: boolean;
   isBroken: boolean;
@@ -59,6 +68,7 @@ function GalleryTile({
   photo,
   number,
   colWidth,
+  sizes,
   mode,
   moderationMode,
   isBroken,
@@ -148,7 +158,7 @@ function GalleryTile({
           <img
             src={photo.wallUrl ?? photo.thumbUrl ?? photo.url}
             srcSet={galleryImageSrcSet(photo) || undefined}
-            sizes="(max-width: 1024px) 33vw, 400px"
+            sizes={sizes}
             alt={photo.filename}
             loading="lazy"
             decoding="async"
@@ -180,9 +190,37 @@ export default function PhotoGallery({
   const [lastViewedPhoto, setLastViewedPhoto] = useLastViewedPhoto();
   const [isMobileViewport, setIsMobileViewport] = useState(false);
   const [colWidth, setColWidth] = useState(0);
+  // User-adjustable column count: 1 or 2 on mobile, 2 or 3 on desktop.
+  const [mobileCols, setMobileCols] = useState<1 | 2>(1);
+  const [desktopCols, setDesktopCols] = useState<2 | 3>(3);
   const lastRef = useRef<HTMLAnchorElement>(null);
   const gridRef = useRef<HTMLDivElement>(null);
   const hasPhotos = photos !== null;
+  const cols = isMobileViewport ? mobileCols : desktopCols;
+  const colOptions: number[] = isMobileViewport ? [1, 2] : [2, 3];
+  const setCols = (n: number) =>
+    isMobileViewport ? setMobileCols(n as 1 | 2) : setDesktopCols(n as 2 | 3);
+  const tileSizes = `${Math.round(96 / cols)}vw`;
+
+  // Persist the column choice per breakpoint.
+  useEffect(() => {
+    try {
+      const m = Number(localStorage.getItem("moments:mobileCols"));
+      const d = Number(localStorage.getItem("moments:desktopCols"));
+      if (m === 1 || m === 2) setMobileCols(m);
+      if (d === 2 || d === 3) setDesktopCols(d);
+    } catch {
+      /* ignore */
+    }
+  }, []);
+  useEffect(() => {
+    try {
+      localStorage.setItem("moments:mobileCols", String(mobileCols));
+      localStorage.setItem("moments:desktopCols", String(desktopCols));
+    } catch {
+      /* ignore */
+    }
+  }, [mobileCols, desktopCols]);
 
   useEffect(() => {
     const mq = window.matchMedia("(max-width: 639px)");
@@ -198,13 +236,13 @@ export default function PhotoGallery({
     if (!el) return;
     const measure = () => {
       const total = el.clientWidth;
-      setColWidth((total - GAP_PX * (COLS - 1)) / COLS);
+      setColWidth((total - GAP_PX * (cols - 1)) / cols);
     };
     measure();
     const ro = new ResizeObserver(measure);
     ro.observe(el);
     return () => ro.disconnect();
-  }, [hasPhotos]);
+  }, [hasPhotos, cols]);
 
   useEffect(() => {
     if (lastViewedPhoto && !photoIdOpen && lastRef.current) {
@@ -212,6 +250,29 @@ export default function PhotoGallery({
       setLastViewedPhoto(null);
     }
   }, [lastViewedPhoto, photoIdOpen, setLastViewedPhoto]);
+
+  // Photos are ordered Day 1 -> 2 -> 3; group consecutive runs by day, with
+  // per-day numbering restarting at 1.
+  const visible = (photos ?? []).filter(
+    (p) => moderationMode || !brokenIds.has(p.id),
+  );
+  type Group = { day: number; items: { photo: Photo; number: number }[] };
+  const groups: Group[] = [];
+  for (const photo of visible) {
+    const day = dayNumber(photo.filename);
+    let g = groups[groups.length - 1];
+    if (!g || g.day !== day) {
+      g = { day, items: [] };
+      groups.push(g);
+    }
+    g.items.push({ photo, number: g.items.length + 1 });
+  }
+
+  const gridStyle = {
+    gridTemplateColumns: `repeat(${cols}, minmax(0, 1fr))`,
+    gridAutoRows: `${ROW_PX}px`,
+    columnGap: `${GAP_PX}px`,
+  };
 
   return (
     <>
@@ -222,36 +283,68 @@ export default function PhotoGallery({
           Loading photos…
         </div>
       )}
-      {/* Masonry grid: row-major order (numbers read left-to-right), tiles keep
-          their natural portrait/landscape aspect ratio via grid row spans. */}
-      <div
-        ref={gridRef}
-        className="grid"
-        style={{
-          gridTemplateColumns: `repeat(${COLS}, minmax(0, 1fr))`,
-          gridAutoRows: `${ROW_PX}px`,
-          columnGap: `${GAP_PX}px`,
-        }}
-      >
-        {photos?.map((photo, i) => {
-          const isBroken = brokenIds.has(photo.id);
-          if (isBroken && !moderationMode) return null;
-          return (
-            <GalleryTile
-              key={photo.id}
-              photo={photo}
-              number={i + 1}
-              colWidth={colWidth}
-              mode={mode}
-              moderationMode={moderationMode}
-              isBroken={isBroken}
-              selected={selectedIds.has(photo.id)}
-              onToggleSelect={onToggleSelect}
-              isMobileViewport={isMobileViewport}
-              innerRef={photo.id === lastViewedPhoto ? lastRef : undefined}
-            />
-          );
-        })}
+      {hasPhotos && visible.length > 0 && (
+        <div className="mb-3 flex items-center justify-end gap-1">
+          <span className="mr-1 text-[11px] uppercase tracking-wide text-stone-500">
+            Columns
+          </span>
+          {colOptions.map((n) => (
+            <button
+              key={n}
+              type="button"
+              onClick={() => setCols(n)}
+              aria-pressed={cols === n}
+              aria-label={`${n} columns`}
+              className={`flex h-8 w-8 items-center justify-center rounded-md text-xs font-semibold ring-1 transition ${
+                cols === n
+                  ? "bg-white/15 text-white ring-white/30"
+                  : "bg-white/5 text-stone-400 ring-white/10 hover:bg-white/10"
+              }`}
+            >
+              {n}
+            </button>
+          ))}
+        </div>
+      )}
+      {/* Per-day sections with subheaders; within each, a masonry grid where
+          tiles keep their natural portrait/landscape aspect ratio via row spans. */}
+      <div ref={gridRef}>
+        {groups.map((group) => (
+          <section
+            key={group.day}
+            id={group.day > 0 ? `day-${group.day}` : undefined}
+            className="mb-8 scroll-mt-20"
+          >
+            {group.day > 0 && (
+              <div className="mb-3 flex items-baseline gap-3 border-b border-white/10 pb-2">
+                <h2 className="text-lg font-semibold text-stone-100 sm:text-xl">
+                  Day {group.day}
+                </h2>
+                <span className="rounded-full bg-white/10 px-2 py-0.5 text-xs font-medium text-stone-300">
+                  #day-{group.day}
+                </span>
+              </div>
+            )}
+            <div className="grid" style={gridStyle}>
+              {group.items.map(({ photo, number }) => (
+                <GalleryTile
+                  key={photo.id}
+                  photo={photo}
+                  number={number}
+                  colWidth={colWidth}
+                  sizes={tileSizes}
+                  mode={mode}
+                  moderationMode={moderationMode}
+                  isBroken={brokenIds.has(photo.id)}
+                  selected={selectedIds.has(photo.id)}
+                  onToggleSelect={onToggleSelect}
+                  isMobileViewport={isMobileViewport}
+                  innerRef={photo.id === lastViewedPhoto ? lastRef : undefined}
+                />
+              ))}
+            </div>
+          </section>
+        ))}
       </div>
     </>
   );
