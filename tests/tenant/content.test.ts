@@ -79,6 +79,47 @@ test("every tenant's content has the required fields populated", () => {
   }
 });
 
+test("referenced brand image assets exist in public/", () => {
+  for (const slug of TENANT_SLUGS) {
+    const { brand } = tenantContent(slug);
+    const paths = [
+      brand.assets.logo,
+      brand.assets.favicon,
+      brand.assets.appleTouchIcon,
+      ...brand.assets.faviconPng.map((i) => i.url),
+      ...brand.assets.androidChrome.map((i) => i.url),
+      ...(brand.assets.headerLogo ? [brand.assets.headerLogo.src] : []),
+    ];
+    for (const p of paths) {
+      assert.ok(
+        existsSync(path.join(ROOT, "public", p.replace(/^\//, ""))),
+        `${slug}: brand asset "${p}" is referenced but missing from public/`,
+      );
+    }
+  }
+});
+
+test("a header logo declares its true pixel dimensions", () => {
+  // The header scales by height and relies on the ratio, so a wrong width or
+  // height distorts the logo rather than failing loudly.
+  for (const slug of TENANT_SLUGS) {
+    const logo = tenantContent(slug).brand.assets.headerLogo;
+    if (!logo) continue;
+    assert.ok(logo.width > 0 && logo.height > 0, `${slug}: headerLogo needs real dimensions`);
+    assert.ok(logo.src.startsWith("/"), `${slug}: headerLogo.src must be a root-relative path`);
+  }
+});
+
+test("the default tenant keeps its text wordmark in the header", () => {
+  // Adding a headerLogo to the default tenant would change the Common Threads
+  // header, which this refactor is meant to leave untouched.
+  assert.equal(
+    tenantContent("common-threads").brand.assets.headerLogo,
+    undefined,
+    "common-threads should render its wordmark as text, not a logo image",
+  );
+});
+
 /**
  * A font key that isn't in the registry falls back to the system stack with only
  * a console warning, which is easy to miss. lib/tenant/fonts.ts cannot be

@@ -21,7 +21,20 @@ export type BrandContent = {
   /** Colour for the browser chrome and PWA manifest. */
   themeColor: string;
   assets: {
+    /** Wordmark on the photo showreel. */
     logo: string;
+    /**
+     * Logo shown in the app header, replacing the `wordmark` text.
+     *
+     * Opt-in: omit it and the header keeps rendering the wordmark, which is why
+     * the default tenant's header is unchanged. Pick the variant that suits the
+     * tenant's theme — the header sits on `surface-950`, which is near-black in
+     * dark mode and near-white in light mode.
+     *
+     * Width and height are the file's true pixel dimensions; the header scales it
+     * by height and preserves the ratio.
+     */
+    headerLogo?: { src: string; width: number; height: number; alt?: string };
     onboardingBackground: string;
     heroVideo: string;
     appleTouchIcon: string;

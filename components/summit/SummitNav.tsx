@@ -14,6 +14,7 @@ import {
   UsersIcon,
   UserGroupIcon,
 } from "@heroicons/react/24/outline";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
@@ -229,9 +230,20 @@ export default function SummitNav({ whatsappChannels = [] }: SummitNavProps) {
         <div className="mx-auto flex w-full max-w-[1100px] items-center justify-between px-4 py-3 sm:px-6">
           <Link
             href="/"
-            className="font-display text-[11px] font-semibold uppercase tracking-[0.22em] text-ink-100 lg:text-[13px]"
+            className="flex items-center font-display text-[11px] font-semibold uppercase tracking-[0.22em] text-ink-100 lg:text-[13px]"
           >
-            {brand.wordmark}
+            {brand.assets.headerLogo ? (
+              <Image
+                src={brand.assets.headerLogo.src}
+                width={brand.assets.headerLogo.width}
+                height={brand.assets.headerLogo.height}
+                alt={brand.assets.headerLogo.alt ?? brand.name}
+                priority
+                className="h-6 w-auto lg:h-7"
+              />
+            ) : (
+              brand.wordmark
+            )}
           </Link>
           <div className="flex items-center gap-2">
             <button

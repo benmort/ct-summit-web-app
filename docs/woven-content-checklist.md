@@ -57,7 +57,7 @@ See questions 3.5 and 3.6.
 | 1.5 | Support email | TRUE | [ ] |
 | 1.6 | Brand colours | FALSE | [ ] |
 | 1.7 | Fonts | FALSE | [ ] |
-| 1.8 | Logo — higher-res square version | FALSE | [ ] |
+| 1.8 | Logo — higher-res square, plus dark and white versions | FALSE | [ ] |
 | 1.9 | Logo — confirm Woven owns it | TRUE | [ ] |
 | 1.10 | Welcome slides — five, reviewed | TRUE | [ ] |
 | 1.11 | Is "climate justice firm" the wording you want | FALSE | [ ] |
@@ -170,7 +170,10 @@ Response:
 
 Response:
 
-**1.8** Do you have a higher-resolution square logo, 512×512 or larger? (Ours is 500×238, small for a phone icon.)
+**1.8** Do you have higher-resolution logo files? Two things:
+
+- A **square** version, 512×512 or larger, for the phone home-screen icon. Ours is 500×238, which is small and the wrong shape for that.
+- Your logo now appears in the **app header**, using the dark version on the light background. If you send a new logo, we need both a dark version (for the header) and a white or reversed version (for the photo showreel, which sits on black).
 
 Response:
 

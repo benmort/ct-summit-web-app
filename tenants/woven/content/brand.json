@@ -6,6 +6,12 @@
   "themeColor": "#124a3e",
   "assets": {
     "logo": "/tenants/woven/logo-white.png",
+    "headerLogo": {
+      "src": "/tenants/woven/logo.png",
+      "width": 500,
+      "height": 238,
+      "alt": "Woven"
+    },
     "onboardingBackground": "/images/flinders-filtered.png",
     "heroVideo": "/video/background-loop-small.mp4",
     "appleTouchIcon": "/tenants/woven/apple-touch-icon.png",
