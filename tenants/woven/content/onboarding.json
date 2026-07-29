@@ -1,10 +1,10 @@
 {
   "acknowledgement": {
     "title": "ACKNOWLEDGEMENT OF COUNTRY",
-    "sovereigntyStatement": "PLACEHOLDER — Woven's closing sovereignty statement (questionnaire 4.3).",
+    "sovereigntyStatement": "TO CONFIRM — Woven's closing sovereignty statement (checklist 2.3).",
     "paragraphs": [
-      "PLACEHOLDER — needs Traditional Owner approval before launch. The gathering is held in Cairns, on the Country of the Gimuy Walubara Yidinji people, with Yirrganydji Country along the coast. Confirm the correct naming with local Traditional Owners and have them write or approve this wording. Do not reuse another event's Acknowledgement. See questionnaire section 4.",
-      "PLACEHOLDER — Woven's closing sovereignty statement (questionnaire 4.3)."
+      "TO CONFIRM — needs Traditional Owner approval before launch. Woven's own website calls the host city Gimuy, the Yidinji name for Cairns, which suggests the naming to use here. Cairns sits on the Country of the Gimuy Walubara Yidinji people, with Yirrganydji Country along the coast. Confirm with local Traditional Owners and have them write or approve this wording. Do not reuse another event's Acknowledgement. See checklist section 2.",
+      "TO CONFIRM — Woven's closing sovereignty statement (checklist 2.3)."
     ],
     "acceptLabel": "Acknowledge and continue"
   },
@@ -13,35 +13,35 @@
       "eyebrow": "WELCOME TO WOVEN",
       "heading": "Where Collective Knowledge Leads To Collective Strength",
       "paragraphs": [
-        "Woven is a global initiative grounded in the sacredness of ancestral knowledge, responsibilities, and aspirations. We steward projects and campaigns centred on climate action, land defence, and Indigenous rights and self-determination."
+        "Woven weaves global Indigenous knowledge and builds back our power for climate justice — strengthening the health of our planet while strengthening the rights of our people."
       ]
     },
     {
-      "eyebrow": "WHY WE GATHER",
-      "heading": "Strengthening Our Planet And Our Rights Together",
+      "eyebrow": "OUR VISION",
+      "heading": "Beginning With The Rightful Return Of Lands",
       "paragraphs": [
-        "Woven transforms solutions to the climate crisis through the advancement of Indigenous rights, wisdom, and sovereignty. We are the only global Indigenous organisation dedicated exclusively to climate justice."
+        "We envision a climate-stable future that includes, values, and upholds Indigenous peoples and Indigenous-led climate solutions, beginning with the rightful return of lands and territories."
       ]
     },
     {
-      "eyebrow": "OUR FOUR AREAS",
-      "heading": "Research, Convening, Ancestral Knowledge, Network",
+      "eyebrow": "SINCE 2009",
+      "heading": "A Vision Carried For Seventeen Years",
       "paragraphs": [
-        "Our framework is focused on four key areas: research, global convening, ancestral knowledge, and network building. Each one carries the others."
+        "Woven's roots trace to the Indigenous Peoples' Global Summit on Climate Change in Anchorage, Alaska, in 2009. Woven launched in 2025, and this is its first global gathering."
       ]
     },
     {
-      "eyebrow": "SEPTEMBER 2026, CAIRNS",
+      "eyebrow": "HOW WE WORK",
+      "heading": "Gather, Share, Resource, Amplify",
+      "paragraphs": [
+        "Our work centres on gathering Indigenous Peoples, creating and sharing global knowledges and tools, mobilising resources to directly support Indigenous-led climate action, and amplifying Indigenous-led climate movements."
+      ]
+    },
+    {
+      "eyebrow": "SEPTEMBER 2026, GIMUY",
       "heading": "Dreaming Into Our Future",
       "paragraphs": [
-        "Over five days we come together to strengthen collective Indigenous-led climate justice strategies, promote the integration of traditional ecological knowledge into global climate solutions and policies, and foster a powerful, unified voice."
-      ]
-    },
-    {
-      "eyebrow": "WHAT WE'LL BUILD TOGETHER",
-      "heading": "A Movement Built By And For Indigenous Peoples",
-      "paragraphs": [
-        "We aim to amplify local movements and solutions, sharing Indigenous stories, knowledge, and wisdom — and to leave with a shared plan for action."
+        "Together we strengthen collective Indigenous-led climate justice strategies, promote the integration of traditional ecological knowledge into global climate solutions and policies, and foster a powerful, unified voice."
       ]
     }
   ],

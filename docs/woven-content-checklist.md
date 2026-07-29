@@ -3,7 +3,44 @@
 Simple version. Tick the table as you go, then answer the questions below.
 The detailed version with examples is in `woven-content-brief.md`.
 
-App: woven.commonthreads.org.au · Gathering: 7–11 September 2026, Cairns
+App: woven.commonthreads.org.au · Gathering: 6–12 September 2026, Gimuy (Cairns)
+
+---
+
+## Already in the app, taken from thewovenproject.org
+
+You don't need to supply these. Please just correct anything that's wrong.
+
+| Field | Value we used | Source |
+| --- | --- | --- |
+| Gathering name | Dreaming into our Future: Global Indigenous Peoples' Climate Justice Gathering | /global-gathering-2026 |
+| Dates | 6–12 September 2026 | /global-gathering-2026 |
+| Location | Gimuy (Cairns), Queensland | /global-gathering-2026 |
+| Aims | Strengthen collective Indigenous-led climate justice strategies; integrate traditional ecological knowledge into global climate solutions and policies; foster a powerful, unified voice | /initiatives |
+| Vision | "We envision a climate-stable future that includes, values, and upholds Indigenous peoples and Indigenous-led climate solutions, beginning with the rightful return of lands and territories." | /about |
+| Positioning | "weaving global Indigenous knowledge and building back our power for climate justice" | /about |
+| Taglines | "Where collective knowledge leads to collective strength." · "Strengthening the health of our planet while strengthening the rights of our people." | /home, /initiatives |
+| Founding | Roots at the Indigenous Peoples' Global Summit on Climate Change, Anchorage, Alaska, 2009. Launched 2025. | /about |
+| How you work | "gathering Indigenous Peoples, creating and sharing global knowledges and tools, mobilizing resources to directly support Indigenous-led climate action, and amplifying Indigenous-led climate movements" | /about |
+| Support email | info@thewovenproject.org | /contact |
+| Brand colours | `#124a3e` deep green, `#8a9826` olive | site stylesheet |
+| Fonts | Fjalla One headings, Anuphan body | site stylesheet |
+| Logo and favicon | downloaded from your site | /home |
+
+**Known but not used in the app yet** — your social accounts (Instagram
+`the.wovenproject`, TikTok `thewovenproject2`, plus Facebook and LinkedIn). The
+app has nowhere to show these; tell us if you want them added.
+
+---
+
+## Two things we could not resolve
+
+**The dates disagree on your own site.** `/global-gathering-2026` says
+**6–12 September 2026**; `/initiatives` says **7–11 September**. We used 6–12 as
+the advertised span, and built the programme across 7–11, leaving 6 and 12 empty.
+See questions 3.5 and 3.6.
+
+**Registration says "opening soon"** with no date. See question 3.7.
 
 ---
 
@@ -23,6 +60,7 @@ App: woven.commonthreads.org.au · Gathering: 7–11 September 2026, Cairns
 | 1.8 | Logo — higher-res square version | FALSE | [ ] |
 | 1.9 | Logo — confirm Woven owns it | TRUE | [ ] |
 | 1.10 | Welcome slides — five, reviewed | TRUE | [ ] |
+| 1.11 | Is "climate justice firm" the wording you want | FALSE | [ ] |
 | 2.1 | Acknowledgement heading | TRUE | [ ] |
 | 2.2 | Acknowledgement of Country text | TRUE | [ ] |
 | 2.3 | Closing sovereignty statement | TRUE | [ ] |
@@ -31,6 +69,9 @@ App: woven.commonthreads.org.au · Gathering: 7–11 September 2026, Cairns
 | 3.2 | Dates | TRUE | [ ] |
 | 3.3 | City and state | TRUE | [ ] |
 | 3.4 | Expected delegate numbers and countries | FALSE | [ ] |
+| 3.5 | Dates — your site says both 6–12 and 7–11 | TRUE | [ ] |
+| 3.6 | What happens on 6 and 12 September | TRUE | [ ] |
+| 3.7 | Registration — when it opens, cost, travel support | TRUE | [ ] |
 | 4.1 | Venue name | TRUE | [ ] |
 | 4.2 | Venue street address | TRUE | [ ] |
 | 4.3 | Venue description | TRUE | [ ] |
@@ -56,6 +97,7 @@ App: woven.commonthreads.org.au · Gathering: 7–11 September 2026, Cairns
 | 6.4 | Speakers — headshots | TRUE | [ ] |
 | 6.5 | Which sessions are panels with several speakers | FALSE | [ ] |
 | 6.6 | Anyone who must not have a photo or bio published | TRUE | [ ] |
+| 6.7 | Which Advisory Council members are speaking | TRUE | [ ] |
 | 7.1 | Wellbeing job title — exact wording | TRUE | [ ] |
 | 7.2 | Who holds the wellbeing role | TRUE | [ ] |
 | 7.3 | All crew members — names, roles, photos, contacts | TRUE | [ ] |
@@ -83,6 +125,7 @@ App: woven.commonthreads.org.au · Gathering: 7–11 September 2026, Cairns
 | 11.2 | Topic channels | FALSE | [ ] |
 | 11.3 | Feedback forms or surveys | FALSE | [ ] |
 | 11.4 | Public transport link | FALSE | [ ] |
+| 11.5 | Should social accounts appear in the app | FALSE | [ ] |
 | 12.1 | Things to do nearby | FALSE | [ ] |
 | 13.1 | Photo gallery — on or off | FALSE | [ ] |
 | 13.2 | Photo gallery — who moderates | FALSE | [ ] |
@@ -111,7 +154,7 @@ Response:
 
 Response:
 
-**1.4** What is the full legal entity name? (Currently `The Woven Project`. Used in the photo upload terms.)
+**1.4** What is the full registered legal entity name? (The app now uses `Woven`, since your footer says “© 2025 Woven”. Used in the photo upload terms, so it must be the registered entity.)
 
 Response:
 
@@ -136,6 +179,10 @@ Response:
 Response:
 
 **1.10** Have you read the five welcome slides in the app and are you happy with them? If not, send replacements.
+
+Response:
+
+**1.11** Your website describes Woven as a "global climate justice firm". Is "firm" the word you want delegates to see, or would you prefer something else in the app?
 
 Response:
 
@@ -174,6 +221,18 @@ Response:
 Response:
 
 **3.4** Roughly how many delegates, from how many countries?
+
+Response:
+
+**3.5** Your site gives two different date ranges — `/global-gathering-2026` says 6–12 September 2026, `/initiatives` says 7–11 September. Which is right? If both are, which is the full span including arrival and departure, and which is the programme?
+
+Response:
+
+**3.6** What happens on 6 September and 12 September? Arrival and departure, an opening reception, side meetings, or nothing scheduled? The programme currently covers 7–11 only.
+
+Response:
+
+**3.7** When does registration open, and how will delegates register? Is there a cost, and is travel support or a scholarship available? Your site currently says only that registration is opening soon.
 
 Response:
 
@@ -253,7 +312,7 @@ Response:
 
 Response:
 
-**5.10** Which regions are actually presenting on Day 4? (We guessed Argentina, Aotearoa New Zealand, Sweden and Sápmi from your website.)
+**5.10** Day 4 is now three Regional Voices sessions, grouped to cover the six socio-cultural regions on your Advisory Council: North America and the Arctic, Africa and Asia, Pacific and Latin America. Is that the right grouping, and which regions present when?
 
 Response:
 
@@ -286,6 +345,27 @@ Response:
 Response:
 
 **6.6** Anyone who must not have a photo or biography published?
+
+Response:
+
+**6.7** Your Global Indigenous Advisory Council is published on your site. Which members are speaking, and in which session?
+
+| Region | Member | Nation | Speaking? |
+| --- | --- | --- | --- |
+| North America | Graeme Reed | Anishinabe, Canada | [ ] |
+| North America | Wahleah Johns | Diné, USA | [ ] |
+| Africa | Kimaren ole Riamit | Maasai, Kenya | [ ] |
+| Africa | Elijah Toirai | Maasai, Kenya | [ ] |
+| Pacific | Tiana Jakicevich | Māori, Ngāti Kahungunu ki Te Wairoa, Aotearoa | [ ] |
+| Pacific | Larissa Baldwin Roberts | Widjabul Wia-bal, Australia | [ ] |
+| Asia | Asami Segundo | Kalanguya-Ikalahan, Philippines | [ ] |
+| Asia | Tunga Rai | Rai, Nepal | [ ] |
+| Arctic | Gunn-Britt Retter | Sámi, Norway | [ ] |
+| Arctic | Inka-Saara Arttijeff | Sámi, Finland | [ ] |
+| Latin America | Leo Cerda | Kichwa, Ecuador | [ ] |
+| Latin America | Taily Terena | Xané/Terena, Brazil | [ ] |
+
+Two follow-ups: is Eriel Tchekwie Deranger speaking? And who represents the seventh socio-cultural region — only six appear on your site.
 
 Response:
 
@@ -406,6 +486,10 @@ Response:
 Response:
 
 **11.4** Is the public transport link right for Cairns? (Currently Translink Far North Queensland.)
+
+Response:
+
+**11.5** Should your social accounts appear in the app? We have Instagram `the.wovenproject`, TikTok `thewovenproject2`, plus Facebook and LinkedIn. There is nowhere to show them at the moment, so this would be a small addition.
 
 Response:
 

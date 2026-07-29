@@ -1,8 +1,8 @@
 {
   "name": "Woven",
   "wordmark": "Woven Gathering '26",
-  "legalEntity": "The Woven Project",
-  "description": "Woven is a global Indigenous organisation dedicated to climate justice, weaving Indigenous knowledge and building our power for climate action.",
+  "legalEntity": "Woven",
+  "description": "Woven weaves global Indigenous knowledge and builds back our power for climate justice. The Global Indigenous Peoples’ Climate Justice Gathering, Gimuy (Cairns), September 2026.",
   "themeColor": "#124a3e",
   "assets": {
     "logo": "/tenants/woven/logo-white.png",
@@ -11,12 +11,24 @@
     "appleTouchIcon": "/tenants/woven/apple-touch-icon.png",
     "favicon": "/tenants/woven/favicon-32x32.png",
     "faviconPng": [
-      { "url": "/tenants/woven/favicon-16x16.png", "sizes": "16x16" },
-      { "url": "/tenants/woven/favicon-32x32.png", "sizes": "32x32" }
+      {
+        "url": "/tenants/woven/favicon-16x16.png",
+        "sizes": "16x16"
+      },
+      {
+        "url": "/tenants/woven/favicon-32x32.png",
+        "sizes": "32x32"
+      }
     ],
     "androidChrome": [
-      { "url": "/tenants/woven/android-chrome-192x192.png", "sizes": "192x192" },
-      { "url": "/tenants/woven/android-chrome-512x512.png", "sizes": "512x512" }
+      {
+        "url": "/tenants/woven/android-chrome-192x192.png",
+        "sizes": "192x192"
+      },
+      {
+        "url": "/tenants/woven/android-chrome-512x512.png",
+        "sizes": "512x512"
+      }
     ]
   }
 }

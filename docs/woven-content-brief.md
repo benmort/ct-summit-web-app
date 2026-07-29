@@ -14,7 +14,7 @@ finish it.
 - **BLOCKING** means the app should not be promoted to delegates until it's
   answered.
 - Anything marked **TO CONFIRM** in the app is a placeholder that will be visible
-  to delegates. There are 88 of them right now.
+  to delegates. There are 102 of them right now.
 - The small grey line (like `brand.json → name`) tells the developer where the
   answer goes. Ignore it.
 - Long answers are welcome. Several sections want multiple paragraphs.
@@ -25,7 +25,7 @@ finish it.
 
 Your brand colours (deep green `#124a3e`, olive `#8a9826`), your fonts (Fjalla One
 for headings, Anuphan for body), your logo and favicon, your mission and taglines,
-`info@thewovenproject.org`, and the gathering's name, dates and city. All taken
+`info@thewovenproject.org`, your vision statement, your founding story, and the gathering's name, dates and city. All taken
 from thewovenproject.org.
 
 **Still needed from you**
@@ -72,7 +72,7 @@ Correct? If not:
 
 **1.4 Legal entity** — appears in the photo upload terms, so it must be the legal name, not the trading name.
 <sub>`brand.json → legalEntity`</sub>
-**Currently in the app:** `The Woven Project`
+**Currently in the app:** `Woven` — your footer says “© 2025 Woven”; the registered entity is still to confirm.
 
 Correct? If not:
 
@@ -111,16 +111,16 @@ Two things to confirm:
 
 Answer:
 
-**1.9 Welcome slides** — five slides shown once, after the Acknowledgement of Country. We drafted these from your mission statement and your four focus areas.
+**1.9 Welcome slides** — five slides shown once, after the Acknowledgement of Country. We drafted these from your website — two are your own words verbatim.
 <sub>`onboarding.json → slides`</sub>
 
 **Currently in the app:**
 
-1. *WELCOME TO WOVEN* — "Where Collective Knowledge Leads To Collective Strength" — "Woven is a global initiative grounded in the sacredness of ancestral knowledge, responsibilities, and aspirations. We steward projects and campaigns centred on climate action, land defence, and Indigenous rights and self-determination."
-2. *WHY WE GATHER* — "Strengthening Our Planet And Our Rights Together" — "Woven transforms solutions to the climate crisis through the advancement of Indigenous rights, wisdom, and sovereignty. We are the only global Indigenous organisation dedicated exclusively to climate justice."
-3. *OUR FOUR AREAS* — "Research, Convening, Ancestral Knowledge, Network" — "Our framework is focused on four key areas: research, global convening, ancestral knowledge, and network building. Each one carries the others."
-4. *SEPTEMBER 2026, CAIRNS* — "Dreaming Into Our Future" — "Over five days we come together to strengthen collective Indigenous-led climate justice strategies, promote the integration of traditional ecological knowledge into global climate solutions and policies, and foster a powerful, unified voice."
-5. *WHAT WE'LL BUILD TOGETHER* — "A Movement Built By And For Indigenous Peoples" — "We aim to amplify local movements and solutions, sharing Indigenous stories, knowledge, and wisdom — and to leave with a shared plan for action."
+1. *WELCOME TO WOVEN* — "Where Collective Knowledge Leads To Collective Strength" — "Woven weaves global Indigenous knowledge and builds back our power for climate justice — strengthening the health of our planet while strengthening the rights of our people."
+2. *OUR VISION* — "Beginning With The Rightful Return Of Lands" — "We envision a climate-stable future that includes, values, and upholds Indigenous peoples and Indigenous-led climate solutions, beginning with the rightful return of lands and territories." *(your vision statement, verbatim)*
+3. *SINCE 2009* — "A Vision Carried For Seventeen Years" — "Woven's roots trace to the Indigenous Peoples' Global Summit on Climate Change in Anchorage, Alaska, in 2009. Woven launched in 2025, and this is its first global gathering."
+4. *HOW WE WORK* — "Gather, Share, Resource, Amplify" — "Our work centres on gathering Indigenous Peoples, creating and sharing global knowledges and tools, mobilising resources to directly support Indigenous-led climate action, and amplifying Indigenous-led climate movements." *(your wording, spelling localised)*
+5. *SEPTEMBER 2026, GIMUY* — "Dreaming Into Our Future" — "Together we strengthen collective Indigenous-led climate justice strategies, promote the integration of traditional ecological knowledge into global climate solutions and policies, and foster a powerful, unified voice."
 
 These are the first words most delegates will read. Please rewrite anything that
 doesn't sound like Woven. You can also add or remove slides — three to six works
@@ -136,7 +136,8 @@ This is the first thing every delegate sees, and they must tap to acknowledge it
 before entering the app. **It is deliberately blank.** We have not drafted it,
 because naming Country is not ours to do.
 
-Our understanding is that the gathering is in Cairns, on the Country of the
+Your own site calls the host city **Gimuy**, the Yidinji name for Cairns, which
+suggests the naming to use here. Cairns sits on the Country of the
 **Gimuy Walubara Yidinji** people, with **Yirrganydji** Country along the coast.
 Please confirm that with local Traditional Owners and have them write or approve
 the wording.
@@ -174,11 +175,11 @@ title on the home screen.
 
 Correct? If not:
 
-**3.2 Dates.** **Currently:** 7–11 September 2026 (Monday to Friday), five days.
+**3.2 Dates.** **Currently:** 6–12 September 2026. The programme in the app covers Monday 7 to Friday 11.
 
 Confirm, or correct:
 
-**3.3 City and state.** **Currently:** `Cairns, Queensland`
+**3.3 City and state.** **Currently:** `Gimuy (Cairns), Queensland` — your site uses Gimuy, the Yidinji name.
 
 Confirm, or correct:
 
@@ -196,7 +197,7 @@ Everything here is a placeholder. We didn't find the venue on your website.
 
 **4.1 Venue name.**
 <sub>`data.json → venues`</sub>
-**Currently:** `Gathering Venue, Cairns` (placeholder)
+**Currently:** `Gathering Venue, Gimuy (Cairns)` (placeholder)
 
 Answer:
 
@@ -303,11 +304,11 @@ included.*
 
 | Time | Title | Description | Room |
 | --- | --- | --- | --- |
-| 09:00–10:30 | Stories from the Regions: Argentina **[speaker]** | | |
+| 09:00–10:30 | Regional Voices: North America and the Arctic **[speaker]** | | |
 | 10:30–11:00 | Morning Tea | | |
-| 11:00–12:30 | Stories from the Regions: Aotearoa New Zealand **[speaker]** | | |
+| 11:00–12:30 | Regional Voices: Africa and Asia **[speaker]** | | |
 | 12:30–13:30 | Lunch | | |
-| 13:30–15:00 | Stories from the Regions: Sweden and Sápmi **[speaker]** | | |
+| 13:30–15:00 | Regional Voices: Pacific and Latin America **[speaker]** | | |
 | 15:00–16:30 | Amplifying Local Solutions | | |
 
 *We used the three regions featured on your Shared Knowledge page. Which regions
@@ -364,9 +365,9 @@ The 13 slots, by session:
 | 6 | Climate Finance Mechanisms and Access | Tue 8 |
 | 7 | Traditional Ecological Knowledge in Climate Policy | Wed 9 |
 | 8 | Land Defence and Self-Determination | Wed 9 |
-| 9 | Stories from the Regions: Argentina | Thu 10 |
-| 10 | Stories from the Regions: Aotearoa New Zealand | Thu 10 |
-| 11 | Stories from the Regions: Sweden and Sápmi | Thu 10 |
+| 9 | Regional Voices: North America and the Arctic | Thu 10 |
+| 10 | Regional Voices: Africa and Asia | Thu 10 |
+| 11 | Regional Voices: Pacific and Latin America | Thu 10 |
 | 12 | Building a Unified Voice | Fri 11 |
 | 13 | Network Building: Where To From Here | Fri 11 |
 

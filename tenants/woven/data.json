@@ -4,9 +4,9 @@
       "id": "woven-gathering-2026",
       "fields": {
         "Name": "Dreaming into our Future: Global Indigenous Peoples' Climate Justice Gathering",
-        "Location": "Cairns, Queensland",
-        "Start Date": "2026-09-07",
-        "End Date": "2026-09-11"
+        "Location": "Gimuy (Cairns), Queensland",
+        "Start Date": "2026-09-06",
+        "End Date": "2026-09-12"
       }
     }
   ],
@@ -303,7 +303,7 @@
       "id": "woven-speaker-9",
       "fields": {
         "Full Name": "TO CONFIRM — speaker 9 name",
-        "Title": "Stories from the Regions: Argentina",
+        "Title": "Regional Voices: North America and the Arctic",
         "Organisation": [
           "Woven"
         ],
@@ -339,7 +339,7 @@
       "id": "woven-speaker-10",
       "fields": {
         "Full Name": "TO CONFIRM — speaker 10 name",
-        "Title": "Stories from the Regions: Aotearoa New Zealand",
+        "Title": "Regional Voices: Africa and Asia",
         "Organisation": [
           "Woven"
         ],
@@ -375,7 +375,7 @@
       "id": "woven-speaker-11",
       "fields": {
         "Full Name": "TO CONFIRM — speaker 11 name",
-        "Title": "Stories from the Regions: Sweden and Sápmi",
+        "Title": "Regional Voices: Pacific and Latin America",
         "Organisation": [
           "Woven"
         ],
@@ -903,7 +903,7 @@
     {
       "id": "woven-event-20",
       "fields": {
-        "Title": "Stories from the Regions: Argentina",
+        "Title": "Regional Voices: North America and the Arctic",
         "Venue Name": "Gathering Venue, Cairns",
         "Description": "TO CONFIRM — a description of \"Stories from the Regions: Argentina\" (questionnaire 12.4)",
         "Tags": [
@@ -947,7 +947,7 @@
     {
       "id": "woven-event-22",
       "fields": {
-        "Title": "Stories from the Regions: Aotearoa New Zealand",
+        "Title": "Regional Voices: Africa and Asia",
         "Venue Name": "Gathering Venue, Cairns",
         "Description": "TO CONFIRM — a description of \"Stories from the Regions: Aotearoa New Zealand\" (questionnaire 12.4)",
         "Tags": [
@@ -991,7 +991,7 @@
     {
       "id": "woven-event-24",
       "fields": {
-        "Title": "Stories from the Regions: Sweden and Sápmi",
+        "Title": "Regional Voices: Pacific and Latin America",
         "Venue Name": "Gathering Venue, Cairns",
         "Description": "TO CONFIRM — a description of \"Stories from the Regions: Sweden and Sápmi\" (questionnaire 12.4)",
         "Tags": [
