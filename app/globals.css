@@ -4,9 +4,113 @@
 @tailwind components;
 @tailwind utilities;
 
+/*
+ * Default theme: the Common Threads dark palette.
+ *
+ * Every value below is the exact Tailwind v3 colour it replaced, so the default
+ * tenant renders pixel-identically to the pre-tokenisation app. Tenants override
+ * these variables from tenant.json at request time; tests/tenant/ramp.test.ts
+ * asserts these defaults still match the Tailwind palette they stand in for.
+ *
+ * Channels are space-separated RGB so Tailwind's `/alpha` modifier works.
+ */
 :root {
   --album-safe-bottom: env(safe-area-inset-bottom, 0px);
   --album-safe-top: env(safe-area-inset-top, 0px);
+
+  /* brand — was tailwind amber */
+  --brand-50: 255 251 235;
+  --brand-100: 254 243 199;
+  --brand-200: 253 230 138;
+  --brand-300: 252 211 77;
+  --brand-400: 251 191 36;
+  --brand-500: 245 158 11;
+  --brand-600: 217 119 6;
+  --brand-700: 180 83 9;
+  --brand-800: 146 64 14;
+  --brand-900: 120 53 15;
+  --brand-950: 69 26 3;
+
+  /* accent — was tailwind orange */
+  --accent-50: 255 247 237;
+  --accent-100: 255 237 213;
+  --accent-200: 254 215 170;
+  --accent-300: 253 186 116;
+  --accent-400: 251 146 60;
+  --accent-500: 249 115 22;
+  --accent-600: 234 88 12;
+  --accent-700: 194 65 12;
+  --accent-800: 154 52 18;
+  --accent-900: 124 45 18;
+  --accent-950: 67 20 7;
+
+  /* surface — was tailwind zinc */
+  --surface-50: 250 250 250;
+  --surface-100: 244 244 245;
+  --surface-200: 228 228 231;
+  --surface-300: 212 212 216;
+  --surface-400: 161 161 170;
+  --surface-500: 113 113 122;
+  --surface-600: 82 82 91;
+  --surface-700: 63 63 70;
+  --surface-800: 39 39 42;
+  --surface-900: 24 24 27;
+  --surface-950: 9 9 11;
+
+  /* ink — was tailwind stone */
+  --ink-50: 250 250 249;
+  --ink-100: 245 245 244;
+  --ink-200: 231 229 228;
+  --ink-300: 214 211 209;
+  --ink-400: 168 162 158;
+  --ink-500: 120 113 108;
+  --ink-600: 87 83 78;
+  --ink-700: 68 64 60;
+  --ink-800: 41 37 36;
+  --ink-900: 28 25 23;
+  --ink-950: 12 10 9;
+
+  /* danger — was tailwind red */
+  --danger-50: 254 242 242;
+  --danger-100: 254 226 226;
+  --danger-200: 254 202 202;
+  --danger-300: 252 165 165;
+  --danger-400: 248 113 113;
+  --danger-500: 239 68 68;
+  --danger-600: 220 38 38;
+  --danger-700: 185 28 28;
+  --danger-800: 153 27 27;
+  --danger-900: 127 29 29;
+  --danger-950: 69 10 10;
+
+  /* success — was tailwind emerald */
+  --success-50: 236 253 245;
+  --success-100: 209 250 229;
+  --success-200: 167 243 208;
+  --success-300: 110 231 183;
+  --success-400: 52 211 153;
+  --success-500: 16 185 129;
+  --success-600: 5 150 105;
+  --success-700: 4 120 87;
+  --success-800: 6 95 70;
+  --success-900: 6 78 59;
+  --success-950: 2 44 34;
+
+  /* Typography. Defaults to the system stack the app has always used; a tenant
+     overrides these by naming fonts in tenant.json (see lib/tenant/fonts.ts). */
+  --font-body: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --font-display: var(--font-body);
+
+  /* Singletons */
+  --page: 0 0 0; /* was bg-black on <body> */
+  --veil: 255 255 255; /* was white/α tints */
+  --scrim: 0 0 0; /* was black/α media + modal backdrops */
+  --on-scrim: 250 250 249; /* text over media; fixed in both modes */
+  --on-scrim-muted: 214 211 209;
+  --on-brand: 24 24 27; /* was zinc-900 on brand fills */
+  --on-brand-muted: 63 63 70; /* was zinc-700 on brand fills */
+  --panel: 255 255 255; /* always-light upload panel */
+  --on-panel: 28 25 23; /* was stone-900 on that panel */
 }
 
 @layer base {
@@ -15,7 +119,7 @@
     overflow-x: hidden;
   }
   body {
-    @apply min-h-dvh overflow-x-hidden bg-black text-stone-100;
+    @apply min-h-dvh overflow-x-hidden bg-page text-ink-100;
   }
 }
 

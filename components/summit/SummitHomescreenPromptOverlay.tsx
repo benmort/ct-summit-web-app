@@ -1,14 +1,9 @@
 "use client";
 
+import { useTenantContent } from "@/components/TenantContentProvider";
+
 import { ChevronRightIcon } from "@heroicons/react/24/outline";
 import { useEffect, useMemo, useRef, useState } from "react";
-import {
-  HOMESCREEN_PROMPT_ANDROID_BODY,
-  HOMESCREEN_PROMPT_BODY,
-  HOMESCREEN_PROMPT_FALLBACK_BODY,
-  HOMESCREEN_PROMPT_IOS_STEPS,
-  HOMESCREEN_PROMPT_TITLE,
-} from "@/lib/summit/acknowledgement";
 
 type Props = {
   open: boolean;
@@ -43,6 +38,7 @@ function isStandaloneMode(): boolean {
 }
 
 export default function SummitHomescreenPromptOverlay({ open, onComplete }: Props) {
+  const { onboarding } = useTenantContent();
   const [visible, setVisible] = useState(false);
   const [isCompleting, setIsCompleting] = useState(false);
   const [deferredPrompt, setDeferredPrompt] = useState<DeferredInstallPromptEvent | null>(null);
@@ -120,25 +116,25 @@ export default function SummitHomescreenPromptOverlay({ open, onComplete }: Prop
 
   return (
     <div
-      className={`fixed inset-0 z-[255] flex min-h-dvh items-center justify-center bg-black/90 px-4 py-6 backdrop-blur-sm transition-opacity duration-300 ease-out ${
+      className={`fixed inset-0 z-[255] flex min-h-dvh items-center justify-center bg-scrim/90 px-4 py-6 backdrop-blur-sm transition-opacity duration-300 ease-out ${
         visible ? "opacity-100" : "opacity-0"
       }`}
     >
       <div
-        className={`w-full max-w-2xl rounded-2xl border border-white/15 bg-zinc-950/95 p-6 shadow-2xl transition duration-300 ease-out sm:p-8 ${
+        className={`w-full max-w-2xl rounded-2xl border border-veil/15 bg-surface-950/95 p-6 shadow-2xl transition duration-300 ease-out sm:p-8 ${
           visible ? "translate-y-0 scale-100" : "translate-y-2 scale-[0.98]"
         }`}
       >
-        <h2 className="text-balance text-center text-base font-semibold uppercase tracking-[0.16em] text-amber-200 sm:text-lg">
-          {HOMESCREEN_PROMPT_TITLE}
+        <h2 className="text-balance text-center text-base font-semibold uppercase tracking-[0.16em] text-brand-200 sm:text-lg">
+          {onboarding.homescreenPrompt.title}
         </h2>
-        <div className="mt-5 space-y-4 text-base font-bold leading-relaxed text-stone-200 sm:text-lg">
-          <p>{HOMESCREEN_PROMPT_BODY}</p>
-          {promptMode === "android" ? <p>{HOMESCREEN_PROMPT_ANDROID_BODY}</p> : null}
-          {promptMode === "fallback" ? <p>{HOMESCREEN_PROMPT_FALLBACK_BODY}</p> : null}
+        <div className="mt-5 space-y-4 text-base font-bold leading-relaxed text-ink-200 sm:text-lg">
+          <p>{onboarding.homescreenPrompt.body}</p>
+          {promptMode === "android" ? <p>{onboarding.homescreenPrompt.androidBody}</p> : null}
+          {promptMode === "fallback" ? <p>{onboarding.homescreenPrompt.fallbackBody}</p> : null}
           {promptMode === "ios" ? (
             <ol className="list-decimal space-y-2 pl-6">
-              {HOMESCREEN_PROMPT_IOS_STEPS.map((step) => (
+              {onboarding.homescreenPrompt.iosSteps.map((step) => (
                 <li key={step}>{step}</li>
               ))}
             </ol>
@@ -148,7 +144,7 @@ export default function SummitHomescreenPromptOverlay({ open, onComplete }: Prop
           type="button"
           onClick={completePrompt}
           disabled={isCompleting}
-          className="mt-7 inline-flex min-h-11 w-full items-center justify-center rounded-md border border-white/25 bg-black/25 px-4 py-2.5 text-sm font-semibold uppercase tracking-[0.12em] text-stone-100 transition hover:bg-black/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-200 disabled:opacity-80"
+          className="mt-7 inline-flex min-h-11 w-full items-center justify-center rounded-md border border-veil/25 bg-scrim/25 px-4 py-2.5 text-sm font-semibold uppercase tracking-[0.12em] text-ink-100 transition hover:bg-scrim/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-200 disabled:opacity-80"
         >
           Skip
         </button>
@@ -156,7 +152,7 @@ export default function SummitHomescreenPromptOverlay({ open, onComplete }: Prop
           type="button"
           onClick={() => void handlePrimaryAction()}
           disabled={isCompleting}
-          className="mt-3 inline-flex min-h-11 w-full items-center justify-center gap-1.5 rounded-md bg-amber-500 px-4 py-2.5 text-sm font-semibold uppercase tracking-[0.12em] text-zinc-950 transition hover:bg-amber-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-200 disabled:opacity-80"
+          className="mt-3 inline-flex min-h-11 w-full items-center justify-center gap-1.5 rounded-md bg-brand-500 px-4 py-2.5 text-sm font-semibold uppercase tracking-[0.12em] text-surface-950 transition hover:bg-brand-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-200 disabled:opacity-80"
         >
           {promptMode === "android" ? "Install and continue" : "Continue"}
           <ChevronRightIcon className="h-4 w-4" aria-hidden />

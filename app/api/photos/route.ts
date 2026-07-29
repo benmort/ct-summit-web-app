@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { getTenantSlug } from "@/lib/tenant/server";
 import { getPhotoStorage } from "@/lib/storage";
 import { isAllowedMediaType, maxBytesForMime } from "@/lib/types/photo";
 import { classifyUploadError, safeErrorMessage } from "@/lib/upload-errors";
@@ -8,6 +9,7 @@ import { ensureUploadAuthorized, ensureUploadRateLimit } from "@/lib/upload-secu
 export const dynamic = "force-dynamic";
 
 export async function GET(request: Request) {
+  const tenantSlug = await getTenantSlug();
   try {
     const u = new URL(request.url);
     const ids = (u.searchParams.get("ids") || "")
@@ -15,7 +17,7 @@ export async function GET(request: Request) {
       .map((s) => s.trim())
       .filter(Boolean);
     if (ids.length) {
-      const storage = getPhotoStorage();
+      const storage = getPhotoStorage(tenantSlug);
       if (!storage.listByIds) {
         const photos = await storage.list();
         const byId = new Map(photos.map((p) => [p.id, p]));
@@ -27,13 +29,13 @@ export async function GET(request: Request) {
     const hasPaged =
       u.searchParams.has("offset") || u.searchParams.has("limit");
     if (!hasPaged) {
-      const photos = await getPhotoStorage().list();
+      const photos = await getPhotoStorage(tenantSlug).list();
       return NextResponse.json(photos);
     }
     const offset = Math.max(0, parseInt(u.searchParams.get("offset") || "0", 10) || 0);
     const limitRaw = parseInt(u.searchParams.get("limit") || "48", 10);
     const limit = Math.min(Math.max(1, limitRaw || 48), 100);
-    const { photos, total } = await getPhotoStorage().listPaged(offset, limit);
+    const { photos, total } = await getPhotoStorage(tenantSlug).listPaged(offset, limit);
     return NextResponse.json({ photos, total, offset, limit });
   } catch (e) {
     console.error(e);
@@ -42,16 +44,17 @@ export async function GET(request: Request) {
 }
 
 export async function POST(request: Request) {
+  const tenantSlug = await getTenantSlug();
   try {
-    await ensureUploadAuthorized(request);
-    ensureUploadRateLimit(request, "multipart-upload");
+    await ensureUploadAuthorized(request, tenantSlug);
+    ensureUploadRateLimit(request, `multipart-upload:${tenantSlug}`);
     const formData = await request.formData();
     const entries = formData.getAll("file") as File[];
     if (!entries.length) {
       return NextResponse.json({ error: "No file provided" }, { status: 400 });
     }
 
-    const storage = getPhotoStorage();
+    const storage = getPhotoStorage(tenantSlug);
     const created: Awaited<ReturnType<typeof storage.createFromBuffer>>[] = [];
 
     for (const file of entries) {

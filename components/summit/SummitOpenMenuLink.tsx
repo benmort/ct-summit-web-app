@@ -8,7 +8,7 @@ export default function SummitOpenMenuLink() {
     <button
       type="button"
       onClick={() => window.dispatchEvent(new Event(SUMMIT_OPEN_MENU_EVENT))}
-      className="inline-flex items-center gap-1 text-[10px] uppercase tracking-[0.14em] text-amber-300"
+      className="inline-flex items-center gap-1 text-[10px] uppercase tracking-[0.14em] text-brand-300"
     >
       View full menu
       <ChevronRightIcon className="h-3.5 w-3.5" aria-hidden />

@@ -87,20 +87,20 @@ function toneForSessionLabel(sessionLabel: string): SessionTone {
 
   if (isYellow) {
     return {
-      cardClass: "border-amber-300/35 bg-amber-950/20",
-      typeBadgeClass: "border border-amber-300/45 bg-amber-400/20 text-amber-100",
-      kindBadgeClass: "border border-amber-200/35 bg-amber-500/10 text-amber-100/95",
-      locationBadgeClass: "border border-amber-200/30 bg-amber-950/35 text-amber-100/90",
-      summaryClass: "text-stone-200",
+      cardClass: "border-brand-300/35 bg-brand-950/20",
+      typeBadgeClass: "border border-brand-300/45 bg-brand-400/20 text-brand-100",
+      kindBadgeClass: "border border-brand-200/35 bg-brand-500/10 text-brand-100/95",
+      locationBadgeClass: "border border-brand-200/30 bg-brand-950/35 text-brand-100/90",
+      summaryClass: "text-ink-200",
     };
   }
 
   return {
-    cardClass: "border-white/20 bg-zinc-900/55",
-    typeBadgeClass: "border border-white/30 bg-white/10 text-white",
-    kindBadgeClass: "border border-white/25 bg-white/5 text-stone-100",
-    locationBadgeClass: "border border-white/20 bg-black/30 text-stone-200",
-    summaryClass: "text-stone-300",
+    cardClass: "border-veil/20 bg-surface-900/55",
+    typeBadgeClass: "border border-veil/30 bg-veil/10 text-ink-50",
+    kindBadgeClass: "border border-veil/25 bg-veil/5 text-ink-100",
+    locationBadgeClass: "border border-veil/20 bg-scrim/30 text-ink-200",
+    summaryClass: "text-ink-300",
   };
 }
 
@@ -117,9 +117,9 @@ function ScheduleCard({ slot }: { slot: ScheduleSlot }) {
   return (
     <Link
       href={href}
-      className="group block rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300/80"
+      className="group block rounded-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-300/80"
     >
-      <article className={`${cardClass} group-hover:border-white/30 group-hover:bg-zinc-900/75`}>
+      <article className={`${cardClass} group-hover:border-veil/30 group-hover:bg-surface-900/75`}>
         <div className="mb-2 flex flex-wrap items-center gap-1.5 pl-1">
           <span className={`rounded-sm px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-[0.14em] ${tone.typeBadgeClass}`}>
             {formatBadge(sessionLabel)}
@@ -131,24 +131,24 @@ function ScheduleCard({ slot }: { slot: ScheduleSlot }) {
           ) : null}
         </div>
 
-        <h3 className="pl-1 text-[15px] font-semibold leading-5 text-white">{slot.title}</h3>
+        <h3 className="pl-1 text-[15px] font-semibold leading-5 text-ink-50">{slot.title}</h3>
         {slot.summary ? <p className={`mt-1.5 break-words pl-1 text-xs leading-5 ${tone.summaryClass}`}>{slot.summary}</p> : null}
 
         <div className="mt-3 flex items-end justify-between gap-3 pl-1">
           {slot.talk ? (
             <div className="min-w-0 flex-1">
               <div className="flex min-w-0 items-center gap-2">
-                <div className="relative h-7 w-7 overflow-hidden rounded-full border border-white/15 bg-white/5">
+                <div className="relative h-7 w-7 overflow-hidden rounded-full border border-veil/15 bg-veil/5">
                   {slot.imageUrl ? (
                     <Image src={slot.imageUrl} alt={speakerLabel} fill className="object-cover" unoptimized />
                   ) : (
-                    <UserCircleIcon className="h-full w-full p-1 text-stone-300" />
+                    <UserCircleIcon className="h-full w-full p-1 text-ink-300" />
                   )}
                 </div>
                 <div className="min-w-0">
-                  <p className="text-xs font-medium text-stone-200 break-words">{speakerLabel}</p>
+                  <p className="text-xs font-medium text-ink-200 break-words">{speakerLabel}</p>
                   {speakerSubLabel ? (
-                    <p className="text-[10px] uppercase tracking-[0.12em] text-stone-500 break-words">
+                    <p className="text-[10px] uppercase tracking-[0.12em] text-ink-500 break-words">
                       {speakerSubLabelIsLocation ? (
                         <span className="inline-flex items-center gap-1">
                           <MapPinIcon className="h-3 w-3 shrink-0" aria-hidden />
@@ -163,12 +163,12 @@ function ScheduleCard({ slot }: { slot: ScheduleSlot }) {
               </div>
             </div>
           ) : (
-            <p className="inline-flex items-center gap-1 text-[11px] uppercase tracking-[0.12em] text-stone-500 break-words">
+            <p className="inline-flex items-center gap-1 text-[11px] uppercase tracking-[0.12em] text-ink-500 break-words">
               <MapPinIcon className="h-3 w-3 shrink-0" aria-hidden />
               <span>{locationLabel}</span>
             </p>
           )}
-          <span className="inline-flex min-h-8 items-center gap-1 rounded-sm px-1 py-0.5 text-xs font-medium text-amber-200 transition group-hover:text-amber-100">
+          <span className="inline-flex min-h-8 items-center gap-1 rounded-sm px-1 py-0.5 text-xs font-medium text-brand-200 transition group-hover:text-brand-100">
             View Details
             <ChevronRightIcon className="h-3.5 w-3.5" />
           </span>
@@ -238,17 +238,17 @@ export default function SummitScheduleTimeline({ days }: Props) {
           const panelId = `schedule-day-panel-${index}`;
           const tabContent = dayTabContent(day, index);
           const buttonClass = selected
-            ? "group relative min-h-[76px] w-full cursor-pointer overflow-hidden rounded-xl border border-amber-300/45 bg-gradient-to-br from-amber-200 to-amber-100 px-3.5 py-3 text-left text-zinc-900 shadow-[0_10px_28px_rgba(245,158,11,0.25)] transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-200/80"
-            : "group relative min-h-[76px] w-full cursor-pointer overflow-hidden rounded-xl border border-dashed border-stone-500/55 bg-zinc-950/40 px-3.5 py-3 text-left text-stone-300/95 transition hover:-translate-y-0.5 hover:border-amber-300/45 hover:bg-zinc-900/65 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-200/80";
+            ? "group relative min-h-[76px] w-full cursor-pointer overflow-hidden rounded-xl border border-brand-300/45 bg-gradient-to-br from-brand-200 to-brand-100 px-3.5 py-3 text-left text-on-brand shadow-[0_10px_28px_rgba(245,158,11,0.25)] transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-200/80"
+            : "group relative min-h-[76px] w-full cursor-pointer overflow-hidden rounded-xl border border-dashed border-ink-500/55 bg-surface-950/40 px-3.5 py-3 text-left text-ink-300/95 transition hover:-translate-y-0.5 hover:border-brand-300/45 hover:bg-surface-900/65 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-200/80";
           const dateClass = selected
-            ? "block text-[10px] uppercase tracking-[0.12em] text-zinc-700"
-            : "block text-[10px] uppercase tracking-[0.12em] text-stone-500/90";
+            ? "block text-[10px] uppercase tracking-[0.12em] text-on-brand-muted"
+            : "block text-[10px] uppercase tracking-[0.12em] text-ink-500/90";
           const titleClass = selected
-            ? "mt-1 block text-sm font-semibold leading-5 text-zinc-900"
-            : "mt-1 block text-sm font-semibold leading-5 text-stone-200";
+            ? "mt-1 block text-sm font-semibold leading-5 text-on-brand"
+            : "mt-1 block text-sm font-semibold leading-5 text-ink-200";
           const venueClass = selected
-            ? "mt-0.5 block text-[11px] leading-4 text-zinc-700"
-            : "mt-0.5 block text-[11px] leading-4 text-stone-500";
+            ? "mt-0.5 block text-[11px] leading-4 text-on-brand-muted"
+            : "mt-0.5 block text-[11px] leading-4 text-ink-500";
           return (
             <button
               key={`${day.day}-${index}`}
@@ -284,17 +284,17 @@ export default function SummitScheduleTimeline({ days }: Props) {
                 aria-hidden
                 className={
                   selected
-                    ? "absolute inset-y-2 left-1 w-1 rounded-full bg-zinc-900/25"
-                    : "absolute inset-y-2 left-1 w-1 rounded-full bg-amber-300/40 opacity-0 transition-opacity group-hover:opacity-100"
+                    ? "absolute inset-y-2 left-1 w-1 rounded-full bg-surface-900/25"
+                    : "absolute inset-y-2 left-1 w-1 rounded-full bg-brand-300/40 opacity-0 transition-opacity group-hover:opacity-100"
                 }
               />
               {!selected ? (
-                <span className="pointer-events-none absolute right-2 top-2 inline-flex h-5 w-5 items-center justify-center rounded-full border border-amber-300/35 bg-zinc-900/70 text-amber-200/90 opacity-80 transition group-hover:border-amber-300/60 group-hover:opacity-100">
+                <span className="pointer-events-none absolute right-2 top-2 inline-flex h-5 w-5 items-center justify-center rounded-full border border-brand-300/35 bg-surface-900/70 text-brand-200/90 opacity-80 transition group-hover:border-brand-300/60 group-hover:opacity-100">
                   <ChevronRightIcon className="h-3 w-3" aria-hidden />
                 </span>
               ) : (
-                <span className="pointer-events-none absolute right-2 top-2 inline-flex h-5 w-5 items-center justify-center rounded-full border border-zinc-900/20 bg-zinc-900/10">
-                  <span className="h-2 w-2 rounded-full bg-zinc-900/60" />
+                <span className="pointer-events-none absolute right-2 top-2 inline-flex h-5 w-5 items-center justify-center rounded-full border border-surface-900/20 bg-surface-900/10">
+                  <span className="h-2 w-2 rounded-full bg-surface-900/60" />
                 </span>
               )}
               <span className={dateClass}>{tabContent.dateLine}</span>
@@ -314,14 +314,14 @@ export default function SummitScheduleTimeline({ days }: Props) {
         className="relative space-y-5 sm:space-y-6"
       >
         {!activeDay ? (
-          <section className="rounded-xl border border-white/10 bg-white/5 p-4">
-            <p className="text-sm text-stone-300">Loading program day...</p>
+          <section className="rounded-xl border border-veil/10 bg-veil/5 p-4">
+            <p className="text-sm text-ink-300">Loading program day...</p>
           </section>
         ) : activeDay.sections.length ? (
           <>
             <span
               aria-hidden
-              className="absolute bottom-0 left-[63px] top-0 w-px bg-white/10 sm:left-[75px]"
+              className="absolute bottom-0 left-[63px] top-0 w-px bg-veil/10 sm:left-[75px]"
             />
             {activeDay.sections.map((section, sectionIndex) => (
               <section
@@ -329,8 +329,8 @@ export default function SummitScheduleTimeline({ days }: Props) {
                 className="grid grid-cols-[52px_1fr] gap-4 sm:grid-cols-[64px_1fr] sm:gap-5"
               >
                 <div className="pt-0.5">
-                  <p className="text-sm font-semibold text-stone-100">{section.startLabel} -</p>
-                  <p className="text-sm text-stone-500">{section.endLabel}</p>
+                  <p className="text-sm font-semibold text-ink-100">{section.startLabel} -</p>
+                  <p className="text-sm text-ink-500">{section.endLabel}</p>
                 </div>
 
                 <div className="relative space-y-2 pl-1 sm:pl-2">
@@ -338,8 +338,8 @@ export default function SummitScheduleTimeline({ days }: Props) {
                     aria-hidden
                     className={
                       sectionIndex === 0
-                        ? "absolute -left-[10px] top-2 h-2.5 w-2.5 rounded-full border border-amber-300/80 bg-amber-400 sm:-left-[14px]"
-                        : "absolute -left-[10px] top-2 h-2.5 w-2.5 rounded-full border border-amber-200/70 bg-zinc-950 sm:-left-[14px]"
+                        ? "absolute -left-[10px] top-2 h-2.5 w-2.5 rounded-full border border-brand-300/80 bg-brand-400 sm:-left-[14px]"
+                        : "absolute -left-[10px] top-2 h-2.5 w-2.5 rounded-full border border-brand-200/70 bg-surface-950 sm:-left-[14px]"
                     }
                   />
 
@@ -351,13 +351,13 @@ export default function SummitScheduleTimeline({ days }: Props) {
             ))}
           </>
         ) : (
-          <section className="rounded-xl border border-white/10 bg-white/5 p-4">
-            <p className="text-sm text-stone-300">Program details for this day will be shared soon.</p>
+          <section className="rounded-xl border border-veil/10 bg-veil/5 p-4">
+            <p className="text-sm text-ink-300">Program details for this day will be shared soon.</p>
           </section>
         )}
       </div>
 
-      <p className="inline-flex items-center gap-1 text-[11px] text-stone-500">
+      <p className="inline-flex items-center gap-1 text-[11px] text-ink-500">
         <MapPinIcon className="h-3.5 w-3.5" />
         Times and rooms are subject to updates.
       </p>

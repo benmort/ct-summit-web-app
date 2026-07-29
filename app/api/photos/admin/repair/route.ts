@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { getTenantSlug } from "@/lib/tenant/server";
 import { isModerationConfigured } from "@/lib/moderation-auth";
 import { readModerationCookie } from "@/lib/server-moderation";
 import { getPhotoStorage } from "@/lib/storage";
@@ -7,15 +8,17 @@ import { ensureUploadAuthorized } from "@/lib/upload-security";
 export const dynamic = "force-dynamic";
 
 export async function POST(request: Request) {
+  const tenantSlug = await getTenantSlug();
   try {
-    await ensureUploadAuthorized(request);
-    if (isModerationConfigured()) {
-      const allowed = await readModerationCookie();
-      if (!allowed) {
-        return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-      }
+    await ensureUploadAuthorized(request, tenantSlug);
+    if (!isModerationConfigured(tenantSlug)) {
+      return NextResponse.json({ error: "Moderation not configured" }, { status: 503 });
     }
-    const storage = getPhotoStorage();
+    const allowed = await readModerationCookie(tenantSlug);
+    if (!allowed) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+    const storage = getPhotoStorage(tenantSlug);
     if (!storage.repairManifest) {
       return NextResponse.json(
         { repaired: false, details: ["Storage backend has no repair operation"] },

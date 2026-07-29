@@ -13,13 +13,14 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
-    "test": "tsx --test tests/**/*.test.ts",
-    "test:uploads": "tsx --test tests/uploads/**/*.test.ts",
+    "test": "tsx --conditions=react-server --test tests/**/*.test.ts",
+    "test:uploads": "tsx --conditions=react-server --test tests/uploads/**/*.test.ts",
     "loadtest:uploads": "tsx scripts/load-test-upload.ts",
     "generate:summit-qr": "tsx scripts/generate-summit-qr.ts",
     "import:highlights": "tsx scripts/import-highlights.ts",
     "rebuild:moments": "tsx scripts/rebuild-moments.ts",
-    "import:day-photos": "tsx scripts/import-day-photos.ts"
+    "import:day-photos": "tsx scripts/import-day-photos.ts",
+    "verify:theme": "node scripts/verify-theme-tokens.mjs"
   },
   "dependencies": {
     "@flaticon/flaticon-uicons": "^3.3.1",
@@ -36,6 +37,7 @@
     "react-hooks-global-state": "^2.0.0",
     "react-swipeable": "^7.0.0",
     "react-use-keypress": "^1.3.1",
+    "server-only": "^0.0.1",
     "sharp": "^0.33.5"
   },
   "devDependencies": {

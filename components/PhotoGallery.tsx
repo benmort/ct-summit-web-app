@@ -44,7 +44,7 @@ function dayNumber(filename: string): number {
 function Spinner({ className = "" }: { className?: string }) {
   return (
     <span
-      className={`animate-spin rounded-full border-2 border-white/25 border-t-white/80 ${className}`}
+      className={`animate-spin rounded-full border-2 border-veil/25 border-t-veil/80 ${className}`}
       aria-hidden
     />
   );
@@ -91,25 +91,25 @@ function GalleryTile({
       style={{ gridRowEnd: `span ${span}`, marginBottom: GAP_PX }}
     >
       {isBroken && moderationMode && (
-        <span className="absolute right-2 top-2 z-20 rounded-md bg-red-900/80 px-2 py-1 text-[10px] font-semibold uppercase tracking-wider text-red-200 ring-1 ring-red-500/40">
+        <span className="absolute right-2 top-2 z-20 rounded-md bg-danger-900/80 px-2 py-1 text-[10px] font-semibold uppercase tracking-wider text-danger-200 ring-1 ring-danger-500/40">
           Missing file
         </span>
       )}
       {!moderationMode && (
-        <span className="pointer-events-none absolute left-2 top-2 z-20 rounded-md bg-black/60 px-2 py-1 text-xs font-semibold tabular-nums text-white ring-1 ring-white/20 backdrop-blur-sm">
+        <span className="pointer-events-none absolute left-2 top-2 z-20 rounded-md bg-scrim/60 px-2 py-1 text-xs font-semibold tabular-nums text-on-scrim ring-1 ring-veil/20 backdrop-blur-sm">
           {number}
         </span>
       )}
       {moderationMode && onToggleSelect && (
         <label
-          className="absolute left-2 top-2 z-20 flex cursor-pointer items-center gap-2 rounded-md bg-black/60 px-2 py-1 text-xs text-white backdrop-blur-sm ring-1 ring-white/20"
+          className="absolute left-2 top-2 z-20 flex cursor-pointer items-center gap-2 rounded-md bg-scrim/60 px-2 py-1 text-xs text-on-scrim backdrop-blur-sm ring-1 ring-veil/20"
           onClick={(e) => e.stopPropagation()}
         >
           <input
             type="checkbox"
             checked={selected}
             onChange={() => onToggleSelect(photo.id)}
-            className="h-4 w-4 rounded border-white/40"
+            className="h-4 w-4 rounded border-veil/40"
             aria-label={`Select ${photo.filename}`}
           />
           Select
@@ -123,7 +123,7 @@ function GalleryTile({
           if (!isMobileViewport) return;
           event.preventDefault();
         }}
-        className="relative block w-full cursor-default overflow-hidden rounded-xl border border-white/10 bg-zinc-900/60 sm:cursor-zoom-in"
+        className="relative block w-full cursor-default overflow-hidden rounded-xl border border-veil/10 bg-surface-900/60 sm:cursor-zoom-in"
         style={{
           aspectRatio: `${w} / ${h}`,
           ...(photo.blurDataUrl
@@ -136,7 +136,7 @@ function GalleryTile({
         }}
       >
         {!loaded && (
-          <span className="absolute inset-0 z-10 flex items-center justify-center bg-black/20">
+          <span className="absolute inset-0 z-10 flex items-center justify-center bg-scrim/20">
             <Spinner className="h-6 w-6" />
           </span>
         )}
@@ -278,14 +278,14 @@ export default function PhotoGallery({
     <>
       {lead}
       {photosLoading && (
-        <div className="flex flex-col items-center justify-center gap-3 rounded-xl bg-white/5 py-20 text-center text-sm text-stone-400 ring-1 ring-inset ring-white/10">
+        <div className="flex flex-col items-center justify-center gap-3 rounded-xl bg-veil/5 py-20 text-center text-sm text-on-scrim-muted ring-1 ring-inset ring-veil/10">
           <Spinner className="h-6 w-6" />
           Loading photos…
         </div>
       )}
       {hasPhotos && visible.length > 0 && (
         <div className="mb-3 flex items-center justify-end gap-1">
-          <span className="mr-1 text-[11px] uppercase tracking-wide text-stone-500">
+          <span className="mr-1 text-[11px] uppercase tracking-wide text-on-scrim-muted">
             Columns
           </span>
           {colOptions.map((n) => (
@@ -297,8 +297,8 @@ export default function PhotoGallery({
               aria-label={`${n} columns`}
               className={`flex h-8 w-8 items-center justify-center rounded-md text-xs font-semibold ring-1 transition ${
                 cols === n
-                  ? "bg-white/15 text-white ring-white/30"
-                  : "bg-white/5 text-stone-400 ring-white/10 hover:bg-white/10"
+                  ? "bg-veil/15 text-on-scrim ring-veil/30"
+                  : "bg-veil/5 text-on-scrim-muted ring-veil/10 hover:bg-veil/10"
               }`}
             >
               {n}
@@ -316,11 +316,11 @@ export default function PhotoGallery({
             className="mb-8 scroll-mt-20"
           >
             {group.day > 0 && (
-              <div className="mb-3 flex items-baseline gap-3 border-b border-white/10 pb-2">
-                <h2 className="text-lg font-semibold text-stone-100 sm:text-xl">
+              <div className="mb-3 flex items-baseline gap-3 border-b border-veil/10 pb-2">
+                <h2 className="text-lg font-semibold text-on-scrim sm:text-xl">
                   Day {group.day}
                 </h2>
-                <span className="rounded-full bg-white/10 px-2 py-0.5 text-xs font-medium text-stone-300">
+                <span className="rounded-full bg-veil/10 px-2 py-0.5 text-xs font-medium text-on-scrim-muted">
                   #day-{group.day}
                 </span>
               </div>

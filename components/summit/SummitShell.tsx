@@ -45,7 +45,7 @@ export default function SummitShell({ children, whatsappChannels = [] }: Props) 
   }, [pathname]);
 
   return (
-    <div className="min-h-dvh bg-zinc-950 text-stone-100">
+    <div className="min-h-dvh bg-surface-950 text-ink-100">
       {showNav ? <SummitNav whatsappChannels={whatsappChannels} /> : null}
       <main
         className={`mx-auto w-full min-w-0 max-w-[1100px] break-words px-4 pt-5 sm:px-6 sm:pt-6 ${

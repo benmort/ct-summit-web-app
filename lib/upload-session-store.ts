@@ -52,10 +52,12 @@ export type NewUploadSessionInput = {
   }>;
 };
 
-const SESSION_PREFIX = "upload-sessions/";
+function sessionPrefix(slug: string): string {
+  return `${slug}/upload-sessions/`;
+}
 
-function sessionPath(sessionId: string): string {
-  return `${SESSION_PREFIX}${sessionId}.json`;
+function sessionPath(slug: string, sessionId: string): string {
+  return `${sessionPrefix(slug)}${sessionId}.json`;
 }
 
 function nextExpiryIso(): string {
@@ -111,10 +113,11 @@ async function parseBlobJson(pathname: string, token: string): Promise<UploadSes
 
 async function mutateBlobSession(
   token: string,
+  slug: string,
   id: string,
   mutator: (current: UploadSession | null) => UploadSession,
 ): Promise<UploadSession> {
-  const pathname = sessionPath(id);
+  const pathname = sessionPath(slug, id);
   for (let i = 0; i < 15; i++) {
     let etag: string | undefined;
     try {
@@ -162,8 +165,8 @@ export type UploadSessionStore = {
   listActive(limit: number): Promise<UploadSession[]>;
 };
 
-function createFilesystemUploadSessionStore(): UploadSessionStore {
-  const root = path.join(process.cwd(), "data", "upload-sessions");
+function createFilesystemUploadSessionStore(slug: string): UploadSessionStore {
+  const root = path.join(process.cwd(), "data", "tenants", slug, "upload-sessions");
 
   async function ensureDir() {
     await fs.mkdir(root, { recursive: true });
@@ -259,17 +262,17 @@ function createFilesystemUploadSessionStore(): UploadSessionStore {
   };
 }
 
-function createBlobUploadSessionStore(token: string): UploadSessionStore {
+function createBlobUploadSessionStore(token: string, slug: string): UploadSessionStore {
   return {
     async create(input) {
-      return mutateBlobSession(token, input.sessionId, () => makeNewSession(input));
+      return mutateBlobSession(token, slug, input.sessionId, () => makeNewSession(input));
     },
     async get(sessionId) {
-      const s = await parseBlobJson(sessionPath(sessionId), token);
+      const s = await parseBlobJson(sessionPath(slug, sessionId), token);
       return s ? hydrateCompleteState(s) : null;
     },
     async patchFile(sessionId, clientFileId, patch) {
-      return mutateBlobSession(token, sessionId, (current) => {
+      return mutateBlobSession(token, slug, sessionId, (current) => {
         const base =
           current ||
           makeNewSession({
@@ -298,7 +301,7 @@ function createBlobUploadSessionStore(token: string): UploadSessionStore {
       });
     },
     async markPhotoRegistered(sessionId, clientFileId, photoId) {
-      return mutateBlobSession(token, sessionId, (current) => {
+      return mutateBlobSession(token, slug, sessionId, (current) => {
         const base =
           current ||
           makeNewSession({
@@ -333,7 +336,7 @@ function createBlobUploadSessionStore(token: string): UploadSessionStore {
       const out: UploadSession[] = [];
       const list = await blobList({
         token,
-        prefix: SESSION_PREFIX,
+        prefix: sessionPrefix(slug),
         limit,
       });
       for (const item of list.blobs) {
@@ -345,13 +348,17 @@ function createBlobUploadSessionStore(token: string): UploadSessionStore {
   };
 }
 
-let singleton: UploadSessionStore | null = null;
+/** One store per tenant, so an upload session id from one cannot be patched from another. */
+const stores = new Map<string, UploadSessionStore>();
 
-export function getUploadSessionStore(): UploadSessionStore {
-  if (singleton) return singleton;
-  const token = process.env.BLOB_READ_WRITE_TOKEN;
-  singleton = token
-    ? createBlobUploadSessionStore(token)
-    : createFilesystemUploadSessionStore();
-  return singleton;
+export function getUploadSessionStore(slug: string): UploadSessionStore {
+  let store = stores.get(slug);
+  if (!store) {
+    const token = process.env.BLOB_READ_WRITE_TOKEN;
+    store = token
+      ? createBlobUploadSessionStore(token, slug)
+      : createFilesystemUploadSessionStore(slug);
+    stores.set(slug, store);
+  }
+  return store;
 }

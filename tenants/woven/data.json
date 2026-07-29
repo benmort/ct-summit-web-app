@@ -1,0 +1,1638 @@
+{
+  "summits": [
+    {
+      "id": "woven-gathering-2026",
+      "fields": {
+        "Name": "Dreaming into our Future: Global Indigenous Peoples' Climate Justice Gathering",
+        "Location": "Cairns, Queensland",
+        "Start Date": "2026-09-07",
+        "End Date": "2026-09-11"
+      }
+    }
+  ],
+  "speakers": [
+    {
+      "id": "woven-speaker-1",
+      "fields": {
+        "Full Name": "TO CONFIRM — speaker 1 name",
+        "Title": "Welcome to Country and Opening Ceremony",
+        "Organisation": [
+          "Woven"
+        ],
+        "Bio": "TO CONFIRM — this speaker's biography (questionnaire 12.5)",
+        "Description": "Welcome to Country",
+        "Tags": [
+          "Speaker"
+        ],
+        "Headshot": [
+          {
+            "url": "/tenants/woven/placeholder.svg"
+          }
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-09-07T09:30:00.000+10:00"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-09-07T10:30:00.000+10:00"
+        ],
+        "Venue Name": [
+          "Gathering Venue, Cairns"
+        ],
+        "Room/Area": "Main Room",
+        "Schedule": [
+          "woven-schedule-slot-2"
+        ],
+        "Talk Format": [
+          "Keynote"
+        ]
+      }
+    },
+    {
+      "id": "woven-speaker-2",
+      "fields": {
+        "Full Name": "TO CONFIRM — speaker 2 name",
+        "Title": "Opening Plenary: Dreaming into our Future",
+        "Organisation": [
+          "Woven"
+        ],
+        "Bio": "TO CONFIRM — this speaker's biography (questionnaire 12.5)",
+        "Description": "Opening plenary",
+        "Tags": [
+          "Speaker"
+        ],
+        "Headshot": [
+          {
+            "url": "/tenants/woven/placeholder.svg"
+          }
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-09-07T11:00:00.000+10:00"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-09-07T12:30:00.000+10:00"
+        ],
+        "Venue Name": [
+          "Gathering Venue, Cairns"
+        ],
+        "Room/Area": "Main Room",
+        "Schedule": [
+          "woven-schedule-slot-4"
+        ],
+        "Talk Format": [
+          "Keynote"
+        ]
+      }
+    },
+    {
+      "id": "woven-speaker-3",
+      "fields": {
+        "Full Name": "TO CONFIRM — speaker 3 name",
+        "Title": "Why We Gather: Climate Justice and Indigenous Rights",
+        "Organisation": [
+          "Woven"
+        ],
+        "Bio": "TO CONFIRM — this speaker's biography (questionnaire 12.5)",
+        "Description": "Framing session",
+        "Tags": [
+          "Speaker"
+        ],
+        "Headshot": [
+          {
+            "url": "/tenants/woven/placeholder.svg"
+          }
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-09-07T13:30:00.000+10:00"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-09-07T15:00:00.000+10:00"
+        ],
+        "Venue Name": [
+          "Gathering Venue, Cairns"
+        ],
+        "Room/Area": "Main Room",
+        "Schedule": [
+          "woven-schedule-slot-6"
+        ],
+        "Talk Format": [
+          "Keynote"
+        ]
+      }
+    },
+    {
+      "id": "woven-speaker-4",
+      "fields": {
+        "Full Name": "TO CONFIRM — speaker 4 name",
+        "Title": "Mapping Indigenous Peoples in the Global Movement",
+        "Organisation": [
+          "Woven"
+        ],
+        "Bio": "TO CONFIRM — this speaker's biography (questionnaire 12.5)",
+        "Description": "Research launch",
+        "Tags": [
+          "Speaker"
+        ],
+        "Headshot": [
+          {
+            "url": "/tenants/woven/placeholder.svg"
+          }
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-09-08T09:00:00.000+10:00"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-09-08T10:30:00.000+10:00"
+        ],
+        "Venue Name": [
+          "Gathering Venue, Cairns"
+        ],
+        "Room/Area": "Main Room",
+        "Schedule": [
+          "woven-schedule-slot-8"
+        ],
+        "Talk Format": [
+          "Keynote"
+        ]
+      }
+    },
+    {
+      "id": "woven-speaker-5",
+      "fields": {
+        "Full Name": "TO CONFIRM — speaker 5 name",
+        "Title": "Indigenous Caucuses: Achievements and Challenges",
+        "Organisation": [
+          "Woven"
+        ],
+        "Bio": "TO CONFIRM — this speaker's biography (questionnaire 12.5)",
+        "Description": "Panel conversation",
+        "Tags": [
+          "Speaker"
+        ],
+        "Headshot": [
+          {
+            "url": "/tenants/woven/placeholder.svg"
+          }
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-09-08T11:00:00.000+10:00"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-09-08T12:30:00.000+10:00"
+        ],
+        "Venue Name": [
+          "Gathering Venue, Cairns"
+        ],
+        "Room/Area": "Main Room",
+        "Schedule": [
+          "woven-schedule-slot-10"
+        ],
+        "Talk Format": [
+          "Panel"
+        ]
+      }
+    },
+    {
+      "id": "woven-speaker-6",
+      "fields": {
+        "Full Name": "TO CONFIRM — speaker 6 name",
+        "Title": "Climate Finance Mechanisms and Access",
+        "Organisation": [
+          "Woven"
+        ],
+        "Bio": "TO CONFIRM — this speaker's biography (questionnaire 12.5)",
+        "Description": "Workshop",
+        "Tags": [
+          "Speaker"
+        ],
+        "Headshot": [
+          {
+            "url": "/tenants/woven/placeholder.svg"
+          }
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-09-08T13:30:00.000+10:00"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-09-08T15:00:00.000+10:00"
+        ],
+        "Venue Name": [
+          "Gathering Venue, Cairns"
+        ],
+        "Room/Area": "Main Room",
+        "Schedule": [
+          "woven-schedule-slot-12"
+        ],
+        "Talk Format": [
+          "Lightning Talk"
+        ]
+      }
+    },
+    {
+      "id": "woven-speaker-7",
+      "fields": {
+        "Full Name": "TO CONFIRM — speaker 7 name",
+        "Title": "Traditional Ecological Knowledge in Climate Policy",
+        "Organisation": [
+          "Woven"
+        ],
+        "Bio": "TO CONFIRM — this speaker's biography (questionnaire 12.5)",
+        "Description": "Keynote",
+        "Tags": [
+          "Speaker"
+        ],
+        "Headshot": [
+          {
+            "url": "/tenants/woven/placeholder.svg"
+          }
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-09-09T09:00:00.000+10:00"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-09-09T10:30:00.000+10:00"
+        ],
+        "Venue Name": [
+          "Gathering Venue, Cairns"
+        ],
+        "Room/Area": "Main Room",
+        "Schedule": [
+          "woven-schedule-slot-14"
+        ],
+        "Talk Format": [
+          "Keynote"
+        ]
+      }
+    },
+    {
+      "id": "woven-speaker-8",
+      "fields": {
+        "Full Name": "TO CONFIRM — speaker 8 name",
+        "Title": "Land Defence and Self-Determination",
+        "Organisation": [
+          "Woven"
+        ],
+        "Bio": "TO CONFIRM — this speaker's biography (questionnaire 12.5)",
+        "Description": "Panel conversation",
+        "Tags": [
+          "Speaker"
+        ],
+        "Headshot": [
+          {
+            "url": "/tenants/woven/placeholder.svg"
+          }
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-09-09T11:00:00.000+10:00"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-09-09T12:30:00.000+10:00"
+        ],
+        "Venue Name": [
+          "Gathering Venue, Cairns"
+        ],
+        "Room/Area": "Main Room",
+        "Schedule": [
+          "woven-schedule-slot-16"
+        ],
+        "Talk Format": [
+          "Panel"
+        ]
+      }
+    },
+    {
+      "id": "woven-speaker-9",
+      "fields": {
+        "Full Name": "TO CONFIRM — speaker 9 name",
+        "Title": "Stories from the Regions: Argentina",
+        "Organisation": [
+          "Woven"
+        ],
+        "Bio": "TO CONFIRM — this speaker's biography (questionnaire 12.5)",
+        "Description": "Regional story",
+        "Tags": [
+          "Speaker"
+        ],
+        "Headshot": [
+          {
+            "url": "/tenants/woven/placeholder.svg"
+          }
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-09-10T09:00:00.000+10:00"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-09-10T10:30:00.000+10:00"
+        ],
+        "Venue Name": [
+          "Gathering Venue, Cairns"
+        ],
+        "Room/Area": "Main Room",
+        "Schedule": [
+          "woven-schedule-slot-20"
+        ],
+        "Talk Format": [
+          "Keynote"
+        ]
+      }
+    },
+    {
+      "id": "woven-speaker-10",
+      "fields": {
+        "Full Name": "TO CONFIRM — speaker 10 name",
+        "Title": "Stories from the Regions: Aotearoa New Zealand",
+        "Organisation": [
+          "Woven"
+        ],
+        "Bio": "TO CONFIRM — this speaker's biography (questionnaire 12.5)",
+        "Description": "Regional story",
+        "Tags": [
+          "Speaker"
+        ],
+        "Headshot": [
+          {
+            "url": "/tenants/woven/placeholder.svg"
+          }
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-09-10T11:00:00.000+10:00"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-09-10T12:30:00.000+10:00"
+        ],
+        "Venue Name": [
+          "Gathering Venue, Cairns"
+        ],
+        "Room/Area": "Main Room",
+        "Schedule": [
+          "woven-schedule-slot-22"
+        ],
+        "Talk Format": [
+          "Keynote"
+        ]
+      }
+    },
+    {
+      "id": "woven-speaker-11",
+      "fields": {
+        "Full Name": "TO CONFIRM — speaker 11 name",
+        "Title": "Stories from the Regions: Sweden and Sápmi",
+        "Organisation": [
+          "Woven"
+        ],
+        "Bio": "TO CONFIRM — this speaker's biography (questionnaire 12.5)",
+        "Description": "Regional story",
+        "Tags": [
+          "Speaker"
+        ],
+        "Headshot": [
+          {
+            "url": "/tenants/woven/placeholder.svg"
+          }
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-09-10T13:30:00.000+10:00"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-09-10T15:00:00.000+10:00"
+        ],
+        "Venue Name": [
+          "Gathering Venue, Cairns"
+        ],
+        "Room/Area": "Main Room",
+        "Schedule": [
+          "woven-schedule-slot-24"
+        ],
+        "Talk Format": [
+          "Keynote"
+        ]
+      }
+    },
+    {
+      "id": "woven-speaker-12",
+      "fields": {
+        "Full Name": "TO CONFIRM — speaker 12 name",
+        "Title": "Building a Unified Voice",
+        "Organisation": [
+          "Woven"
+        ],
+        "Bio": "TO CONFIRM — this speaker's biography (questionnaire 12.5)",
+        "Description": "Closing plenary",
+        "Tags": [
+          "Speaker"
+        ],
+        "Headshot": [
+          {
+            "url": "/tenants/woven/placeholder.svg"
+          }
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-09-11T09:00:00.000+10:00"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-09-11T10:30:00.000+10:00"
+        ],
+        "Venue Name": [
+          "Gathering Venue, Cairns"
+        ],
+        "Room/Area": "Main Room",
+        "Schedule": [
+          "woven-schedule-slot-26"
+        ],
+        "Talk Format": [
+          "Keynote"
+        ]
+      }
+    },
+    {
+      "id": "woven-speaker-13",
+      "fields": {
+        "Full Name": "TO CONFIRM — speaker 13 name",
+        "Title": "Network Building: Where To From Here",
+        "Organisation": [
+          "Woven"
+        ],
+        "Bio": "TO CONFIRM — this speaker's biography (questionnaire 12.5)",
+        "Description": "Workshop",
+        "Tags": [
+          "Speaker"
+        ],
+        "Headshot": [
+          {
+            "url": "/tenants/woven/placeholder.svg"
+          }
+        ],
+        "DateTime Start [Schedule]": [
+          "2026-09-11T11:00:00.000+10:00"
+        ],
+        "DateTime End [Schedule]": [
+          "2026-09-11T12:30:00.000+10:00"
+        ],
+        "Venue Name": [
+          "Gathering Venue, Cairns"
+        ],
+        "Room/Area": "Main Room",
+        "Schedule": [
+          "woven-schedule-slot-28"
+        ],
+        "Talk Format": [
+          "Lightning Talk"
+        ]
+      }
+    }
+  ],
+  "events": [
+    {
+      "id": "woven-event-1",
+      "fields": {
+        "Title": "Registration",
+        "Venue Name": "Gathering Venue, Cairns",
+        "Description": "TO CONFIRM — a description of \"Registration\" (questionnaire 12.4)",
+        "Tags": [
+          "Logistics"
+        ],
+        "Headshot": [
+          {
+            "url": "/tenants/woven/placeholder.svg"
+          }
+        ],
+        "DateTime Start [Schedule]": "2026-09-07T08:30:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-07T09:30:00.000+10:00",
+        "Room/Area": "Main Room",
+        "Schedule": [
+          "woven-schedule-slot-1"
+        ]
+      }
+    },
+    {
+      "id": "woven-event-2",
+      "fields": {
+        "Title": "Welcome to Country and Opening Ceremony",
+        "Venue Name": "Gathering Venue, Cairns",
+        "Description": "TO CONFIRM — a description of \"Welcome to Country and Opening Ceremony\" (questionnaire 12.4)",
+        "Tags": [
+          "Opening"
+        ],
+        "Headshot": [
+          {
+            "url": "/tenants/woven/placeholder.svg"
+          }
+        ],
+        "DateTime Start [Schedule]": "2026-09-07T09:30:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-07T10:30:00.000+10:00",
+        "Room/Area": "Main Room",
+        "Schedule": [
+          "woven-schedule-slot-2"
+        ]
+      }
+    },
+    {
+      "id": "woven-event-3",
+      "fields": {
+        "Title": "Morning Tea",
+        "Venue Name": "Gathering Venue, Cairns",
+        "Description": "TO CONFIRM — a description of \"Morning Tea\" (questionnaire 12.4)",
+        "Tags": [
+          "Break"
+        ],
+        "Headshot": [
+          {
+            "url": "/tenants/woven/placeholder.svg"
+          }
+        ],
+        "DateTime Start [Schedule]": "2026-09-07T10:30:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-07T11:00:00.000+10:00",
+        "Room/Area": "Main Room",
+        "Schedule": [
+          "woven-schedule-slot-3"
+        ]
+      }
+    },
+    {
+      "id": "woven-event-4",
+      "fields": {
+        "Title": "Opening Plenary: Dreaming into our Future",
+        "Venue Name": "Gathering Venue, Cairns",
+        "Description": "TO CONFIRM — a description of \"Opening Plenary: Dreaming into our Future\" (questionnaire 12.4)",
+        "Tags": [
+          "Plenary"
+        ],
+        "Headshot": [
+          {
+            "url": "/tenants/woven/placeholder.svg"
+          }
+        ],
+        "DateTime Start [Schedule]": "2026-09-07T11:00:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-07T12:30:00.000+10:00",
+        "Room/Area": "Main Room",
+        "Schedule": [
+          "woven-schedule-slot-4"
+        ]
+      }
+    },
+    {
+      "id": "woven-event-5",
+      "fields": {
+        "Title": "Lunch",
+        "Venue Name": "Gathering Venue, Cairns",
+        "Description": "TO CONFIRM — a description of \"Lunch\" (questionnaire 12.4)",
+        "Tags": [
+          "Break"
+        ],
+        "Headshot": [
+          {
+            "url": "/tenants/woven/placeholder.svg"
+          }
+        ],
+        "DateTime Start [Schedule]": "2026-09-07T12:30:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-07T13:30:00.000+10:00",
+        "Room/Area": "Main Room",
+        "Schedule": [
+          "woven-schedule-slot-5"
+        ]
+      }
+    },
+    {
+      "id": "woven-event-6",
+      "fields": {
+        "Title": "Why We Gather: Climate Justice and Indigenous Rights",
+        "Venue Name": "Gathering Venue, Cairns",
+        "Description": "TO CONFIRM — a description of \"Why We Gather: Climate Justice and Indigenous Rights\" (questionnaire 12.4)",
+        "Tags": [
+          "Plenary"
+        ],
+        "Headshot": [
+          {
+            "url": "/tenants/woven/placeholder.svg"
+          }
+        ],
+        "DateTime Start [Schedule]": "2026-09-07T13:30:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-07T15:00:00.000+10:00",
+        "Room/Area": "Main Room",
+        "Schedule": [
+          "woven-schedule-slot-6"
+        ]
+      }
+    },
+    {
+      "id": "woven-event-7",
+      "fields": {
+        "Title": "Regional Introductions and Yarning Circles",
+        "Venue Name": "Gathering Venue, Cairns",
+        "Description": "TO CONFIRM — a description of \"Regional Introductions and Yarning Circles\" (questionnaire 12.4)",
+        "Tags": [
+          "Yarning"
+        ],
+        "Headshot": [
+          {
+            "url": "/tenants/woven/placeholder.svg"
+          }
+        ],
+        "DateTime Start [Schedule]": "2026-09-07T15:00:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-07T16:30:00.000+10:00",
+        "Room/Area": "Main Room",
+        "Schedule": [
+          "woven-schedule-slot-7"
+        ]
+      }
+    },
+    {
+      "id": "woven-event-8",
+      "fields": {
+        "Title": "Mapping Indigenous Peoples in the Global Movement",
+        "Venue Name": "Gathering Venue, Cairns",
+        "Description": "TO CONFIRM — a description of \"Mapping Indigenous Peoples in the Global Movement\" (questionnaire 12.4)",
+        "Tags": [
+          "Plenary"
+        ],
+        "Headshot": [
+          {
+            "url": "/tenants/woven/placeholder.svg"
+          }
+        ],
+        "DateTime Start [Schedule]": "2026-09-08T09:00:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-08T10:30:00.000+10:00",
+        "Room/Area": "Main Room",
+        "Schedule": [
+          "woven-schedule-slot-8"
+        ]
+      }
+    },
+    {
+      "id": "woven-event-9",
+      "fields": {
+        "Title": "Morning Tea",
+        "Venue Name": "Gathering Venue, Cairns",
+        "Description": "TO CONFIRM — a description of \"Morning Tea\" (questionnaire 12.4)",
+        "Tags": [
+          "Break"
+        ],
+        "Headshot": [
+          {
+            "url": "/tenants/woven/placeholder.svg"
+          }
+        ],
+        "DateTime Start [Schedule]": "2026-09-08T10:30:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-08T11:00:00.000+10:00",
+        "Room/Area": "Main Room",
+        "Schedule": [
+          "woven-schedule-slot-9"
+        ]
+      }
+    },
+    {
+      "id": "woven-event-10",
+      "fields": {
+        "Title": "Indigenous Caucuses: Achievements and Challenges",
+        "Venue Name": "Gathering Venue, Cairns",
+        "Description": "TO CONFIRM — a description of \"Indigenous Caucuses: Achievements and Challenges\" (questionnaire 12.4)",
+        "Tags": [
+          "Panel"
+        ],
+        "Headshot": [
+          {
+            "url": "/tenants/woven/placeholder.svg"
+          }
+        ],
+        "DateTime Start [Schedule]": "2026-09-08T11:00:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-08T12:30:00.000+10:00",
+        "Room/Area": "Main Room",
+        "Schedule": [
+          "woven-schedule-slot-10"
+        ]
+      }
+    },
+    {
+      "id": "woven-event-11",
+      "fields": {
+        "Title": "Lunch",
+        "Venue Name": "Gathering Venue, Cairns",
+        "Description": "TO CONFIRM — a description of \"Lunch\" (questionnaire 12.4)",
+        "Tags": [
+          "Break"
+        ],
+        "Headshot": [
+          {
+            "url": "/tenants/woven/placeholder.svg"
+          }
+        ],
+        "DateTime Start [Schedule]": "2026-09-08T12:30:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-08T13:30:00.000+10:00",
+        "Room/Area": "Main Room",
+        "Schedule": [
+          "woven-schedule-slot-11"
+        ]
+      }
+    },
+    {
+      "id": "woven-event-12",
+      "fields": {
+        "Title": "Climate Finance Mechanisms and Access",
+        "Venue Name": "Gathering Venue, Cairns",
+        "Description": "TO CONFIRM — a description of \"Climate Finance Mechanisms and Access\" (questionnaire 12.4)",
+        "Tags": [
+          "Workshop"
+        ],
+        "Headshot": [
+          {
+            "url": "/tenants/woven/placeholder.svg"
+          }
+        ],
+        "DateTime Start [Schedule]": "2026-09-08T13:30:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-08T15:00:00.000+10:00",
+        "Room/Area": "Main Room",
+        "Schedule": [
+          "woven-schedule-slot-12"
+        ]
+      }
+    },
+    {
+      "id": "woven-event-13",
+      "fields": {
+        "Title": "Capacity Building Breakouts",
+        "Venue Name": "Gathering Venue, Cairns",
+        "Description": "TO CONFIRM — a description of \"Capacity Building Breakouts\" (questionnaire 12.4)",
+        "Tags": [
+          "Breakout"
+        ],
+        "Headshot": [
+          {
+            "url": "/tenants/woven/placeholder.svg"
+          }
+        ],
+        "DateTime Start [Schedule]": "2026-09-08T15:00:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-08T16:30:00.000+10:00",
+        "Room/Area": "Main Room",
+        "Schedule": [
+          "woven-schedule-slot-13"
+        ]
+      }
+    },
+    {
+      "id": "woven-event-14",
+      "fields": {
+        "Title": "Traditional Ecological Knowledge in Climate Policy",
+        "Venue Name": "Gathering Venue, Cairns",
+        "Description": "TO CONFIRM — a description of \"Traditional Ecological Knowledge in Climate Policy\" (questionnaire 12.4)",
+        "Tags": [
+          "Plenary"
+        ],
+        "Headshot": [
+          {
+            "url": "/tenants/woven/placeholder.svg"
+          }
+        ],
+        "DateTime Start [Schedule]": "2026-09-09T09:00:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-09T10:30:00.000+10:00",
+        "Room/Area": "Main Room",
+        "Schedule": [
+          "woven-schedule-slot-14"
+        ]
+      }
+    },
+    {
+      "id": "woven-event-15",
+      "fields": {
+        "Title": "Morning Tea",
+        "Venue Name": "Gathering Venue, Cairns",
+        "Description": "TO CONFIRM — a description of \"Morning Tea\" (questionnaire 12.4)",
+        "Tags": [
+          "Break"
+        ],
+        "Headshot": [
+          {
+            "url": "/tenants/woven/placeholder.svg"
+          }
+        ],
+        "DateTime Start [Schedule]": "2026-09-09T10:30:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-09T11:00:00.000+10:00",
+        "Room/Area": "Main Room",
+        "Schedule": [
+          "woven-schedule-slot-15"
+        ]
+      }
+    },
+    {
+      "id": "woven-event-16",
+      "fields": {
+        "Title": "Land Defence and Self-Determination",
+        "Venue Name": "Gathering Venue, Cairns",
+        "Description": "TO CONFIRM — a description of \"Land Defence and Self-Determination\" (questionnaire 12.4)",
+        "Tags": [
+          "Panel"
+        ],
+        "Headshot": [
+          {
+            "url": "/tenants/woven/placeholder.svg"
+          }
+        ],
+        "DateTime Start [Schedule]": "2026-09-09T11:00:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-09T12:30:00.000+10:00",
+        "Room/Area": "Main Room",
+        "Schedule": [
+          "woven-schedule-slot-16"
+        ]
+      }
+    },
+    {
+      "id": "woven-event-17",
+      "fields": {
+        "Title": "Lunch",
+        "Venue Name": "Gathering Venue, Cairns",
+        "Description": "TO CONFIRM — a description of \"Lunch\" (questionnaire 12.4)",
+        "Tags": [
+          "Break"
+        ],
+        "Headshot": [
+          {
+            "url": "/tenants/woven/placeholder.svg"
+          }
+        ],
+        "DateTime Start [Schedule]": "2026-09-09T12:30:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-09T13:30:00.000+10:00",
+        "Room/Area": "Main Room",
+        "Schedule": [
+          "woven-schedule-slot-17"
+        ]
+      }
+    },
+    {
+      "id": "woven-event-18",
+      "fields": {
+        "Title": "On Country Session",
+        "Venue Name": "Gathering Venue, Cairns",
+        "Description": "TO CONFIRM — a description of \"On Country Session\" (questionnaire 12.4)",
+        "Tags": [
+          "Workshop"
+        ],
+        "Headshot": [
+          {
+            "url": "/tenants/woven/placeholder.svg"
+          }
+        ],
+        "DateTime Start [Schedule]": "2026-09-09T13:30:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-09T15:00:00.000+10:00",
+        "Room/Area": "Main Room",
+        "Schedule": [
+          "woven-schedule-slot-18"
+        ]
+      }
+    },
+    {
+      "id": "woven-event-19",
+      "fields": {
+        "Title": "Gathering Dinner",
+        "Venue Name": "Gathering Venue, Cairns",
+        "Description": "TO CONFIRM — a description of \"Gathering Dinner\" (questionnaire 12.4)",
+        "Tags": [
+          "Dinner",
+          "Social"
+        ],
+        "Headshot": [
+          {
+            "url": "/tenants/woven/placeholder.svg"
+          }
+        ],
+        "DateTime Start [Schedule]": "2026-09-09T18:30:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-09T21:00:00.000+10:00",
+        "Room/Area": "Main Room",
+        "Schedule": [
+          "woven-schedule-slot-19"
+        ]
+      }
+    },
+    {
+      "id": "woven-event-20",
+      "fields": {
+        "Title": "Stories from the Regions: Argentina",
+        "Venue Name": "Gathering Venue, Cairns",
+        "Description": "TO CONFIRM — a description of \"Stories from the Regions: Argentina\" (questionnaire 12.4)",
+        "Tags": [
+          "Plenary"
+        ],
+        "Headshot": [
+          {
+            "url": "/tenants/woven/placeholder.svg"
+          }
+        ],
+        "DateTime Start [Schedule]": "2026-09-10T09:00:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-10T10:30:00.000+10:00",
+        "Room/Area": "Main Room",
+        "Schedule": [
+          "woven-schedule-slot-20"
+        ]
+      }
+    },
+    {
+      "id": "woven-event-21",
+      "fields": {
+        "Title": "Morning Tea",
+        "Venue Name": "Gathering Venue, Cairns",
+        "Description": "TO CONFIRM — a description of \"Morning Tea\" (questionnaire 12.4)",
+        "Tags": [
+          "Break"
+        ],
+        "Headshot": [
+          {
+            "url": "/tenants/woven/placeholder.svg"
+          }
+        ],
+        "DateTime Start [Schedule]": "2026-09-10T10:30:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-10T11:00:00.000+10:00",
+        "Room/Area": "Main Room",
+        "Schedule": [
+          "woven-schedule-slot-21"
+        ]
+      }
+    },
+    {
+      "id": "woven-event-22",
+      "fields": {
+        "Title": "Stories from the Regions: Aotearoa New Zealand",
+        "Venue Name": "Gathering Venue, Cairns",
+        "Description": "TO CONFIRM — a description of \"Stories from the Regions: Aotearoa New Zealand\" (questionnaire 12.4)",
+        "Tags": [
+          "Plenary"
+        ],
+        "Headshot": [
+          {
+            "url": "/tenants/woven/placeholder.svg"
+          }
+        ],
+        "DateTime Start [Schedule]": "2026-09-10T11:00:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-10T12:30:00.000+10:00",
+        "Room/Area": "Main Room",
+        "Schedule": [
+          "woven-schedule-slot-22"
+        ]
+      }
+    },
+    {
+      "id": "woven-event-23",
+      "fields": {
+        "Title": "Lunch",
+        "Venue Name": "Gathering Venue, Cairns",
+        "Description": "TO CONFIRM — a description of \"Lunch\" (questionnaire 12.4)",
+        "Tags": [
+          "Break"
+        ],
+        "Headshot": [
+          {
+            "url": "/tenants/woven/placeholder.svg"
+          }
+        ],
+        "DateTime Start [Schedule]": "2026-09-10T12:30:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-10T13:30:00.000+10:00",
+        "Room/Area": "Main Room",
+        "Schedule": [
+          "woven-schedule-slot-23"
+        ]
+      }
+    },
+    {
+      "id": "woven-event-24",
+      "fields": {
+        "Title": "Stories from the Regions: Sweden and Sápmi",
+        "Venue Name": "Gathering Venue, Cairns",
+        "Description": "TO CONFIRM — a description of \"Stories from the Regions: Sweden and Sápmi\" (questionnaire 12.4)",
+        "Tags": [
+          "Plenary"
+        ],
+        "Headshot": [
+          {
+            "url": "/tenants/woven/placeholder.svg"
+          }
+        ],
+        "DateTime Start [Schedule]": "2026-09-10T13:30:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-10T15:00:00.000+10:00",
+        "Room/Area": "Main Room",
+        "Schedule": [
+          "woven-schedule-slot-24"
+        ]
+      }
+    },
+    {
+      "id": "woven-event-25",
+      "fields": {
+        "Title": "Amplifying Local Solutions",
+        "Venue Name": "Gathering Venue, Cairns",
+        "Description": "TO CONFIRM — a description of \"Amplifying Local Solutions\" (questionnaire 12.4)",
+        "Tags": [
+          "Breakout"
+        ],
+        "Headshot": [
+          {
+            "url": "/tenants/woven/placeholder.svg"
+          }
+        ],
+        "DateTime Start [Schedule]": "2026-09-10T15:00:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-10T16:30:00.000+10:00",
+        "Room/Area": "Main Room",
+        "Schedule": [
+          "woven-schedule-slot-25"
+        ]
+      }
+    },
+    {
+      "id": "woven-event-26",
+      "fields": {
+        "Title": "Building a Unified Voice",
+        "Venue Name": "Gathering Venue, Cairns",
+        "Description": "TO CONFIRM — a description of \"Building a Unified Voice\" (questionnaire 12.4)",
+        "Tags": [
+          "Plenary"
+        ],
+        "Headshot": [
+          {
+            "url": "/tenants/woven/placeholder.svg"
+          }
+        ],
+        "DateTime Start [Schedule]": "2026-09-11T09:00:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-11T10:30:00.000+10:00",
+        "Room/Area": "Main Room",
+        "Schedule": [
+          "woven-schedule-slot-26"
+        ]
+      }
+    },
+    {
+      "id": "woven-event-27",
+      "fields": {
+        "Title": "Morning Tea",
+        "Venue Name": "Gathering Venue, Cairns",
+        "Description": "TO CONFIRM — a description of \"Morning Tea\" (questionnaire 12.4)",
+        "Tags": [
+          "Break"
+        ],
+        "Headshot": [
+          {
+            "url": "/tenants/woven/placeholder.svg"
+          }
+        ],
+        "DateTime Start [Schedule]": "2026-09-11T10:30:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-11T11:00:00.000+10:00",
+        "Room/Area": "Main Room",
+        "Schedule": [
+          "woven-schedule-slot-27"
+        ]
+      }
+    },
+    {
+      "id": "woven-event-28",
+      "fields": {
+        "Title": "Network Building: Where To From Here",
+        "Venue Name": "Gathering Venue, Cairns",
+        "Description": "TO CONFIRM — a description of \"Network Building: Where To From Here\" (questionnaire 12.4)",
+        "Tags": [
+          "Workshop"
+        ],
+        "Headshot": [
+          {
+            "url": "/tenants/woven/placeholder.svg"
+          }
+        ],
+        "DateTime Start [Schedule]": "2026-09-11T11:00:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-11T12:30:00.000+10:00",
+        "Room/Area": "Main Room",
+        "Schedule": [
+          "woven-schedule-slot-28"
+        ]
+      }
+    },
+    {
+      "id": "woven-event-29",
+      "fields": {
+        "Title": "Lunch",
+        "Venue Name": "Gathering Venue, Cairns",
+        "Description": "TO CONFIRM — a description of \"Lunch\" (questionnaire 12.4)",
+        "Tags": [
+          "Break"
+        ],
+        "Headshot": [
+          {
+            "url": "/tenants/woven/placeholder.svg"
+          }
+        ],
+        "DateTime Start [Schedule]": "2026-09-11T12:30:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-11T13:30:00.000+10:00",
+        "Room/Area": "Main Room",
+        "Schedule": [
+          "woven-schedule-slot-29"
+        ]
+      }
+    },
+    {
+      "id": "woven-event-30",
+      "fields": {
+        "Title": "Shared Commitments and Closing Ceremony",
+        "Venue Name": "Gathering Venue, Cairns",
+        "Description": "TO CONFIRM — a description of \"Shared Commitments and Closing Ceremony\" (questionnaire 12.4)",
+        "Tags": [
+          "Closing"
+        ],
+        "Headshot": [
+          {
+            "url": "/tenants/woven/placeholder.svg"
+          }
+        ],
+        "DateTime Start [Schedule]": "2026-09-11T13:30:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-11T15:00:00.000+10:00",
+        "Room/Area": "Main Room",
+        "Schedule": [
+          "woven-schedule-slot-30"
+        ]
+      }
+    }
+  ],
+  "schedule": [
+    {
+      "id": "woven-schedule-slot-1",
+      "fields": {
+        "Day Of Week": "Monday",
+        "Venue Name": "Gathering Venue, Cairns",
+        "DateTime Start [Schedule]": "2026-09-07T08:30:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-07T09:30:00.000+10:00"
+      }
+    },
+    {
+      "id": "woven-schedule-slot-2",
+      "fields": {
+        "Day Of Week": "Monday",
+        "Venue Name": "Gathering Venue, Cairns",
+        "DateTime Start [Schedule]": "2026-09-07T09:30:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-07T10:30:00.000+10:00"
+      }
+    },
+    {
+      "id": "woven-schedule-slot-3",
+      "fields": {
+        "Day Of Week": "Monday",
+        "Venue Name": "Gathering Venue, Cairns",
+        "DateTime Start [Schedule]": "2026-09-07T10:30:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-07T11:00:00.000+10:00"
+      }
+    },
+    {
+      "id": "woven-schedule-slot-4",
+      "fields": {
+        "Day Of Week": "Monday",
+        "Venue Name": "Gathering Venue, Cairns",
+        "DateTime Start [Schedule]": "2026-09-07T11:00:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-07T12:30:00.000+10:00"
+      }
+    },
+    {
+      "id": "woven-schedule-slot-5",
+      "fields": {
+        "Day Of Week": "Monday",
+        "Venue Name": "Gathering Venue, Cairns",
+        "DateTime Start [Schedule]": "2026-09-07T12:30:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-07T13:30:00.000+10:00"
+      }
+    },
+    {
+      "id": "woven-schedule-slot-6",
+      "fields": {
+        "Day Of Week": "Monday",
+        "Venue Name": "Gathering Venue, Cairns",
+        "DateTime Start [Schedule]": "2026-09-07T13:30:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-07T15:00:00.000+10:00"
+      }
+    },
+    {
+      "id": "woven-schedule-slot-7",
+      "fields": {
+        "Day Of Week": "Monday",
+        "Venue Name": "Gathering Venue, Cairns",
+        "DateTime Start [Schedule]": "2026-09-07T15:00:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-07T16:30:00.000+10:00"
+      }
+    },
+    {
+      "id": "woven-schedule-slot-8",
+      "fields": {
+        "Day Of Week": "Tuesday",
+        "Venue Name": "Gathering Venue, Cairns",
+        "DateTime Start [Schedule]": "2026-09-08T09:00:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-08T10:30:00.000+10:00"
+      }
+    },
+    {
+      "id": "woven-schedule-slot-9",
+      "fields": {
+        "Day Of Week": "Tuesday",
+        "Venue Name": "Gathering Venue, Cairns",
+        "DateTime Start [Schedule]": "2026-09-08T10:30:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-08T11:00:00.000+10:00"
+      }
+    },
+    {
+      "id": "woven-schedule-slot-10",
+      "fields": {
+        "Day Of Week": "Tuesday",
+        "Venue Name": "Gathering Venue, Cairns",
+        "DateTime Start [Schedule]": "2026-09-08T11:00:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-08T12:30:00.000+10:00"
+      }
+    },
+    {
+      "id": "woven-schedule-slot-11",
+      "fields": {
+        "Day Of Week": "Tuesday",
+        "Venue Name": "Gathering Venue, Cairns",
+        "DateTime Start [Schedule]": "2026-09-08T12:30:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-08T13:30:00.000+10:00"
+      }
+    },
+    {
+      "id": "woven-schedule-slot-12",
+      "fields": {
+        "Day Of Week": "Tuesday",
+        "Venue Name": "Gathering Venue, Cairns",
+        "DateTime Start [Schedule]": "2026-09-08T13:30:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-08T15:00:00.000+10:00"
+      }
+    },
+    {
+      "id": "woven-schedule-slot-13",
+      "fields": {
+        "Day Of Week": "Tuesday",
+        "Venue Name": "Gathering Venue, Cairns",
+        "DateTime Start [Schedule]": "2026-09-08T15:00:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-08T16:30:00.000+10:00"
+      }
+    },
+    {
+      "id": "woven-schedule-slot-14",
+      "fields": {
+        "Day Of Week": "Wednesday",
+        "Venue Name": "Gathering Venue, Cairns",
+        "DateTime Start [Schedule]": "2026-09-09T09:00:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-09T10:30:00.000+10:00"
+      }
+    },
+    {
+      "id": "woven-schedule-slot-15",
+      "fields": {
+        "Day Of Week": "Wednesday",
+        "Venue Name": "Gathering Venue, Cairns",
+        "DateTime Start [Schedule]": "2026-09-09T10:30:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-09T11:00:00.000+10:00"
+      }
+    },
+    {
+      "id": "woven-schedule-slot-16",
+      "fields": {
+        "Day Of Week": "Wednesday",
+        "Venue Name": "Gathering Venue, Cairns",
+        "DateTime Start [Schedule]": "2026-09-09T11:00:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-09T12:30:00.000+10:00"
+      }
+    },
+    {
+      "id": "woven-schedule-slot-17",
+      "fields": {
+        "Day Of Week": "Wednesday",
+        "Venue Name": "Gathering Venue, Cairns",
+        "DateTime Start [Schedule]": "2026-09-09T12:30:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-09T13:30:00.000+10:00"
+      }
+    },
+    {
+      "id": "woven-schedule-slot-18",
+      "fields": {
+        "Day Of Week": "Wednesday",
+        "Venue Name": "Gathering Venue, Cairns",
+        "DateTime Start [Schedule]": "2026-09-09T13:30:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-09T15:00:00.000+10:00"
+      }
+    },
+    {
+      "id": "woven-schedule-slot-19",
+      "fields": {
+        "Day Of Week": "Wednesday",
+        "Venue Name": "Gathering Venue, Cairns",
+        "DateTime Start [Schedule]": "2026-09-09T18:30:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-09T21:00:00.000+10:00"
+      }
+    },
+    {
+      "id": "woven-schedule-slot-20",
+      "fields": {
+        "Day Of Week": "Thursday",
+        "Venue Name": "Gathering Venue, Cairns",
+        "DateTime Start [Schedule]": "2026-09-10T09:00:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-10T10:30:00.000+10:00"
+      }
+    },
+    {
+      "id": "woven-schedule-slot-21",
+      "fields": {
+        "Day Of Week": "Thursday",
+        "Venue Name": "Gathering Venue, Cairns",
+        "DateTime Start [Schedule]": "2026-09-10T10:30:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-10T11:00:00.000+10:00"
+      }
+    },
+    {
+      "id": "woven-schedule-slot-22",
+      "fields": {
+        "Day Of Week": "Thursday",
+        "Venue Name": "Gathering Venue, Cairns",
+        "DateTime Start [Schedule]": "2026-09-10T11:00:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-10T12:30:00.000+10:00"
+      }
+    },
+    {
+      "id": "woven-schedule-slot-23",
+      "fields": {
+        "Day Of Week": "Thursday",
+        "Venue Name": "Gathering Venue, Cairns",
+        "DateTime Start [Schedule]": "2026-09-10T12:30:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-10T13:30:00.000+10:00"
+      }
+    },
+    {
+      "id": "woven-schedule-slot-24",
+      "fields": {
+        "Day Of Week": "Thursday",
+        "Venue Name": "Gathering Venue, Cairns",
+        "DateTime Start [Schedule]": "2026-09-10T13:30:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-10T15:00:00.000+10:00"
+      }
+    },
+    {
+      "id": "woven-schedule-slot-25",
+      "fields": {
+        "Day Of Week": "Thursday",
+        "Venue Name": "Gathering Venue, Cairns",
+        "DateTime Start [Schedule]": "2026-09-10T15:00:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-10T16:30:00.000+10:00"
+      }
+    },
+    {
+      "id": "woven-schedule-slot-26",
+      "fields": {
+        "Day Of Week": "Friday",
+        "Venue Name": "Gathering Venue, Cairns",
+        "DateTime Start [Schedule]": "2026-09-11T09:00:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-11T10:30:00.000+10:00"
+      }
+    },
+    {
+      "id": "woven-schedule-slot-27",
+      "fields": {
+        "Day Of Week": "Friday",
+        "Venue Name": "Gathering Venue, Cairns",
+        "DateTime Start [Schedule]": "2026-09-11T10:30:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-11T11:00:00.000+10:00"
+      }
+    },
+    {
+      "id": "woven-schedule-slot-28",
+      "fields": {
+        "Day Of Week": "Friday",
+        "Venue Name": "Gathering Venue, Cairns",
+        "DateTime Start [Schedule]": "2026-09-11T11:00:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-11T12:30:00.000+10:00"
+      }
+    },
+    {
+      "id": "woven-schedule-slot-29",
+      "fields": {
+        "Day Of Week": "Friday",
+        "Venue Name": "Gathering Venue, Cairns",
+        "DateTime Start [Schedule]": "2026-09-11T12:30:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-11T13:30:00.000+10:00"
+      }
+    },
+    {
+      "id": "woven-schedule-slot-30",
+      "fields": {
+        "Day Of Week": "Friday",
+        "Venue Name": "Gathering Venue, Cairns",
+        "DateTime Start [Schedule]": "2026-09-11T13:30:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-11T15:00:00.000+10:00"
+      }
+    }
+  ],
+  "venues": [
+    {
+      "id": "woven-venue-1",
+      "fields": {
+        "Name": "Gathering Venue, Cairns",
+        "Subtitle": "TO CONFIRM — the venue's name and subtitle",
+        "Location": "Cairns",
+        "Address": "TO CONFIRM — street address (questionnaire 12.7)",
+        "Email": "info@thewovenproject.org",
+        "Description": "TO CONFIRM — what happens at this venue",
+        "Instructions": "TO CONFIRM — arrival, parking and accessibility notes",
+        "Tags": [
+          "Venue"
+        ],
+        "Image": [
+          {
+            "url": "/tenants/woven/placeholder.svg"
+          }
+        ]
+      }
+    }
+  ],
+  "crew": [
+    {
+      "id": "woven-crew-1",
+      "fields": {
+        "Shortname": "TO CONFIRM — crew member 1 name",
+        "Role": [
+          "Coordinator",
+          "Wellbeing and Grievance Coordinator"
+        ],
+        "Bio": "Gathering crew contact.",
+        "Headshot": [
+          {
+            "url": "/tenants/woven/placeholder.svg"
+          }
+        ],
+        "Organisation [Network Data]": [
+          "Woven"
+        ],
+        "Work Email [Network Data]": "info@thewovenproject.org"
+      }
+    },
+    {
+      "id": "woven-crew-2",
+      "fields": {
+        "Shortname": "TO CONFIRM — crew member 2 name",
+        "Role": [
+          "Registration"
+        ],
+        "Bio": "Gathering crew contact.",
+        "Headshot": [
+          {
+            "url": "/tenants/woven/placeholder.svg"
+          }
+        ],
+        "Organisation [Network Data]": [
+          "Woven"
+        ],
+        "Work Email [Network Data]": "info@thewovenproject.org"
+      }
+    },
+    {
+      "id": "woven-crew-3",
+      "fields": {
+        "Shortname": "TO CONFIRM — crew member 3 name",
+        "Role": [
+          "Accessibility"
+        ],
+        "Bio": "Gathering crew contact.",
+        "Headshot": [
+          {
+            "url": "/tenants/woven/placeholder.svg"
+          }
+        ],
+        "Organisation [Network Data]": [
+          "Woven"
+        ],
+        "Work Email [Network Data]": "info@thewovenproject.org"
+      }
+    }
+  ],
+  "attractions": [
+    {
+      "id": "woven-attraction-1",
+      "fields": {
+        "Title": "TO CONFIRM — a nearby cultural site or attraction",
+        "Description": "TO CONFIRM — what it is and why it matters",
+        "Tags": [
+          "Attraction"
+        ],
+        "Image": [
+          {
+            "url": "/tenants/woven/placeholder.svg"
+          }
+        ]
+      }
+    },
+    {
+      "id": "woven-attraction-2",
+      "fields": {
+        "Title": "TO CONFIRM — a second nearby attraction",
+        "Description": "TO CONFIRM — what it is and why it matters",
+        "Tags": [
+          "Attraction"
+        ],
+        "Image": [
+          {
+            "url": "/tenants/woven/placeholder.svg"
+          }
+        ]
+      }
+    }
+  ],
+  "organisations": [
+    {
+      "id": "woven-organisation-1",
+      "fields": {
+        "Name": "TO CONFIRM — participating organisation 1 (questionnaire 12.9)",
+        "Country": "TO CONFIRM — country",
+        "Summary": "TO CONFIRM — one or two sentences about this organisation",
+        "Status": "Listed",
+        "Logo Landscape": [
+          {
+            "url": "/tenants/woven/placeholder.svg"
+          }
+        ]
+      }
+    },
+    {
+      "id": "woven-organisation-2",
+      "fields": {
+        "Name": "TO CONFIRM — participating organisation 2 (questionnaire 12.9)",
+        "Country": "TO CONFIRM — country",
+        "Summary": "TO CONFIRM — one or two sentences about this organisation",
+        "Status": "Listed",
+        "Logo Landscape": [
+          {
+            "url": "/tenants/woven/placeholder.svg"
+          }
+        ]
+      }
+    },
+    {
+      "id": "woven-organisation-3",
+      "fields": {
+        "Name": "TO CONFIRM — participating organisation 3 (questionnaire 12.9)",
+        "Country": "TO CONFIRM — country",
+        "Summary": "TO CONFIRM — one or two sentences about this organisation",
+        "Status": "Listed",
+        "Logo Landscape": [
+          {
+            "url": "/tenants/woven/placeholder.svg"
+          }
+        ]
+      }
+    }
+  ],
+  "sponsors": [
+    {
+      "id": "woven-sponsor-1",
+      "fields": {
+        "Name": "TO CONFIRM — supporting partner (questionnaire 12.10)",
+        "Level": "Supporter",
+        "Description": "TO CONFIRM — how this partner supports the gathering",
+        "Logo": [
+          {
+            "url": "/tenants/woven/placeholder.svg"
+          }
+        ]
+      }
+    }
+  ],
+  "surveys": [
+    {
+      "id": "woven-survey-1",
+      "fields": {
+        "Name": "Daily Pulse Check",
+        "Description": "TO CONFIRM — what this survey asks and when to fill it in",
+        "Url": ""
+      }
+    }
+  ],
+  "whatsappChannels": [
+    {
+      "id": "woven-channel-announcements",
+      "fields": {
+        "Name": "Announcements",
+        "Description": "TO CONFIRM — what gets posted here",
+        "Url": ""
+      }
+    },
+    {
+      "id": "woven-channel-wellbeing",
+      "fields": {
+        "Name": "Wellbeing",
+        "Description": "TO CONFIRM — what this channel is for",
+        "Url": ""
+      }
+    }
+  ],
+  "codeConduct": {
+    "id": "woven-code-conduct",
+    "fields": {
+      "Subtitle": "Code of Conduct - A Shared Commitment",
+      "Content Body": "TO CONFIRM — Woven's code of conduct. See questionnaire section 9.\n\nOur Shared Commitments\n- TO CONFIRM — first shared commitment.\n- TO CONFIRM — second shared commitment.\n\nHow We Show Up\n- TO CONFIRM — an expectation of participants.\n\nCare, Safety & Community\n- TO CONFIRM — how safety and wellbeing are supported.\n\nShared Responsibility\n- TO CONFIRM — what everyone is responsible for."
+    }
+  },
+  "securityGuidelines": {
+    "id": "woven-security-guidelines",
+    "fields": {
+      "Content Body": "TO CONFIRM — security guidelines, if needed"
+    }
+  },
+  "map": {
+    "id": "woven-map",
+    "fields": {
+      "Content Asset": []
+    }
+  }
+}

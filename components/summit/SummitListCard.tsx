@@ -27,17 +27,17 @@ export default function SummitListCard({
   const usesOffWhiteLogoBackground = !circularImage && hasOffWhiteLogoBackground(item.id);
   const rectangularImageBackgroundClass = isOrganisationCard
     ? (usesOffWhiteLogoBackground ? "bg-white" : "bg-black")
-    : "bg-white/5";
+    : "bg-veil/5";
   const crewImageFilterClass = isCrewCard ? "grayscale contrast-125 brightness-110" : "";
   const imageClass = circularImage
     ? `h-20 w-20 rounded-full object-cover ${crewImageFilterClass}`
     : `h-20 w-28 rounded-md ${rectangularImageBackgroundClass} object-contain p-1 ${crewImageFilterClass}`;
   const placeholderClass = circularImage
-    ? "h-20 w-20 rounded-full bg-white/5"
+    ? "h-20 w-20 rounded-full bg-veil/5"
     : `h-20 w-28 rounded-md ${rectangularImageBackgroundClass}`;
   const cardClass = showImage
-    ? "flex items-start gap-4 rounded-xl border border-white/35 bg-white/5 p-4 transition hover:border-white/55 hover:bg-white/10"
-    : "rounded-xl border border-white/35 bg-white/5 p-4 transition hover:border-white/55 hover:bg-white/10";
+    ? "flex items-start gap-4 rounded-xl border border-veil/35 bg-veil/5 p-4 transition hover:border-veil/55 hover:bg-veil/10"
+    : "rounded-xl border border-veil/35 bg-veil/5 p-4 transition hover:border-veil/55 hover:bg-veil/10";
 
   return (
     <Link
@@ -66,23 +66,23 @@ export default function SummitListCard({
         : null}
       <div className="min-w-0 flex-1">
         <div className="flex items-start gap-2">
-          <h3 className="text-sm font-semibold text-white break-words">{item.title}</h3>
+          <h3 className="text-sm font-semibold text-ink-50 break-words">{item.title}</h3>
           {isCrewCard && item.hasPhone ? (
-            <span className="mt-0.5 inline-flex h-4 w-4 shrink-0 items-center justify-center text-amber-200">
+            <span className="mt-0.5 inline-flex h-4 w-4 shrink-0 items-center justify-center text-brand-200">
               <PhoneIcon className="h-4 w-4" aria-hidden />
             </span>
           ) : null}
         </div>
         {item.subtitle ? (
-          <p className="mt-1 text-xs text-stone-300 break-words">{item.subtitle}</p>
+          <p className="mt-1 text-xs text-ink-300 break-words">{item.subtitle}</p>
         ) : null}
-        {item.description ? <p className="mt-2 text-xs text-stone-400 break-words">{item.description}</p> : null}
+        {item.description ? <p className="mt-2 text-xs text-ink-400 break-words">{item.description}</p> : null}
         {item.tags && item.tags.length > 0 ? (
           <div className="mt-2 flex flex-wrap gap-1">
             {item.tags.map((tag) => (
               <span
                 key={`${item.id}-${tag}`}
-                className="rounded-full bg-amber-600/20 px-2 py-0.5 text-[10px] text-amber-200"
+                className="rounded-full bg-brand-600/20 px-2 py-0.5 text-[10px] text-brand-200"
               >
                 {tag}
               </span>

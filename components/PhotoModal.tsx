@@ -146,7 +146,7 @@ export default function PhotoModal({
       <Dialog.Overlay
         as={motion.div}
         key="backdrop"
-        className="fixed inset-0 z-40 bg-black"
+        className="fixed inset-0 z-40 bg-scrim"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
       />

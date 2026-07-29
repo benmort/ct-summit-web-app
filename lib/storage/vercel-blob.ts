@@ -19,13 +19,15 @@ import {
   isAllowedVideoType,
   maxBytesForMime,
 } from "../types/photo";
-import type { FileVariant, PhotoStorage, ReadFileRange, ReadFileResult } from "./types";
+import type {
+  FileVariant,
+  PhotoStorage,
+  ReadFileRange,
+  ReadFileResult,
+  StorageScope,
+} from "./types";
 import { recordToPhoto } from "./types";
 
-const LEGACY_MANIFEST_PATH = "album-manifest.json";
-const MANIFEST_PREFIX = "album-manifests/";
-const MANIFEST_INDEX_PATH = `${MANIFEST_PREFIX}index.json`;
-const IMG_PREFIX = "album-img/";
 const ACCESS = "private" as const;
 const IMAGE_PROCESSING_TIMEOUT_MS = Math.max(
   1500,
@@ -152,8 +154,12 @@ function shardKey(isoTime: string): string {
   return `${y}-${m}`;
 }
 
-function shardPath(key: string): string {
-  return `${MANIFEST_PREFIX}${key}.json`;
+function manifestIndexPath(scope: StorageScope): string {
+  return `${scope.blobManifestPrefix}index.json`;
+}
+
+function shardPath(scope: StorageScope, key: string): string {
+  return `${scope.blobManifestPrefix}${key}.json`;
 }
 
 function sortShardKeys(keys: string[]): string[] {
@@ -233,12 +239,12 @@ async function readMeta(buffer: Buffer): Promise<{ width?: number; height?: numb
   }
 }
 
-async function readManifestIndex(token: string): Promise<ManifestIndex | null> {
-  return readJsonBlob<ManifestIndex>(MANIFEST_INDEX_PATH, token);
+async function readManifestIndex(token: string, scope: StorageScope): Promise<ManifestIndex | null> {
+  return readJsonBlob<ManifestIndex>(manifestIndexPath(scope), token);
 }
 
-async function writeManifestIndex(token: string, index: ManifestIndex): Promise<void> {
-  await put(MANIFEST_INDEX_PATH, JSON.stringify(index), {
+async function writeManifestIndex(token: string, scope: StorageScope, index: ManifestIndex): Promise<void> {
+  await put(manifestIndexPath(scope), JSON.stringify(index), {
     access: ACCESS,
     addRandomSuffix: false,
     allowOverwrite: true,
@@ -247,16 +253,18 @@ async function writeManifestIndex(token: string, index: ManifestIndex): Promise<
   });
 }
 
-async function readLegacyManifest(token: string): Promise<PhotoRecord[]> {
-  const data = await readJsonBlob<PhotoRecord[]>(LEGACY_MANIFEST_PATH, token);
+async function readLegacyManifest(token: string, scope: StorageScope): Promise<PhotoRecord[]> {
+  // Tenants created after manifest sharding have no legacy file to migrate.
+  if (!scope.blobLegacyManifestPath) return [];
+  const data = await readJsonBlob<PhotoRecord[]>(scope.blobLegacyManifestPath, token);
   return Array.isArray(data) ? data : [];
 }
 
-async function ensureShardedManifest(token: string): Promise<ManifestIndex> {
-  const existing = await readManifestIndex(token);
+async function ensureShardedManifest(token: string, scope: StorageScope): Promise<ManifestIndex> {
+  const existing = await readManifestIndex(token, scope);
   if (existing && Array.isArray(existing.shards)) return existing;
 
-  const legacy = await readLegacyManifest(token);
+  const legacy = await readLegacyManifest(token, scope);
   const byShard = new Map<string, PhotoRecord[]>();
   for (const rec of legacy) {
     const key = shardKey(rec.uploadedAt);
@@ -266,7 +274,7 @@ async function ensureShardedManifest(token: string): Promise<ManifestIndex> {
   }
   const shards = sortShardKeys([...byShard.keys()]);
   for (const key of shards) {
-    await put(shardPath(key), JSON.stringify(byShard.get(key) || []), {
+    await put(shardPath(scope, key), JSON.stringify(byShard.get(key) || []), {
       access: ACCESS,
       addRandomSuffix: false,
       allowOverwrite: true,
@@ -279,27 +287,28 @@ async function ensureShardedManifest(token: string): Promise<ManifestIndex> {
     shards,
     updatedAt: new Date().toISOString(),
   };
-  await writeManifestIndex(token, index);
+  await writeManifestIndex(token, scope, index);
   return index;
 }
 
-async function readShardRecords(token: string, key: string): Promise<PhotoRecord[]> {
-  const data = await readJsonBlob<PhotoRecord[]>(shardPath(key), token);
+async function readShardRecords(token: string, scope: StorageScope, key: string): Promise<PhotoRecord[]> {
+  const data = await readJsonBlob<PhotoRecord[]>(shardPath(scope, key), token);
   if (!Array.isArray(data)) return [];
   return data;
 }
 
 async function mutateShardRecords(
   token: string,
+  scope: StorageScope,
   key: string,
   mutator: (records: PhotoRecord[]) => PhotoRecord[],
 ): Promise<void> {
-  await mutateJsonBlob<PhotoRecord[]>(shardPath(key), token, [], mutator);
+  await mutateJsonBlob<PhotoRecord[]>(shardPath(scope, key), token, [], mutator);
 }
 
-async function addShardToIndex(token: string, key: string): Promise<void> {
+async function addShardToIndex(token: string, scope: StorageScope, key: string): Promise<void> {
   await mutateJsonBlob<ManifestIndex>(
-    MANIFEST_INDEX_PATH,
+    manifestIndexPath(scope),
     token,
     { version: 1, shards: [], updatedAt: new Date().toISOString() },
     (current) => {
@@ -310,11 +319,11 @@ async function addShardToIndex(token: string, key: string): Promise<void> {
   );
 }
 
-async function appendRecord(token: string, record: PhotoRecord): Promise<void> {
-  await ensureShardedManifest(token);
+async function appendRecord(token: string, scope: StorageScope, record: PhotoRecord): Promise<void> {
+  await ensureShardedManifest(token, scope);
   const key = shardKey(record.uploadedAt);
-  await addShardToIndex(token, key);
-  await mutateShardRecords(token, key, (records) => {
+  await addShardToIndex(token, scope, key);
+  await mutateShardRecords(token, scope, key, (records) => {
     if (records.some((r) => r.id === record.id || r.storedName === record.storedName)) {
       return records;
     }
@@ -322,14 +331,14 @@ async function appendRecord(token: string, record: PhotoRecord): Promise<void> {
   });
 }
 
-async function readAllRecords(token: string): Promise<PhotoRecord[]> {
-  const index = await readManifestIndex(token);
+async function readAllRecords(token: string, scope: StorageScope): Promise<PhotoRecord[]> {
+  const index = await readManifestIndex(token, scope);
   if (!index || !Array.isArray(index.shards) || index.shards.length === 0) {
-    return readLegacyManifest(token);
+    return readLegacyManifest(token, scope);
   }
   const out: PhotoRecord[] = [];
   for (const key of sortShardKeys(index.shards)) {
-    const shard = await readShardRecords(token, key);
+    const shard = await readShardRecords(token, scope, key);
     out.push(...shard);
   }
   out.sort((a, b) => b.uploadedAt.localeCompare(a.uploadedAt));
@@ -338,19 +347,20 @@ async function readAllRecords(token: string): Promise<PhotoRecord[]> {
 
 async function readPagedRecords(
   token: string,
+  scope: StorageScope,
   offset: number,
   limit: number,
 ): Promise<{ records: PhotoRecord[]; total: number }> {
-  const index = await readManifestIndex(token);
+  const index = await readManifestIndex(token, scope);
   if (!index || !Array.isArray(index.shards) || index.shards.length === 0) {
-    const all = await readLegacyManifest(token);
+    const all = await readLegacyManifest(token, scope);
     return { records: all.slice(offset, offset + limit), total: all.length };
   }
   const target = offset + limit;
   let total = 0;
   const collected: PhotoRecord[] = [];
   for (const key of sortShardKeys(index.shards)) {
-    const shard = await readShardRecords(token, key);
+    const shard = await readShardRecords(token, scope, key);
     total += shard.length;
     if (collected.length < target) {
       collected.push(...shard);
@@ -360,14 +370,14 @@ async function readPagedRecords(
   return { records: collected.slice(offset, offset + limit), total };
 }
 
-async function findRecord(token: string, predicate: (record: PhotoRecord) => boolean) {
-  const index = await readManifestIndex(token);
+async function findRecord(token: string, scope: StorageScope, predicate: (record: PhotoRecord) => boolean) {
+  const index = await readManifestIndex(token, scope);
   if (!index || !index.shards.length) {
-    const legacy = await readLegacyManifest(token);
+    const legacy = await readLegacyManifest(token, scope);
     return legacy.find(predicate);
   }
   for (const key of sortShardKeys(index.shards)) {
-    const shard = await readShardRecords(token, key);
+    const shard = await readShardRecords(token, scope, key);
     const hit = shard.find(predicate);
     if (hit) return hit;
   }
@@ -376,15 +386,16 @@ async function findRecord(token: string, predicate: (record: PhotoRecord) => boo
 
 async function upsertRecordById(
   token: string,
+  scope: StorageScope,
   id: string,
   updater: (existing: PhotoRecord | undefined) => PhotoRecord | null,
 ): Promise<void> {
-  await ensureShardedManifest(token);
-  const index = (await readManifestIndex(token)) || { version: 1, shards: [], updatedAt: "" };
+  await ensureShardedManifest(token, scope);
+  const index = (await readManifestIndex(token, scope)) || { version: 1, shards: [], updatedAt: "" };
   let existing: PhotoRecord | undefined;
   let existingShard: string | null = null;
   for (const key of sortShardKeys(index.shards)) {
-    const shard = await readShardRecords(token, key);
+    const shard = await readShardRecords(token, scope, key);
     const found = shard.find((r) => r.id === id);
     if (found) {
       existing = found;
@@ -395,23 +406,24 @@ async function upsertRecordById(
   const next = updater(existing);
   if (!next) {
     if (existingShard) {
-      await mutateShardRecords(token, existingShard, (records) => records.filter((r) => r.id !== id));
+      await mutateShardRecords(token, scope, existingShard, (records) => records.filter((r) => r.id !== id));
     }
     return;
   }
   const targetShard = shardKey(next.uploadedAt);
-  await addShardToIndex(token, targetShard);
-  await mutateShardRecords(token, targetShard, (records) => {
+  await addShardToIndex(token, scope, targetShard);
+  await mutateShardRecords(token, scope, targetShard, (records) => {
     const without = records.filter((r) => r.id !== id);
     return [next, ...without];
   });
   if (existingShard && existingShard !== targetShard) {
-    await mutateShardRecords(token, existingShard, (records) => records.filter((r) => r.id !== id));
+    await mutateShardRecords(token, scope, existingShard, (records) => records.filter((r) => r.id !== id));
   }
 }
 
 async function buildImageRecord(
   token: string,
+  scope: StorageScope,
   input: {
     id: string;
     storedName: string;
@@ -430,19 +442,19 @@ async function buildImageRecord(
   const wallStoredName = `${id}-wall.webp`;
   const thumbStoredName = `${id}-thumb.webp`;
   const displayStoredName = `${id}-display.jpg`;
-  await put(`${IMG_PREFIX}${wallStoredName}`, derivatives.wall, {
+  await put(`${scope.blobMediaPrefix}${wallStoredName}`, derivatives.wall, {
     access: ACCESS,
     addRandomSuffix: false,
     contentType: "image/webp",
     token,
   });
-  await put(`${IMG_PREFIX}${thumbStoredName}`, derivatives.thumb, {
+  await put(`${scope.blobMediaPrefix}${thumbStoredName}`, derivatives.thumb, {
     access: ACCESS,
     addRandomSuffix: false,
     contentType: "image/webp",
     token,
   });
-  await put(`${IMG_PREFIX}${displayStoredName}`, derivatives.display, {
+  await put(`${scope.blobMediaPrefix}${displayStoredName}`, derivatives.display, {
     access: ACCESS,
     addRandomSuffix: false,
     contentType: "image/jpeg",
@@ -479,21 +491,24 @@ async function buildVideoRecord(input: {
   };
 }
 
-export function createVercelBlobPhotoStorage(token: string): PhotoStorage {
+export function createVercelBlobPhotoStorage(
+  token: string,
+  scope: StorageScope,
+): PhotoStorage {
   return {
     async list() {
-      const records = await readAllRecords(token);
+      const records = await readAllRecords(token, scope);
       return records.map(recordToPhoto);
     },
 
     async listPaged(offset: number, limit: number) {
-      const { records, total } = await readPagedRecords(token, offset, limit);
+      const { records, total } = await readPagedRecords(token, scope, offset, limit);
       return { photos: records.map(recordToPhoto), total };
     },
 
     async listByIds(ids: string[]) {
       if (!ids.length) return [];
-      const all = await readAllRecords(token);
+      const all = await readAllRecords(token, scope);
       const byId = new Map(all.map((r) => [r.id, r]));
       return ids
         .map((id) => byId.get(id))
@@ -502,11 +517,11 @@ export function createVercelBlobPhotoStorage(token: string): PhotoStorage {
     },
 
     async getFileMeta(id: string, variant: FileVariant = "original") {
-      const rec = await findRecord(token, (r) => r.id === id);
+      const rec = await findRecord(token, scope, (r) => r.id === id);
       if (!rec) return null;
       const pick = variantStoredName(rec, variant);
       if (!pick) return null;
-      const pathname = `${IMG_PREFIX}${pick.name}`;
+      const pathname = `${scope.blobMediaPrefix}${pick.name}`;
       try {
         const h = await head(pathname, { token });
         return { totalSize: h.size, mime: pick.mime };
@@ -528,7 +543,7 @@ export function createVercelBlobPhotoStorage(token: string): PhotoStorage {
       const id = randomUUID();
       const ext = extensionForMime(mime);
       const storedName = `${id}.${ext}`;
-      const pathname = `${IMG_PREFIX}${storedName}`;
+      const pathname = `${scope.blobMediaPrefix}${storedName}`;
       const uploadedAt = input.uploadedAt ?? new Date().toISOString();
       const isVideo = isAllowedVideoType(mime);
 
@@ -549,7 +564,7 @@ export function createVercelBlobPhotoStorage(token: string): PhotoStorage {
           uploadedAt,
         });
       } else {
-        record = await buildImageRecord(token, {
+        record = await buildImageRecord(token, scope, {
           id,
           storedName,
           filename: filename || `photo.${ext}`,
@@ -560,18 +575,18 @@ export function createVercelBlobPhotoStorage(token: string): PhotoStorage {
       }
 
       try {
-        await appendRecord(token, record);
+        await appendRecord(token, scope, record);
       } catch (e) {
         try {
           await deleteBlobMedia(privateBlobUrl(pathname, token), token);
           if (record.wallStoredName) {
-            await deleteBlobMedia(privateBlobUrl(`${IMG_PREFIX}${record.wallStoredName}`, token), token);
+            await deleteBlobMedia(privateBlobUrl(`${scope.blobMediaPrefix}${record.wallStoredName}`, token), token);
           }
           if (record.thumbStoredName) {
-            await deleteBlobMedia(privateBlobUrl(`${IMG_PREFIX}${record.thumbStoredName}`, token), token);
+            await deleteBlobMedia(privateBlobUrl(`${scope.blobMediaPrefix}${record.thumbStoredName}`, token), token);
           }
           if (record.displayStoredName) {
-            await deleteBlobMedia(privateBlobUrl(`${IMG_PREFIX}${record.displayStoredName}`, token), token);
+            await deleteBlobMedia(privateBlobUrl(`${scope.blobMediaPrefix}${record.displayStoredName}`, token), token);
           }
         } catch {
           /* best-effort rollback */
@@ -593,11 +608,11 @@ export function createVercelBlobPhotoStorage(token: string): PhotoStorage {
       range?: ReadFileRange,
       variant: FileVariant = "original",
     ): Promise<ReadFileResult | null> {
-      const rec = await findRecord(token, (r) => r.id === id);
+      const rec = await findRecord(token, scope, (r) => r.id === id);
       if (!rec) return null;
       const pick = variantStoredName(rec, variant);
       if (!pick) return null;
-      const pathname = `${IMG_PREFIX}${pick.name}`;
+      const pathname = `${scope.blobMediaPrefix}${pick.name}`;
       try {
         if (!range) {
           const result = await get(pathname, { access: ACCESS, token });
@@ -638,9 +653,9 @@ export function createVercelBlobPhotoStorage(token: string): PhotoStorage {
     },
 
     async deleteById(id: string) {
-      const rec = await findRecord(token, (r) => r.id === id);
+      const rec = await findRecord(token, scope, (r) => r.id === id);
       if (!rec) return false;
-      const paths = variantCandidates(rec).map((name) => `${IMG_PREFIX}${name}`);
+      const paths = variantCandidates(rec).map((name) => `${scope.blobMediaPrefix}${name}`);
       for (const p of paths) {
         try {
           await deleteBlobMedia(privateBlobUrl(p, token), token);
@@ -648,7 +663,7 @@ export function createVercelBlobPhotoStorage(token: string): PhotoStorage {
           /* best-effort */
         }
       }
-      await upsertRecordById(token, id, () => null);
+      await upsertRecordById(token, scope, id, () => null);
       return true;
     },
 
@@ -658,19 +673,19 @@ export function createVercelBlobPhotoStorage(token: string): PhotoStorage {
       mime: string;
     }) {
       const { pathname, filename, mime } = input;
-      if (!pathname.startsWith(IMG_PREFIX)) {
+      if (!pathname.startsWith(scope.blobMediaPrefix)) {
         throw new Error("Invalid upload pathname");
       }
       if (!isAllowedMediaType(mime)) {
         throw new Error("Unsupported media type");
       }
 
-      const baseName = pathname.slice(IMG_PREFIX.length);
+      const baseName = pathname.slice(scope.blobMediaPrefix.length);
       const dot = baseName.lastIndexOf(".");
       const id = dot > 0 ? baseName.slice(0, dot) : baseName;
       const storedName = baseName;
       const extFromName = dot > 0 ? baseName.slice(dot + 1) : extensionForMime(mime);
-      const existing = await findRecord(token, (r) => r.id === id || r.storedName === storedName);
+      const existing = await findRecord(token, scope, (r) => r.id === id || r.storedName === storedName);
       if (existing) return recordToPhoto(existing);
 
       const uploadedAt = new Date().toISOString();
@@ -699,7 +714,7 @@ export function createVercelBlobPhotoStorage(token: string): PhotoStorage {
         if (buffer.length > limit) {
           throw new Error("File too large");
         }
-        record = await buildImageRecord(token, {
+        record = await buildImageRecord(token, scope, {
           id,
           storedName,
           filename: filename || `photo.${extFromName}`,
@@ -709,7 +724,7 @@ export function createVercelBlobPhotoStorage(token: string): PhotoStorage {
         });
       }
 
-      await appendRecord(token, record);
+      await appendRecord(token, scope, record);
       logUploadEvent("client-upload.registered", {
         id,
         mime,
@@ -720,8 +735,8 @@ export function createVercelBlobPhotoStorage(token: string): PhotoStorage {
     },
 
     async repairManifest() {
-      await ensureShardedManifest(token);
-      const all = await readAllRecords(token);
+      await ensureShardedManifest(token, scope);
+      const all = await readAllRecords(token, scope);
       const byId = new Map<string, PhotoRecord>();
       for (const record of all) {
         if (!byId.has(record.id)) byId.set(record.id, record);
@@ -736,7 +751,7 @@ export function createVercelBlobPhotoStorage(token: string): PhotoStorage {
       }
       const keys = sortShardKeys([...grouped.keys()]);
       for (const key of keys) {
-        await put(shardPath(key), JSON.stringify(grouped.get(key) || []), {
+        await put(shardPath(scope, key), JSON.stringify(grouped.get(key) || []), {
           access: ACCESS,
           addRandomSuffix: false,
           allowOverwrite: true,
@@ -744,7 +759,7 @@ export function createVercelBlobPhotoStorage(token: string): PhotoStorage {
           token,
         });
       }
-      await writeManifestIndex(token, {
+      await writeManifestIndex(token, scope, {
         version: 1,
         shards: keys,
         updatedAt: new Date().toISOString(),

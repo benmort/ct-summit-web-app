@@ -44,7 +44,7 @@ export default async function SummitDomainDetailPage({ domain, id }: Props) {
         href={crewWhatsappUrl}
         target="_blank"
         rel="noreferrer"
-        className="inline-flex min-h-11 items-center gap-1 rounded-md bg-amber-500 px-4 py-2.5 text-sm font-semibold uppercase tracking-[0.12em] text-zinc-950 transition hover:bg-amber-400"
+        className="inline-flex min-h-11 items-center gap-1 rounded-md bg-brand-500 px-4 py-2.5 text-sm font-semibold uppercase tracking-[0.12em] text-surface-950 transition hover:bg-brand-400"
       >
         Contact on WhatsApp
         <ChevronRightIcon className="h-4 w-4" />
@@ -55,7 +55,7 @@ export default async function SummitDomainDetailPage({ domain, id }: Props) {
     <div className="space-y-4">
       <Link
         href={`/${domain}`}
-        className="inline-flex min-h-8 items-center gap-1 rounded-sm px-1 py-0.5 text-xs font-medium text-amber-200 hover:text-amber-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300/80"
+        className="inline-flex min-h-8 items-center gap-1 rounded-sm px-1 py-0.5 text-xs font-medium text-brand-200 hover:text-brand-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-300/80"
       >
         <ChevronLeftIcon className="h-3.5 w-3.5" />
         {`BACK TO ${domain.toUpperCase()}`}

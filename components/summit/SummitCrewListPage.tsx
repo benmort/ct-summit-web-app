@@ -7,7 +7,7 @@ import SummitListCard from "@/components/summit/SummitListCard";
 import SummitPageHeader from "@/components/summit/SummitPageHeader";
 import { buildListItem } from "@/lib/summit/domains";
 import { fieldList, fieldString } from "@/lib/summit/fields";
-import { SUMMIT_PAGE_SUBTITLE } from "@/lib/summit/page-descriptors";
+import { useTenantContent } from "@/components/TenantContentProvider";
 import { roleFromHash, roleHash } from "@/lib/summit/crew-filters";
 import type { SummitRecord } from "@/lib/summit/types";
 
@@ -23,6 +23,7 @@ function crewRoles(record: SummitRecord): string[] {
 }
 
 export default function SummitCrewListPage({ records }: Props) {
+  const { navigation } = useTenantContent();
   const roles = useMemo(
     () => Array.from(new Set(records.flatMap((record) => crewRoles(record)))).sort(),
     [records],
@@ -72,10 +73,10 @@ export default function SummitCrewListPage({ records }: Props) {
 
   return (
     <div className="space-y-4">
-      <SummitPageHeader title="Crew" subtitle={SUMMIT_PAGE_SUBTITLE.crew} />
+      <SummitPageHeader title="Crew" subtitle={navigation.pageSubtitles.crew} />
       {roles.length > 0 ? (
         <div className="space-y-2">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-stone-300">Filter by role</p>
+          <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-ink-300">Filter by role</p>
           <div role="tablist" aria-orientation="horizontal" aria-label="Crew roles" className="grid grid-cols-2 gap-2">
             {[
               {
@@ -130,31 +131,31 @@ export default function SummitCrewListPage({ records }: Props) {
                 }}
                 className={
                   item.selected
-                    ? "group relative min-h-[52px] w-full overflow-hidden rounded-xl border border-amber-300/45 bg-gradient-to-br from-amber-200 to-amber-100 px-3 py-2 text-left text-zinc-900 shadow-[0_10px_28px_rgba(245,158,11,0.25)] transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-200/80"
-                    : "group relative min-h-[52px] w-full overflow-hidden rounded-xl border border-dashed border-stone-500/55 bg-zinc-950/40 px-3 py-2 text-left text-stone-300/95 transition hover:-translate-y-0.5 hover:border-amber-300/45 hover:bg-zinc-900/65 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-200/80 disabled:opacity-85 disabled:hover:translate-y-0 disabled:hover:border-stone-500/55 disabled:hover:bg-zinc-950/40"
+                    ? "group relative min-h-[52px] w-full overflow-hidden rounded-xl border border-brand-300/45 bg-gradient-to-br from-brand-200 to-brand-100 px-3 py-2 text-left text-on-brand shadow-[0_10px_28px_rgba(245,158,11,0.25)] transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-200/80"
+                    : "group relative min-h-[52px] w-full overflow-hidden rounded-xl border border-dashed border-ink-500/55 bg-surface-950/40 px-3 py-2 text-left text-ink-300/95 transition hover:-translate-y-0.5 hover:border-brand-300/45 hover:bg-surface-900/65 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-200/80 disabled:opacity-85 disabled:hover:translate-y-0 disabled:hover:border-ink-500/55 disabled:hover:bg-surface-950/40"
                 }
               >
                 <span
                   aria-hidden
                   className={
                     item.selected
-                      ? "absolute inset-y-2 left-1 w-1 rounded-full bg-zinc-900/25"
-                      : "absolute inset-y-2 left-1 w-1 rounded-full bg-amber-300/40 opacity-0 transition-opacity group-hover:opacity-100"
+                      ? "absolute inset-y-2 left-1 w-1 rounded-full bg-surface-900/25"
+                      : "absolute inset-y-2 left-1 w-1 rounded-full bg-brand-300/40 opacity-0 transition-opacity group-hover:opacity-100"
                   }
                 />
                 {!item.selected ? (
-                  <span className="pointer-events-none absolute right-2 top-2 inline-flex h-5 w-5 items-center justify-center rounded-full border border-amber-300/35 bg-zinc-900/70 text-amber-200/90 opacity-80 transition group-hover:border-amber-300/60 group-hover:opacity-100">
+                  <span className="pointer-events-none absolute right-2 top-2 inline-flex h-5 w-5 items-center justify-center rounded-full border border-brand-300/35 bg-surface-900/70 text-brand-200/90 opacity-80 transition group-hover:border-brand-300/60 group-hover:opacity-100">
                     <ChevronRightIcon className="h-3 w-3" aria-hidden />
                   </span>
                 ) : (
-                  <span className="pointer-events-none absolute right-2 top-2 inline-flex h-5 w-5 items-center justify-center rounded-full border border-zinc-900/20 bg-zinc-900/10">
-                    <span className="h-2 w-2 rounded-full bg-zinc-900/60" />
+                  <span className="pointer-events-none absolute right-2 top-2 inline-flex h-5 w-5 items-center justify-center rounded-full border border-surface-900/20 bg-surface-900/10">
+                    <span className="h-2 w-2 rounded-full bg-surface-900/60" />
                   </span>
                 )}
-                <span className={item.selected ? "block text-[9px] uppercase tracking-[0.12em] text-zinc-700" : "block text-[9px] uppercase tracking-[0.12em] text-stone-500/90"}>
+                <span className={item.selected ? "block text-[9px] uppercase tracking-[0.12em] text-on-brand-muted" : "block text-[9px] uppercase tracking-[0.12em] text-ink-500/90"}>
                   {item.eyebrow}
                 </span>
-                <span className={item.selected ? "mt-0.5 block text-xs font-semibold leading-4 text-zinc-900" : "mt-0.5 block text-xs font-semibold leading-4 text-stone-200"}>
+                <span className={item.selected ? "mt-0.5 block text-xs font-semibold leading-4 text-on-brand" : "mt-0.5 block text-xs font-semibold leading-4 text-ink-200"}>
                   {item.label}
                 </span>
               </button>
@@ -163,8 +164,8 @@ export default function SummitCrewListPage({ records }: Props) {
         </div>
       ) : null}
       {activeRole === undefined ? (
-        <section className="rounded-xl border border-white/10 bg-white/5 p-4">
-          <p className="text-sm text-stone-300">Loading crew role...</p>
+        <section className="rounded-xl border border-veil/10 bg-veil/5 p-4">
+          <p className="text-sm text-ink-300">Loading crew role...</p>
         </section>
       ) : filteredRecords.length ? (
         <div className="grid gap-3 sm:grid-cols-2">

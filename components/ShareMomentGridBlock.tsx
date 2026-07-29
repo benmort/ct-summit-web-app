@@ -381,51 +381,51 @@ export default function ShareMomentGridBlock({ onUploadSuccess, backHref }: Prop
     <div id="share-moment-lead" className="relative mb-3 break-inside-avoid sm:mb-5">
       {uploading && (
         <div
-          className="fixed inset-0 z-[200] flex flex-col bg-black/85 backdrop-blur-sm"
+          className="fixed inset-0 z-[200] flex flex-col bg-scrim/85 backdrop-blur-sm"
           role="progressbar"
           aria-valuemin={0}
           aria-valuemax={100}
           aria-valuenow={Math.round(uploadProgress * 100)}
           aria-label="Upload progress"
         >
-          <div className="h-1 w-full bg-white/15">
+          <div className="h-1 w-full bg-panel/15">
             <div
-              className="h-full bg-amber-400 transition-[width] duration-150 ease-out"
+              className="h-full bg-brand-400 transition-[width] duration-150 ease-out"
               style={{ width: `${Math.max(2, uploadProgress * 100)}%` }}
             />
           </div>
           <div className="flex flex-1 flex-col items-center justify-center gap-3 px-6">
             <ArrowPathIcon
-              className="h-10 w-10 shrink-0 animate-spin text-white/90"
+              className="h-10 w-10 shrink-0 animate-spin text-ink-50/90"
               aria-hidden
             />
-            <p className="text-center text-sm font-medium text-white/95">
+            <p className="text-center text-sm font-medium text-ink-50/95">
               Uploading…
             </p>
-            <p className="text-center text-xs text-white/75">{Math.round(uploadProgress * 100)}%</p>
+            <p className="text-center text-xs text-ink-50/75">{Math.round(uploadProgress * 100)}%</p>
           </div>
         </div>
       )}
       <div
-        className="relative overflow-hidden rounded-2xl border border-white/10 bg-zinc-900/80 p-4 text-left text-white shadow-2xl sm:p-5"
+        className="relative overflow-hidden rounded-2xl border border-veil/10 bg-surface-900/80 p-4 text-left text-ink-50 shadow-2xl sm:p-5"
       >
         {backHref ? (
           <Link
             href={backHref}
-            className="inline-flex min-h-8 items-center gap-1 rounded-sm px-1 py-0.5 text-xs font-medium text-amber-200 hover:text-amber-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300/80"
+            className="inline-flex min-h-8 items-center gap-1 rounded-sm px-1 py-0.5 text-xs font-medium text-brand-200 hover:text-brand-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-300/80"
           >
             <ArrowLeftIcon className="h-3.5 w-3.5" aria-hidden />
             BACK TO APP
           </Link>
         ) : null}
-        <p className="mt-2 text-sm leading-6 text-stone-300">
+        <p className="mt-2 text-sm leading-6 text-ink-300">
           Add photos and videos to the shared album from your library or straight from your phone.
         </p>
-        <p className="mt-1 text-xs text-stone-400">Video max: 250 MB</p>
+        <p className="mt-1 text-xs text-ink-400">Video max: 250 MB</p>
 
         <div className="mt-4 flex flex-wrap items-center gap-2">
           {items.length > 0 ? (
-            <span className="rounded-full border border-white/15 bg-white/5 px-2.5 py-1 text-[10px] uppercase tracking-[0.12em] text-stone-200">
+            <span className="rounded-full border border-veil/15 bg-panel/5 px-2.5 py-1 text-[10px] uppercase tracking-[0.12em] text-ink-200">
               {items.length} selected
             </span>
           ) : null}
@@ -450,7 +450,7 @@ export default function ShareMomentGridBlock({ onUploadSuccess, backHref }: Prop
           {errors.length > 0 && (
             <div
               role="alert"
-              className="rounded-xl bg-red-950/50 px-3 py-2 text-sm text-red-100 ring-1 ring-red-500/30"
+              className="rounded-xl bg-danger-950/50 px-3 py-2 text-sm text-danger-100 ring-1 ring-danger-500/30"
             >
               <ul className="list-inside list-disc space-y-1">
                 {errors.map((e, i) => (
@@ -463,7 +463,7 @@ export default function ShareMomentGridBlock({ onUploadSuccess, backHref }: Prop
           {success && (
             <p
               role="status"
-              className="text-center text-sm font-medium text-emerald-300"
+              className="text-center text-sm font-medium text-success-300"
             >
               Added to the album.
             </p>
@@ -476,8 +476,8 @@ export default function ShareMomentGridBlock({ onUploadSuccess, backHref }: Prop
                 disabled={uploading}
                 onClick={() => void upload()}
                 aria-busy={uploading}
-                className={`pointer-events-auto z-10 min-h-12 w-full rounded-lg border border-white/20 bg-white px-4 py-3 text-sm font-semibold text-black transition inline-flex items-center justify-center gap-2 ${
-                  uploading ? "cursor-not-allowed opacity-100" : "hover:bg-white/90"
+                className={`pointer-events-auto z-10 min-h-12 w-full rounded-lg border border-veil/20 bg-panel px-4 py-3 text-sm font-semibold text-black transition inline-flex items-center justify-center gap-2 ${
+                  uploading ? "cursor-not-allowed opacity-100" : "hover:bg-panel/90"
                 }`}
               >
                 {uploading && (

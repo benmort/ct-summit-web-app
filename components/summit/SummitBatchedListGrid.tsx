@@ -78,12 +78,12 @@ export default function SummitBatchedListGrid({
           <button
             type="button"
             onClick={loadMore}
-            className="inline-flex min-h-11 items-center justify-center gap-2 rounded-md border border-white/15 bg-zinc-900/80 px-5 py-2.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-stone-100 transition hover:bg-zinc-800/90 focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-200/80"
+            className="inline-flex min-h-11 items-center justify-center gap-2 rounded-md border border-veil/15 bg-surface-900/80 px-5 py-2.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-ink-100 transition hover:bg-surface-800/90 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-200/80"
           >
             <ArrowDownTrayIcon className="h-3.5 w-3.5" aria-hidden />
             Load more organisations
           </button>
-          <p className="text-[11px] text-stone-500">
+          <p className="text-[11px] text-ink-500">
             Showing {visibleCount} of {items.length}
           </p>
         </div>

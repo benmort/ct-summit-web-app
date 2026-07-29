@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { getTenantSlug } from "@/lib/tenant/server";
 import { isModerationConfigured } from "@/lib/moderation-auth";
 import { readModerationCookie } from "@/lib/server-moderation";
 import { getPhotoStorage } from "@/lib/storage";
@@ -9,19 +10,20 @@ export async function DELETE(
   _request: Request,
   context: { params: Promise<{ id: string }> },
 ) {
+  const tenantSlug = await getTenantSlug();
   const { id } = await context.params;
   try {
-    if (!isModerationConfigured()) {
+    if (!isModerationConfigured(tenantSlug)) {
       return NextResponse.json(
         { error: "Moderation is not configured on this server" },
         { status: 503 },
       );
     }
-    const allowed = await readModerationCookie();
+    const allowed = await readModerationCookie(tenantSlug);
     if (!allowed) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
-    const removed = await getPhotoStorage().deleteById(id);
+    const removed = await getPhotoStorage(tenantSlug).deleteById(id);
     if (!removed) {
       return NextResponse.json({ error: "Not found" }, { status: 404 });
     }

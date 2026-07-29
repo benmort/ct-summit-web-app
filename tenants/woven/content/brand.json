@@ -1,0 +1,22 @@
+{
+  "name": "Woven",
+  "wordmark": "Woven Gathering '26",
+  "legalEntity": "The Woven Project",
+  "description": "Woven is a global Indigenous organisation dedicated to climate justice, weaving Indigenous knowledge and building our power for climate action.",
+  "themeColor": "#124a3e",
+  "assets": {
+    "logo": "/tenants/woven/logo-white.png",
+    "onboardingBackground": "/images/flinders-filtered.png",
+    "heroVideo": "/video/background-loop-small.mp4",
+    "appleTouchIcon": "/tenants/woven/apple-touch-icon.png",
+    "favicon": "/tenants/woven/favicon-32x32.png",
+    "faviconPng": [
+      { "url": "/tenants/woven/favicon-16x16.png", "sizes": "16x16" },
+      { "url": "/tenants/woven/favicon-32x32.png", "sizes": "32x32" }
+    ],
+    "androidChrome": [
+      { "url": "/tenants/woven/android-chrome-192x192.png", "sizes": "192x192" },
+      { "url": "/tenants/woven/android-chrome-512x512.png", "sizes": "512x512" }
+    ]
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "slug": "common-threads",
+  "name": "Common Threads",
+  "domains": ["summit.commonthreads.org.au"],
+  "theme": {
+    "mode": "dark"
+  },
+  "features": {
+    "moments": true
+  },
+  "storage": {
+    "blobMediaPrefix": "album-img/",
+    "blobManifestPrefix": "album-manifests/",
+    "blobLegacyManifestPath": "album-manifest.json",
+    "dataDir": "data",
+    "moderationEnvPrefix": "MODERATION",
+    "moderationCookie": "ct_mod"
+  },
+  "redirects": [
+    {
+      "source": "/community",
+      "destination": "https://chat.whatsapp.com/IpIrYbPrphO13hCTe8HJJO"
+    },
+    {
+      "source": "/community/announcements",
+      "destination": "https://chat.whatsapp.com/ChB0djqZK36HUPWG10Jz0D"
+    },
+    {
+      "source": "/community/parents-carers",
+      "destination": "https://chat.whatsapp.com/LPM7SlbKE3IJ9mopSj9q9g"
+    },
+    {
+      "source": "/community/health-illness",
+      "destination": "https://chat.whatsapp.com/Kj6yQtTA6U14TAuU8S0rjv"
+    },
+    {
+      "source": "/community/accessibility-support",
+      "destination": "https://chat.whatsapp.com/GRtJvk7fXC6JOIifBQUQSE"
+    },
+    {
+      "source": "/community/wellbeing",
+      "destination": "https://chat.whatsapp.com/HWOHlfUZ3WVLhZJpavyoVV"
+    },
+    {
+      "source": "/community/nearby-essentials",
+      "destination": "https://chat.whatsapp.com/Gmf6n34RDVVLmnHIRYQv9e"
+    }
+  ]
+}

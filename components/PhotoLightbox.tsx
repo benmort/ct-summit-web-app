@@ -27,7 +27,7 @@ import { variants } from "@/utils/animationVariants";
 import downloadPhoto from "@/utils/downloadPhoto";
 
 const FW_RING =
-  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 focus-visible:ring-offset-2 focus-visible:ring-offset-black/80";
+  "focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 focus-visible:ring-offset-2 focus-visible:ring-offset-page/80";
 
 const MIN_ZOOM = 1;
 const MAX_ZOOM = 4;
@@ -478,7 +478,7 @@ export default function PhotoLightbox({
                     {!loaded && (
                       <div className="pointer-events-none absolute inset-0 z-10 flex items-center justify-center">
                         <span
-                          className="h-10 w-10 animate-spin rounded-full border-2 border-white/25 border-t-white/80"
+                          className="h-10 w-10 animate-spin rounded-full border-2 border-veil/25 border-t-veil/80"
                           aria-hidden
                         />
                         <span className="sr-only">Loading image…</span>
@@ -528,7 +528,7 @@ export default function PhotoLightbox({
               {index > 0 && (
                 <button
                   type="button"
-                  className={`absolute left-1 top-1/2 z-50 hidden -translate-y-1/2 rounded-full bg-black/50 p-3 text-white/90 backdrop-blur-lg transition hover:bg-black/75 min-h-11 min-w-11 sm:left-3 sm:flex ${FW_RING}`}
+                  className={`absolute left-1 top-1/2 z-50 hidden -translate-y-1/2 rounded-full bg-scrim/50 p-3 text-on-scrim/90 backdrop-blur-lg transition hover:bg-scrim/75 min-h-11 min-w-11 sm:left-3 sm:flex ${FW_RING}`}
                   style={{ transform: "translate3d(0, -50%, 0)" }}
                   onClick={() => changeIndex(index - 1)}
                   aria-label="Previous"
@@ -539,7 +539,7 @@ export default function PhotoLightbox({
               {index + 1 < photos.length && (
                 <button
                   type="button"
-                  className={`absolute right-1 top-1/2 z-50 hidden -translate-y-1/2 rounded-full bg-black/50 p-3 text-white/90 backdrop-blur-lg transition hover:bg-black/75 min-h-11 min-w-11 sm:right-3 sm:flex ${FW_RING}`}
+                  className={`absolute right-1 top-1/2 z-50 hidden -translate-y-1/2 rounded-full bg-scrim/50 p-3 text-on-scrim/90 backdrop-blur-lg transition hover:bg-scrim/75 min-h-11 min-w-11 sm:right-3 sm:flex ${FW_RING}`}
                   style={{ transform: "translate3d(0, -50%, 0)" }}
                   onClick={() => changeIndex(index + 1)}
                   aria-label="Next"
@@ -561,7 +561,7 @@ export default function PhotoLightbox({
                       type="button"
                       onClick={() => updateZoom(zoom - ZOOM_STEP)}
                       disabled={zoom <= MIN_ZOOM}
-                      className={`rounded-full bg-black/50 p-2.5 text-white/90 backdrop-blur-lg transition hover:bg-black/75 disabled:opacity-50 min-h-11 min-w-11 flex items-center justify-center ${FW_RING}`}
+                      className={`rounded-full bg-scrim/50 p-2.5 text-on-scrim/90 backdrop-blur-lg transition hover:bg-scrim/75 disabled:opacity-50 min-h-11 min-w-11 flex items-center justify-center ${FW_RING}`}
                       title="Zoom out"
                       aria-label="Zoom out"
                     >
@@ -571,7 +571,7 @@ export default function PhotoLightbox({
                       type="button"
                       onClick={() => updateZoom(zoom + ZOOM_STEP)}
                       disabled={zoom >= MAX_ZOOM}
-                      className={`rounded-full bg-black/50 p-2.5 text-white/90 backdrop-blur-lg transition hover:bg-black/75 disabled:opacity-50 min-h-11 min-w-11 flex items-center justify-center ${FW_RING}`}
+                      className={`rounded-full bg-scrim/50 p-2.5 text-on-scrim/90 backdrop-blur-lg transition hover:bg-scrim/75 disabled:opacity-50 min-h-11 min-w-11 flex items-center justify-center ${FW_RING}`}
                       title="Zoom in"
                       aria-label="Zoom in"
                     >
@@ -581,7 +581,7 @@ export default function PhotoLightbox({
                       <button
                         type="button"
                         onClick={resetZoom}
-                        className={`rounded-full bg-black/50 px-3 py-2 text-[11px] font-semibold text-white/95 backdrop-blur-lg transition hover:bg-black/75 min-h-11 ${FW_RING}`}
+                        className={`rounded-full bg-scrim/50 px-3 py-2 text-[11px] font-semibold text-on-scrim/95 backdrop-blur-lg transition hover:bg-scrim/75 min-h-11 ${FW_RING}`}
                         title="Reset zoom"
                         aria-label="Reset zoom"
                       >
@@ -595,7 +595,7 @@ export default function PhotoLightbox({
                     type="button"
                     onClick={() => setShowDeleteConfirm(true)}
                     disabled={deleting}
-                    className={`rounded-full bg-black/50 p-2.5 text-white/90 backdrop-blur-lg transition hover:bg-red-950/70 disabled:opacity-50 min-h-11 min-w-11 flex items-center justify-center ${FW_RING}`}
+                    className={`rounded-full bg-scrim/50 p-2.5 text-on-scrim/90 backdrop-blur-lg transition hover:bg-danger-950/70 disabled:opacity-50 min-h-11 min-w-11 flex items-center justify-center ${FW_RING}`}
                     title="Delete"
                     aria-label="Delete"
                   >
@@ -604,7 +604,7 @@ export default function PhotoLightbox({
                 )}
                 <a
                   href={current.url}
-                  className={`rounded-full bg-black/50 p-2.5 text-white/90 backdrop-blur-lg transition hover:bg-black/75 min-h-11 min-w-11 flex items-center justify-center ${FW_RING}`}
+                  className={`rounded-full bg-scrim/50 p-2.5 text-on-scrim/90 backdrop-blur-lg transition hover:bg-scrim/75 min-h-11 min-w-11 flex items-center justify-center ${FW_RING}`}
                   target="_blank"
                   title="Open full size in new tab"
                   rel="noreferrer"
@@ -615,7 +615,7 @@ export default function PhotoLightbox({
                 <button
                   type="button"
                   onClick={() => void sharePhoto()}
-                  className={`rounded-full bg-black/50 p-2.5 text-white/90 backdrop-blur-lg transition hover:bg-black/75 min-h-11 min-w-11 flex items-center justify-center ${FW_RING}`}
+                  className={`rounded-full bg-scrim/50 p-2.5 text-on-scrim/90 backdrop-blur-lg transition hover:bg-scrim/75 min-h-11 min-w-11 flex items-center justify-center ${FW_RING}`}
                   title="Share"
                   aria-label="Share"
                 >
@@ -629,7 +629,7 @@ export default function PhotoLightbox({
                       current.filename || `${current.kind}.${ext}`,
                     )
                   }
-                  className={`rounded-full bg-black/50 p-2.5 text-white/90 backdrop-blur-lg transition hover:bg-black/75 min-h-11 min-w-11 flex items-center justify-center ${FW_RING}`}
+                  className={`rounded-full bg-scrim/50 p-2.5 text-on-scrim/90 backdrop-blur-lg transition hover:bg-scrim/75 min-h-11 min-w-11 flex items-center justify-center ${FW_RING}`}
                   title="Download"
                   aria-label="Download"
                 >
@@ -639,7 +639,7 @@ export default function PhotoLightbox({
                   <button
                     type="button"
                     onClick={closeModal}
-                    className={`rounded-full bg-black/50 p-2.5 text-white/90 backdrop-blur-lg transition hover:bg-black/75 min-h-11 min-w-11 flex items-center justify-center ${FW_RING}`}
+                    className={`rounded-full bg-scrim/50 p-2.5 text-on-scrim/90 backdrop-blur-lg transition hover:bg-scrim/75 min-h-11 min-w-11 flex items-center justify-center ${FW_RING}`}
                     aria-label="Close viewer"
                   >
                     <XMarkIcon className="h-5 w-5" />
@@ -650,7 +650,7 @@ export default function PhotoLightbox({
                 <button
                   type="button"
                   onClick={closeModal}
-                  className={`rounded-full bg-black/50 p-2.5 text-white/90 backdrop-blur-lg transition hover:bg-black/75 min-h-11 min-w-11 flex items-center justify-center ${FW_RING}`}
+                  className={`rounded-full bg-scrim/50 p-2.5 text-on-scrim/90 backdrop-blur-lg transition hover:bg-scrim/75 min-h-11 min-w-11 flex items-center justify-center ${FW_RING}`}
                   aria-label="Close viewer"
                 >
                   <XMarkIcon className="h-5 w-5" />
@@ -661,7 +661,7 @@ export default function PhotoLightbox({
         </div>
 
         <div
-          className="fixed inset-x-0 bottom-0 z-40 hidden bg-gradient-to-b from-black/0 to-black/60 pb-[max(0.75rem,var(--album-safe-bottom))] pt-4 sm:block"
+          className="fixed inset-x-0 bottom-0 z-40 hidden bg-gradient-to-b from-scrim/0 to-scrim/60 pb-[max(0.75rem,var(--album-safe-bottom))] pt-4 sm:block"
           style={{ paddingBottom: "max(0.75rem, var(--album-safe-bottom))" }}
         >
           <motion.div
@@ -682,7 +682,7 @@ export default function PhotoLightbox({
                   aria-current={active ? "true" : undefined}
                   className={`relative h-14 w-20 shrink-0 overflow-hidden rounded-md sm:h-[4.5rem] sm:w-28 ${FW_RING} ${
                     active
-                      ? "z-20 ring-2 ring-white ring-offset-2 ring-offset-black/40"
+                      ? "z-20 ring-2 ring-veil ring-offset-2 ring-offset-page/40"
                       : "z-10 opacity-60 hover:opacity-90"
                   }`}
                 >
@@ -718,32 +718,32 @@ export default function PhotoLightbox({
       showDeleteConfirm &&
       createPortal(
         <div
-          className="fixed inset-0 z-[100] flex items-center justify-center bg-black/75 p-4"
+          className="fixed inset-0 z-[100] flex items-center justify-center bg-scrim/75 p-4"
           role="alertdialog"
           aria-modal="true"
           aria-labelledby="delete-confirm-title"
         >
-          <div className="w-full max-w-sm rounded-xl border border-white/15 bg-stone-900 px-4 py-5 text-stone-100 shadow-xl ring-1 ring-white/10">
+          <div className="w-full max-w-sm rounded-xl border border-veil/15 bg-ink-900 px-4 py-5 text-on-scrim shadow-xl ring-1 ring-veil/10">
             <h2
               id="delete-confirm-title"
-              className="text-lg font-semibold text-white"
+              className="text-lg font-semibold text-on-scrim"
             >
               Delete this item?
             </h2>
-            <p className="mt-2 text-sm text-stone-400">
+            <p className="mt-2 text-sm text-on-scrim-muted">
               This cannot be undone. The file will be removed from the album.
             </p>
             <div className="mt-6 flex flex-wrap justify-end gap-2">
               <button
                 type="button"
-                className={`rounded-lg border border-white/20 bg-white/5 px-4 py-2 text-sm font-medium text-stone-100 transition hover:bg-white/10 ${FW_RING}`}
+                className={`rounded-lg border border-veil/20 bg-veil/5 px-4 py-2 text-sm font-medium text-on-scrim transition hover:bg-veil/10 ${FW_RING}`}
                 onClick={() => setShowDeleteConfirm(false)}
               >
                 Cancel
               </button>
               <button
                 type="button"
-                className={`rounded-lg bg-red-600 px-4 py-2 text-sm font-semibold text-white transition hover:bg-red-500 disabled:opacity-50 ${FW_RING}`}
+                className={`rounded-lg bg-danger-600 px-4 py-2 text-sm font-semibold text-on-scrim transition hover:bg-danger-500 disabled:opacity-50 ${FW_RING}`}
                 disabled={deleting}
                 onClick={() => void runDelete()}
               >

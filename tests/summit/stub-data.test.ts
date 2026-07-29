@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
-import stubData from "@/lib/summit/data/data.json";
+import stubData from "@/tenants/common-threads/data.json";
 import { fieldList } from "@/lib/summit/fields";
 import { buildScheduleDays } from "@/lib/summit/schedule";
 import type { SummitRecord } from "@/lib/summit/types";

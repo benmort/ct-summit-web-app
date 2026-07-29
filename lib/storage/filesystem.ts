@@ -11,12 +11,31 @@ import {
   maxBytesForMime,
 } from "../types/photo";
 import { makeImageDerivatives } from "../image-derivatives";
-import type { FileVariant, PhotoStorage, ReadFileRange, ReadFileResult } from "./types";
+import type {
+  FileVariant,
+  PhotoStorage,
+  ReadFileRange,
+  ReadFileResult,
+  StorageScope,
+} from "./types";
 import { recordToPhoto } from "./types";
 
-const DATA_DIR = path.join(process.cwd(), "data");
-const UPLOADS_DIR = path.join(DATA_DIR, "uploads");
-const INDEX_PATH = path.join(DATA_DIR, "photos.json");
+/**
+ * Filesystem layout for one tenant. Derived from its StorageScope rather than
+ * fixed at module level, so two tenants never share a manifest or upload dir.
+ */
+type Paths = { dataDir: string; uploadsDir: string; indexPath: string };
+
+function pathsFor(scope: StorageScope): Paths {
+  const dataDir = path.isAbsolute(scope.dataDir)
+    ? scope.dataDir
+    : path.join(process.cwd(), scope.dataDir);
+  return {
+    dataDir,
+    uploadsDir: path.join(dataDir, "uploads"),
+    indexPath: path.join(dataDir, "photos.json"),
+  };
+}
 
 async function readStreamToBuffer(stream: NodeJS.ReadableStream): Promise<Buffer> {
   const chunks: Buffer[] = [];
@@ -26,13 +45,13 @@ async function readStreamToBuffer(stream: NodeJS.ReadableStream): Promise<Buffer
   return Buffer.concat(chunks);
 }
 
-async function ensureDirs(): Promise<void> {
-  await fs.mkdir(UPLOADS_DIR, { recursive: true });
+async function ensureDirs(p: Paths): Promise<void> {
+  await fs.mkdir(p.uploadsDir, { recursive: true });
 }
 
-async function readIndex(): Promise<PhotoRecord[]> {
+async function readIndex(p: Paths): Promise<PhotoRecord[]> {
   try {
-    const raw = await fs.readFile(INDEX_PATH, "utf-8");
+    const raw = await fs.readFile(p.indexPath, "utf-8");
     const parsed = JSON.parse(raw) as PhotoRecord[];
     return Array.isArray(parsed) ? parsed : [];
   } catch {
@@ -40,11 +59,11 @@ async function readIndex(): Promise<PhotoRecord[]> {
   }
 }
 
-async function writeIndex(records: PhotoRecord[]): Promise<void> {
-  await fs.mkdir(DATA_DIR, { recursive: true });
-  const tmp = `${INDEX_PATH}.${process.pid}.tmp`;
+async function writeIndex(p: Paths, records: PhotoRecord[]): Promise<void> {
+  await fs.mkdir(p.dataDir, { recursive: true });
+  const tmp = `${p.indexPath}.${process.pid}.tmp`;
   await fs.writeFile(tmp, JSON.stringify(records, null, 2), "utf-8");
-  await fs.rename(tmp, INDEX_PATH);
+  await fs.rename(tmp, p.indexPath);
 }
 
 async function makeBlurDataUrl(buffer: Buffer): Promise<string | undefined> {
@@ -106,15 +125,16 @@ function variantCandidates(rec: PhotoRecord): string[] {
   return [...names];
 }
 
-export function createFilesystemStorage(): PhotoStorage {
+export function createFilesystemStorage(scope: StorageScope): PhotoStorage {
+  const P = pathsFor(scope);
   return {
     async list() {
-      const records = await readIndex();
+      const records = await readIndex(P);
       return records.map(recordToPhoto);
     },
 
     async listPaged(offset: number, limit: number) {
-      const records = await readIndex();
+      const records = await readIndex(P);
       const total = records.length;
       const slice = records.slice(offset, offset + limit);
       return { photos: slice.map(recordToPhoto), total };
@@ -122,7 +142,7 @@ export function createFilesystemStorage(): PhotoStorage {
 
     async listByIds(ids: string[]) {
       if (!ids.length) return [];
-      const records = await readIndex();
+      const records = await readIndex(P);
       const byId = new Map(records.map((r) => [r.id, r]));
       return ids
         .map((id) => byId.get(id))
@@ -131,7 +151,7 @@ export function createFilesystemStorage(): PhotoStorage {
     },
 
     async getFileMeta(id: string, variant: FileVariant = "original") {
-      const records = await readIndex();
+      const records = await readIndex(P);
       const rec = records.find((r) => r.id === id);
       if (!rec) return null;
       if (variant === "wall" && !rec.wallStoredName) return null;
@@ -145,7 +165,7 @@ export function createFilesystemStorage(): PhotoStorage {
           : variant === "display" && rec.displayStoredName
             ? rec.displayStoredName
             : rec.storedName;
-      const filePath = path.join(UPLOADS_DIR, name);
+      const filePath = path.join(P.uploadsDir, name);
       try {
         const stat = await fs.stat(filePath);
         return { totalSize: stat.size, mime: variantMime(variant, rec.mime) };
@@ -165,11 +185,11 @@ export function createFilesystemStorage(): PhotoStorage {
         throw new Error("File too large");
       }
 
-      await ensureDirs();
+      await ensureDirs(P);
       const id = randomUUID();
       const ext = extensionForMime(mime);
       const storedName = `${id}.${ext}`;
-      const filePath = path.join(UPLOADS_DIR, storedName);
+      const filePath = path.join(P.uploadsDir, storedName);
 
       await fs.writeFile(filePath, buffer);
 
@@ -186,9 +206,9 @@ export function createFilesystemStorage(): PhotoStorage {
         wallStoredName = `${id}-wall.webp`;
         thumbStoredName = `${id}-thumb.webp`;
         displayStoredName = `${id}-display.jpg`;
-        await fs.writeFile(path.join(UPLOADS_DIR, wallStoredName), wall);
-        await fs.writeFile(path.join(UPLOADS_DIR, thumbStoredName), thumb);
-        await fs.writeFile(path.join(UPLOADS_DIR, displayStoredName), display);
+        await fs.writeFile(path.join(P.uploadsDir, wallStoredName), wall);
+        await fs.writeFile(path.join(P.uploadsDir, thumbStoredName), thumb);
+        await fs.writeFile(path.join(P.uploadsDir, displayStoredName), display);
       }
 
       const record: PhotoRecord = {
@@ -205,9 +225,9 @@ export function createFilesystemStorage(): PhotoStorage {
         displayStoredName,
       };
 
-      const records = await readIndex();
+      const records = await readIndex(P);
       records.unshift(record);
-      await writeIndex(records);
+      await writeIndex(P, records);
 
       return recordToPhoto(record);
     },
@@ -217,7 +237,7 @@ export function createFilesystemStorage(): PhotoStorage {
       range?: ReadFileRange,
       variant: FileVariant = "original",
     ): Promise<ReadFileResult | null> {
-      const records = await readIndex();
+      const records = await readIndex(P);
       const rec = records.find((r) => r.id === id);
       if (!rec) return null;
       if (variant === "wall" && !rec.wallStoredName) return null;
@@ -231,7 +251,7 @@ export function createFilesystemStorage(): PhotoStorage {
           : variant === "display" && rec.displayStoredName
             ? rec.displayStoredName
             : rec.storedName;
-      const filePath = path.join(UPLOADS_DIR, fileName);
+      const filePath = path.join(P.uploadsDir, fileName);
       const outMime = variantMime(variant, rec.mime);
       try {
         const stat = await fs.stat(filePath);
@@ -254,12 +274,12 @@ export function createFilesystemStorage(): PhotoStorage {
     },
 
     async deleteById(id: string) {
-      const records = await readIndex();
+      const records = await readIndex(P);
       const rec = records.find((r) => r.id === id);
       if (!rec) return false;
       const next = records.filter((r) => r.id !== id);
-      await writeIndex(next);
-      const paths = variantCandidates(rec).map((name) => path.join(UPLOADS_DIR, name));
+      await writeIndex(P, next);
+      const paths = variantCandidates(rec).map((name) => path.join(P.uploadsDir, name));
       for (const filePath of paths) {
         try {
           await fs.unlink(filePath);
@@ -271,7 +291,7 @@ export function createFilesystemStorage(): PhotoStorage {
     },
 
     async repairManifest() {
-      const records = await readIndex();
+      const records = await readIndex(P);
       const deduped: PhotoRecord[] = [];
       const seen = new Set<string>();
       for (const record of records) {
@@ -280,7 +300,7 @@ export function createFilesystemStorage(): PhotoStorage {
         deduped.push(record);
       }
       if (deduped.length !== records.length) {
-        await writeIndex(deduped);
+        await writeIndex(P, deduped);
         return { repaired: true, details: ["Removed duplicate ids from photos.json"] };
       }
       return { repaired: false, details: ["No filesystem index issues detected"] };

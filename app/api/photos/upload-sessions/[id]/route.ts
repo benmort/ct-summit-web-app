@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { getTenantSlug } from "@/lib/tenant/server";
 import { isUploadV2Enabled } from "@/lib/upload-config";
 import { getUploadSessionStore } from "@/lib/upload-session-store";
 import { ensureUploadAuthorized, ensureUploadRateLimit } from "@/lib/upload-security";
@@ -9,14 +10,15 @@ export async function GET(
   request: Request,
   context: { params: Promise<{ id: string }> },
 ) {
+  const tenantSlug = await getTenantSlug();
   try {
     if (!isUploadV2Enabled()) {
       return NextResponse.json({ error: "Upload sessions disabled" }, { status: 503 });
     }
-    await ensureUploadAuthorized(request);
-    ensureUploadRateLimit(request, "upload-session-read");
+    await ensureUploadAuthorized(request, tenantSlug);
+    ensureUploadRateLimit(request, `upload-session-read:${tenantSlug}`);
     const { id } = await context.params;
-    const session = await getUploadSessionStore().get(id);
+    const session = await getUploadSessionStore(tenantSlug).get(id);
     if (!session) {
       return NextResponse.json({ error: "Not found" }, { status: 404 });
     }

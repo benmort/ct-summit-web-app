@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { getTenantSlug } from "@/lib/tenant/server";
 import { parseBytesRange } from "@/lib/http-range";
 import { getPhotoStorage } from "@/lib/storage";
 import type { FileVariant } from "@/lib/storage/types";
@@ -33,8 +34,9 @@ export async function HEAD(
   request: Request,
   context: { params: Promise<{ id: string }> },
 ) {
+  const tenantSlug = await getTenantSlug();
   const { id } = await context.params;
-  const storage = getPhotoStorage();
+  const storage = getPhotoStorage(tenantSlug);
   const variant = variantFromUrl(request);
   const meta = await storage.getFileMeta(id, variant);
   if (!meta) {
@@ -53,8 +55,9 @@ export async function GET(
   request: Request,
   context: { params: Promise<{ id: string }> },
 ) {
+  const tenantSlug = await getTenantSlug();
   const { id } = await context.params;
-  const storage = getPhotoStorage();
+  const storage = getPhotoStorage(tenantSlug);
   const variant = variantFromUrl(request);
   const rangeHeader = request.headers.get("range");
 

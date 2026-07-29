@@ -12,12 +12,12 @@ type Props = {
 export default function SummitCardImage({ src, alt, circular = false }: Props) {
   const [loaded, setLoaded] = useState(false);
   const wrapperClass = circular
-    ? "relative h-20 w-20 shrink-0 overflow-hidden rounded-full bg-white/5"
-    : "relative h-20 w-28 shrink-0 overflow-hidden rounded-md bg-white/5";
+    ? "relative h-20 w-20 shrink-0 overflow-hidden rounded-full bg-veil/5"
+    : "relative h-20 w-28 shrink-0 overflow-hidden rounded-md bg-veil/5";
 
   return (
     <div className={wrapperClass}>
-      {!loaded ? <div aria-hidden className="absolute inset-0 animate-pulse bg-white/10" /> : null}
+      {!loaded ? <div aria-hidden className="absolute inset-0 animate-pulse bg-veil/10" /> : null}
       <Image
         src={src}
         alt={alt}

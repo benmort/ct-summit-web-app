@@ -60,17 +60,17 @@ export default function UploadDropzone({
           "flex min-h-[140px] cursor-pointer flex-col items-center justify-center gap-2 rounded-2xl border-2 border-dashed px-4 py-8 text-center transition",
           variant === "onDark"
             ? dragOver
-              ? "border-amber-400/80 bg-amber-500/10"
-              : "border-white/25 bg-white/5 hover:border-white/40 hover:bg-white/10"
+              ? "border-brand-400/80 bg-brand-500/10"
+              : "border-veil/25 bg-panel/5 hover:border-veil/40 hover:bg-panel/10"
             : dragOver
-              ? "border-amber-400 bg-amber-50/80"
-              : "border-stone-200 bg-white/60 hover:border-stone-300 hover:bg-white",
+              ? "border-brand-400 bg-brand-50/80"
+              : "border-ink-200 bg-panel/60 hover:border-ink-300 hover:bg-panel",
           disabled ? "pointer-events-none opacity-50" : "",
         ].join(" ")}
       >
         <span
           className={`inline-flex items-center gap-2 text-sm font-medium ${
-            variant === "onDark" ? "text-white" : "text-stone-800"
+            variant === "onDark" ? "text-ink-50" : "text-ink-800"
           }`}
         >
           <ArrowUpTrayIcon className="h-4 w-4" aria-hidden />
@@ -78,7 +78,7 @@ export default function UploadDropzone({
         </span>
         <span
           className={
-            variant === "onDark" ? "text-xs text-stone-400" : "text-xs text-stone-500"
+            variant === "onDark" ? "text-xs text-ink-400" : "text-xs text-ink-500"
           }
         >
           Images or Videos — multiple files ok

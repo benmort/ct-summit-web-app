@@ -174,7 +174,9 @@ async function main() {
   }));
   const highlightNames = new Set(items.map((x) => x.filename));
 
-  const storage = getPhotoStorage();
+  // Scripts have no request host, so the tenant is explicit.
+  const tenantSlug = process.env.TENANT || "common-threads";
+  const storage = getPhotoStorage(tenantSlug);
 
   // Dedupe/repair mode: keep exactly one record per highlight filename and remove
   // any non-highlight photos. Duplicate highlight records share an identical

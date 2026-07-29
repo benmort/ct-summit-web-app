@@ -13,7 +13,7 @@ export default function SummitSpeakerCardImage({ src, alt }: Props) {
 
   return (
     <>
-      {!loaded ? <div aria-hidden className="absolute inset-0 animate-pulse bg-white/10" /> : null}
+      {!loaded ? <div aria-hidden className="absolute inset-0 animate-pulse bg-veil/10" /> : null}
       <Image
         src={src}
         alt={alt}

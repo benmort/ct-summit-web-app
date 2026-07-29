@@ -1,0 +1,58 @@
+{
+  "tabs": [
+    { "href": "/", "label": "Home" },
+    { "href": "/program", "label": "Program" },
+    { "href": "/speakers", "label": "Speakers" },
+    { "href": "/moments", "label": "Moments" }
+  ],
+  "menu": [
+    { "href": "/", "label": "Home", "subtitle": "Summit dashboard and quick links" },
+    { "href": "/program", "label": "Program", "subtitle": "Session agenda and daily timings" },
+    {
+      "href": "/event-guidance",
+      "label": "Event Guidance",
+      "subtitle": "Travel logistics, access and wellbeing"
+    },
+    {
+      "href": "/speakers",
+      "label": "Speakers",
+      "subtitle": "Meet summit speakers and contributors"
+    },
+    { "href": "/crew", "label": "Crew", "subtitle": "Find the summit support team" },
+    { "href": "/moments", "label": "Moments", "subtitle": "Shared photos and videos gallery" },
+    { "href": "/venues", "label": "Venues", "subtitle": "Venue locations, maps and access" },
+    { "href": "/events", "label": "Events", "subtitle": "Sessions, breaks and activity blocks" },
+    { "href": "/attractions", "label": "Attractions", "subtitle": "Things to do around summit" },
+    {
+      "href": "/organisations",
+      "label": "Organisations",
+      "subtitle": "Participating organisations and network partners"
+    },
+    {
+      "href": "/sponsors",
+      "label": "Sponsors",
+      "subtitle": "Supporting partners behind the summit"
+    },
+    { "href": "/surveys", "label": "Surveys", "subtitle": "Feedback forms and pulse checks" },
+    {
+      "href": "/code-conduct",
+      "label": "Code of Conduct",
+      "subtitle": "Community safety expectations and support"
+    }
+  ],
+  "pageSubtitles": {
+    "home": "Summit dashboard and quick links",
+    "program": "Session agenda and daily timings",
+    "eventGuidance": "Travel logistics, access and wellbeing",
+    "speakers": "Meet summit speakers and contributors",
+    "crew": "Find the summit support team",
+    "moments": "Shared photos and videos gallery",
+    "venues": "Venue locations, maps and access",
+    "events": "Sessions, breaks and activity blocks",
+    "attractions": "Things to do around summit",
+    "organisations": "Participating organisations and network partners",
+    "sponsors": "Supporting partners behind the summit",
+    "surveys": "Feedback forms and pulse checks",
+    "codeConduct": "Community safety expectations and support"
+  }
+}

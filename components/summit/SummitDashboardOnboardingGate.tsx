@@ -1,5 +1,7 @@
 "use client";
 
+import { useTenantContent } from "@/components/TenantContentProvider";
+
 import {
   ChevronRightIcon,
 } from "@heroicons/react/24/outline";
@@ -11,7 +13,6 @@ import {
   ACKNOWLEDGEMENT_COOKIE_MAX_AGE_SECONDS,
   ACKNOWLEDGEMENT_COOKIE_NAME,
   DASHBOARD_ONBOARDING_COOKIE_NAME,
-  DASHBOARD_ONBOARDING_SLIDES,
   HOMESCREEN_PROMPT_COOKIE_NAME,
 } from "@/lib/summit/acknowledgement";
 
@@ -24,28 +25,28 @@ const ONBOARDING_BACKGROUND_IMAGE_SRC = "/images/flinders-filtered.png";
 
 const ONBOARDING_PANEL_VISUALS = [
   {
-    numberClass: "text-orange-400",
-    headingClass: "text-stone-200",
-    bodyClass: "text-stone-200",
-    ruleClass: "border-orange-400/90",
+    numberClass: "text-accent-400",
+    headingClass: "text-on-scrim-muted",
+    bodyClass: "text-on-scrim-muted",
+    ruleClass: "border-accent-400/90",
   },
   {
-    numberClass: "text-orange-400",
-    headingClass: "text-stone-200",
-    bodyClass: "text-stone-200",
-    ruleClass: "border-orange-400/90",
+    numberClass: "text-accent-400",
+    headingClass: "text-on-scrim-muted",
+    bodyClass: "text-on-scrim-muted",
+    ruleClass: "border-accent-400/90",
   },
   {
-    numberClass: "text-orange-400",
-    headingClass: "text-stone-200",
-    bodyClass: "text-stone-200",
-    ruleClass: "border-orange-400/90",
+    numberClass: "text-accent-400",
+    headingClass: "text-on-scrim-muted",
+    bodyClass: "text-on-scrim-muted",
+    ruleClass: "border-accent-400/90",
   },
   {
-    numberClass: "text-orange-400",
-    headingClass: "text-stone-200",
-    bodyClass: "text-stone-200",
-    ruleClass: "border-orange-400/90",
+    numberClass: "text-accent-400",
+    headingClass: "text-on-scrim-muted",
+    bodyClass: "text-on-scrim-muted",
+    ruleClass: "border-accent-400/90",
   },
 ] as const;
 
@@ -74,9 +75,10 @@ function OnboardingLandscape({ slideIndex }: { slideIndex: number }) {
     return () => mediaQuery.removeEventListener("change", applyViewport);
   }, []);
 
+  const { onboarding } = useTenantContent();
   const backgroundWidthRatio = isDesktopViewport ? 1 : 4;
   const maxPanPercent = ((backgroundWidthRatio - 1) / backgroundWidthRatio) * 100;
-  const totalSlides = DASHBOARD_ONBOARDING_SLIDES.length;
+  const totalSlides = onboarding.slides.length;
   const panPercentPerStep = totalSlides > 1 ? maxPanPercent / (totalSlides - 1) : 0;
   const panOffset = isDesktopViewport ? 0 : -slideIndex * panPercentPerStep;
 
@@ -93,7 +95,7 @@ function OnboardingLandscape({ slideIndex }: { slideIndex: number }) {
           backgroundPosition: isDesktopViewport ? "center center" : "left center",
         }}
       />
-      <div className="absolute inset-0 bg-gradient-to-b from-black/32 via-black/46 to-black/85" />
+      <div className="absolute inset-0 bg-gradient-to-b from-scrim/32 via-scrim/46 to-scrim/85" />
     </div>
   );
 }
@@ -109,7 +111,8 @@ function SummitOnboardingOverlay({
   onRetreat: () => void;
   onSkip: () => void;
 }) {
-  const isFinalSlide = slideIndex === DASHBOARD_ONBOARDING_SLIDES.length - 1;
+  const { onboarding } = useTenantContent();
+  const isFinalSlide = slideIndex === onboarding.slides.length - 1;
   const [visible, setVisible] = useState(false);
   const touchStartRef = useRef<{ x: number; y: number } | null>(null);
   const slideContentRefs = useRef<Array<HTMLDivElement | null>>([]);
@@ -179,25 +182,25 @@ function SummitOnboardingOverlay({
   };
 
   return (
-    <div className="fixed inset-0 z-[260] overflow-hidden bg-black text-stone-100">
+    <div className="fixed inset-0 z-[260] overflow-hidden bg-scrim text-on-scrim">
       <OnboardingLandscape slideIndex={slideIndex} />
       <div
         className={`relative mx-auto flex h-full w-full max-w-5xl flex-col px-5 pb-6 pt-6 transition-opacity duration-500 ease-out sm:px-10 sm:pb-10 sm:pt-10 ${
           visible ? "opacity-100" : "opacity-0"
         }`}
       >
-        <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-zinc-800">
-          Slide {slideIndex + 1} of {DASHBOARD_ONBOARDING_SLIDES.length}
+        <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-surface-800">
+          Slide {slideIndex + 1} of {onboarding.slides.length}
         </p>
         <div className="mt-3 flex items-center gap-1.5">
-          {DASHBOARD_ONBOARDING_SLIDES.map((slide, index) => (
+          {onboarding.slides.map((slide, index) => (
             <span
               key={`${slide.heading}-progress`}
               aria-hidden
               className={
                 index === slideIndex
-                  ? "h-1.5 w-8 rounded-full bg-amber-300"
-                  : "h-1.5 w-3 rounded-full bg-black/35"
+                  ? "h-1.5 w-8 rounded-full bg-brand-300"
+                  : "h-1.5 w-3 rounded-full bg-scrim/35"
               }
             />
           ))}
@@ -210,13 +213,13 @@ function SummitOnboardingOverlay({
             onTouchStart={handleTouchStart}
             onTouchEnd={handleTouchEnd}
           >
-            {DASHBOARD_ONBOARDING_SLIDES.map((slide, index) => {
+            {onboarding.slides.map((slide, index) => {
               const visual = ONBOARDING_PANEL_VISUALS[index % ONBOARDING_PANEL_VISUALS.length];
 
               return (
                 <section key={slide.heading} className="flex h-full w-full shrink-0 items-end px-5 sm:px-8">
                   <article
-                    className="relative mx-auto flex w-full max-w-none flex-col rounded-[30px] border-2 border-black/30 bg-black/50 sm:max-w-[460px]"
+                    className="relative mx-auto flex w-full max-w-none flex-col rounded-[30px] border-2 border-scrim/30 bg-scrim/50 sm:max-w-[460px]"
                     style={uniformSlideHeight ? { height: `${uniformSlideHeight}px` } : undefined}
                   >
                     <div
@@ -251,14 +254,14 @@ function SummitOnboardingOverlay({
           <button
             type="button"
             onClick={onSkip}
-            className="col-span-1 inline-flex min-h-11 items-center justify-center rounded-full border border-white/25 bg-black/20 px-3 py-2 text-xs font-semibold uppercase tracking-[0.12em] text-stone-100 transition hover:bg-black/35 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-200"
+            className="col-span-1 inline-flex min-h-11 items-center justify-center rounded-full border border-veil/25 bg-scrim/20 px-3 py-2 text-xs font-semibold uppercase tracking-[0.12em] text-on-scrim transition hover:bg-scrim/35 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-200"
           >
             Skip
           </button>
           <button
             type="button"
             onClick={onAdvance}
-            className="col-span-2 inline-flex min-h-11 items-center justify-center gap-1.5 rounded-full bg-amber-500 px-4 py-2.5 text-sm font-semibold uppercase tracking-[0.12em] text-zinc-950 transition hover:bg-amber-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-200"
+            className="col-span-2 inline-flex min-h-11 items-center justify-center gap-1.5 rounded-full bg-brand-500 px-4 py-2.5 text-sm font-semibold uppercase tracking-[0.12em] text-surface-950 transition hover:bg-brand-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-200"
           >
             {isFinalSlide ? "Enter Summit" : "Next"}
             <ChevronRightIcon className="h-4 w-4" aria-hidden />
@@ -267,7 +270,7 @@ function SummitOnboardingOverlay({
       </div>
       <div
         aria-hidden
-        className={`pointer-events-none absolute inset-0 bg-black transition-opacity duration-500 ease-out ${
+        className={`pointer-events-none absolute inset-0 bg-scrim transition-opacity duration-500 ease-out ${
           visible ? "opacity-0" : "opacity-100"
         }`}
       />
@@ -276,6 +279,7 @@ function SummitOnboardingOverlay({
 }
 
 export default function SummitDashboardOnboardingGate({ children }: Props) {
+  const { onboarding } = useTenantContent();
   const [stage, setStage] = useState<GateStage>("checking");
   const [slideIndex, setSlideIndex] = useState(0);
   const [showDashboard, setShowDashboard] = useState(false);
@@ -320,7 +324,7 @@ export default function SummitDashboardOnboardingGate({ children }: Props) {
   };
 
   const advanceSlide = () => {
-    if (slideIndex < DASHBOARD_ONBOARDING_SLIDES.length - 1) {
+    if (slideIndex < onboarding.slides.length - 1) {
       setSlideIndex((current) => current + 1);
       return;
     }
@@ -351,7 +355,7 @@ export default function SummitDashboardOnboardingGate({ children }: Props) {
         </div>
       ) : null}
 
-      {stage === "checking" ? <div aria-hidden className="fixed inset-0 z-[250] bg-zinc-950" /> : null}
+      {stage === "checking" ? <div aria-hidden className="fixed inset-0 z-[250] bg-surface-950" /> : null}
 
       <SummitAcknowledgementOverlay open={stage === "acknowledgement"} onAccept={acceptAcknowledgement} />
 

@@ -42,9 +42,9 @@ export default function SummitVenueMapGallery({ items }: Props) {
 
   return (
     <>
-      <section className="rounded-xl border border-white/10 bg-white/5 p-4">
-        <h2 className="text-sm font-semibold text-white">Venue Maps</h2>
-        <p className="mt-2 text-sm text-stone-300">
+      <section className="rounded-xl border border-veil/10 bg-veil/5 p-4">
+        <h2 className="text-sm font-semibold text-on-scrim">Venue Maps</h2>
+        <p className="mt-2 text-sm text-on-scrim-muted">
           Tap or click a map to open the full-screen viewer.
         </p>
         <div className="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-2">
@@ -53,9 +53,9 @@ export default function SummitVenueMapGallery({ items }: Props) {
               key={item.id}
               type="button"
               onClick={() => setActiveIndex(itemIndex)}
-              className="group overflow-hidden rounded-lg border border-white/10 bg-zinc-900/60 text-left transition hover:border-white/25 hover:bg-zinc-900/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-300/80"
+              className="group overflow-hidden rounded-lg border border-veil/10 bg-surface-900/60 text-left transition hover:border-veil/25 hover:bg-surface-900/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-300/80"
             >
-              <div className="relative h-40 w-full bg-black/30">
+              <div className="relative h-40 w-full bg-scrim/30">
                 <Image
                   src={item.src}
                   alt={item.alt}
@@ -63,7 +63,7 @@ export default function SummitVenueMapGallery({ items }: Props) {
                   className="object-contain p-2"
                 />
               </div>
-              <p className="px-3 pb-3 pt-2 text-xs font-medium uppercase tracking-[0.12em] text-stone-200">
+              <p className="px-3 pb-3 pt-2 text-xs font-medium uppercase tracking-[0.12em] text-on-scrim-muted">
                 {item.title}
               </p>
             </button>
@@ -81,7 +81,7 @@ export default function SummitVenueMapGallery({ items }: Props) {
           <Dialog.Overlay
             as={motion.div}
             key="venue-backdrop"
-            className="fixed inset-0 z-40 bg-black"
+            className="fixed inset-0 z-40 bg-scrim"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
           />

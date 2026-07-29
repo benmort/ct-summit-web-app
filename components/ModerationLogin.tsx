@@ -41,9 +41,9 @@ export default function ModerationLogin({ onSuccess }: Props) {
   );
 
   return (
-    <div className="mx-auto mb-8 max-w-md rounded-xl border border-white/15 bg-white/5 px-4 py-6 text-center ring-1 ring-white/10">
-      <h2 className="text-lg font-semibold text-stone-100">Protected</h2>
-      <p className="mt-2 text-sm text-stone-400">
+    <div className="mx-auto mb-8 max-w-md rounded-xl border border-veil/15 bg-veil/5 px-4 py-6 text-center ring-1 ring-veil/10">
+      <h2 className="text-lg font-semibold text-ink-100">Protected</h2>
+      <p className="mt-2 text-sm text-ink-400">
         Enter the password to view Moments.
       </p>
       <form onSubmit={(e) => void submit(e)} className="mt-4 flex flex-col gap-3">
@@ -60,14 +60,14 @@ export default function ModerationLogin({ onSuccess }: Props) {
             spellCheck={false}
             value={password}
             onChange={(e) => setPassword(e.target.value)}
-            className="w-full rounded-lg border border-white/20 bg-black/40 px-3 py-2 pr-11 text-stone-100 placeholder:text-stone-500 focus:outline-none focus:ring-2 focus:ring-amber-400/80"
+            className="w-full rounded-lg border border-veil/20 bg-scrim/40 px-3 py-2 pr-11 text-ink-100 placeholder:text-ink-500 focus:outline-none focus:ring-2 focus:ring-brand-400/80"
             placeholder="Password"
             required
           />
           <button
             type="button"
             onClick={() => setShow((v) => !v)}
-            className="absolute inset-y-0 right-0 flex items-center px-3 text-stone-400 transition hover:text-stone-100"
+            className="absolute inset-y-0 right-0 flex items-center px-3 text-ink-400 transition hover:text-ink-100"
             aria-label={show ? "Hide password" : "Show password"}
             aria-pressed={show}
           >
@@ -79,14 +79,14 @@ export default function ModerationLogin({ onSuccess }: Props) {
           </button>
         </div>
         {error && (
-          <p className="text-sm text-red-300" role="alert">
+          <p className="text-sm text-danger-300" role="alert">
             {error}
           </p>
         )}
         <button
           type="submit"
           disabled={loading}
-          className="rounded-lg bg-amber-500 px-4 py-2 text-sm font-semibold text-black transition hover:bg-amber-400 disabled:opacity-50"
+          className="rounded-lg bg-brand-500 px-4 py-2 text-sm font-semibold text-black transition hover:bg-brand-400 disabled:opacity-50"
         >
           {loading ? "Signing in…" : "Continue"}
         </button>

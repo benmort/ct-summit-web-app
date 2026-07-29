@@ -27,7 +27,7 @@ export default function ScrollToTop() {
     <button
       type="button"
       onClick={scrollUp}
-      className="fixed bottom-[max(1rem,var(--album-safe-bottom))] right-4 z-30 flex h-12 w-12 items-center justify-center rounded-full bg-white/15 text-white shadow-lg ring-1 ring-white/20 backdrop-blur-sm transition hover:bg-white/25 focus:outline-none focus-visible:ring-2 focus-visible:ring-amber-400 focus-visible:ring-offset-2 focus-visible:ring-offset-black sm:right-6"
+      className="fixed bottom-[max(1rem,var(--album-safe-bottom))] right-4 z-30 flex h-12 w-12 items-center justify-center rounded-full bg-veil/15 text-ink-50 shadow-lg ring-1 ring-veil/20 backdrop-blur-sm transition hover:bg-veil/25 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 focus-visible:ring-offset-2 focus-visible:ring-offset-page sm:right-6"
       aria-label="Scroll to top"
     >
       <ArrowUpIcon className="h-6 w-6" aria-hidden />

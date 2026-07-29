@@ -6,7 +6,7 @@ import Image from "next/image";
 export default function ShowreelFooter() {
   return (
     <footer
-      className="relative w-full bg-black/90 px-3 py-4 pb-[max(1rem,var(--album-safe-bottom))] backdrop-blur-md sm:px-5"
+      className="relative w-full bg-scrim/90 px-3 py-4 pb-[max(1rem,var(--album-safe-bottom))] backdrop-blur-md sm:px-5"
       aria-label="Common Threads"
     >
       <div className="mx-auto flex w-full justify-center">

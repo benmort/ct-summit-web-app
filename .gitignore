@@ -6,4 +6,16 @@ out
 data/uploads/*
 !data/uploads/.gitkeep
 data/photos.json
+# Per-tenant runtime storage: photo manifests, uploads and upload sessions.
+data/tenants/
+data/upload-sessions/
 .vercel
+
+# Local secrets. This was previously committed by mistake — see the note in
+# docs/adding-a-tenant.md. The values in history still need rotating.
+.env.local
+.env*.local
+!.env.local.example
+
+# Delegate travel itineraries: personal data, must never be web-served or committed.
+/private/

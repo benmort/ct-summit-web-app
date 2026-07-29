@@ -1,4 +1,5 @@
 import { checkFixedWindowRateLimit } from "@/lib/rate-limit";
+import { secretEquals } from "@/lib/secret-compare";
 import { readModerationCookie } from "@/lib/server-moderation";
 
 const TRUE_VALUES = new Set(["1", "true", "yes", "on"]);
@@ -17,17 +18,16 @@ export function clientIpFromRequest(request: Request): string {
   return request.headers.get("x-real-ip") || "unknown";
 }
 
-export async function ensureUploadAuthorized(request: Request): Promise<void> {
+export async function ensureUploadAuthorized(request: Request, slug: string): Promise<void> {
   const bearer = process.env.MOMENTS_UPLOAD_BEARER_TOKEN;
   if (bearer) {
-    const auth = request.headers.get("authorization") || "";
-    if (auth !== `Bearer ${bearer}`) {
+    if (!secretEquals(request.headers.get("authorization"), `Bearer ${bearer}`)) {
       throw new Error("Unauthorized");
     }
   }
 
   if (envBool("MOMENTS_UPLOAD_REQUIRE_MODERATION")) {
-    const allowed = await readModerationCookie();
+    const allowed = await readModerationCookie(slug);
     if (!allowed) {
       throw new Error("Unauthorized");
     }

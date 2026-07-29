@@ -1,0 +1,17 @@
+{
+  "supportEmail": "summit@commonthreads.org.au",
+  "communityChatUrl": "https://chat.whatsapp.com/IpIrYbPrphO13hCTe8HJJO",
+  "transport": {
+    "label": "Transport",
+    "value": "Plan your trip with Adelaide Metro",
+    "url": "https://www.adelaidemetro.com.au/plan-a-trip/visiting-adelaide"
+  },
+  "channelIcons": {
+    "whatsapp-channel-summit-announcements": "fi fi-rr-megaphone",
+    "whatsapp-channel-parents-carers": "fi fi-rr-family",
+    "whatsapp-channel-health-illness-guidance": "fi fi-rr-shield-check",
+    "whatsapp-channel-accessibility-support": "fi fi-rr-wheelchair",
+    "whatsapp-channel-wellbeing-yarn-space": "fi fi-rr-heart",
+    "whatsapp-channel-nearby-essentials": "fi fi-rr-shopping-cart"
+  }
+}

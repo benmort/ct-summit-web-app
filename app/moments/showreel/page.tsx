@@ -3,7 +3,7 @@ import HomePage from "@/components/HomePage";
 
 function HomeFallback() {
   return (
-    <div className="fixed inset-0 flex items-center justify-center bg-black text-sm text-stone-500">
+    <div className="fixed inset-0 flex items-center justify-center bg-page text-sm text-ink-500">
       Loading…
     </div>
   );

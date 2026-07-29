@@ -1,0 +1,18 @@
+{
+  "slug": "woven",
+  "name": "Woven",
+  "domains": ["woven.commonthreads.org.au"],
+  "theme": {
+    "mode": "light",
+    "primary": "#124a3e",
+    "secondary": "#8a9826",
+    "fonts": {
+      "display": "fjalla-one",
+      "body": "anuphan"
+    }
+  },
+  "features": {
+    "moments": true
+  },
+  "redirects": []
+}

@@ -17,7 +17,7 @@ export default async function Page({ params }: Props) {
   const url = fieldString(survey, "Url");
   if (!url) {
     return (
-      <div className="rounded-xl border border-white/10 bg-white/5 p-5 text-sm text-stone-300">
+      <div className="rounded-xl border border-veil/10 bg-veil/5 p-5 text-sm text-ink-300">
         This survey does not include a URL.
       </div>
     );
@@ -25,8 +25,8 @@ export default async function Page({ params }: Props) {
 
   return (
     <div className="flex h-[calc(100dvh-11rem)] min-h-0 flex-col gap-3">
-      <h1 className="text-xl font-semibold text-white">{fieldString(survey, "Name") || "Survey"}</h1>
-      <div className="relative min-h-0 flex-1 overflow-hidden rounded-xl border border-white/10 bg-stone-100">
+      <h1 className="text-xl font-semibold text-ink-50">{fieldString(survey, "Name") || "Survey"}</h1>
+      <div className="relative min-h-0 flex-1 overflow-hidden rounded-xl border border-veil/10 bg-ink-100">
         <iframe
           title={fieldString(survey, "Name") || "Survey"}
           src={url}

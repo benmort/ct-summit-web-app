@@ -16,7 +16,7 @@ import SummitOpenMenuLink from "@/components/summit/SummitOpenMenuLink";
 import { getSummitContext } from "@/lib/summit/context";
 import { buildListItem, getSpeakerBadges } from "@/lib/summit/domains";
 import { fieldFirst, fieldString } from "@/lib/summit/fields";
-import { SUMMIT_PAGE_SUBTITLE } from "@/lib/summit/page-descriptors";
+import { getTenantContent } from "@/lib/tenant/content";
 import { getSpeakersAll } from "@/lib/summit/service";
 import type { SummitRecord } from "@/lib/summit/types";
 
@@ -106,8 +106,8 @@ function formatRoomLabel(value: string): string {
 function SectionHeading({ title, action }: { title: string; action?: React.ReactNode }) {
   return (
     <div className="mb-3 flex items-center justify-between gap-3">
-      <h2 className="flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.16em] text-stone-100">
-        <span className="h-px w-7 bg-amber-300/80" />
+      <h2 className="flex items-center gap-2 text-sm font-semibold uppercase tracking-[0.16em] text-ink-100">
+        <span className="h-px w-7 bg-brand-300/80" />
         {title}
       </h2>
       {action}
@@ -131,28 +131,28 @@ function SpeakerCard({
   return (
     <Link
       href={`/speakers/${speaker.id}`}
-      className="group overflow-hidden rounded-xl border border-white/10 bg-zinc-900/70 transition hover:border-white/20 hover:bg-zinc-900"
+      className="group overflow-hidden rounded-xl border border-veil/10 bg-surface-900/70 transition hover:border-veil/20 hover:bg-surface-900"
     >
-      <div className="relative aspect-[16/10] overflow-hidden bg-black/40">
+      <div className="relative aspect-[16/10] overflow-hidden bg-scrim/40">
         {imageUrl ? (
           <SummitSpeakerCardImage src={imageUrl} alt={name} />
         ) : null}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-transparent to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-scrim/70 via-transparent to-transparent" />
       </div>
       <div className="space-y-2 p-3.5">
-        <p className="inline-flex items-center gap-1.5 text-[10px] uppercase tracking-[0.15em] text-stone-400">
+        <p className="inline-flex items-center gap-1.5 text-[10px] uppercase tracking-[0.15em] text-ink-400">
           <ClockIcon className="h-3.5 w-3.5 shrink-0" aria-hidden />
           {formatSpeakerStart(speaker)}
         </p>
-        <h3 className="text-base font-semibold text-white break-words">{title}</h3>
-        <p className="text-xs text-stone-300 break-words">{name}</p>
-        {description ? <p className="text-xs text-stone-400 break-words">{description}</p> : null}
+        <h3 className="text-base font-semibold text-ink-50 break-words">{title}</h3>
+        <p className="text-xs text-ink-300 break-words">{name}</p>
+        {description ? <p className="text-xs text-ink-400 break-words">{description}</p> : null}
         <div className="pt-1">
           <div className="flex min-h-5 flex-wrap gap-1">
             {tags.map((tag) => (
               <span
                 key={`${speaker.id}-${tag}`}
-                className="rounded-full border border-amber-300/30 bg-amber-500/10 px-2 py-0.5 text-[10px] uppercase tracking-[0.08em] text-amber-100"
+                className="rounded-full border border-brand-300/30 bg-brand-500/10 px-2 py-0.5 text-[10px] uppercase tracking-[0.08em] text-brand-100"
               >
                 {tag}
               </span>
@@ -160,7 +160,7 @@ function SpeakerCard({
           </div>
         </div>
         {location ? (
-          <p className="inline-flex items-center gap-1 text-[11px] text-stone-400">
+          <p className="inline-flex items-center gap-1 text-[11px] text-ink-400">
             <MapPinIcon className="h-3.5 w-3.5 shrink-0" aria-hidden />
             {location}
           </p>
@@ -172,6 +172,7 @@ function SpeakerCard({
 
 export default async function SummitDashboardPage() {
   const context = await getSummitContext();
+  const { navigation } = await getTenantContent();
   const speakers = await getSpeakersAll(context.selectedSummitName);
   const now = Date.now();
   const speakersWithTimes = speakers.map((speaker) => ({
@@ -212,25 +213,25 @@ export default async function SummitDashboardPage() {
     {
       href: "/event-guidance",
       label: "Event Guidance",
-      subtitle: SUMMIT_PAGE_SUBTITLE.eventGuidance,
+      subtitle: navigation.pageSubtitles.eventGuidance,
       icon: InformationCircleIcon,
     },
     {
       href: "/crew",
       label: "Crew",
-      subtitle: SUMMIT_PAGE_SUBTITLE.crew,
+      subtitle: navigation.pageSubtitles.crew,
       icon: UsersIcon,
     },
     {
       href: "/organisations",
       label: "Organisations",
-      subtitle: SUMMIT_PAGE_SUBTITLE.organisations,
+      subtitle: navigation.pageSubtitles.organisations,
       icon: BuildingOffice2Icon,
     },
     {
       href: "/venues",
       label: "Venue/Map",
-      subtitle: SUMMIT_PAGE_SUBTITLE.venues,
+      subtitle: navigation.pageSubtitles.venues,
       icon: MapIcon,
       external: false,
     },
@@ -238,18 +239,18 @@ export default async function SummitDashboardPage() {
 
   return (
     <div className="w-full space-y-6">
-      <section className="relative min-h-[360px] overflow-hidden rounded-2xl border border-white/10 bg-zinc-900/80 sm:min-h-[430px]">
+      <section className="relative min-h-[360px] overflow-hidden rounded-2xl border border-veil/10 bg-surface-900/80 sm:min-h-[430px]">
         <SummitHeroVideo
           src={heroVideoUrl}
           className="absolute left-1/2 top-1/2 h-full w-[170%] max-w-none -translate-x-1/2 -translate-y-1/2 object-cover object-center sm:w-[155%] lg:w-[140%]"
         />
-        <div className="absolute inset-0 bg-gradient-to-br from-stone-900/75 via-zinc-950/60 to-black/90" />
+        <div className="absolute inset-0 bg-gradient-to-br from-ink-900/75 via-surface-950/60 to-scrim/90" />
         <div className="relative flex min-h-[360px] flex-col items-center justify-center p-6 text-center sm:min-h-[430px] sm:p-7">
-          <p className="text-xs uppercase tracking-[0.18em] text-amber-100/90">{summitTitle.overline}</p>
-          <h1 className="mt-2 max-w-[18ch] text-4xl font-semibold leading-tight text-white sm:text-5xl">
+          <p className="text-xs uppercase tracking-[0.18em] text-brand-100/90">{summitTitle.overline}</p>
+          <h1 className="mt-2 max-w-[18ch] text-4xl font-semibold leading-tight text-ink-50 sm:text-5xl">
             {summitTitle.title}
           </h1>
-          <div className="mt-4 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-sm text-stone-100">
+          <div className="mt-4 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-sm text-ink-100">
             <span className="inline-flex items-center gap-1.5">
               <CalendarDaysIcon className="h-4 w-4" />
               {summitRange}
@@ -262,7 +263,7 @@ export default async function SummitDashboardPage() {
           <div className="mt-5 flex flex-wrap justify-center gap-2">
             <Link
               href="/program"
-              className="inline-flex min-h-11 items-center gap-1 rounded-md bg-amber-500 px-4 py-2.5 text-sm font-semibold uppercase tracking-[0.12em] text-zinc-950 hover:bg-amber-400"
+              className="inline-flex min-h-11 items-center gap-1 rounded-md bg-brand-500 px-4 py-2.5 text-sm font-semibold uppercase tracking-[0.12em] text-surface-950 hover:bg-brand-400"
             >
               Browse program
               <ChevronRightIcon className="h-4 w-4" />
@@ -277,7 +278,7 @@ export default async function SummitDashboardPage() {
           {directoryEntries.map((entry) => {
             const Icon = entry.icon;
             const cardClass =
-              "group relative rounded-xl border border-white/35 bg-zinc-900/70 p-3.5 transition hover:border-white/55 hover:bg-zinc-900 lg:flex lg:items-stretch lg:gap-3";
+              "group relative rounded-xl border border-veil/35 bg-surface-900/70 p-3.5 transition hover:border-veil/55 hover:bg-surface-900 lg:flex lg:items-stretch lg:gap-3";
 
             if (entry.external) {
               return (
@@ -288,15 +289,15 @@ export default async function SummitDashboardPage() {
                   rel="noreferrer"
                   className={cardClass}
                 >
-                  <span className="pointer-events-none absolute right-2 top-2 inline-flex h-5 w-5 items-center justify-center rounded-full border border-amber-300/35 bg-zinc-900/70 text-amber-200/90 opacity-80 transition group-hover:border-amber-300/60 group-hover:opacity-100">
+                  <span className="pointer-events-none absolute right-2 top-2 inline-flex h-5 w-5 items-center justify-center rounded-full border border-brand-300/35 bg-surface-900/70 text-brand-200/90 opacity-80 transition group-hover:border-brand-300/60 group-hover:opacity-100">
                     <ChevronRightIcon className="h-3 w-3" aria-hidden />
                   </span>
-                  <span className="mb-3 inline-flex h-8 w-8 items-center justify-center rounded-md border border-white/35 bg-black/30 text-amber-100 lg:mb-0 lg:h-auto lg:w-auto lg:aspect-square lg:min-h-0 lg:shrink-0 lg:self-stretch">
+                  <span className="mb-3 inline-flex h-8 w-8 items-center justify-center rounded-md border border-veil/35 bg-scrim/30 text-brand-100 lg:mb-0 lg:h-auto lg:w-auto lg:aspect-square lg:min-h-0 lg:shrink-0 lg:self-stretch">
                     <Icon className="h-4 w-4 lg:h-6 lg:w-6" />
                   </span>
                   <span className="block lg:flex lg:min-w-0 lg:flex-col lg:justify-center">
-                    <p className="text-sm font-semibold text-white lg:text-[16px]">{entry.label}</p>
-                    <p className="mt-1 text-[11px] text-stone-400 lg:text-[13px]">{entry.subtitle}</p>
+                    <p className="text-sm font-semibold text-ink-50 lg:text-[16px]">{entry.label}</p>
+                    <p className="mt-1 text-[11px] text-ink-400 lg:text-[13px]">{entry.subtitle}</p>
                   </span>
                 </a>
               );
@@ -304,15 +305,15 @@ export default async function SummitDashboardPage() {
 
             return (
               <Link key={entry.href} href={entry.href} className={cardClass}>
-                <span className="pointer-events-none absolute right-2 top-2 inline-flex h-5 w-5 items-center justify-center rounded-full border border-amber-300/35 bg-zinc-900/70 text-amber-200/90 opacity-80 transition group-hover:border-amber-300/60 group-hover:opacity-100">
+                <span className="pointer-events-none absolute right-2 top-2 inline-flex h-5 w-5 items-center justify-center rounded-full border border-brand-300/35 bg-surface-900/70 text-brand-200/90 opacity-80 transition group-hover:border-brand-300/60 group-hover:opacity-100">
                   <ChevronRightIcon className="h-3 w-3" aria-hidden />
                 </span>
-                <span className="mb-3 inline-flex h-8 w-8 items-center justify-center rounded-md border border-white/35 bg-black/30 text-amber-100 lg:mb-0 lg:h-auto lg:w-auto lg:aspect-square lg:min-h-0 lg:shrink-0 lg:self-stretch">
+                <span className="mb-3 inline-flex h-8 w-8 items-center justify-center rounded-md border border-veil/35 bg-scrim/30 text-brand-100 lg:mb-0 lg:h-auto lg:w-auto lg:aspect-square lg:min-h-0 lg:shrink-0 lg:self-stretch">
                   <Icon className="h-4 w-4 lg:h-6 lg:w-6" />
                 </span>
                 <span className="block lg:flex lg:min-w-0 lg:flex-col lg:justify-center">
-                  <p className="text-sm font-semibold text-white lg:text-[16px]">{entry.label}</p>
-                  <p className="mt-1 text-[11px] text-stone-400 lg:text-[13px]">{entry.subtitle}</p>
+                  <p className="text-sm font-semibold text-ink-50 lg:text-[16px]">{entry.label}</p>
+                  <p className="mt-1 text-[11px] text-ink-400 lg:text-[13px]">{entry.subtitle}</p>
                 </span>
               </Link>
             );
@@ -326,7 +327,7 @@ export default async function SummitDashboardPage() {
           action={
             <Link
               href="/speakers"
-              className="inline-flex items-center gap-1 text-[10px] uppercase tracking-[0.14em] text-amber-300"
+              className="inline-flex items-center gap-1 text-[10px] uppercase tracking-[0.14em] text-brand-300"
             >
               View full lineup
               <ChevronRightIcon className="h-3.5 w-3.5" aria-hidden />
@@ -355,11 +356,11 @@ export default async function SummitDashboardPage() {
         )}
       </section>
 
-      <section className="rounded-xl border border-white/10 bg-zinc-900/70 p-4">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-stone-100 lg:text-[18px]">
+      <section className="rounded-xl border border-veil/10 bg-surface-900/70 p-4">
+        <p className="text-[11px] font-semibold uppercase tracking-[0.2em] text-ink-100 lg:text-[18px]">
           {summitTitle.overline}
         </p>
-        <p className="mt-2 max-w-[55ch] text-xs text-stone-400 lg:text-[14px] lg:leading-[1.35]">
+        <p className="mt-2 max-w-[55ch] text-xs text-ink-400 lg:text-[14px] lg:leading-[1.35]">
           {summitTitle.title} brings together campaigners, organisers and changemakers for practical
           sessions, collaborative planning and shared action. Across plenaries, workshops and
           community-led conversations, the summit is designed to strengthen relationships, sharpen

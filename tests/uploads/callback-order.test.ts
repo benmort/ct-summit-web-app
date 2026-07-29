@@ -4,7 +4,7 @@ import { randomUUID } from "crypto";
 import { getUploadSessionStore } from "@/lib/upload-session-store";
 
 test("session tracks out-of-order callback completion", async () => {
-  const store = getUploadSessionStore();
+  const store = getUploadSessionStore("test-tenant");
   const sessionId = randomUUID();
   await store.create({
     sessionId,

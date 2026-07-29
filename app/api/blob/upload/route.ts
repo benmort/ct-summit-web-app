@@ -1,9 +1,15 @@
 import { handleUpload, type HandleUploadBody } from "@vercel/blob/client";
 import { NextResponse } from "next/server";
-import { getPhotoStorage } from "@/lib/storage";
+import { getPhotoStorage, storageScopeForSlug } from "@/lib/storage";
+import { getTenantSlug } from "@/lib/tenant/server";
 import { classifyUploadError, safeErrorMessage } from "@/lib/upload-errors";
 import { logUploadEvent } from "@/lib/upload-logging";
-import { parseClientUploadPayload } from "@/lib/upload-payload";
+import {
+  parseClientUploadPayload,
+  parseTokenPayload,
+  readTokenTenant,
+  toTokenPayload,
+} from "@/lib/upload-payload";
 import { getUploadSessionStore } from "@/lib/upload-session-store";
 import { ensureUploadAuthorized, ensureUploadRateLimit } from "@/lib/upload-security";
 import { isUploadV2Enabled } from "@/lib/upload-config";
@@ -38,32 +44,42 @@ export async function POST(request: Request) {
   const body = (await request.json()) as HandleUploadBody;
 
   try {
-    await ensureUploadAuthorized(request);
-    ensureUploadRateLimit(request, "blob-token");
-    const sessions = getUploadSessionStore();
+    // This runs in the browser's request, so the host identifies the tenant.
+    const requestTenant = await getTenantSlug();
+    const requestScope = storageScopeForSlug(requestTenant);
+    await ensureUploadAuthorized(request, requestTenant);
+    ensureUploadRateLimit(request, `blob-token:${requestTenant}`);
+
     const jsonResponse = await handleUpload({
       body,
       request,
       onBeforeGenerateToken: async (pathname, clientPayload) => {
-        if (!pathname.startsWith("album-img/")) {
+        const payload = parseClientUploadPayload(clientPayload, requestScope.blobMediaPrefix);
+        if (!pathname.startsWith(requestScope.blobMediaPrefix)) {
           throw new Error("Invalid pathname");
         }
-        const payload = parseClientUploadPayload(clientPayload);
         if (payload.pathname !== pathname) {
           throw new Error("Payload pathname mismatch");
         }
-        const maximumSizeInBytes = maxBytesForMime(payload.mime);
         return {
           allowedContentTypes: ALLOWED_TYPES,
-          maximumSizeInBytes,
+          maximumSizeInBytes: maxBytesForMime(payload.mime),
           addRandomSuffix: false,
-          tokenPayload: JSON.stringify(payload),
+          // The tenant is stamped in server-side here. onUploadCompleted below
+          // has no host to resolve it from, so this is the only way it survives.
+          tokenPayload: JSON.stringify(toTokenPayload(payload, requestTenant)),
         };
       },
       onUploadCompleted: async ({ blob, tokenPayload }) => {
-        const storage = getPhotoStorage();
+        // Vercel Blob calls this server-to-server: there is no tenant host here,
+        // so the tenant must come from the token we signed, never from getTenantSlug().
+        const tenant = readTokenTenant(tokenPayload);
+        const scope = storageScopeForSlug(tenant);
+        const payload = parseTokenPayload(tokenPayload, scope.blobMediaPrefix);
+
+        const storage = getPhotoStorage(tenant);
+        const sessions = getUploadSessionStore(tenant);
         if (!storage.registerClientUpload) return;
-        const payload = parseClientUploadPayload(tokenPayload);
         await sessions.patchFile(payload.sessionId, payload.fileClientId, {
           status: "uploaded",
           uploadedAt: new Date().toISOString(),

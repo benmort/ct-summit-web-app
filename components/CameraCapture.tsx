@@ -27,15 +27,15 @@ export default function CameraCapture({
       "group inline-flex min-h-12 items-center justify-center gap-2 rounded-xl px-5 py-3 text-sm font-semibold transition disabled:cursor-not-allowed disabled:opacity-50",
       flex1 ? "flex-1" : "",
       onDark
-        ? "border border-white/20 bg-zinc-950/45 text-white hover:border-amber-300/45 hover:bg-zinc-900/70"
-        : "border border-stone-300 bg-white text-stone-900 hover:border-stone-400 hover:bg-stone-50",
+        ? "border border-veil/20 bg-surface-950/45 text-ink-50 hover:border-brand-300/45 hover:bg-surface-900/70"
+        : "border border-ink-300 bg-panel text-on-panel hover:border-ink-400 hover:bg-ink-50",
     ].join(" ");
   const iconClass = onDark
-    ? "h-4 w-4 text-amber-100"
-    : "h-4 w-4 text-amber-900";
+    ? "h-4 w-4 text-brand-100"
+    : "h-4 w-4 text-brand-900";
   const iconWrapClass = onDark
-    ? "inline-flex h-7 w-7 items-center justify-center rounded-full bg-amber-400/20 ring-1 ring-amber-300/30"
-    : "inline-flex h-7 w-7 items-center justify-center rounded-full bg-amber-100 ring-1 ring-amber-200";
+    ? "inline-flex h-7 w-7 items-center justify-center rounded-full bg-brand-400/20 ring-1 ring-brand-300/30"
+    : "inline-flex h-7 w-7 items-center justify-center rounded-full bg-brand-100 ring-1 ring-brand-200";
 
   const onPhotoChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const f = e.target.files?.[0];
@@ -118,8 +118,8 @@ export default function CameraCapture({
           role="alert"
           className={
             onDark
-              ? "rounded-xl bg-amber-950/40 px-3 py-2 text-center text-xs text-amber-100 ring-1 ring-amber-500/20"
-              : "rounded-xl bg-amber-50 px-3 py-2 text-center text-xs text-amber-950"
+              ? "rounded-xl bg-brand-950/40 px-3 py-2 text-center text-xs text-brand-100 ring-1 ring-brand-500/20"
+              : "rounded-xl bg-brand-50 px-3 py-2 text-center text-xs text-brand-950"
           }
         >
           {fileError}

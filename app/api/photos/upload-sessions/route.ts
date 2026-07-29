@@ -1,5 +1,7 @@
 import { randomUUID } from "crypto";
 import { NextResponse } from "next/server";
+import { storageScopeForSlug } from "@/lib/storage";
+import { getTenantSlug } from "@/lib/tenant/server";
 import { isUploadV2Enabled } from "@/lib/upload-config";
 import { parseClientUploadPayload } from "@/lib/upload-payload";
 import { getUploadSessionStore } from "@/lib/upload-session-store";
@@ -18,18 +20,21 @@ type StartUploadSessionBody = {
 };
 
 export async function POST(request: Request) {
+  const tenantSlug = await getTenantSlug();
   try {
     if (!isUploadV2Enabled()) {
       return NextResponse.json({ error: "Upload sessions disabled" }, { status: 503 });
     }
-    await ensureUploadAuthorized(request);
-    ensureUploadRateLimit(request, "upload-session-create");
+    await ensureUploadAuthorized(request, tenantSlug);
+    ensureUploadRateLimit(request, `upload-session-create:${tenantSlug}`);
     const body = (await request.json()) as StartUploadSessionBody;
     const filesRaw = Array.isArray(body.files) ? body.files : [];
     if (!filesRaw.length) {
       return NextResponse.json({ error: "No files selected" }, { status: 400 });
     }
     const sessionId = randomUUID();
+    // Every requested upload path must sit inside this tenant's own namespace.
+    const { blobMediaPrefix } = storageScopeForSlug(tenantSlug);
     const files = filesRaw.map((file) =>
       parseClientUploadPayload(
         JSON.stringify({
@@ -37,9 +42,10 @@ export async function POST(request: Request) {
           sessionId,
           expectedCount: filesRaw.length,
         }),
+        blobMediaPrefix,
       ),
     );
-    const store = getUploadSessionStore();
+    const store = getUploadSessionStore(tenantSlug);
     const session = await store.create({
       sessionId,
       expectedCount: files.length,

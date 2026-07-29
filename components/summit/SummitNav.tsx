@@ -18,7 +18,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 import { SUMMIT_OPEN_MENU_EVENT } from "@/lib/summit/menu-events";
-import { SUMMIT_MENU_SUBTITLE_BY_HREF } from "@/lib/summit/page-descriptors";
+import { useTenantContent } from "@/components/TenantContentProvider";
 import type { SummitRecord } from "@/lib/summit/types";
 
 type NavItem = {
@@ -47,56 +47,6 @@ type WhatsappChannelItem = {
 
 type SummitNavProps = {
   whatsappChannels?: SummitRecord[];
-};
-
-const COMMON_THREADS_WHATSAPP_COMMUNITY_URL = "https://chat.whatsapp.com/IpIrYbPrphO13hCTe8HJJO";
-
-const bottomTabs: NavItem[] = [
-  { href: "/", label: "Home", icon: HomeIcon },
-  { href: "/program", label: "Program", icon: CalendarDaysIcon },
-  { href: "/speakers", label: "Speakers", icon: UserGroupIcon },
-  { href: "/moments", label: "Moments", icon: PhotoIcon },
-];
-
-const menuLinks: MenuLinkItem[] = [
-  { href: "/", label: "Home", subtitle: SUMMIT_MENU_SUBTITLE_BY_HREF["/"] },
-  { href: "/program", label: "Program", subtitle: SUMMIT_MENU_SUBTITLE_BY_HREF["/program"] },
-  {
-    href: "/event-guidance",
-    label: "Event Guidance",
-    subtitle: SUMMIT_MENU_SUBTITLE_BY_HREF["/event-guidance"],
-  },
-  { href: "/speakers", label: "Speakers", subtitle: SUMMIT_MENU_SUBTITLE_BY_HREF["/speakers"] },
-  { href: "/crew", label: "Crew", subtitle: SUMMIT_MENU_SUBTITLE_BY_HREF["/crew"] },
-  { href: "/moments", label: "Moments", subtitle: SUMMIT_MENU_SUBTITLE_BY_HREF["/moments"] },
-  { href: "/venues", label: "Venues", subtitle: SUMMIT_MENU_SUBTITLE_BY_HREF["/venues"] },
-  { href: "/events", label: "Events", subtitle: SUMMIT_MENU_SUBTITLE_BY_HREF["/events"] },
-  {
-    href: "/attractions",
-    label: "Attractions",
-    subtitle: SUMMIT_MENU_SUBTITLE_BY_HREF["/attractions"],
-  },
-  {
-    href: "/organisations",
-    label: "Organisations",
-    subtitle: SUMMIT_MENU_SUBTITLE_BY_HREF["/organisations"],
-  },
-  { href: "/sponsors", label: "Sponsors", subtitle: SUMMIT_MENU_SUBTITLE_BY_HREF["/sponsors"] },
-  { href: "/surveys", label: "Surveys", subtitle: SUMMIT_MENU_SUBTITLE_BY_HREF["/surveys"] },
-  {
-    href: "/code-conduct",
-    label: "Code of Conduct",
-    subtitle: SUMMIT_MENU_SUBTITLE_BY_HREF["/code-conduct"],
-  },
-];
-
-const WHATSAPP_CHANNEL_ICON_CLASS_BY_ID: Partial<Record<string, string>> = {
-  "whatsapp-channel-summit-announcements": "fi fi-rr-megaphone",
-  "whatsapp-channel-parents-carers": "fi fi-rr-family",
-  "whatsapp-channel-health-illness-guidance": "fi fi-rr-shield-check",
-  "whatsapp-channel-accessibility-support": "fi fi-rr-wheelchair",
-  "whatsapp-channel-wellbeing-yarn-space": "fi fi-rr-heart",
-  "whatsapp-channel-nearby-essentials": "fi fi-rr-shopping-cart",
 };
 
 function menuIconForHref(href: string): NavItem["icon"] {
@@ -146,7 +96,12 @@ function channelInitials(name: string): string {
   return `${chunks[0][0]}${chunks[1][0]}`.toUpperCase();
 }
 
-function normalizeWhatsappChannels(records: SummitRecord[]): WhatsappChannelItem[] {
+function normalizeWhatsappChannels(
+  records: SummitRecord[],
+  // Indexing may miss, so this is intentionally not a total Record: without the
+  // `| undefined` the `?? null` fallback below is typed away.
+  channelIcons: Record<string, string | undefined>,
+): WhatsappChannelItem[] {
   return records
     .map((record) => {
       const name = normalizeString(record.fields.Name);
@@ -162,7 +117,7 @@ function normalizeWhatsappChannels(records: SummitRecord[]): WhatsappChannelItem
           normalizeString(record.fields.Audience),
         iconClass:
           normalizeString(record.fields.IconClass) ??
-          WHATSAPP_CHANNEL_ICON_CLASS_BY_ID[record.id] ??
+          channelIcons[record.id] ??
           null,
         joined: normalizeBoolean(record.fields.Joined),
         url,
@@ -182,7 +137,16 @@ function WhatsappGlyph({ className }: { className?: string }) {
 export default function SummitNav({ whatsappChannels = [] }: SummitNavProps) {
   const pathname = usePathname();
   const [activePanel, setActivePanel] = useState<DrawerPanel | null>(null);
-  const normalizedWhatsappChannels = normalizeWhatsappChannels(whatsappChannels);
+  const { brand, navigation, integrations } = useTenantContent();
+  const bottomTabs: NavItem[] = navigation.tabs.map((tab) => ({
+    ...tab,
+    icon: menuIconForHref(tab.href),
+  }));
+  const menuLinks: MenuLinkItem[] = navigation.menu;
+  const normalizedWhatsappChannels = normalizeWhatsappChannels(
+    whatsappChannels,
+    integrations.channelIcons,
+  );
   const menuOpen = activePanel === "menu";
   const whatsappOpen = activePanel === "whatsapp";
   const panelOpen = activePanel !== null;
@@ -261,13 +225,13 @@ export default function SummitNav({ whatsappChannels = [] }: SummitNavProps) {
 
   return (
     <>
-      <header className="sticky top-0 z-40 border-b border-white/10 bg-zinc-950/90 backdrop-blur">
+      <header className="sticky top-0 z-40 border-b border-veil/10 bg-surface-950/90 backdrop-blur">
         <div className="mx-auto flex w-full max-w-[1100px] items-center justify-between px-4 py-3 sm:px-6">
           <Link
             href="/"
-            className="text-[11px] font-semibold uppercase tracking-[0.22em] text-stone-100 lg:text-[13px]"
+            className="font-display text-[11px] font-semibold uppercase tracking-[0.22em] text-ink-100 lg:text-[13px]"
           >
-            Common Threads Summit &#39;26
+            {brand.wordmark}
           </Link>
           <div className="flex items-center gap-2">
             <button
@@ -275,7 +239,7 @@ export default function SummitNav({ whatsappChannels = [] }: SummitNavProps) {
               onClick={handleWhatsappToggle}
               aria-expanded={whatsappOpen}
               aria-label={whatsappOpen ? "Close WhatsApp channels" : "Open WhatsApp channels"}
-              className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-amber-500 text-zinc-950 transition hover:bg-amber-400"
+              className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-brand-500 text-surface-950 transition hover:bg-brand-400"
             >
               <WhatsappGlyph className="h-5 w-5" />
             </button>
@@ -283,7 +247,7 @@ export default function SummitNav({ whatsappChannels = [] }: SummitNavProps) {
               type="button"
               onClick={handleMenuToggle}
               aria-expanded={menuOpen}
-              className="inline-flex h-8 w-[78px] items-center justify-center rounded-xl border border-white/35 bg-zinc-900/70 text-center text-[10px] font-semibold uppercase tracking-[0.12em] text-white transition hover:border-white/55 hover:bg-zinc-900 lg:text-[12px]"
+              className="inline-flex h-8 w-[78px] items-center justify-center rounded-xl border border-veil/35 bg-surface-900/70 text-center text-[10px] font-semibold uppercase tracking-[0.12em] text-ink-50 transition hover:border-veil/55 hover:bg-surface-900 lg:text-[12px]"
             >
               {menuOpen ? "CLOSE" : "MENU"}
             </button>
@@ -296,9 +260,9 @@ export default function SummitNav({ whatsappChannels = [] }: SummitNavProps) {
           panelOpen ? "pointer-events-auto opacity-100" : "pointer-events-none opacity-0"
         }`}
       >
-        <div className="absolute inset-0 bg-black/60" onClick={closePanel} />
+        <div className="absolute inset-0 bg-scrim/60" onClick={closePanel} />
         <aside
-          className={`absolute inset-0 overflow-y-auto overscroll-contain bg-zinc-950 transition-transform duration-300 ease-out ${
+          className={`absolute inset-0 overflow-y-auto overscroll-contain bg-surface-950 transition-transform duration-300 ease-out ${
             panelOpen ? "translate-x-0" : "translate-x-full"
           }`}
           aria-label={menuOpen ? "Summit full menu" : "Summit WhatsApp channels"}
@@ -310,8 +274,8 @@ export default function SummitNav({ whatsappChannels = [] }: SummitNavProps) {
                   const active = isActive(pathname, item.href);
                   const Icon = menuIconForHref(item.href);
                   const iconBadgeClass = active
-                    ? "inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-md border border-amber-300/50 bg-amber-500/20 text-amber-100"
-                    : "inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-md border border-white/35 bg-black/30 text-amber-100";
+                    ? "inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-md border border-brand-300/50 bg-brand-500/20 text-brand-100"
+                    : "inline-flex h-7 w-7 shrink-0 items-center justify-center rounded-md border border-veil/35 bg-scrim/30 text-brand-100";
                   return (
                     <Link
                       key={item.href}
@@ -319,8 +283,8 @@ export default function SummitNav({ whatsappChannels = [] }: SummitNavProps) {
                       onClick={closePanel}
                       className={`inline-flex min-h-11 items-center justify-between rounded-md border px-4 py-2.5 transition ${
                         active
-                          ? "border-amber-300/40 bg-amber-500/10 font-semibold text-amber-200"
-                          : "border-white/35 bg-white/5 text-stone-200 hover:border-white/55 hover:bg-white/10"
+                          ? "border-brand-300/40 bg-brand-500/10 font-semibold text-brand-200"
+                          : "border-veil/35 bg-veil/5 text-ink-200 hover:border-veil/55 hover:bg-veil/10"
                       }`}
                     >
                       <span className="inline-flex min-w-0 items-center gap-2">
@@ -334,8 +298,8 @@ export default function SummitNav({ whatsappChannels = [] }: SummitNavProps) {
                           <span
                             className={
                               active
-                                ? "mt-0.5 block truncate text-[11px] font-normal leading-4 text-amber-100/90 lg:text-[12.5px]"
-                                : "mt-0.5 block truncate text-[11px] leading-4 text-stone-400 lg:text-[12.5px]"
+                                ? "mt-0.5 block truncate text-[11px] font-normal leading-4 text-brand-100/90 lg:text-[12.5px]"
+                                : "mt-0.5 block truncate text-[11px] leading-4 text-ink-400 lg:text-[12.5px]"
                             }
                           >
                             {item.subtitle}
@@ -349,37 +313,39 @@ export default function SummitNav({ whatsappChannels = [] }: SummitNavProps) {
               </nav>
             ) : (
               <div className="space-y-3">
-                <a
-                  href={COMMON_THREADS_WHATSAPP_COMMUNITY_URL}
-                  target="_blank"
-                  rel="noreferrer"
-                  onClick={closePanel}
-                  className="group inline-flex min-h-11 w-full items-center justify-between rounded-md border border-amber-300/35 bg-amber-500/10 px-4 py-2.5 text-sm font-semibold tracking-[0.06em] text-amber-100 transition hover:border-amber-200/55 hover:bg-amber-500/20"
-                >
-                  <span className="truncate">Join The WhatsApp Community</span>
-                  <ChevronRightIcon className="h-4 w-4 shrink-0 text-amber-100" aria-hidden />
-                </a>
-                <div className="overflow-hidden rounded-2xl border border-white/15 bg-zinc-900/65">
-                  <div className="flex items-center border-b border-white/10 px-4 py-3">
-                    <span className="inline-flex items-center gap-2 text-amber-100">
+                {integrations.communityChatUrl ? (
+                  <a
+                    href={integrations.communityChatUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                    onClick={closePanel}
+                    className="group inline-flex min-h-11 w-full items-center justify-between rounded-md border border-brand-300/35 bg-brand-500/10 px-4 py-2.5 text-sm font-semibold tracking-[0.06em] text-brand-100 transition hover:border-brand-200/55 hover:bg-brand-500/20"
+                  >
+                    <span className="truncate">Join The WhatsApp Community</span>
+                    <ChevronRightIcon className="h-4 w-4 shrink-0 text-brand-100" aria-hidden />
+                  </a>
+                ) : null}
+                <div className="overflow-hidden rounded-2xl border border-veil/15 bg-surface-900/65">
+                  <div className="flex items-center border-b border-veil/10 px-4 py-3">
+                    <span className="inline-flex items-center gap-2 text-brand-100">
                       <WhatsappGlyph className="h-5 w-5" />
                       <span className="text-sm font-semibold uppercase tracking-[0.12em]">
                         WhatsApp Channels
                       </span>
                     </span>
                   </div>
-                  <div className="divide-y divide-white/10">
+                  <div className="divide-y divide-veil/10">
                   {normalizedWhatsappChannels.length > 0 ? (
                     normalizedWhatsappChannels.map((channel) => {
                       const isLinked = Boolean(channel.url);
                       const rowClass = isLinked
-                        ? "group flex items-center justify-between gap-3 px-4 py-3 transition hover:bg-white/5"
+                        ? "group flex items-center justify-between gap-3 px-4 py-3 transition hover:bg-veil/5"
                         : "flex items-center justify-between gap-3 px-4 py-3 opacity-90";
 
                       const rowContent = (
                         <>
                           <span className="inline-flex min-w-0 items-center gap-3">
-                            <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-white/25 bg-black/40 text-sm font-semibold uppercase tracking-[0.08em] text-amber-100">
+                            <span className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-veil/25 bg-scrim/40 text-sm font-semibold uppercase tracking-[0.08em] text-brand-100">
                               {channel.iconClass ? (
                                 <i className={`${channel.iconClass} text-[18px] leading-none`} aria-hidden />
                               ) : (
@@ -387,10 +353,10 @@ export default function SummitNav({ whatsappChannels = [] }: SummitNavProps) {
                               )}
                             </span>
                             <span className="min-w-0">
-                              <span className="block truncate text-sm font-semibold tracking-[0.06em] text-stone-100 lg:text-[15px]">
+                              <span className="block truncate text-sm font-semibold tracking-[0.06em] text-ink-100 lg:text-[15px]">
                                 {channel.name}
                               </span>
-                              <span className="mt-0.5 block truncate text-[11px] leading-4 text-stone-400 lg:text-[12.5px]">
+                              <span className="mt-0.5 block truncate text-[11px] leading-4 text-ink-400 lg:text-[12.5px]">
                                 {channel.membersLabel ??
                                   channel.description ??
                                   (isLinked ? "Open channel in WhatsApp" : "Link coming soon")}
@@ -398,8 +364,8 @@ export default function SummitNav({ whatsappChannels = [] }: SummitNavProps) {
                             </span>
                           </span>
                           <span
-                            className={`inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-amber-300/40 bg-amber-500/10 text-amber-100 ${
-                              isLinked ? "transition group-hover:bg-amber-500/20" : ""
+                            className={`inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-full border border-brand-300/40 bg-brand-500/10 text-brand-100 ${
+                              isLinked ? "transition group-hover:bg-brand-500/20" : ""
                             }`}
                           >
                             {channel.joined ? (
@@ -433,7 +399,7 @@ export default function SummitNav({ whatsappChannels = [] }: SummitNavProps) {
                       );
                     })
                   ) : (
-                    <div className="px-4 py-6 text-sm text-stone-300">
+                    <div className="px-4 py-6 text-sm text-ink-300">
                       No WhatsApp channels configured yet.
                     </div>
                   )}
@@ -446,7 +412,7 @@ export default function SummitNav({ whatsappChannels = [] }: SummitNavProps) {
       </div>
 
       <div className="pointer-events-none fixed inset-x-0 bottom-0 z-40 flex justify-center px-3 pb-[calc(0.65rem+var(--album-safe-bottom))]">
-        <nav className="pointer-events-auto flex w-full max-w-[440px] items-center gap-1 rounded-2xl border border-white/15 bg-zinc-950/95 px-2 py-2 shadow-2xl backdrop-blur">
+        <nav className="pointer-events-auto flex w-full max-w-[440px] items-center gap-1 rounded-2xl border border-veil/15 bg-surface-950/95 px-2 py-2 shadow-2xl backdrop-blur">
           {bottomTabs.map((tab) => {
             const active = isActive(pathname, tab.href);
             const Icon = tab.icon;
@@ -456,8 +422,8 @@ export default function SummitNav({ whatsappChannels = [] }: SummitNavProps) {
                 href={tab.href}
                 className={
                   active
-                    ? "flex min-w-0 flex-1 flex-col items-center gap-1 rounded-xl bg-amber-500/15 px-1.5 py-2 text-[10px] font-semibold uppercase tracking-[0.1em] text-amber-200 lg:text-[12px]"
-                    : "flex min-w-0 flex-1 flex-col items-center gap-1 rounded-xl px-1.5 py-2 text-[10px] uppercase tracking-[0.1em] text-stone-400 hover:bg-white/10 hover:text-stone-200 lg:text-[12px]"
+                    ? "flex min-w-0 flex-1 flex-col items-center gap-1 rounded-xl bg-brand-500/15 px-1.5 py-2 text-[10px] font-semibold uppercase tracking-[0.1em] text-brand-200 lg:text-[12px]"
+                    : "flex min-w-0 flex-1 flex-col items-center gap-1 rounded-xl px-1.5 py-2 text-[10px] uppercase tracking-[0.1em] text-ink-400 hover:bg-veil/10 hover:text-ink-200 lg:text-[12px]"
                 }
               >
                 <Icon className="h-4 w-4" />

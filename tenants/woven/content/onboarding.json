@@ -1,0 +1,59 @@
+{
+  "acknowledgement": {
+    "title": "ACKNOWLEDGEMENT OF COUNTRY",
+    "sovereigntyStatement": "PLACEHOLDER — Woven's closing sovereignty statement (questionnaire 4.3).",
+    "paragraphs": [
+      "PLACEHOLDER — needs Traditional Owner approval before launch. The gathering is held in Cairns, on the Country of the Gimuy Walubara Yidinji people, with Yirrganydji Country along the coast. Confirm the correct naming with local Traditional Owners and have them write or approve this wording. Do not reuse another event's Acknowledgement. See questionnaire section 4.",
+      "PLACEHOLDER — Woven's closing sovereignty statement (questionnaire 4.3)."
+    ],
+    "acceptLabel": "Acknowledge and continue"
+  },
+  "slides": [
+    {
+      "eyebrow": "WELCOME TO WOVEN",
+      "heading": "Where Collective Knowledge Leads To Collective Strength",
+      "paragraphs": [
+        "Woven is a global initiative grounded in the sacredness of ancestral knowledge, responsibilities, and aspirations. We steward projects and campaigns centred on climate action, land defence, and Indigenous rights and self-determination."
+      ]
+    },
+    {
+      "eyebrow": "WHY WE GATHER",
+      "heading": "Strengthening Our Planet And Our Rights Together",
+      "paragraphs": [
+        "Woven transforms solutions to the climate crisis through the advancement of Indigenous rights, wisdom, and sovereignty. We are the only global Indigenous organisation dedicated exclusively to climate justice."
+      ]
+    },
+    {
+      "eyebrow": "OUR FOUR AREAS",
+      "heading": "Research, Convening, Ancestral Knowledge, Network",
+      "paragraphs": [
+        "Our framework is focused on four key areas: research, global convening, ancestral knowledge, and network building. Each one carries the others."
+      ]
+    },
+    {
+      "eyebrow": "SEPTEMBER 2026, CAIRNS",
+      "heading": "Dreaming Into Our Future",
+      "paragraphs": [
+        "Over five days we come together to strengthen collective Indigenous-led climate justice strategies, promote the integration of traditional ecological knowledge into global climate solutions and policies, and foster a powerful, unified voice."
+      ]
+    },
+    {
+      "eyebrow": "WHAT WE'LL BUILD TOGETHER",
+      "heading": "A Movement Built By And For Indigenous Peoples",
+      "paragraphs": [
+        "We aim to amplify local movements and solutions, sharing Indigenous stories, knowledge, and wisdom — and to leave with a shared plan for action."
+      ]
+    }
+  ],
+  "homescreenPrompt": {
+    "title": "SAVE TO HOME SCREEN",
+    "body": "For faster access during the gathering, add Woven to your phone home screen.",
+    "androidBody": "Tap Install to open your browser's install prompt, then confirm to add the app.",
+    "iosSteps": [
+      "Tap the Share button in Safari.",
+      "Scroll down and select Add to Home Screen.",
+      "Tap Add to finish."
+    ],
+    "fallbackBody": "Use your browser menu and look for Install app or Add to Home Screen."
+  }
+}

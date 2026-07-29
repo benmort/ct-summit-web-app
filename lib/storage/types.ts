@@ -20,6 +20,25 @@ export type FileMeta = {
  * Swap this implementation for Supabase, S3, Cloudinary, etc.
  * Keep the same surface area for uploads and listing.
  */
+/**
+ * Which tenant's photos a storage instance may touch.
+ *
+ * Both backends take one of these instead of module-level path constants, so two
+ * tenants can never read or delete each other's media. Built from tenant.json by
+ * `getPhotoStorage`.
+ */
+export type StorageScope = {
+  slug: string;
+  /** Blob pathname prefix for media, e.g. "album-img/" or "woven/album-img/". */
+  blobMediaPrefix: string;
+  /** Blob pathname prefix for manifest shards. */
+  blobManifestPrefix: string;
+  /** Pre-sharding manifest to migrate from, or null if this tenant never had one. */
+  blobLegacyManifestPath: string | null;
+  /** Filesystem root for the local backend, relative to cwd. */
+  dataDir: string;
+};
+
 export type FileVariant = "original" | "wall" | "thumb" | "display";
 
 export interface PhotoStorage {

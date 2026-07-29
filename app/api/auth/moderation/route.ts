@@ -8,41 +8,42 @@ import {
   verifyModerationPassword,
   verifyModerationToken,
 } from "@/lib/moderation-auth";
+import { getTenantSlug } from "@/lib/tenant/server";
 
 export const dynamic = "force-dynamic";
 
 export async function GET() {
-  if (!isModerationConfigured()) {
+  const slug = await getTenantSlug();
+  if (!isModerationConfigured(slug)) {
     return NextResponse.json({ ok: false, configured: false });
   }
   const c = await cookies();
-  const v = c.get(moderationCookieName)?.value;
+  const v = c.get(moderationCookieName(slug))?.value;
   return NextResponse.json({
-    ok: !!(v && verifyModerationToken(v)),
+    ok: !!(v && verifyModerationToken(slug, v)),
     configured: true,
   });
 }
 
 export async function POST(request: Request) {
-  if (!isModerationConfigured()) {
-    return NextResponse.json(
-      { error: "Moderation not configured" },
-      { status: 503 },
-    );
+  const slug = await getTenantSlug();
+  if (!isModerationConfigured(slug)) {
+    return NextResponse.json({ error: "Moderation not configured" }, { status: 503 });
   }
   const body = (await request.json()) as { password?: string };
-  if (!body.password || !verifyModerationPassword(body.password)) {
+  if (!body.password || !verifyModerationPassword(slug, body.password)) {
     return NextResponse.json({ error: "Invalid password" }, { status: 401 });
   }
-  const token = signModerationSession();
+  const token = signModerationSession(slug);
   const res = NextResponse.json({ ok: true });
-  res.cookies.set(moderationCookieName, token, moderationCookieOptions());
+  res.cookies.set(moderationCookieName(slug), token, moderationCookieOptions());
   return res;
 }
 
 export async function DELETE() {
+  const slug = await getTenantSlug();
   const res = NextResponse.json({ ok: true });
-  res.cookies.set(moderationCookieName, "", {
+  res.cookies.set(moderationCookieName(slug), "", {
     ...moderationCookieOptions(),
     maxAge: 0,
   });
