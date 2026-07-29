@@ -8,15 +8,16 @@ import { getTenantIdentity } from "@/lib/tenant/server";
 import "./globals.css";
 
 /**
- * Each tenant's primary domain is the first entry in its tenant.json. Absolute
- * URLs in metadata must point at the tenant being served, not at a single
- * build-time site URL.
+ * Base for absolute URLs in metadata — OG images, canonical links, Twitter cards.
+ *
+ * The tenant's own primary domain wins. NEXT_PUBLIC_SITE_URL is only a fallback,
+ * because it is a single build-time value: if it took precedence, every tenant
+ * would advertise the same host, so Woven pages would claim Common Threads URLs.
  */
 function metadataBaseFor(domains: string[]): URL {
-  const explicit = process.env.NEXT_PUBLIC_SITE_URL;
-  if (explicit) return new URL(explicit);
   const primary = domains[0];
-  return new URL(primary ? `https://${primary}` : "http://localhost:3000");
+  if (primary) return new URL(`https://${primary}`);
+  return new URL(process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000");
 }
 
 export async function generateMetadata(): Promise<Metadata> {
