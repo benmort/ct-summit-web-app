@@ -87,10 +87,21 @@ a heading followed by a lead-in like "We agree to:", so prefer `## `.
 `YYYY-MM-DD`, with fields `Day Of Week`, `Date Label`, `Title` and `Venue Name`.
 `Title` is the tab label. Omit the section and the tabs fall back to bare dates.
 
-**Event imagery.** `lib/summit/event-images.ts` matches stock photography against
-event titles, keyed by tenant. Every gathering has a "Lunch", so a tenant with no
-entry in `EVENT_IMAGE_SETS` deliberately gets no event imagery rather than
-inheriting another tenant's photographs.
+**Event imagery.** There are two mechanisms, and they disagree about precedence.
+`lib/summit/event-images.ts` matches stock photography against event titles, keyed
+by tenant — every gathering has a "Lunch", so a tenant with no entry in
+`EVENT_IMAGE_SETS` deliberately gets no event imagery rather than inheriting
+another tenant's photographs. Separately, each event record can carry its own
+`Headshot` attachment. On the programme the record wins; in list views the
+title-matched image wins. **Prefer per-record images** — they are explicit, they
+behave the same in both places, and they need no regex.
+
+**Stock imagery.** Keep it to generic blocks and nearby places. It must never
+stand in for a person or claim to be a specific named building — see
+`docs/woven-image-credits.md` for the policy and the provenance of every file.
+`tests/tenant/content.test.ts` fails if any local image path in a `data.json` is
+missing from `public/`, which is how the nine `/public/`-prefixed Common Threads
+crew headshots were found.
 
 **Fields that are easy to get wrong:**
 
@@ -98,6 +109,7 @@ inheriting another tenant's photographs.
 | --- | --- |
 | `brand.legalEntity` | Named in the photo-upload assignment, so it must be the legal entity, not the trading name |
 | `brand.eventBlurb` | Dashboard standfirst. A literal `{title}` is replaced with the summit title |
+| `brand.assets.heroImages` | Stills that cross-fade behind the dashboard hero. Non-empty wins over `heroVideo`; omit it to keep the video |
 | `integrations.transport` | `null` hides the venue row; an empty `url` renders the value as plain text |
 | `integrations.communityChatUrl` | `null` **and** no `whatsappChannels` records hides the header WhatsApp button entirely, rather than opening an empty drawer |
 | `integrations.codeOfConductPdfUrl` | `null` hides the download button rather than 404ing |

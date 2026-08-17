@@ -20,6 +20,12 @@
     },
     "onboardingBackground": "/images/woven/bw-participant-2.webp",
     "heroVideo": "/video/background-loop-small.mp4",
+    "heroImages": [
+      "/images/woven/bw-participant-2.webp",
+      "/images/woven/bw-participant-3.webp",
+      "/images/woven/bw-participant-4.webp",
+      "/images/woven/bw-participant-1.webp"
+    ],
     "appleTouchIcon": "/tenants/woven/apple-touch-icon.png",
     "favicon": "/tenants/woven/favicon-32x32.png",
     "faviconPng": [

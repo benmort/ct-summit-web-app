@@ -11,6 +11,7 @@ import {
 import Link from "next/link";
 import SummitEmpty from "@/components/summit/SummitEmpty";
 import SummitSpeakerCardImage from "@/components/summit/SummitSpeakerCardImage";
+import SummitHeroSlideshow from "@/components/summit/SummitHeroSlideshow";
 import SummitHeroVideo from "@/components/summit/SummitHeroVideo";
 import SummitOpenMenuLink from "@/components/summit/SummitOpenMenuLink";
 import { getSummitContext } from "@/lib/summit/context";
@@ -27,6 +28,14 @@ type DirectoryEntry = {
   icon: React.ComponentType<{ className?: string }>;
   external?: boolean;
 };
+
+/**
+ * Shared by both hero backdrops so a video and a slideshow crop identically.
+ * Deliberately wider than the hero: the overscan keeps the subject off the edges
+ * where the title and date row sit.
+ */
+const HERO_MEDIA_CLASS =
+  "absolute left-1/2 top-1/2 h-full w-[170%] max-w-none -translate-x-1/2 -translate-y-1/2 object-cover object-center sm:w-[155%] lg:w-[140%]";
 
 function parseDateTime(value: string): Date | null {
   if (!value) return null;
@@ -207,7 +216,7 @@ export default async function SummitDashboardPage() {
     ? fieldString(context.selectedSummit, "Location")
     : "Location unavailable";
   const summitTitle = splitSummitName(summitName || "Summit");
-  const heroVideoUrl = brand.assets.heroVideo;
+  const heroImages = brand.assets.heroImages ?? [];
 
   const directoryEntries: DirectoryEntry[] = [
     {
@@ -240,10 +249,11 @@ export default async function SummitDashboardPage() {
   return (
     <div className="w-full space-y-6">
       <section className="relative min-h-[360px] overflow-hidden rounded-2xl border border-veil/10 bg-surface-900/80 sm:min-h-[430px]">
-        <SummitHeroVideo
-          src={heroVideoUrl}
-          className="absolute left-1/2 top-1/2 h-full w-[170%] max-w-none -translate-x-1/2 -translate-y-1/2 object-cover object-center sm:w-[155%] lg:w-[140%]"
-        />
+        {heroImages.length > 0 ? (
+          <SummitHeroSlideshow images={heroImages} className={HERO_MEDIA_CLASS} />
+        ) : (
+          <SummitHeroVideo src={brand.assets.heroVideo} className={HERO_MEDIA_CLASS} />
+        )}
         <div className="absolute inset-0 bg-gradient-to-br from-ink-900/75 via-surface-950/60 to-scrim/90" />
         <div className="relative flex min-h-[360px] flex-col items-center justify-center p-6 text-center sm:min-h-[430px] sm:p-7">
           <p className="text-xs uppercase tracking-[0.18em] text-brand-100/90">{summitTitle.overline}</p>

@@ -54,6 +54,14 @@ export type BrandContent = {
     onboardingBackground: string;
     /** Looping video behind the dashboard hero. */
     heroVideo: string;
+    /**
+     * Stills that cross-fade in place behind the dashboard hero, in order.
+     *
+     * Takes precedence over `heroVideo` when non-empty, so a tenant with its own
+     * photography does not have to borrow another tenant's video. Omit it and the
+     * hero keeps playing `heroVideo`, which is why the default tenant is unchanged.
+     */
+    heroImages?: string[];
     appleTouchIcon: string;
     favicon: string;
     faviconPng: { url: string; sizes: string }[];

@@ -93,6 +93,7 @@ test("referenced brand image assets exist in public/", () => {
       // rather than unused config.
       brand.assets.onboardingBackground,
       brand.assets.heroVideo,
+      ...(brand.assets.heroImages ?? []),
       ...brand.assets.faviconPng.map((i) => i.url),
       ...brand.assets.androidChrome.map((i) => i.url),
       ...(brand.assets.headerLogo ? [brand.assets.headerLogo.src] : []),
@@ -103,6 +104,47 @@ test("referenced brand image assets exist in public/", () => {
         `${slug}: brand asset "${p}" is referenced but missing from public/`,
       );
     }
+  }
+});
+
+/**
+ * The same guard as above, for `data.json`.
+ *
+ * Event, attraction and venue records carry their own image paths, and nothing
+ * validated them — a typo rendered a broken image rather than failing, because
+ * `fieldAttachmentUrl` happily returns whatever string it finds. Remote URLs are
+ * left alone; only tenant-local paths are checked.
+ *
+ * Paths are percent-decoded first: several filenames contain spaces, so the data
+ * legitimately stores them encoded and they resolve correctly over HTTP.
+ */
+test("local image paths in data.json exist in public/", () => {
+  for (const slug of TENANT_SLUGS) {
+    const raw: unknown = JSON.parse(
+      readFileSync(path.join(ROOT, "tenants", slug, "data.json"), "utf8"),
+    );
+    const missing = new Set<string>();
+
+    const walk = (value: unknown): void => {
+      if (Array.isArray(value)) return value.forEach(walk);
+      if (value && typeof value === "object") return Object.values(value).forEach(walk);
+      if (typeof value !== "string") return;
+      if (!value.startsWith("/") || !/\.(png|jpe?g|webp|avif|svg|mp4|webm)$/i.test(value)) return;
+      let decoded = value;
+      try {
+        decoded = decodeURIComponent(value);
+      } catch {
+        // Malformed escape: fall through and let the existence check report it.
+      }
+      if (!existsSync(path.join(ROOT, "public", decoded.replace(/^\//, "")))) missing.add(value);
+    };
+    walk(raw);
+
+    assert.deepEqual(
+      [...missing].sort(),
+      [],
+      `${slug}: data.json references local images that are missing from public/`,
+    );
   }
 });
 

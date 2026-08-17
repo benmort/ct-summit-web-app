@@ -492,7 +492,7 @@
         ],
         "Headshot": [
           {
-            "url": "/tenants/woven/placeholder.svg"
+            "url": "/images/woven/tiles/collage-3.webp"
           }
         ],
         "DateTime Start [Schedule]": "2026-09-07T15:00:00.000+10:00",
@@ -514,7 +514,7 @@
         ],
         "Headshot": [
           {
-            "url": "/tenants/woven/placeholder.svg"
+            "url": "/images/woven/tiles/collage-1.webp"
           }
         ],
         "DateTime Start [Schedule]": "2026-09-07T09:30:00.000+10:00",
@@ -536,7 +536,7 @@
         ],
         "Headshot": [
           {
-            "url": "/tenants/woven/placeholder.svg"
+            "url": "/images/woven/events/morning-tea.webp"
           }
         ],
         "DateTime Start [Schedule]": "2026-09-07T10:30:00.000+10:00",
@@ -558,7 +558,7 @@
         ],
         "Headshot": [
           {
-            "url": "/tenants/woven/placeholder.svg"
+            "url": "/images/woven/tiles/collage-4.webp"
           }
         ],
         "DateTime Start [Schedule]": "2026-09-07T11:00:00.000+10:00",
@@ -580,7 +580,7 @@
         ],
         "Headshot": [
           {
-            "url": "/tenants/woven/placeholder.svg"
+            "url": "/images/woven/events/lunch.webp"
           }
         ],
         "DateTime Start [Schedule]": "2026-09-07T12:30:00.000+10:00",
@@ -602,7 +602,7 @@
         ],
         "Headshot": [
           {
-            "url": "/tenants/woven/placeholder.svg"
+            "url": "/images/woven/tiles/collage-5.webp"
           }
         ],
         "DateTime Start [Schedule]": "2026-09-07T13:30:00.000+10:00",
@@ -624,7 +624,7 @@
         ],
         "Headshot": [
           {
-            "url": "/tenants/woven/placeholder.svg"
+            "url": "/images/woven/tiles/collage-2.webp"
           }
         ],
         "DateTime Start [Schedule]": "2026-09-07T15:00:00.000+10:00",
@@ -646,7 +646,7 @@
         ],
         "Headshot": [
           {
-            "url": "/tenants/woven/placeholder.svg"
+            "url": "/images/woven/tiles/collage-3.webp"
           }
         ],
         "DateTime Start [Schedule]": "2026-09-08T08:00:00.000+10:00",
@@ -668,7 +668,7 @@
         ],
         "Headshot": [
           {
-            "url": "/tenants/woven/placeholder.svg"
+            "url": "/images/woven/tiles/collage-4.webp"
           }
         ],
         "DateTime Start [Schedule]": "2026-09-08T09:00:00.000+10:00",
@@ -690,7 +690,7 @@
         ],
         "Headshot": [
           {
-            "url": "/tenants/woven/placeholder.svg"
+            "url": "/images/woven/events/morning-tea.webp"
           }
         ],
         "DateTime Start [Schedule]": "2026-09-08T10:30:00.000+10:00",
@@ -712,7 +712,7 @@
         ],
         "Headshot": [
           {
-            "url": "/tenants/woven/placeholder.svg"
+            "url": "/images/woven/tiles/collage-2.webp"
           }
         ],
         "DateTime Start [Schedule]": "2026-09-08T11:00:00.000+10:00",
@@ -734,7 +734,7 @@
         ],
         "Headshot": [
           {
-            "url": "/tenants/woven/placeholder.svg"
+            "url": "/images/woven/events/lunch.webp"
           }
         ],
         "DateTime Start [Schedule]": "2026-09-08T12:30:00.000+10:00",
@@ -756,7 +756,7 @@
         ],
         "Headshot": [
           {
-            "url": "/tenants/woven/placeholder.svg"
+            "url": "/images/woven/tiles/collage-5.webp"
           }
         ],
         "DateTime Start [Schedule]": "2026-09-08T13:30:00.000+10:00",
@@ -778,7 +778,7 @@
         ],
         "Headshot": [
           {
-            "url": "/tenants/woven/placeholder.svg"
+            "url": "/images/woven/tiles/collage-3.webp"
           }
         ],
         "DateTime Start [Schedule]": "2026-09-08T15:00:00.000+10:00",
@@ -800,7 +800,7 @@
         ],
         "Headshot": [
           {
-            "url": "/tenants/woven/placeholder.svg"
+            "url": "/images/woven/tiles/collage-1.webp"
           }
         ],
         "DateTime Start [Schedule]": "2026-09-09T09:00:00.000+10:00",
@@ -822,7 +822,7 @@
         ],
         "Headshot": [
           {
-            "url": "/tenants/woven/placeholder.svg"
+            "url": "/images/woven/events/morning-tea.webp"
           }
         ],
         "DateTime Start [Schedule]": "2026-09-09T10:30:00.000+10:00",
@@ -844,7 +844,7 @@
         ],
         "Headshot": [
           {
-            "url": "/tenants/woven/placeholder.svg"
+            "url": "/images/woven/tiles/collage-4.webp"
           }
         ],
         "DateTime Start [Schedule]": "2026-09-09T11:00:00.000+10:00",
@@ -866,7 +866,7 @@
         ],
         "Headshot": [
           {
-            "url": "/tenants/woven/placeholder.svg"
+            "url": "/images/woven/events/lunch.webp"
           }
         ],
         "DateTime Start [Schedule]": "2026-09-09T12:30:00.000+10:00",
@@ -888,7 +888,7 @@
         ],
         "Headshot": [
           {
-            "url": "/tenants/woven/placeholder.svg"
+            "url": "/images/woven/events/on-country.webp"
           }
         ],
         "DateTime Start [Schedule]": "2026-09-09T13:30:00.000+10:00",
@@ -911,7 +911,7 @@
         ],
         "Headshot": [
           {
-            "url": "/tenants/woven/placeholder.svg"
+            "url": "/images/woven/events/dinner.webp"
           }
         ],
         "DateTime Start [Schedule]": "2026-09-09T18:30:00.000+10:00",
@@ -933,7 +933,7 @@
         ],
         "Headshot": [
           {
-            "url": "/tenants/woven/placeholder.svg"
+            "url": "/images/woven/tiles/collage-5.webp"
           }
         ],
         "DateTime Start [Schedule]": "2026-09-10T09:00:00.000+10:00",
@@ -955,7 +955,7 @@
         ],
         "Headshot": [
           {
-            "url": "/tenants/woven/placeholder.svg"
+            "url": "/images/woven/events/morning-tea.webp"
           }
         ],
         "DateTime Start [Schedule]": "2026-09-10T10:30:00.000+10:00",
@@ -977,7 +977,7 @@
         ],
         "Headshot": [
           {
-            "url": "/tenants/woven/placeholder.svg"
+            "url": "/images/woven/tiles/collage-2.webp"
           }
         ],
         "DateTime Start [Schedule]": "2026-09-10T11:00:00.000+10:00",
@@ -999,7 +999,7 @@
         ],
         "Headshot": [
           {
-            "url": "/tenants/woven/placeholder.svg"
+            "url": "/images/woven/events/lunch.webp"
           }
         ],
         "DateTime Start [Schedule]": "2026-09-10T12:30:00.000+10:00",
@@ -1021,7 +1021,7 @@
         ],
         "Headshot": [
           {
-            "url": "/tenants/woven/placeholder.svg"
+            "url": "/images/woven/tiles/collage-3.webp"
           }
         ],
         "DateTime Start [Schedule]": "2026-09-10T13:30:00.000+10:00",
@@ -1043,7 +1043,7 @@
         ],
         "Headshot": [
           {
-            "url": "/tenants/woven/placeholder.svg"
+            "url": "/images/woven/tiles/collage-4.webp"
           }
         ],
         "DateTime Start [Schedule]": "2026-09-10T15:00:00.000+10:00",
@@ -1065,7 +1065,7 @@
         ],
         "Headshot": [
           {
-            "url": "/tenants/woven/placeholder.svg"
+            "url": "/images/woven/tiles/collage-1.webp"
           }
         ],
         "DateTime Start [Schedule]": "2026-09-11T09:00:00.000+10:00",
@@ -1087,7 +1087,7 @@
         ],
         "Headshot": [
           {
-            "url": "/tenants/woven/placeholder.svg"
+            "url": "/images/woven/events/morning-tea.webp"
           }
         ],
         "DateTime Start [Schedule]": "2026-09-11T10:30:00.000+10:00",
@@ -1109,7 +1109,7 @@
         ],
         "Headshot": [
           {
-            "url": "/tenants/woven/placeholder.svg"
+            "url": "/images/woven/tiles/collage-5.webp"
           }
         ],
         "DateTime Start [Schedule]": "2026-09-11T11:00:00.000+10:00",
@@ -1131,7 +1131,7 @@
         ],
         "Headshot": [
           {
-            "url": "/tenants/woven/placeholder.svg"
+            "url": "/images/woven/events/lunch.webp"
           }
         ],
         "DateTime Start [Schedule]": "2026-09-11T12:30:00.000+10:00",
@@ -1153,7 +1153,7 @@
         ],
         "Headshot": [
           {
-            "url": "/tenants/woven/placeholder.svg"
+            "url": "/images/woven/team.webp"
           }
         ],
         "DateTime Start [Schedule]": "2026-09-11T13:30:00.000+10:00",
@@ -1671,7 +1671,7 @@
         ],
         "Image": [
           {
-            "url": "/tenants/woven/placeholder.svg"
+            "url": "/images/woven/nearby/cairns-festival.webp"
           }
         ],
         "Map Link": "https://www.cairns.qld.gov.au/festival"
@@ -1687,7 +1687,7 @@
         ],
         "Image": [
           {
-            "url": "/tenants/woven/placeholder.svg"
+            "url": "/images/woven/nearby/cairns-koalas-and-creatures.webp"
           }
         ],
         "Map Link": "https://maps.app.goo.gl/TCqeddmvLZzTKeHC7"
@@ -1703,7 +1703,7 @@
         ],
         "Image": [
           {
-            "url": "/tenants/woven/placeholder.svg"
+            "url": "/images/woven/nearby/cairns-museum.webp"
           }
         ],
         "Map Link": "https://maps.app.goo.gl/deTQvdabSMyM81cC6"
@@ -1719,7 +1719,7 @@
         ],
         "Image": [
           {
-            "url": "/tenants/woven/placeholder.svg"
+            "url": "/images/woven/nearby/cairns-art-gallery.webp"
           }
         ],
         "Map Link": "https://maps.app.goo.gl/MJHRMQhVgtXMMhpd8"
@@ -1735,7 +1735,7 @@
         ],
         "Image": [
           {
-            "url": "/tenants/woven/placeholder.svg"
+            "url": "/images/woven/nearby/cairns-night-markets.webp"
           }
         ],
         "Map Link": "https://maps.app.goo.gl/pTAJi2hqpfjpQsC77"
@@ -1751,7 +1751,7 @@
         ],
         "Image": [
           {
-            "url": "/tenants/woven/placeholder.svg"
+            "url": "/images/woven/nearby/cairns-aquarium.webp"
           }
         ],
         "Map Link": "https://maps.app.goo.gl/jFvTMswp8KnshGWt6"
@@ -1767,7 +1767,7 @@
         ],
         "Image": [
           {
-            "url": "/tenants/woven/placeholder.svg"
+            "url": "/images/woven/nearby/the-reef-eye.webp"
           }
         ],
         "Map Link": "https://maps.app.goo.gl/DP1wdzrWpa2QiuaX8"
@@ -1783,7 +1783,7 @@
         ],
         "Image": [
           {
-            "url": "/tenants/woven/placeholder.svg"
+            "url": "/images/woven/nearby/great-barrier-reef.webp"
           }
         ]
       }
