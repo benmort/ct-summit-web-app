@@ -17,6 +17,7 @@ type SummitDataRaw = {
   speakers?: unknown;
   events?: unknown;
   schedule?: unknown;
+  programDays?: unknown;
   venues?: unknown;
   crew?: unknown;
   attractions?: unknown;
@@ -34,6 +35,8 @@ type SummitData = {
   speakers: SummitRecord[];
   events: SummitRecord[];
   schedule: SummitRecord[];
+  /** Optional per-day programme labels, keyed by `id` = date (YYYY-MM-DD). */
+  programDays: SummitRecord[];
   venues: SummitRecord[];
   crew: SummitRecord[];
   attractions: SummitRecord[];
@@ -93,6 +96,7 @@ function normalizeSummitData(raw: SummitDataRaw, slug: string): SummitData {
     speakers: normalizeRecordList(raw.speakers),
     events: normalizeRecordList(raw.events),
     schedule: normalizeRecordList(raw.schedule),
+    programDays: normalizeRecordList(raw.programDays),
     venues: normalizeRecordList(raw.venues),
     crew: normalizeRecordList(raw.crew),
     attractions: normalizeRecordList(raw.attractions),
@@ -139,6 +143,8 @@ export const readTenantSummits = (slug: string) => cloneRecordList(tenantSummitD
 export const readTenantSpeakers = (slug: string) => cloneRecordList(tenantSummitData(slug).speakers);
 export const readTenantEvents = (slug: string) => cloneRecordList(tenantSummitData(slug).events);
 export const readTenantSchedule = (slug: string) => cloneRecordList(tenantSummitData(slug).schedule);
+export const readTenantProgramDays = (slug: string) =>
+  cloneRecordList(tenantSummitData(slug).programDays);
 export const readTenantVenues = (slug: string) => cloneRecordList(tenantSummitData(slug).venues);
 export const readTenantCrew = (slug: string) => cloneRecordList(tenantSummitData(slug).crew);
 export const readTenantAttractions = (slug: string) =>

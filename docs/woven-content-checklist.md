@@ -3,7 +3,11 @@
 Simple version. Tick the table as you go, then answer the questions below.
 The detailed version with examples is in `woven-content-brief.md`.
 
-App: woven.commonthreads.org.au · Gathering: 6–12 September 2026, Gimuy (Cairns)
+App: woven.commonthreads.org.au · Gathering: 5–11 September 2026, Gimuy (Cairns)
+
+**Status: the completed brief has been implemented.** Every answer supplied is now
+live in the app and no `TO CONFIRM` placeholder remains. The rows still unticked
+below are the ones the brief left blank or marked TBD.
 
 ---
 
@@ -23,9 +27,9 @@ You don't need to supply these. Please just correct anything that's wrong.
 | Founding | Roots at the Indigenous Peoples' Global Summit on Climate Change, Anchorage, Alaska, 2009. Launched 2025. | /about |
 | How you work | "gathering Indigenous Peoples, creating and sharing global knowledges and tools, mobilizing resources to directly support Indigenous-led climate action, and amplifying Indigenous-led climate movements" | /about |
 | Support email | info@thewovenproject.org | /contact |
-| Brand colours | `#124a3e` deep green, `#8a9826` olive | site stylesheet |
+| Brand colours | `#ed813a` orange, `#721112` deep red, `#F3EEDF` cream | your updated brand guide, via 1.6 |
 | Fonts | Fjalla One headings, Anuphan body | site stylesheet |
-| Logo and favicon | downloaded from your site | /home |
+| Logo and favicon | Dreaming Into Our Future sun emblem and lockup | designer's PDF |
 
 **Known but not used in the app yet** — your social accounts (Instagram
 `the.wovenproject`, TikTok `thewovenproject2`, plus Facebook and LinkedIn). The
@@ -35,12 +39,13 @@ app has nowhere to show these; tell us if you want them added.
 
 ## Two things we could not resolve
 
-**The dates disagree on your own site.** `/global-gathering-2026` says
-**6–12 September 2026**; `/initiatives` says **7–11 September**. We used 6–12 as
-the advertised span, and built the programme across 7–11, leaving 6 and 12 empty.
-See questions 3.5 and 3.6.
+**The dates disagree on your own site.** ~~`/global-gathering-2026` says
+**6–12 September 2026**; `/initiatives` says **7–11 September**.~~ **Resolved by 3.2:**
+the gathering runs **Saturday 5 – Friday 11 September 2026**, with the programme
+across Monday 7 – Friday 11. Sunday 6 September still has nothing against it.
 
-**Registration says "opening soon"** with no date. See question 3.7.
+**Registration says "opening soon"** with no date. Still open — 8.1 gave us the
+on-site registration desk hours, but not when delegate sign-up opens or what it costs.
 
 ---
 
@@ -50,91 +55,93 @@ See questions 3.5 and 3.6.
 
 | ID | Item | Blocking | Done |
 | --- | --- | --- | --- |
-| 1.1 | Organisation name | FALSE | [ ] |
-| 1.2 | App header wordmark | FALSE | [ ] |
-| 1.3 | App description | FALSE | [ ] |
-| 1.4 | Legal entity name | TRUE | [ ] |
-| 1.5 | Support email | TRUE | [ ] |
-| 1.6 | Brand colours | FALSE | [ ] |
-| 1.7 | Fonts | FALSE | [ ] |
-| 1.8 | Logo — higher-res square, plus dark and white versions | FALSE | [ ] |
-| 1.9 | Logo — confirm Woven owns it | TRUE | [ ] |
-| 1.10 | Welcome slides — five, reviewed | TRUE | [ ] |
-| 1.11 | Is "climate justice firm" the wording you want | FALSE | [ ] |
-| 2.1 | Acknowledgement heading | TRUE | [ ] |
-| 2.2 | Acknowledgement of Country text | TRUE | [ ] |
-| 2.3 | Closing sovereignty statement | TRUE | [ ] |
-| 2.4 | Who approved the wording, and when | TRUE | [ ] |
-| 3.1 | Gathering full name | TRUE | [ ] |
-| 3.2 | Dates | TRUE | [ ] |
-| 3.3 | City and state | TRUE | [ ] |
-| 3.4 | Expected delegate numbers and countries | FALSE | [ ] |
-| 3.5 | Dates — your site says both 6–12 and 7–11 | TRUE | [ ] |
-| 3.6 | What happens on 6 and 12 September | TRUE | [ ] |
-| 3.7 | Registration — when it opens, cost, travel support | TRUE | [ ] |
-| 4.1 | Venue name | TRUE | [ ] |
-| 4.2 | Venue street address | TRUE | [ ] |
-| 4.3 | Venue description | TRUE | [ ] |
-| 4.4 | Arrival and access instructions | TRUE | [ ] |
-| 4.5 | Venue website and map link | TRUE | [ ] |
-| 4.6 | Any additional venues | TRUE | [ ] |
-| 4.7 | Venue photo and floor plan | FALSE | [ ] |
-| 4.8 | Room names | FALSE | [ ] |
-| 5.1 | Day names for all five days | TRUE | [ ] |
-| 5.2 | Day 1 sessions — times, titles, descriptions | TRUE | [ ] |
-| 5.3 | Day 2 sessions — times, titles, descriptions | TRUE | [ ] |
-| 5.4 | Day 3 sessions — times, titles, descriptions | TRUE | [ ] |
-| 5.5 | Day 4 sessions — times, titles, descriptions | TRUE | [ ] |
-| 5.6 | Day 5 sessions — times, titles, descriptions | TRUE | [ ] |
-| 5.7 | Sessions we've missed | TRUE | [ ] |
-| 5.8 | On Country session — does it happen, and details | TRUE | [ ] |
-| 5.9 | Gathering dinner — does it happen, and details | TRUE | [ ] |
-| 5.10 | Which regions are presenting on Day 4 | TRUE | [ ] |
-| 5.11 | Session categories | FALSE | [ ] |
-| 6.1 | Speakers — all 13 slots named | TRUE | [ ] |
-| 6.2 | Speakers — organisations and roles | TRUE | [ ] |
-| 6.3 | Speakers — biographies | TRUE | [ ] |
-| 6.4 | Speakers — headshots | TRUE | [ ] |
-| 6.5 | Which sessions are panels with several speakers | FALSE | [ ] |
-| 6.6 | Anyone who must not have a photo or bio published | TRUE | [ ] |
-| 6.7 | Which Advisory Council members are speaking | TRUE | [ ] |
-| 7.1 | Wellbeing job title — exact wording | TRUE | [ ] |
-| 7.2 | Who holds the wellbeing role | TRUE | [ ] |
-| 7.3 | All crew members — names, roles, photos, contacts | TRUE | [ ] |
-| 7.4 | Are crew phone numbers public | TRUE | [ ] |
-| 8.1 | Guidance — registration | TRUE | [ ] |
-| 8.2 | Guidance — meals and dietary requirements | TRUE | [ ] |
-| 8.3 | Guidance — getting to Cairns and the venue | TRUE | [ ] |
-| 8.4 | Guidance — visas and international travel | TRUE | [ ] |
-| 8.5 | Guidance — accommodation | TRUE | [ ] |
-| 8.6 | Guidance — children | TRUE | [ ] |
-| 8.7 | Guidance — weather and what to pack | TRUE | [ ] |
-| 8.8 | Guidance — illness policy | TRUE | [ ] |
-| 8.9 | Guidance — accessibility and translation | TRUE | [ ] |
-| 8.10 | Guidance — wellbeing support | TRUE | [ ] |
-| 8.11 | Guidance — nearby essentials | TRUE | [ ] |
-| 8.12 | Guidance — wifi, prayer space, dress code, other | FALSE | [ ] |
-| 9.1 | Code of conduct — full text | TRUE | [ ] |
-| 9.2 | Code of conduct — page subtitle | FALSE | [ ] |
-| 9.3 | Code of conduct — how to report a concern | TRUE | [ ] |
-| 9.4 | Code of conduct — printable PDF | FALSE | [ ] |
-| 10.1 | Participating organisations | FALSE | [ ] |
-| 10.2 | Sponsors and funders | FALSE | [ ] |
-| 10.3 | Any organisation that must not be listed | TRUE | [ ] |
-| 11.1 | Delegate group chat link | FALSE | [ ] |
-| 11.2 | Topic channels | FALSE | [ ] |
-| 11.3 | Feedback forms or surveys | FALSE | [ ] |
-| 11.4 | Public transport link | FALSE | [ ] |
-| 11.5 | Should social accounts appear in the app | FALSE | [ ] |
-| 12.1 | Things to do nearby | FALSE | [ ] |
-| 13.1 | Photo gallery — on or off | FALSE | [ ] |
-| 13.2 | Photo gallery — who moderates | FALSE | [ ] |
-| 13.3 | Photography consent and protocols | TRUE | [ ] |
-| 13.4 | Photo upload terms | FALSE | [ ] |
-| 14.1 | Welcome background photo | FALSE | [ ] |
-| 14.2 | Home screen background video | FALSE | [ ] |
-| 14.3 | Social sharing image | FALSE | [ ] |
-| 14.4 | Session and topic images | FALSE | [ ] |
+| 1.1 | Organisation name | FALSE | [x] Woven |
+| 1.2 | App header wordmark | FALSE | [x] “Global Gathering 2026” — your nominated short form; the long one is 55 characters |
+| 1.3 | App description | FALSE | [x] trimmed for search results; your full text is on the Organisations screen |
+| 1.4 | Legal entity name | TRUE | [x] Indigenous Climate Action |
+| 1.5 | Support email | TRUE | [x] info@thewovenproject.org |
+| 1.6 | Brand colours | FALSE | [x] `#ed813a` with `#721112`, on cream. Checked for legibility |
+| 1.7 | Fonts | FALSE | [x] Fjalla One and Anuphan kept — see 1.9b |
+| 1.8 | Logo — higher-res square, plus dark and white versions | FALSE | [x] resolved by the Dreaming Into Our Future artwork |
+| 1.9 | Logo — confirm Woven owns it | TRUE | [ ] “incoming — ask Brandon” |
+| 1.9a | Dreaming Into Our Future — confirm the direction is signed off, and that we may use it | TRUE | [ ] still unsigned |
+| 1.9b | Dakota typeface — web licence, if you hold one | FALSE | [ ] Dakota Rough is a paid font (Any-Type Foundry), not on Google Fonts. We cannot use it without a webfont licence |
+| 1.10 | Welcome slides — five, reviewed | TRUE | [x] slides 4 and 5 replaced with OUR DEMANDS and WELCOME TO GIMUY. **But you reviewed an older set** — slides 2 and 3 have never been checked by you |
+| 1.11 | Is "climate justice firm" the wording you want | FALSE | [ ] not answered |
+| 2.1 | Acknowledgement heading | TRUE | [x] we used “ACKNOWLEDGEMENT OF COUNTRY”, reading your “Acknowledge of Country” as a typo. Please confirm |
+| 2.2 | Acknowledgement of Country text | TRUE | [x] Gimuy Walubara Yidinji and eleven neighbouring nations |
+| 2.3 | Closing sovereignty statement | TRUE | [x] now shown with emphasis at the end, which it previously was not |
+| 2.4 | Who approved the wording, and when | TRUE | [x] your AIATSIS, local government and community research |
+| 3.1 | Gathering full name | TRUE | [x] unchanged |
+| 3.2 | Dates | TRUE | [x] Saturday 5 – Friday 11 September 2026 |
+| 3.3 | City and state | TRUE | [x] Gimuy (Cairns), Queensland |
+| 3.4 | Expected delegate numbers and countries | FALSE | [x] ~75 — 50 delegates plus 25 crew, five languages |
+| 3.5 | Dates — your site says both 6–12 and 7–11 | TRUE | [x] resolved to 5–11 September |
+| 3.6 | What happens on 6 and 12 September | TRUE | [ ] Sunday 6 September has nothing against it — arrivals only, we assume |
+| 3.7 | Registration — when it opens, cost, travel support | TRUE | [ ] on-site desk hours supplied; sign-up opening date and cost still unstated |
+| 4.1 | Venue name | TRUE | [x] Kauri Ballroom, Rydges Esplanade Resort Cairns |
+| 4.2 | Venue street address | TRUE | [x] 209–217 Abbott Street, Cairns QLD 4870 |
+| 4.3 | Venue description | TRUE | [x] you said not required |
+| 4.4 | Arrival and access instructions | TRUE | [x] Level 1, via the lobby stairs or three guest lifts |
+| 4.5 | Venue website and map link | TRUE | [x] both live on the venue page |
+| 4.6 | Any additional venues | TRUE | [ ] “TBD — we’ll update this as venues are confirmed” |
+| 4.7 | Venue photo and floor plan | FALSE | [ ] none supplied; the venue card shows a placeholder |
+| 4.8 | Room names | FALSE | [x] Kauri Ballroom only, as you asked |
+| 5.1 | Day names for all five days | TRUE | [x] Cultural Immersion Activities, then Day 1–3. **We named Friday “Day 4”** — you left it blank |
+| 5.2 | Day 1 sessions — times, titles, descriptions | TRUE | [ ] no descriptions supplied. Titles and times are still our reconstruction |
+| 5.3 | Day 2 sessions — times, titles, descriptions | TRUE | [ ] as above |
+| 5.4 | Day 3 sessions — times, titles, descriptions | TRUE | [ ] as above |
+| 5.5 | Day 4 sessions — times, titles, descriptions | TRUE | [ ] as above |
+| 5.6 | Day 5 sessions — times, titles, descriptions | TRUE | [ ] as above |
+| 5.7 | Sessions we've missed | TRUE | [ ] not answered |
+| 5.8 | On Country session — does it happen, and details | TRUE | [ ] not answered — still in the programme as a guess |
+| 5.9 | Gathering dinner — does it happen, and details | TRUE | [ ] 8.2 says a social event with dinner is planned for one evening; which night is unconfirmed |
+| 5.10 | Which regions are presenting on Day 4 | TRUE | [ ] titles now match the brief document (Argentina, Aotearoa New Zealand, Sweden and Sápmi), but the regions themselves are unconfirmed |
+| 5.11 | Session categories | FALSE | [ ] not answered |
+| 6.1 | Speakers — all 13 slots named | TRUE | [ ] all 13 now read “Speaker to be announced” rather than “TO CONFIRM” |
+| 6.2 | Speakers — organisations and roles | TRUE | [ ] outstanding |
+| 6.3 | Speakers — biographies | TRUE | [ ] outstanding |
+| 6.4 | Speakers — headshots | TRUE | [ ] outstanding |
+| 6.5 | Which sessions are panels with several speakers | FALSE | [ ] not answered |
+| 6.6 | Anyone who must not have a photo or bio published | TRUE | [ ] not answered |
+| 6.7 | Which Advisory Council members are speaking | TRUE | [ ] not answered |
+| 7.1 | Wellbeing job title — exact wording | TRUE | [x] Wellbeing and Grievance Coordinator — matches the crew list exactly, so the code-of-conduct link works |
+| 7.2 | Who holds the wellbeing role | TRUE | [x] Tiana Jakicevich |
+| 7.3 | All crew members — names, roles, photos, contacts | TRUE | [ ] ten names and roles are in. Photos, emails and languages are not — so no crew member is contactable from their card |
+| 7.4 | Are crew phone numbers public | TRUE | [ ] Jay Knapp only, but **the number was never supplied**, so 8.9’s “reach out to Jay Knapp” currently dead-ends |
+| 8.1 | Guidance — registration | TRUE | [x] 3–5pm Mon 7, then 8–9am Tue 8 |
+| 8.2 | Guidance — meals and dietary requirements | TRUE | [x] including the per-meal reimbursement caps |
+| 8.3 | Guidance — getting to Cairns and the venue | TRUE | [x] Uber vouchers for airport transfers |
+| 8.4 | Guidance — visas and international travel | TRUE | [x] plus your Drive folder, and a new Travelling to Australia section |
+| 8.5 | Guidance — accommodation | TRUE | [x] arranged by you, breakfast 6:30–9:30am |
+| 8.6 | Guidance — children | TRUE | [x] replaced with Support Person, as you asked |
+| 8.7 | Guidance — weather and what to pack | TRUE | [x] with the BOM forecast link and your packing list |
+| 8.8 | Guidance — illness policy | TRUE | [x] in full |
+| 8.9 | Guidance — accessibility and translation | TRUE | [x] five interpreted languages; contact Jay Knapp — see 7.4 |
+| 8.10 | Guidance — wellbeing support | TRUE | [ ] “no idea — need to check”. We drafted a short section pointing to Tiana; it needs your words |
+| 8.11 | Guidance — nearby essentials | TRUE | [x] pharmacy, convenience, supermarket, medical centre and hospital, with map links |
+| 8.12 | Guidance — wifi, prayer space, dress code, other | FALSE | [x] split into two sections: practicalities, and photography and consent |
+| 9.1 | Code of conduct — full text | TRUE | [x] intro plus three headed sections |
+| 9.2 | Code of conduct — page subtitle | FALSE | [x] your bullet list became the Our Shared Commitments section |
+| 9.3 | Code of conduct — how to report a concern | TRUE | [x] reports go to Tiana Jakicevich; the page deep-links to her on the crew screen |
+| 9.4 | Code of conduct — printable PDF | FALSE | [x] none, so the download button is now hidden rather than serving the Common Threads PDF |
+| 10.1 | Participating organisations | FALSE | [x] The Woven Project and Common Threads, with logos |
+| 10.2 | Sponsors and funders | FALSE | [x] N/A — the Sponsors screen is removed from the menu |
+| 10.3 | Any organisation that must not be listed | TRUE | [x] N/A |
+| 11.1 | Delegate group chat link | FALSE | [ ] TBD — the WhatsApp button stays hidden |
+| 11.2 | Topic channels | FALSE | [ ] TBD — the two placeholder channels are removed |
+| 11.3 | Feedback forms or surveys | FALSE | [ ] TBD — the Surveys screen is removed from the menu |
+| 11.4 | Public transport link | FALSE | [x] replaced with taxis and rideshare, per your note |
+| 11.5 | Should social accounts appear in the app | FALSE | [ ] not answered |
+| 12.1 | Things to do nearby | FALSE | [x] eight places. **Mandingalbay tours excluded** on your advice, so nobody double-books the Monday tour |
+| 13.1 | Photo gallery — on or off | FALSE | [x] on |
+| 13.2 | Photo gallery — who moderates | FALSE | [x] six moderators named — they still need the password, sent separately |
+| 13.3 | Photography consent and protocols | TRUE | [ ] TBD. Your photography paragraph from 8.12 is in the guidance screen meanwhile |
+| 13.4 | Photo upload terms | FALSE | [x] standard terms, now naming Indigenous Climate Action |
+| 14.1 | Welcome background photo | FALSE | [x] using your own photo; higher-res original still wanted |
+| 14.2 | Home screen background video | FALSE | [ ] still borrowed from Common Threads |
+| 14.3 | Social sharing image | FALSE | [ ] TBD — generated from your name and colours meanwhile |
+| 14.4 | Session and topic images | FALSE | [ ] TBD |
 
 ---
 
@@ -162,7 +169,9 @@ Response:
 
 Response:
 
-**1.6** Are the brand colours correct — main `#124a3e`, second `#8a9826`?
+**1.6** Are the brand colours correct — main `#F6931D` sun orange, second `#0F75BB` sky blue, on a
+cream `#F3EEDF` background? These come from the Dreaming Into Our Future artwork, replacing the
+deep green `#124a3e` and olive `#8a9826` we had read from your website.
 
 Response:
 
@@ -170,14 +179,32 @@ Response:
 
 Response:
 
-**1.8** Do you have higher-resolution logo files? Two things:
-
-- A **square** version, 512×512 or larger, for the phone home-screen icon. Ours is 500×238, which is small and the wrong shape for that.
-- Your logo now appears in the **app header**, using the dark version on the light background. If you send a new logo, we need both a dark version (for the header) and a white or reversed version (for the photo showreel, which sits on black).
+**1.8** ~~Do you have higher-resolution logo files?~~ **Resolved.** The Dreaming Into Our Future
+artwork supplies all of these. The sun emblem is square, so it now fills the home-screen icon,
+the favicons and the Apple touch icon; the header carries the emblem beside the headline, and the
+photo showreel carries a cream reversed version. The Woven Project wordmark is kept at
+`/tenants/woven/logo-woven-project.png` if you want it shown as a partner mark somewhere.
 
 Response:
 
 **1.9** Does Woven own the logo and favicon we took from your website, and may we use them on this domain?
+
+Response:
+
+**1.9a** **The app is now themed with the Dreaming Into Our Future artwork** (the orange squiggle
+sun, pages 1–3 of the designer's PDF), and the palette comes from it: orange `#F6931D`, blue
+`#0F75BB`, on a cream `#F3EEDF` background. Two things to confirm:
+
+- That deck contains **four competing logo directions** and a set of t-shirt mockups. Is the
+  squiggle sun the signed-off one? If a different direction wins, swapping it over is one command.
+- May we use this artwork on this domain, and is anyone's attribution required?
+
+Response:
+
+**1.9b** The typeface in the artwork is **Dakota**, which is a commercial font and is not embedded
+in the PDF — all the type in it is outlined artwork. The app's own headings therefore still use
+Fjalla One. If you hold a Dakota web licence and can send the font file, we can use it for
+headings; otherwise nothing is blocked.
 
 Response:
 
@@ -325,7 +352,8 @@ Response:
 
 ### 6 — Speakers
 
-13 slots, all showing "TO CONFIRM". A spreadsheet is easier than this document — one row per person.
+13 slots. They now read "Speaker to be announced" — the "TO CONFIRM" placeholders are gone,
+but the slots are still empty. A spreadsheet is easier than this document — one row per person.
 
 **6.1** Names for all 13 speaker slots, and which session each is in.
 
@@ -522,11 +550,17 @@ Response:
 
 ### 14 — Imagery
 
-**14.1** Welcome background photo — full screen, landscape, 2000px+ wide. Currently borrowing a Common Threads photo.
+**14.1** Welcome background photo — full screen, landscape, 2000px+ wide. ~~Currently borrowing a
+Common Threads photo.~~ **No longer borrowed** — the welcome screen now uses your own night
+ceremony photo (`bw-participant-2`). It is 1130px wide, which is under the 2000px we would like for
+large screens, so a higher-resolution original would still help. Happy to use a different one of
+your photos if you'd rather.
 
 Response:
 
-**14.2** Home screen background video — optional, short, silent, looping, under 5MB. Also currently borrowed.
+**14.2** Home screen background video — optional, short, silent, looping, under 5MB. **Still
+borrowed from Common Threads.** This is the last Common Threads asset left on the Woven site. A
+Woven clip would replace it; without one we can fall back to a still image instead.
 
 Response:
 

@@ -10,6 +10,10 @@ type Props = {
   title: string;
   pageSubtitle: string;
   contentBody: string;
+  /** Tenant's contact address, auto-linked wherever it appears in the copy. */
+  supportEmail: string;
+  /** Printable version. Null hides the download button rather than 404ing. */
+  pdfUrl: string | null;
 };
 
 type ConductSection = {
@@ -25,8 +29,7 @@ type ContentBlock =
 
 const PRINCIPLES_LINE = "Please find the pintable PDF version here.";
 const WELLBEING_ROLE = "Wellbeing and Grievance Coordinator";
-const DUMMY_PDF_PATH = "/documents/common-threads-code-of-conduct.pdf";
-const SUPPORT_EMAIL = "summit@commonthreads.org.au";
+const HEADING_MARKER = "## ";
 
 const SECTION_TITLE_HINTS = new Set([
   "our shared commitments",
@@ -35,25 +38,34 @@ const SECTION_TITLE_HINTS = new Set([
   "shared responsibility",
 ]);
 
+function escapeRegExp(value: string): string {
+  return value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+}
+
 function isSectionHeading(line: string, nextNonEmpty: string | null): boolean {
   const trimmed = line.trim();
   if (!trimmed || trimmed === PRINCIPLES_LINE) return false;
   if (trimmed.startsWith("- ")) return false;
+  // An explicit marker, because the heuristics below cannot see a heading whose
+  // first following line is itself a lead-in ("We agree to:") rather than a bullet.
+  if (trimmed.startsWith(HEADING_MARKER)) return true;
   if (SECTION_TITLE_HINTS.has(trimmed.toLowerCase())) return true;
   if (trimmed.endsWith(":")) return false;
   return Boolean(nextNonEmpty && nextNonEmpty.trim().startsWith("- "));
 }
 
-function splitInlineChunks(value: string): string[] {
-  return value.split(/(https?:\/\/\S+|summit@commonthreads\.org\.au)/g);
+function headingText(line: string): string {
+  const trimmed = line.trim();
+  return trimmed.startsWith(HEADING_MARKER) ? trimmed.slice(HEADING_MARKER.length).trim() : trimmed;
 }
 
-function renderInlineContent(value: string): React.ReactNode {
-  return splitInlineChunks(value).map((chunk, index) => {
-    if (chunk === SUPPORT_EMAIL) {
+function renderInlineContent(value: string, supportEmail: string): React.ReactNode {
+  const pattern = new RegExp(`(https?:\\/\\/\\S+|${escapeRegExp(supportEmail)})`, "g");
+  return value.split(pattern).map((chunk, index) => {
+    if (chunk === supportEmail) {
       return (
-        <Link key={`${chunk}-${index}`} href={`mailto:${SUPPORT_EMAIL}`} className="text-brand-200 underline-offset-2 hover:underline">
-          {SUPPORT_EMAIL}
+        <Link key={`${chunk}-${index}`} href={`mailto:${supportEmail}`} className="text-brand-200 underline-offset-2 hover:underline">
+          {supportEmail}
         </Link>
       );
     }
@@ -124,7 +136,7 @@ function toContentBlocks(contentBody: string): ContentBlock[] {
 
     if (isSectionHeading(line, nextNonEmptyLine)) {
       flushSection();
-      currentSection = { title: trimmed, paragraphs: [], bulletItems: [] };
+      currentSection = { title: headingText(line), paragraphs: [], bulletItems: [] };
       continue;
     }
 
@@ -145,8 +157,25 @@ function toContentBlocks(contentBody: string): ContentBlock[] {
   return blocks;
 }
 
-export default function SummitCodeConductContent({ title, pageSubtitle, contentBody }: Props) {
+export default function SummitCodeConductContent({
+  title,
+  pageSubtitle,
+  contentBody,
+  supportEmail,
+  pdfUrl,
+}: Props) {
   const blocks = useMemo(() => toContentBlocks(contentBody), [contentBody]);
+
+  const pdfButton = pdfUrl ? (
+    <a
+      href={pdfUrl}
+      target="_blank"
+      rel="noreferrer"
+      className="inline-flex min-h-11 w-full items-center justify-center rounded-md border border-veil/25 bg-scrim/25 px-4 py-2.5 text-sm font-semibold text-ink-100 transition hover:bg-scrim/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-200"
+    >
+      {PRINCIPLES_LINE}
+    </a>
+  ) : null;
 
   return (
     <>
@@ -155,16 +184,10 @@ export default function SummitCodeConductContent({ title, pageSubtitle, contentB
         <div className="space-y-3">
           {blocks.map((block, index) => {
             if (block.type === "principlesButton") {
+              if (!pdfButton) return null;
               return (
                 <article key={`principles-${index}`} className="rounded-xl border border-veil/10 bg-surface-900/70 p-4 sm:p-5">
-                  <a
-                    href={DUMMY_PDF_PATH}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="inline-flex min-h-11 w-full items-center justify-center rounded-md border border-veil/25 bg-scrim/25 px-4 py-2.5 text-sm font-semibold text-ink-100 transition hover:bg-scrim/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-200"
-                  >
-                    {PRINCIPLES_LINE}
-                  </a>
+                  {pdfButton}
                 </article>
               );
             }
@@ -182,7 +205,7 @@ export default function SummitCodeConductContent({ title, pageSubtitle, contentB
                           {paragraph.split("\n").map((line, lineIndex) => (
                             <span key={`${line}-${lineIndex}`}>
                               {lineIndex > 0 ? <br /> : null}
-                              {renderInlineContent(line)}
+                              {renderInlineContent(line, supportEmail)}
                             </span>
                           ))}
                         </p>
@@ -192,7 +215,7 @@ export default function SummitCodeConductContent({ title, pageSubtitle, contentB
                   {block.section.bulletItems.length > 0 ? (
                     <ul className="mt-3 list-disc space-y-2 pl-5 text-sm leading-relaxed text-ink-200 marker:text-brand-200">
                       {block.section.bulletItems.map((item) => (
-                        <li key={`${block.section.title}-${item}`}>{renderInlineContent(item)}</li>
+                        <li key={`${block.section.title}-${item}`}>{renderInlineContent(item, supportEmail)}</li>
                       ))}
                     </ul>
                   ) : null}
@@ -207,7 +230,7 @@ export default function SummitCodeConductContent({ title, pageSubtitle, contentB
                     {block.value.split("\n").map((line, lineIndex) => (
                       <span key={`${line}-${lineIndex}`}>
                         {lineIndex > 0 ? <br /> : null}
-                        {renderInlineContent(line)}
+                        {renderInlineContent(line, supportEmail)}
                       </span>
                     ))}
                   </p>
@@ -217,15 +240,8 @@ export default function SummitCodeConductContent({ title, pageSubtitle, contentB
           })}
 
           <article className="rounded-xl border border-veil/10 bg-surface-900/70 p-4 sm:p-5">
-            <a
-              href={DUMMY_PDF_PATH}
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex min-h-11 w-full items-center justify-center rounded-md border border-veil/25 bg-scrim/25 px-4 py-2.5 text-sm font-semibold text-ink-100 transition hover:bg-scrim/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-200"
-            >
-              {PRINCIPLES_LINE}
-            </a>
-            <p className="mt-4 text-sm leading-relaxed text-ink-200">
+            {pdfButton}
+            <p className={`text-sm leading-relaxed text-ink-200 ${pdfButton ? "mt-4" : ""}`}>
               If someone makes you or anyone else feel unsafe or unwelcome, please report it as soon as possible to
               our wellbeing and grievance coordinators for a confidential conversation.
             </p>

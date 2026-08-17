@@ -7,7 +7,7 @@ import { getCodeConductStatic } from "@/lib/summit/service";
 
 export default async function Page() {
   const context = await getSummitContext();
-  const { navigation } = await getTenantContent();
+  const { navigation, integrations } = await getTenantContent();
   const content = await getCodeConductStatic(context.selectedSummitName);
   if (!content) {
     return <SummitEmpty title="Code of conduct unavailable" body="No policy content found for this summit." />;
@@ -23,6 +23,8 @@ export default async function Page() {
       title="Code of Conduct"
       pageSubtitle={navigation.pageSubtitles.codeConduct}
       contentBody={contentBody}
+      supportEmail={integrations.supportEmail}
+      pdfUrl={integrations.codeOfConductPdfUrl}
     />
   );
 }

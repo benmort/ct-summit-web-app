@@ -148,6 +148,10 @@ export default function SummitNav({ whatsappChannels = [] }: SummitNavProps) {
     whatsappChannels,
     integrations.channelIcons,
   );
+  // Nothing to open the drawer for means no button: a tenant that has not set up
+  // group chat yet would otherwise offer a WhatsApp glyph that opens an empty panel.
+  const hasWhatsapp =
+    Boolean(integrations.communityChatUrl) || normalizedWhatsappChannels.length > 0;
   const menuOpen = activePanel === "menu";
   const whatsappOpen = activePanel === "whatsapp";
   const panelOpen = activePanel !== null;
@@ -246,15 +250,17 @@ export default function SummitNav({ whatsappChannels = [] }: SummitNavProps) {
             )}
           </Link>
           <div className="flex items-center gap-2">
-            <button
-              type="button"
-              onClick={handleWhatsappToggle}
-              aria-expanded={whatsappOpen}
-              aria-label={whatsappOpen ? "Close WhatsApp channels" : "Open WhatsApp channels"}
-              className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-brand-500 text-surface-950 transition hover:bg-brand-400"
-            >
-              <WhatsappGlyph className="h-5 w-5" />
-            </button>
+            {hasWhatsapp ? (
+              <button
+                type="button"
+                onClick={handleWhatsappToggle}
+                aria-expanded={whatsappOpen}
+                aria-label={whatsappOpen ? "Close WhatsApp channels" : "Open WhatsApp channels"}
+                className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-brand-500 text-surface-950 transition hover:bg-brand-400"
+              >
+                <WhatsappGlyph className="h-5 w-5" />
+              </button>
+            ) : null}
             <button
               type="button"
               onClick={handleMenuToggle}

@@ -97,12 +97,17 @@ Answer — body font:
 
 For each item, attach the file or say "use default". Preferred formats are noted.
 
-**3.1 Wordmark / logo** — shown on the photo showreel. PNG or SVG with a transparent background. **Required**
-<sub>`brand.json → assets.logo`</sub>
+**3.1 Wordmark / logo** — shown on the photo showreel, which sits on a near-black backdrop in every theme, so send the light or reversed variant. PNG or SVG with a transparent background. **Required**
+<sub>`brand.json → assets.logo` — `{ src, width, height, alt? }`, where width and height are the file's true pixel dimensions</sub>
 
 Answer:
 
-**3.2 App icon** — the icon on someone's phone home screen. A square image, at least 512×512, no transparency. **Required**
+**3.1a Header logo** — optional. Replaces the text wordmark from 1.2 in the app header. Send the variant that suits your answer to 2.3: the header sits on a near-white surface in light mode and a near-black one in dark mode. It renders about 28px tall, so anything with a strapline or more than two lines of type turns to mush — send a compact lockup, not the full one.
+<sub>`brand.json → assets.headerLogo` — same `{ src, width, height, alt? }` shape as 3.1. Omit it entirely to keep the text wordmark.</sub>
+
+Answer:
+
+**3.2 App icon** — the icon on someone's phone home screen. A square image, at least 512×512, no transparency. Note it is used as a **maskable** icon, so Android crops it to a circle or squircle — keep the artwork inside the middle 80% or the edges get sliced off. **Required**
 <sub>`brand.json → assets.androidChrome`, `assets.appleTouchIcon`, `assets.favicon`</sub>
 
 Answer:

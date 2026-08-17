@@ -9,6 +9,14 @@
  * because a client component cannot resolve the tenant from request headers.
  */
 
+/**
+ * An image asset with its true pixel dimensions.
+ *
+ * next/image needs the real ratio to reserve space; declaring a wrong one does
+ * not fail loudly, it just letterboxes the artwork inside the space it reserved.
+ */
+export type BrandImage = { src: string; width: number; height: number; alt?: string };
+
 export type BrandContent = {
   /** Organisation or event family name, e.g. "Common Threads". */
   name: string;
@@ -18,11 +26,21 @@ export type BrandContent = {
   legalEntity: string;
   /** Browser/social description. */
   description: string;
+  /**
+   * Standfirst paragraph under the event name on the dashboard.
+   *
+   * A literal `{title}` is replaced with the summit title — the part after the
+   * colon in the summit's `Name`, the same text rendered as the big heading.
+   */
+  eventBlurb: string;
   /** Colour for the browser chrome and PWA manifest. */
   themeColor: string;
   assets: {
-    /** Wordmark on the photo showreel. */
-    logo: string;
+    /**
+     * Wordmark on the photo showreel. That footer sits on `scrim`, which stays
+     * near-black in every theme, so this wants the reversed or light variant.
+     */
+    logo: BrandImage;
     /**
      * Logo shown in the app header, replacing the `wordmark` text.
      *
@@ -30,12 +48,11 @@ export type BrandContent = {
      * the default tenant's header is unchanged. Pick the variant that suits the
      * tenant's theme — the header sits on `surface-950`, which is near-black in
      * dark mode and near-white in light mode.
-     *
-     * Width and height are the file's true pixel dimensions; the header scales it
-     * by height and preserves the ratio.
      */
-    headerLogo?: { src: string; width: number; height: number; alt?: string };
+    headerLogo?: BrandImage;
+    /** Full-bleed backdrop behind the acknowledgement and onboarding slides. */
     onboardingBackground: string;
+    /** Looping video behind the dashboard hero. */
     heroVideo: string;
     appleTouchIcon: string;
     favicon: string;
@@ -65,7 +82,13 @@ export type OnboardingSlide = {
 export type OnboardingContent = {
   acknowledgement: {
     title: string;
-    /** Shown on its own as the closing statement. Must also appear in `paragraphs`. */
+    /**
+     * Closing statement, rendered on its own with emphasis after `paragraphs`.
+     *
+     * Older content repeated it inside `paragraphs` because it used to render
+     * nowhere else; the overlay skips it when it is already there, so both
+     * shapes stay correct.
+     */
     sovereigntyStatement: string;
     paragraphs: string[];
     acceptLabel: string;
@@ -93,8 +116,13 @@ export type IntegrationsContent = {
   supportEmail: string;
   /** Group-chat invite behind the header button. Null hides the button. */
   communityChatUrl: string | null;
-  /** Public transport hint on venue pages. Null omits the row. */
+  /**
+   * Getting-there hint on venue pages. Null omits the row; an empty `url`
+   * renders the value as plain text, for tenants with no single trip planner.
+   */
   transport: { label: string; value: string; url: string } | null;
+  /** Printable code of conduct behind the download button. Null hides the button. */
+  codeOfConductPdfUrl: string | null;
   /** Maps a whatsappChannels record id to a Flaticon class for its list icon. */
   channelIcons: Record<string, string>;
 };

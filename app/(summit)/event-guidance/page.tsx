@@ -83,6 +83,31 @@ function renderParagraphContent(paragraph: string, supportEmail: string): React.
   });
 }
 
+type GuidanceBlock = { type: "paragraph"; value: string } | { type: "list"; items: string[] };
+
+/**
+ * Groups `- ` prefixed paragraphs into lists.
+ *
+ * Guidance is authored as an array of paragraphs with no inline formatting, but
+ * a lot of practical event copy — what to pack, which vaccinations, what is
+ * covered — is genuinely a list. Consecutive `- ` paragraphs become one `<ul>`;
+ * everything else is untouched, so content without the marker renders as before.
+ */
+function toGuidanceBlocks(paragraphs: string[]): GuidanceBlock[] {
+  const blocks: GuidanceBlock[] = [];
+  for (const paragraph of paragraphs) {
+    const bullet = paragraph.match(/^-\s+([\s\S]*)$/);
+    if (!bullet) {
+      blocks.push({ type: "paragraph", value: paragraph });
+      continue;
+    }
+    const last = blocks[blocks.length - 1];
+    if (last?.type === "list") last.items.push(bullet[1]);
+    else blocks.push({ type: "list", items: [bullet[1]] });
+  }
+  return blocks;
+}
+
 export default async function Page() {
   const context = await getSummitContext();
   const { guidance, navigation, integrations } = await getTenantContent();
@@ -128,11 +153,24 @@ export default async function Page() {
           <article key={section.title} className="rounded-xl border border-veil/10 bg-surface-900/70 p-4 sm:p-5">
             <h2 className="text-sm font-semibold uppercase tracking-[0.16em] text-brand-200">{section.title}</h2>
             <div className="mt-3 space-y-3 text-sm leading-relaxed text-ink-200">
-              {section.paragraphs.map((paragraph) => (
-                <p key={`${section.title}-${paragraph}`}>
-                  {renderParagraphContent(paragraph, integrations.supportEmail)}
-                </p>
-              ))}
+              {toGuidanceBlocks(section.paragraphs).map((block, index) =>
+                block.type === "list" ? (
+                  <ul
+                    key={`${section.title}-list-${index}`}
+                    className="list-disc space-y-2 pl-5 marker:text-brand-200"
+                  >
+                    {block.items.map((item) => (
+                      <li key={`${section.title}-${item}`}>
+                        {renderParagraphContent(item, integrations.supportEmail)}
+                      </li>
+                    ))}
+                  </ul>
+                ) : (
+                  <p key={`${section.title}-${block.value}`}>
+                    {renderParagraphContent(block.value, integrations.supportEmail)}
+                  </p>
+                ),
+              )}
             </div>
           </article>
         ))}

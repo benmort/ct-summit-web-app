@@ -4,18 +4,26 @@ import SummitScheduleTimeline from "@/components/summit/SummitScheduleTimeline";
 import { getSummitContext } from "@/lib/summit/context";
 import { getTenantContent } from "@/lib/tenant/content";
 import { buildScheduleDays } from "@/lib/summit/schedule";
-import { getEventsAll, getScheduleAll, getSpeakersAll } from "@/lib/summit/service";
+import {
+  getEventsAll,
+  getProgramDaysAll,
+  getScheduleAll,
+  getSpeakersAll,
+} from "@/lib/summit/service";
+import { getTenantSlug } from "@/lib/tenant/server";
 
 export default async function SummitSchedulePage() {
   const context = await getSummitContext();
   const { navigation } = await getTenantContent();
-  const [schedule, events, speakers] = await Promise.all([
+  const [schedule, events, speakers, programDays, tenantSlug] = await Promise.all([
     getScheduleAll(context.selectedSummitName),
     getEventsAll(context.selectedSummitName),
     getSpeakersAll(context.selectedSummitName),
+    getProgramDaysAll(),
+    getTenantSlug(),
   ]);
 
-  const scheduleDays = buildScheduleDays(schedule, events, speakers);
+  const scheduleDays = buildScheduleDays(schedule, events, speakers, { programDays, tenantSlug });
 
   if (!scheduleDays.length) {
     return (

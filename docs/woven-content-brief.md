@@ -14,7 +14,9 @@ finish it.
 - **BLOCKING** means the app should not be promoted to delegates until it's
   answered.
 - Anything marked **TO CONFIRM** in the app is a placeholder that will be visible
-  to delegates. There are 102 of them right now.
+  to delegates. ~~There are 102 of them right now.~~ **All of them have now been
+  cleared** — the returned brief has been implemented. See
+  `woven-content-checklist.md` for what remains outstanding.
 - The small grey line (like `brand.json → name`) tells the developer where the
   answer goes. Ignore it.
 - Long answers are welcome. Several sections want multiple paragraphs.
@@ -23,10 +25,12 @@ finish it.
 
 **Already done — please just check these (Part 1)**
 
-Your brand colours (deep green `#124a3e`, olive `#8a9826`), your fonts (Fjalla One
-for headings, Anuphan for body), your logo and favicon, your mission and taglines,
+Your fonts (Fjalla One for headings, Anuphan for body), your mission and taglines,
 `info@thewovenproject.org`, your vision statement, your founding story, and the gathering's name, dates and city. All taken
 from thewovenproject.org.
+
+The **colours, logo and app icons now come from the Dreaming Into Our Future artwork** instead of
+your website — see 1.6 and 1.8.
 
 **Still needed from you**
 
@@ -86,7 +90,14 @@ Answer:
 
 **1.6 Brand colours**
 <sub>`tenant.json → theme.primary`, `theme.secondary`</sub>
-**Currently in the app:** main colour `#124a3e` (deep green), second colour `#8a9826` (olive). We read these from your website's stylesheet. The app builds a full range of shades from each, so the app is green-led with olive accents on a light background.
+**Currently in the app:** main colour `#F6931D` (sun orange), second colour `#0F75BB` (sky blue),
+on a cream `#F3EEDF` background. These are sampled from the Dreaming Into Our Future artwork — the
+orange and blue are the two colours of the primary lockup, and the cream is the t-shirt stock. The
+app builds a full range of shades from each.
+
+This replaces the deep green `#124a3e` and olive `#8a9826` we had previously read from your
+website's stylesheet — those are the Woven Project's organisational colours rather than the
+gathering's. Tell us if you'd rather the app stayed green-led.
 
 Correct? If you have a brand guide with exact values, send it.
 
@@ -102,12 +113,23 @@ Answer:
 
 **1.8 Logo and app icon**
 <sub>`brand.json → assets`</sub>
-**Currently in the app:** your logo and favicon, downloaded from your website.
+**Currently in the app:** the Dreaming Into Our Future artwork. The sun emblem fills the
+home-screen icon, the favicons and the Apple touch icon; the header shows the emblem beside the
+headline; the photo showreel shows a cream reversed version. Your Woven Project wordmark is still
+in the repo at `/tenants/woven/logo-woven-project.png` if you want it shown as a partner mark.
 
-Two things to confirm:
+This replaces the logo and favicon we downloaded from your website, and resolves the request for a
+higher-resolution square icon — the emblem is square, so it needs no cropping.
 
-- Do you have higher-resolution originals? The ones we have are 500×238, which is a little small for the app icon on newer phones. A square version at 512×512 or larger would be ideal for the home-screen icon.
-- Please confirm Woven owns these assets and is happy for them to be used on this domain.
+Three things to confirm:
+
+- The designer's deck contains **four competing logo directions** plus t-shirt mockups. We used the
+  orange squiggle sun (pages 1–3). Is that the signed-off direction? Swapping to another is one command.
+- Please confirm Woven owns this artwork and is happy for it to be used on this domain, and tell us
+  whether any attribution is required.
+- Should the header carry the gathering's identity, as it does now, or the Woven Project wordmark?
+- The PDF is flattened artwork, not vector — if the designer can send the Illustrator or EPS source,
+  the logo will stay sharp at every size.
 
 Answer:
 
@@ -615,9 +637,9 @@ Answer:
 # Part 14 — Extra imagery
 
 **14.1 Welcome background photo** — a full-screen image behind the welcome slides.
-Landscape, at least 2000px wide. Currently borrowing a Common Threads photo, which
-should be replaced. Something local and meaningful is ideal — it's the first thing
-anyone sees.
+Landscape, at least 2000px wide. **No longer borrowed** — it now uses your own night ceremony
+photo (`bw-participant-2`), which is 1130px wide. That is under the 2000px we would like for large
+screens, so a higher-resolution original would help. Happy to switch to another of your photos.
 
 Answer:
 

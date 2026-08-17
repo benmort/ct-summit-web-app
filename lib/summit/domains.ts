@@ -1,4 +1,5 @@
 import type { DetailView, ListItemView, SummitListDomain, SummitRecord } from "@/lib/summit/types";
+import type { IntegrationsContent } from "@/lib/tenant/content-types";
 import { fieldAttachmentUrl, fieldFirst, fieldList, fieldString } from "@/lib/summit/fields";
 import { eventImageForTitle } from "@/lib/summit/event-images";
 
@@ -95,7 +96,11 @@ export function isSummitDomain(value: string): value is SummitListDomain {
   return value in summitDomainMeta;
 }
 
-export function buildListItem(domain: SummitListDomain, record: SummitRecord): ListItemView {
+export function buildListItem(
+  domain: SummitListDomain,
+  record: SummitRecord,
+  tenantSlug?: string,
+): ListItemView {
   const meta = summitDomainMeta[domain];
   const title = fieldString(record, meta.titleField) || "Untitled";
   const crewPhone = fieldString(record, "Phone [Network Data]") || fieldString(record, "Phone");
@@ -114,7 +119,7 @@ export function buildListItem(domain: SummitListDomain, record: SummitRecord): L
         ? fieldList(record, meta.tagsField)
         : [];
   const airtableImageUrl = fieldAttachmentUrl(record, meta.imageField, { headshot: meta.imageHeadshot });
-  const eventImageUrl = domain === "events" ? eventImageForTitle(title) : null;
+  const eventImageUrl = domain === "events" ? eventImageForTitle(title, tenantSlug) : null;
   return {
     id: record.id,
     title,
@@ -149,9 +154,17 @@ function asParagraph(value: string | null | undefined): string | null {
   return singleLine.length ? singleLine : null;
 }
 
+export type BuildDetailOptions = {
+  /** Selects the tenant's event-image set; omit for no event imagery. */
+  tenantSlug?: string;
+  /** Tenant's getting-there hint for the venue Transport row; omit to hide it. */
+  transport?: IntegrationsContent["transport"];
+};
+
 export function buildDetail(
   domain: SummitListDomain,
   record: SummitRecord,
+  { tenantSlug, transport }: BuildDetailOptions = {},
 ): DetailView {
   const presentationLink = sanitizePresentation(fieldFirst(record, "Presentation"));
   switch (domain) {
@@ -181,7 +194,9 @@ export function buildDetail(
         id: record.id,
         title,
         subtitle: "Event",
-        imageUrl: eventImageForTitle(title) || fieldAttachmentUrl(record, "Headshot", { headshot: true }),
+        imageUrl:
+          eventImageForTitle(title, tenantSlug)
+          || fieldAttachmentUrl(record, "Headshot", { headshot: true }),
         tags: fieldList(record, "Tags"),
         summary: asLines(fieldString(record, "Description")),
         videoUrl: fieldFirst(record, "Video"),
@@ -197,7 +212,6 @@ export function buildDetail(
     case "venues": {
       const url = fieldString(record, "URL");
       const mapLink = fieldString(record, "Map Link");
-      const tripPlannerLink = "https://www.adelaidemetro.com.au/plan-a-trip/visiting-adelaide";
       const parkingLink = fieldString(record, "Parking Link");
       const wilsonEastCarparkVideo = fieldString(record, "Wilson East Carpark Access Video");
       const ovalHotelGuestVideo = fieldString(record, "Oval Hotel Access Video");
@@ -208,14 +222,20 @@ export function buildDetail(
         imageUrl: fieldAttachmentUrl(record, "Image"),
         tags: fieldList(record, "Tags"),
         body: asParagraph(fieldString(record, "Description")),
+        bodyHeading: "About",
         summary: asLines(fieldString(record, "Instructions")),
         sections: [
           {
             label: "Location",
             value: fieldString(record, "Address"),
           },
-          { label: "Transport", value: "Plan your trip with Adelaide Metro", href: tripPlannerLink },
-          { label: "Parking", value: "View parking details", href: parkingLink },
+          // Both of these used to be constant literals, and `sections` filters on
+          // `value` rather than `href` — so every tenant advertised the Adelaide
+          // trip planner, and Parking linked to href="" whenever it was unset.
+          ...(transport
+            ? [{ label: transport.label, value: transport.value, ...(transport.url ? { href: transport.url } : {}) }]
+            : []),
+          ...(parkingLink ? [{ label: "Parking", value: "View parking details", href: parkingLink }] : []),
           ...(wilsonEastCarparkVideo
             ? [
                 {
@@ -281,6 +301,7 @@ export function buildDetail(
         imageUrl: fieldAttachmentUrl(record, "Image"),
         tags: fieldList(record, "Tags"),
         body: asLines(fieldString(record, "Description")),
+        bodyHeading: "About",
         sections: [{ label: "Map", value: mapLink, href: mapLink }].filter(
           (section) => section.value,
         ),
@@ -309,6 +330,7 @@ export function buildDetail(
         imageUrl: fieldAttachmentUrl(record, "Logo"),
         tags: [fieldString(record, "Level")].filter(Boolean),
         body: asLines(fieldString(record, "Description")),
+        bodyHeading: "About",
         sections: [{ label: "Website", value: url, href: url }].filter((section) => section.value),
       };
     }

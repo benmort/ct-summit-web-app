@@ -3,12 +3,17 @@
 import { Dialog } from "@headlessui/react";
 import { useState } from "react";
 
+import { useTenantContent } from "@/components/TenantContentProvider";
+
 type Props = {
   variant?: "onDark" | "default";
 };
 
 export default function UploadTermsNotice({ variant = "default" }: Props) {
   const [open, setOpen] = useState(false);
+  // The assignment names a legal entity, so it has to be the tenant's own —
+  // these terms are what a delegate agrees to when they upload a photo.
+  const { legalEntity } = useTenantContent().brand;
 
   const muted =
     variant === "onDark" ? "text-ink-50/55" : "text-ink-600";
@@ -46,13 +51,12 @@ export default function UploadTermsNotice({ variant = "default" }: Props) {
               <div className="mt-3 space-y-2 text-xs leading-snug text-ink-700 sm:mt-4 sm:space-y-3 sm:text-sm sm:leading-relaxed">
                 <p>
                   By uploading photographs, images, or video to this shared album,
-                  you assign to{" "}
-                  <strong>Common Threads Indigenous Peoples Organisation</strong>{" "}
+                  you assign to <strong>{legalEntity}</strong>{" "}
                   all intellectual property rights (including copyright) that you
                   hold in that uploaded content.
                 </p>
                 <p>
-                  Common Threads Indigenous Peoples Organisation may use,
+                  {legalEntity} may use,
                   reproduce, publish, adapt, display, and distribute that content
                   for purposes connected with its mission and activities,
                   including community events, archives, storytelling, education,

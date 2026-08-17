@@ -70,7 +70,30 @@ const SUMMIT_2026_DAY_FILTER_META: Record<string, SummitDayFilterMeta> = {
   },
 };
 
-const SUMMIT_2026_DAY_FILTER_ORDER = Object.keys(SUMMIT_2026_DAY_FILTER_META);
+/**
+ * Day labels for the programme tabs, keyed by date.
+ *
+ * The map above is Common Threads' Adelaide programme, which predates
+ * multi-tenancy. A tenant supplies its own by adding a `programDays` section to
+ * its data.json — one record per day, `id` being the date as YYYY-MM-DD — and
+ * falls back to the built-in map when it has none.
+ */
+function dayFilterMeta(programDays: SummitRecord[]): Record<string, SummitDayFilterMeta> {
+  if (programDays.length === 0) return SUMMIT_2026_DAY_FILTER_META;
+
+  const meta: Record<string, SummitDayFilterMeta> = {};
+  for (const record of programDays) {
+    const dateKey = record.id.trim();
+    if (!dateKey) continue;
+    meta[dateKey] = {
+      day: fieldString(record, "Day Of Week"),
+      dateLabel: fieldString(record, "Date Label"),
+      title: fieldString(record, "Title"),
+      venue: fieldString(record, "Venue Name"),
+    };
+  }
+  return meta;
+}
 
 function readDay(record: SummitRecord): string {
   return fieldString(record, "Day Of Week") || "Unknown";
@@ -163,11 +186,21 @@ function sortByEndTime(records: SummitRecord[]): SummitRecord[] {
   });
 }
 
+export type BuildScheduleOptions = {
+  /** Per-tenant day labels; falls back to the built-in Common Threads map. */
+  programDays?: SummitRecord[];
+  /** Selects the tenant's event-image set; omit for no event imagery. */
+  tenantSlug?: string;
+};
+
 export function buildScheduleDays(
   schedule: SummitRecord[],
   events: SummitRecord[],
   speakers: SummitRecord[],
+  { programDays = [], tenantSlug }: BuildScheduleOptions = {},
 ): ScheduleDay[] {
+  const dayMeta = dayFilterMeta(programDays);
+  const dayOrder = Object.keys(dayMeta);
   const sortedSchedule = [...schedule].sort((a, b) => {
     const aTime = readDateValue(a, "DateTime Start [Schedule]")?.getTime() ?? 0;
     const bTime = readDateValue(b, "DateTime Start [Schedule]")?.getTime() ?? 0;
@@ -203,7 +236,10 @@ export function buildScheduleDays(
       const formatLabel = talkFormats[0] || tags[0] || (isTalk ? "Talk" : "Event");
       const roomLabel = [venue, room].filter(Boolean).join(" - ");
       const locationLabel = [room, venue].filter(Boolean).join(" · ");
-      const imageUrl = fieldFirst(matching, "Headshot") || (!isTalk ? eventImageForTitle(title) : null) || undefined;
+      const imageUrl =
+        fieldFirst(matching, "Headshot")
+        || (!isTalk ? eventImageForTitle(title, tenantSlug) : null)
+        || undefined;
 
       slots.push({
         id: matching.id,
@@ -248,7 +284,7 @@ export function buildScheduleDays(
     }));
     const firstSlotTime = readDateRaw(slotsForDay[0], "DateTime Start [Schedule]");
     const dateKey = toDateKey(firstSlotTime);
-    const summitDayMeta = dateKey ? SUMMIT_2026_DAY_FILTER_META[dateKey] : undefined;
+    const summitDayMeta = dateKey ? dayMeta[dateKey] : undefined;
     days.push({
       day,
       dateLabel: toDayDateLabel(firstSlotTime),
@@ -260,8 +296,8 @@ export function buildScheduleDays(
     });
   }
 
-  const hasSummit2026Dates = days.some((day) => !!day.dateKey && !!SUMMIT_2026_DAY_FILTER_META[day.dateKey]);
-  if (!hasSummit2026Dates) return days;
+  const hasKnownDates = days.some((day) => !!day.dateKey && !!dayMeta[day.dateKey]);
+  if (!hasKnownDates) return days;
 
   const byDateKey = new Map<string, ScheduleDay>();
   for (const day of days) {
@@ -269,8 +305,8 @@ export function buildScheduleDays(
     byDateKey.set(day.dateKey, day);
   }
 
-  const orderedDays = SUMMIT_2026_DAY_FILTER_ORDER.map((dateKey) => {
-    const meta = SUMMIT_2026_DAY_FILTER_META[dateKey];
+  const orderedDays = dayOrder.map((dateKey) => {
+    const meta = dayMeta[dateKey];
     const existing = byDateKey.get(dateKey);
     if (existing) {
       return {
@@ -292,6 +328,6 @@ export function buildScheduleDays(
     };
   });
 
-  const trailingDays = days.filter((day) => !day.dateKey || !SUMMIT_2026_DAY_FILTER_META[day.dateKey]);
+  const trailingDays = days.filter((day) => !day.dateKey || !dayMeta[day.dateKey]);
   return [...orderedDays, ...trailingDays];
 }

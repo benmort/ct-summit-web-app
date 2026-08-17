@@ -7,7 +7,7 @@ One event = one tenant = one folder plus three registry lines. No component chan
 ```
 tenants/<slug>/
   tenant.json          # domains, theme, feature flags
-  data.json            # speakers, events, schedule, venues, crew, …
+  data.json            # speakers, events, schedule, programDays, venues, crew, …
   content/
     brand.json         # names, description, asset paths
     navigation.json    # bottom tabs, menu, page taglines
@@ -17,12 +17,19 @@ tenants/<slug>/
 ```
 
 Copy `tenants/woven/` as the starting point — it is a complete, valid tenant with
-placeholder copy. The shapes are typed in `lib/tenant/types.ts` and
+real copy in every field, so it shows what a finished one looks like rather than
+what an empty one looks like. The shapes are typed in `lib/tenant/types.ts` and
 `lib/tenant/content-types.ts`; the questionnaire in
 `docs/tenant-questionnaire.md` maps every field to a question.
 
 Per-tenant images go in `public/tenants/<slug>/` and are referenced from
-`brand.json → assets`.
+`brand.json → assets`. The two logo entries (`logo` for the photo showreel,
+`headerLogo` for the app header) carry their true pixel dimensions alongside the
+path; `tests/tenant/content.test.ts` checks them against the file on disk,
+because a wrong ratio letterboxes the artwork rather than failing.
+
+`scripts/extract-brand-assets.ts` is the Woven precedent for turning a
+designer's delivery into that set of files.
 
 ## 2. Register it in three places
 
@@ -58,6 +65,45 @@ pnpm start
 curl -s -H 'Host: <slug>.localhost' http://localhost:3000/ | grep data-tenant
 ```
 
+## Copy conventions
+
+Content is plain JSON with no markdown renderer, so the few pieces of structure
+there are come from conventions. None of them are guessable from the types.
+
+**Lists in guidance.** `guidance.json → sections[].paragraphs` is an array of
+paragraphs. A paragraph beginning `- ` becomes a list item, and consecutive ones
+group into a single `<ul>`. Practical event copy — what to pack, which
+vaccinations, what is covered — reads as a list and should be authored as one.
+
+**Headings in the code of conduct.** `data.json → codeConduct.Content Body` is
+one long string. A line beginning `## ` is a section heading; the lines under it
+become that section's paragraphs, and `- ` lines become its bullets. There is an
+older heuristic that also treats a line as a heading when the next line starts a
+bullet list, which is why Common Threads' body has no markers — but it cannot see
+a heading followed by a lead-in like "We agree to:", so prefer `## `.
+
+**Programme day names.** The day tabs on `/program` are named by an optional
+`data.json → programDays` section — one record per day, `id` being the date as
+`YYYY-MM-DD`, with fields `Day Of Week`, `Date Label`, `Title` and `Venue Name`.
+`Title` is the tab label. Omit the section and the tabs fall back to bare dates.
+
+**Event imagery.** `lib/summit/event-images.ts` matches stock photography against
+event titles, keyed by tenant. Every gathering has a "Lunch", so a tenant with no
+entry in `EVENT_IMAGE_SETS` deliberately gets no event imagery rather than
+inheriting another tenant's photographs.
+
+**Fields that are easy to get wrong:**
+
+| Field | Note |
+| --- | --- |
+| `brand.legalEntity` | Named in the photo-upload assignment, so it must be the legal entity, not the trading name |
+| `brand.eventBlurb` | Dashboard standfirst. A literal `{title}` is replaced with the summit title |
+| `integrations.transport` | `null` hides the venue row; an empty `url` renders the value as plain text |
+| `integrations.communityChatUrl` | `null` **and** no `whatsappChannels` records hides the header WhatsApp button entirely, rather than opening an empty drawer |
+| `integrations.codeOfConductPdfUrl` | `null` hides the download button rather than 404ing |
+| `onboarding.acknowledgement.sovereigntyStatement` | Rendered on its own after the paragraphs; it is skipped if the same string also appears in `paragraphs` |
+| Crew `Role` | The code-of-conduct page deep-links to `/crew#<slugified role>` for `Wellbeing and Grievance Coordinator`. No crew member with that exact role means the link silently shows everyone |
+
 ## Theming
 
 A tenant supplies two hex colours and a mode:
@@ -82,6 +128,24 @@ Pin an individual shade if a brand guide demands it:
 "theme": { "mode": "dark", "primary": "#fca400", "overrides": { "brand-500": "#fca400" } }
 ```
 
+`overrides` is applied last and can set *any* token, which is the only way to
+reach the ones the ramp maths fixes for you — `page` and the neutral ramps.
+Woven uses it to sit the app on its brand's cream paper stock instead of the
+default cool stone:
+
+```json
+"overrides": {
+  "page": "#F3EEDF",
+  "surface-950": "#FBF9F4",
+  "surface-900": "#F6F2E9",
+  "surface-800": "#E9E3D4"
+}
+```
+
+Overriding neutrals bypasses the contrast the generated ramps guarantee, so run
+`pnpm test` afterwards — `tests/tenant/contrast.test.ts` audits every registered
+tenant's tokens against WCAG AA.
+
 **The default tenant deliberately declares no colours.** With `mode: "dark"` and
 no `primary`/`secondary`, nothing is injected and the palette in
 `app/globals.css` applies verbatim. That is what keeps Common Threads
@@ -97,9 +161,9 @@ used actually compiled.
 
 `on-brand` is derived, not fixed. It is the text on the selected-day chip, which
 is a `brand-200 → brand-100` gradient — and that chip goes dark both in light
-mode (mirroring) and for a tenant with a dark primary like `#124a3e`. So
-`on-brand` follows the chip's luminance and flips to near-white when needed. A
-fixed dark value would be invisible on Woven.
+mode (mirroring) and for a tenant that picks a dark primary. So `on-brand`
+follows the chip's luminance and flips to near-white when needed. A fixed dark
+value would be invisible on either.
 
 ## Fonts
 

@@ -92,7 +92,7 @@ export default function SummitDetailView({
 
       {detail.body ? (
         <section className="rounded-xl border border-veil/10 bg-veil/5 p-4">
-          <h2 className="text-sm font-semibold text-ink-50">Bio</h2>
+          <h2 className="text-sm font-semibold text-ink-50">{detail.bodyHeading ?? "Bio"}</h2>
           <p className="mt-2 whitespace-pre-wrap break-words text-sm leading-relaxed text-ink-200">
             {detail.body}
           </p>

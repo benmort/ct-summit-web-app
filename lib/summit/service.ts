@@ -9,6 +9,7 @@ import {
   readTenantEvents,
   readTenantMap,
   readTenantOrganisations,
+  readTenantProgramDays,
   readTenantSchedule,
   readTenantSecurityGuidelines,
   readTenantSpeakers,
@@ -72,6 +73,10 @@ export async function getSpeakersAll(
 ): Promise<SummitRecord[]> {
   ignoreViewName(summitViewName);
   return readTenantSpeakers(await getTenantSlug());
+}
+
+export async function getProgramDaysAll(): Promise<SummitRecord[]> {
+  return readTenantProgramDays(await getTenantSlug());
 }
 
 export async function getSponsorsAll(

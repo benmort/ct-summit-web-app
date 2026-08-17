@@ -52,6 +52,11 @@ export default function SummitAcknowledgementOverlay({ open, onAccept }: Props) 
 
   if (!open) return null;
 
+  // Older content repeated the closing statement inside `paragraphs`, because it
+  // used to render nowhere else. Skip it in that case rather than print it twice.
+  const { sovereigntyStatement, paragraphs } = onboarding.acknowledgement;
+  const closingStatement = paragraphs.includes(sovereigntyStatement) ? "" : sovereigntyStatement;
+
   return (
     <div
       className={`fixed inset-0 z-[250] flex min-h-dvh items-center justify-center bg-scrim/90 px-4 py-6 backdrop-blur-sm transition-opacity duration-300 ease-out ${
@@ -71,13 +76,18 @@ export default function SummitAcknowledgementOverlay({ open, onAccept }: Props) 
             <p key={paragraph}>{paragraph}</p>
           ))}
         </div>
+        {closingStatement ? (
+          <p className="mt-5 text-balance text-base font-bold italic leading-relaxed text-brand-200 sm:text-lg">
+            {closingStatement}
+          </p>
+        ) : null}
         <button
           type="button"
           onClick={handleAccept}
           disabled={isAcknowledging}
           className="mt-7 inline-flex min-h-11 w-full items-center justify-center gap-1.5 rounded-md bg-brand-500 px-4 py-2.5 text-sm font-semibold uppercase tracking-[0.12em] text-surface-950 transition hover:bg-brand-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-200"
         >
-          Acknowledge and continue
+          {onboarding.acknowledgement.acceptLabel}
           <ChevronRightIcon className="h-4 w-4" aria-hidden />
         </button>
       </div>

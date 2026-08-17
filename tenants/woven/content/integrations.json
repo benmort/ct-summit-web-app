@@ -1,13 +1,11 @@
 {
   "supportEmail": "info@thewovenproject.org",
-  "communityChatUrl": null,
   "transport": {
-    "label": "Transport",
-    "value": "Plan your trip with Translink Far North Queensland",
-    "url": "https://translink.com.au/travel-with-us/regional-services/cairns"
+    "label": "Getting around",
+    "value": "Taxis and rideshare are the easiest way to reach the venue. Uber vouchers are provided for your airport transfers.",
+    "url": ""
   },
-  "channelIcons": {
-    "woven-channel-announcements": "fi fi-rr-megaphone",
-    "woven-channel-wellbeing": "fi fi-rr-heart"
-  }
+  "communityChatUrl": null,
+  "codeOfConductPdfUrl": null,
+  "channelIcons": {}
 }

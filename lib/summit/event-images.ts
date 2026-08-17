@@ -1,4 +1,14 @@
-const EVENT_IMAGE_RULES: Array<{ pattern: RegExp; imageUrl: string }> = [
+/**
+ * Stock photography for generic programme blocks, matched on the event title.
+ *
+ * Title matching is not tenant-neutral: every gathering has a "Lunch" and a
+ * "Morning Tea", so a single shared rule set silently dressed one tenant's
+ * programme in another's photographs. The rules are therefore keyed by tenant,
+ * and a tenant with no image set gets no event imagery at all.
+ */
+type EventImageRule = { pattern: RegExp; imageUrl: string };
+
+const COMMON_THREADS_EVENT_IMAGE_RULES: EventImageRule[] = [
   { pattern: /\bwelcome to country\b/, imageUrl: "/images/events/wlecome-to-country.jpeg" },
   { pattern: /\bformal program concludes\b|\bprogram concludes\b/, imageUrl: "/images/events/closing.png" },
   { pattern: /\bmorning tea\b/, imageUrl: "/images/events/morning-tea.jpeg" },
@@ -17,6 +27,10 @@ const EVENT_IMAGE_RULES: Array<{ pattern: RegExp; imageUrl: string }> = [
   { pattern: /\bopening\b/, imageUrl: "/images/events/opening.jpeg" },
 ];
 
+const EVENT_IMAGE_SETS: Record<string, EventImageRule[]> = {
+  "common-threads": COMMON_THREADS_EVENT_IMAGE_RULES,
+};
+
 function normalizeEventTitle(value: string): string {
   return value
     .toLowerCase()
@@ -25,11 +39,16 @@ function normalizeEventTitle(value: string): string {
     .trim();
 }
 
-export function eventImageForTitle(title: string | null | undefined): string | null {
-  if (!title) return null;
+export function eventImageForTitle(
+  title: string | null | undefined,
+  tenantSlug: string | null | undefined,
+): string | null {
+  if (!title || !tenantSlug) return null;
+  const rules = EVENT_IMAGE_SETS[tenantSlug];
+  if (!rules) return null;
   const normalizedTitle = normalizeEventTitle(title);
   if (!normalizedTitle) return null;
-  for (const rule of EVENT_IMAGE_RULES) {
+  for (const rule of rules) {
     if (rule.pattern.test(normalizedTitle)) return rule.imageUrl;
   }
   return null;

@@ -172,7 +172,7 @@ function SpeakerCard({
 
 export default async function SummitDashboardPage() {
   const context = await getSummitContext();
-  const { navigation } = await getTenantContent();
+  const { brand, navigation } = await getTenantContent();
   const speakers = await getSpeakersAll(context.selectedSummitName);
   const now = Date.now();
   const speakersWithTimes = speakers.map((speaker) => ({
@@ -207,7 +207,7 @@ export default async function SummitDashboardPage() {
     ? fieldString(context.selectedSummit, "Location")
     : "Location unavailable";
   const summitTitle = splitSummitName(summitName || "Summit");
-  const heroVideoUrl = "/video/background-loop-small.mp4";
+  const heroVideoUrl = brand.assets.heroVideo;
 
   const directoryEntries: DirectoryEntry[] = [
     {
@@ -361,10 +361,7 @@ export default async function SummitDashboardPage() {
           {summitTitle.overline}
         </p>
         <p className="mt-2 max-w-[55ch] text-xs text-ink-400 lg:text-[14px] lg:leading-[1.35]">
-          {summitTitle.title} brings together campaigners, organisers and changemakers for practical
-          sessions, collaborative planning and shared action. Across plenaries, workshops and
-          community-led conversations, the summit is designed to strengthen relationships, sharpen
-          strategy and support coordinated action after the event.
+          {brand.eventBlurb.replaceAll("{title}", summitTitle.title)}
         </p>
       </section>
     </div>

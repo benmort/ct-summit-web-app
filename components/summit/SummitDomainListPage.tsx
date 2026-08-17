@@ -10,6 +10,7 @@ import { buildListItem } from "@/lib/summit/domains";
 import { domainLabel, getDomainRecords } from "@/lib/summit/domain-data";
 import { fieldList, fieldString } from "@/lib/summit/fields";
 import { getTenantContent } from "@/lib/tenant/content";
+import { getTenantSlug } from "@/lib/tenant/server";
 import type { SummitListDomain, SummitRecord } from "@/lib/summit/types";
 
 type Props = {
@@ -50,10 +51,11 @@ export default async function SummitDomainListPage({ domain, roleFilter }: Props
     domain === "crew" && normalizedRoleFilter
       ? domainRecords.filter((record) => crewRolesForRecord(record).includes(normalizedRoleFilter))
       : domainRecords;
+  const tenantSlug = await getTenantSlug();
   const cardItems = filteredRecords.map((record) => ({
     id: record.id,
     href: `/${domain}/${record.id}`,
-    item: buildListItem(domain, record),
+    item: buildListItem(domain, record, tenantSlug),
   }));
   const label = domainLabel(domain);
   const { navigation } = await getTenantContent();

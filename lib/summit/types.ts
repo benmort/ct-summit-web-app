@@ -39,6 +39,11 @@ export type DetailView = {
   tags?: string[];
   sections: DetailSection[];
   body?: string | null;
+  /**
+   * Heading above `body`. Defaults to "Bio", which is right for a person and
+   * wrong for a venue, an attraction or a sponsor — those set their own.
+   */
+  bodyHeading?: string;
   summary?: string | null;
   videoUrl?: string | null;
 };

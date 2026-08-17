@@ -21,7 +21,6 @@ type Props = {
 };
 
 type GateStage = "checking" | "acknowledgement" | "onboarding" | "homescreenPrompt" | "ready";
-const ONBOARDING_BACKGROUND_IMAGE_SRC = "/images/flinders-filtered.png";
 
 const ONBOARDING_PANEL_VISUALS = [
   {
@@ -75,7 +74,7 @@ function OnboardingLandscape({ slideIndex }: { slideIndex: number }) {
     return () => mediaQuery.removeEventListener("change", applyViewport);
   }, []);
 
-  const { onboarding } = useTenantContent();
+  const { brand, onboarding } = useTenantContent();
   const backgroundWidthRatio = isDesktopViewport ? 1 : 4;
   const maxPanPercent = ((backgroundWidthRatio - 1) / backgroundWidthRatio) * 100;
   const totalSlides = onboarding.slides.length;
@@ -91,7 +90,7 @@ function OnboardingLandscape({ slideIndex }: { slideIndex: number }) {
         style={{
           width: `${backgroundWidthRatio * 100}%`,
           transform: `translateX(${panOffset}%)`,
-          backgroundImage: `url('${ONBOARDING_BACKGROUND_IMAGE_SRC}')`,
+          backgroundImage: `url('${brand.assets.onboardingBackground}')`,
           backgroundPosition: isDesktopViewport ? "center center" : "left center",
         }}
       />
@@ -232,8 +231,13 @@ function SummitOnboardingOverlay({
                         {String(index + 1).padStart(2, "0")}
                       </p>
                       <div className={`mt-3 border-t-2 border-dashed ${visual.ruleClass}`} />
+                      {slide.eyebrow ? (
+                        <p className={`mt-4 text-[11px] font-semibold uppercase tracking-[0.18em] ${visual.numberClass}`}>
+                          {slide.eyebrow}
+                        </p>
+                      ) : null}
                       <h2
-                        className={`mt-4 text-balance text-3xl font-extrabold leading-tight sm:text-4xl ${visual.headingClass}`}
+                        className={`${slide.eyebrow ? "mt-2" : "mt-4"} text-balance text-3xl font-extrabold leading-tight sm:text-4xl ${visual.headingClass}`}
                       >
                         {slide.heading}
                       </h2>
@@ -279,7 +283,7 @@ function SummitOnboardingOverlay({
 }
 
 export default function SummitDashboardOnboardingGate({ children }: Props) {
-  const { onboarding } = useTenantContent();
+  const { brand, onboarding } = useTenantContent();
   const [stage, setStage] = useState<GateStage>("checking");
   const [slideIndex, setSlideIndex] = useState(0);
   const [showDashboard, setShowDashboard] = useState(false);
@@ -312,9 +316,9 @@ export default function SummitDashboardOnboardingGate({ children }: Props) {
     if (hasPreloadedOnboardingBackground.current) return;
 
     const image = new Image();
-    image.src = ONBOARDING_BACKGROUND_IMAGE_SRC;
+    image.src = brand.assets.onboardingBackground;
     hasPreloadedOnboardingBackground.current = true;
-  }, [stage]);
+  }, [stage, brand.assets.onboardingBackground]);
 
   const acceptAcknowledgement = () => {
     setCookie(ACKNOWLEDGEMENT_COOKIE_NAME, "1");

@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import { existsSync, readFileSync } from "node:fs";
 import path from "node:path";
 import test from "node:test";
+import sharp from "sharp";
 
 import { CONTENT_SLUGS, tenantContent } from "@/lib/tenant/content-registry";
 import { TENANT_IDENTITIES, TENANT_SLUGS } from "@/lib/tenant/domains";
@@ -40,6 +41,8 @@ test("every tenant's content has the required fields populated", () => {
       name: brand.name,
       wordmark: brand.wordmark,
       description: brand.description,
+      legalEntity: brand.legalEntity,
+      eventBlurb: brand.eventBlurb,
       themeColor: brand.themeColor,
     })) {
       assert.ok(value?.trim(), `${slug}: brand.${field} must not be empty`);
@@ -83,9 +86,13 @@ test("referenced brand image assets exist in public/", () => {
   for (const slug of TENANT_SLUGS) {
     const { brand } = tenantContent(slug);
     const paths = [
-      brand.assets.logo,
+      brand.assets.logo.src,
       brand.assets.favicon,
       brand.assets.appleTouchIcon,
+      // Both are read by components now, so a bad path is a broken screen
+      // rather than unused config.
+      brand.assets.onboardingBackground,
+      brand.assets.heroVideo,
       ...brand.assets.faviconPng.map((i) => i.url),
       ...brand.assets.androidChrome.map((i) => i.url),
       ...(brand.assets.headerLogo ? [brand.assets.headerLogo.src] : []),
@@ -99,14 +106,29 @@ test("referenced brand image assets exist in public/", () => {
   }
 });
 
-test("a header logo declares its true pixel dimensions", () => {
-  // The header scales by height and relies on the ratio, so a wrong width or
-  // height distorts the logo rather than failing loudly.
+test("brand logos declare their true pixel dimensions", async () => {
+  // Both are rendered by next/image at a fixed height with `w-auto`, so a wrong
+  // ratio letterboxes the artwork inside the space it reserved rather than
+  // failing loudly. Comparing against the file on disk is what surfaces that —
+  // the showreel logo shipped as 520x200 against a 3037x1707 file for months.
   for (const slug of TENANT_SLUGS) {
-    const logo = tenantContent(slug).brand.assets.headerLogo;
-    if (!logo) continue;
-    assert.ok(logo.width > 0 && logo.height > 0, `${slug}: headerLogo needs real dimensions`);
-    assert.ok(logo.src.startsWith("/"), `${slug}: headerLogo.src must be a root-relative path`);
+    const { assets } = tenantContent(slug).brand;
+    for (const [field, logo] of Object.entries({
+      logo: assets.logo,
+      headerLogo: assets.headerLogo,
+    })) {
+      if (!logo) continue;
+      assert.ok(logo.src.startsWith("/"), `${slug}: ${field}.src must be a root-relative path`);
+      assert.ok(logo.width > 0 && logo.height > 0, `${slug}: ${field} needs real dimensions`);
+
+      const file = path.join(ROOT, "public", logo.src.replace(/^\//, ""));
+      const { width, height } = await sharp(file).metadata();
+      assert.deepEqual(
+        { width: logo.width, height: logo.height },
+        { width, height },
+        `${slug}: ${field} declares ${logo.width}x${logo.height} but ${logo.src} is ${width}x${height}`,
+      );
+    }
   }
 });
 

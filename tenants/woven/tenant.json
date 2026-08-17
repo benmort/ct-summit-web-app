@@ -4,8 +4,14 @@
   "domains": ["woven.commonthreads.org.au"],
   "theme": {
     "mode": "light",
-    "primary": "#124a3e",
-    "secondary": "#8a9826",
+    "primary": "#ed813a",
+    "secondary": "#721112",
+    "overrides": {
+      "page": "#F3EEDF",
+      "surface-950": "#FBF9F4",
+      "surface-900": "#F6F2E9",
+      "surface-800": "#E9E3D4"
+    },
     "fonts": {
       "display": "fjalla-one",
       "body": "anuphan"

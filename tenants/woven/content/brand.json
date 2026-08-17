@@ -1,18 +1,24 @@
 {
   "name": "Woven",
-  "wordmark": "Woven Gathering '26",
-  "legalEntity": "Woven",
-  "description": "Woven weaves global Indigenous knowledge and builds back our power for climate justice. The Global Indigenous Peoples’ Climate Justice Gathering, Gimuy (Cairns), September 2026.",
-  "themeColor": "#124a3e",
+  "wordmark": "Global Gathering 2026",
+  "legalEntity": "Indigenous Climate Action",
+  "description": "Centred on weaving diverse Indigenous knowledges and rights, the Woven Project strengthens collective strategies for self-determination and climate justice.",
+  "themeColor": "#F3EEDF",
+  "eventBlurb": "Over five days in Gimuy (Cairns), fifty Indigenous leaders, knowledge holders, Elders, youth and climate champions from across the globe strengthen collective Indigenous-led climate justice strategies, promote the integration of traditional ecological knowledge into global climate solutions and policies, and foster a powerful, unified voice.",
   "assets": {
-    "logo": "/tenants/woven/logo-white.png",
+    "logo": {
+      "src": "/tenants/woven/logo-white.png",
+      "width": 1240,
+      "height": 387,
+      "alt": "Dreaming Into Our Future"
+    },
     "headerLogo": {
       "src": "/tenants/woven/logo.png",
-      "width": 500,
-      "height": 238,
-      "alt": "Woven"
+      "width": 1200,
+      "height": 297,
+      "alt": "Dreaming Into Our Future"
     },
-    "onboardingBackground": "/images/flinders-filtered.png",
+    "onboardingBackground": "/images/woven/bw-participant-2.webp",
     "heroVideo": "/video/background-loop-small.mp4",
     "appleTouchIcon": "/tenants/woven/apple-touch-icon.png",
     "favicon": "/tenants/woven/favicon-32x32.png",

@@ -1,10 +1,9 @@
 {
   "acknowledgement": {
     "title": "ACKNOWLEDGEMENT OF COUNTRY",
-    "sovereigntyStatement": "TO CONFIRM — Woven's closing sovereignty statement (checklist 2.3).",
+    "sovereigntyStatement": "The Woven Project and Common Threads extend our respects to all Indigenous Peoples who have travelled to be with us at this gathering. We look forward to hosting you in Gimuy.",
     "paragraphs": [
-      "TO CONFIRM — needs Traditional Owner approval before launch. Woven's own website calls the host city Gimuy, the Yidinji name for Cairns, which suggests the naming to use here. Cairns sits on the Country of the Gimuy Walubara Yidinji people, with Yirrganydji Country along the coast. Confirm with local Traditional Owners and have them write or approve this wording. Do not reuse another event's Acknowledgement. See checklist section 2.",
-      "TO CONFIRM — Woven's closing sovereignty statement (checklist 2.3)."
+      "We acknowledge and pay our respects to the Traditional Custodians of the land on which we will gather — the Gimuy Walubara Yidinji People — and neighbouring nations Yirrganydji, Djabugay, Buluwai, Madjandji, Dulabed and Malanbara Yidinji, Bundabarra and Wadjanbarra Yidinji, Mandingalbay Yidinji, Mamu and Ngadjon-Jii, and Gunggandji Peoples."
     ],
     "acceptLabel": "Acknowledge and continue"
   },
@@ -31,17 +30,17 @@
       ]
     },
     {
-      "eyebrow": "HOW WE WORK",
-      "heading": "Gather, Share, Resource, Amplify",
+      "eyebrow": "OUR DEMANDS",
+      "heading": "Land Back, Upholding UNDRIP, Data Sovereignty",
       "paragraphs": [
-        "Our work centres on gathering Indigenous Peoples, creating and sharing global knowledges and tools, mobilising resources to directly support Indigenous-led climate action, and amplifying Indigenous-led climate movements."
+        "We demand that Indigenous Peoples have full access and control over their lands and territories for climate action, of the development and use of their knowledges and data, and full recognition and implementation of UNDRIP for climate justice."
       ]
     },
     {
-      "eyebrow": "SEPTEMBER 2026, GIMUY",
+      "eyebrow": "WELCOME TO GIMUY",
       "heading": "Dreaming Into Our Future",
       "paragraphs": [
-        "Together we strengthen collective Indigenous-led climate justice strategies, promote the integration of traditional ecological knowledge into global climate solutions and policies, and foster a powerful, unified voice."
+        "Woven’s inaugural gathering will convene fifty Indigenous leaders, knowledge holders, Elders and youth and climate champions from across the globe to gather in Australia, welcomed by local First Nations and invited into the cultural philosophy of Dreaming."
       ]
     }
   ],

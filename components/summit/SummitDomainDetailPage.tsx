@@ -8,6 +8,8 @@ import { buildDetail } from "@/lib/summit/domains";
 import { getDomainRecords } from "@/lib/summit/domain-data";
 import { fieldString } from "@/lib/summit/fields";
 import { venueGalleryForName } from "@/lib/summit/venue-gallery";
+import { getTenantContent } from "@/lib/tenant/content";
+import { getTenantSlug } from "@/lib/tenant/server";
 import type { SummitListDomain } from "@/lib/summit/types";
 
 type Props = {
@@ -33,7 +35,8 @@ export default async function SummitDomainDetailPage({ domain, id }: Props) {
   const record = records.find((item) => item.id === id);
   if (!record) notFound();
 
-  const detail = buildDetail(domain, record);
+  const [tenantSlug, { integrations }] = await Promise.all([getTenantSlug(), getTenantContent()]);
+  const detail = buildDetail(domain, record, { tenantSlug, transport: integrations.transport });
   const pronouncedHeader = domain === "speakers" || domain === "events" || domain === "crew";
   const venueGalleryItems = domain === "venues" ? venueGalleryForName(fieldString(record, "Name")) : [];
   const crewWhatsappUrl =
