@@ -14,10 +14,14 @@ import {
   ACKNOWLEDGEMENT_COOKIE_NAME,
   DASHBOARD_ONBOARDING_COOKIE_NAME,
   HOMESCREEN_PROMPT_COOKIE_NAME,
+  onboardingStageFrom,
 } from "@/lib/summit/acknowledgement";
+import type { OnboardingStage } from "@/lib/summit/acknowledgement";
 
 type Props = {
   children: React.ReactNode;
+  /** Resolved from the request cookies on the server, so the first paint is correct. */
+  initialStage: OnboardingStage;
 };
 
 type GateStage = "checking" | "acknowledgement" | "onboarding" | "homescreenPrompt" | "ready";
@@ -282,20 +286,18 @@ function SummitOnboardingOverlay({
   );
 }
 
-export default function SummitDashboardOnboardingGate({ children }: Props) {
+export default function SummitDashboardOnboardingGate({ children, initialStage }: Props) {
   const { brand, onboarding } = useTenantContent();
-  const [stage, setStage] = useState<GateStage>("checking");
+  const [stage, setStage] = useState<GateStage>(initialStage);
   const [slideIndex, setSlideIndex] = useState(0);
   const [showDashboard, setShowDashboard] = useState(false);
   const hasPreloadedOnboardingBackground = useRef(false);
 
   useEffect(() => {
-    if (hasCookie(DASHBOARD_ONBOARDING_COOKIE_NAME)) {
-      setStage(hasCookie(HOMESCREEN_PROMPT_COOKIE_NAME) ? "ready" : "homescreenPrompt");
-      return;
-    }
-
-    setStage(hasCookie(ACKNOWLEDGEMENT_COOKIE_NAME) ? "onboarding" : "acknowledgement");
+    // The server already resolved this from the request cookies; re-check on the
+    // client only so a cookie written in another tab still takes effect. Setting
+    // the same value is a no-op, so the usual case does not re-render.
+    setStage(onboardingStageFrom(hasCookie));
   }, []);
 
   useEffect(() => {

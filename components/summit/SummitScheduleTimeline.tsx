@@ -216,8 +216,7 @@ export default function SummitScheduleTimeline({ days }: Props) {
     window.history.replaceState(window.history.state, "", nextUrl);
   }, [activeDayIndex, days]);
 
-  const panelDayIndex = activeDayIndex ?? 0;
-  const activeDay = activeDayIndex === null ? null : (days[activeDayIndex] ?? days[0]);
+  const panelDayIndex = activeDayIndex ?? defaultProgramDayIndex(days);
 
   function moveFocus(nextIndex: number) {
     setActiveDayIndex(nextIndex);
@@ -307,55 +306,64 @@ export default function SummitScheduleTimeline({ days }: Props) {
         })}
       </div>
 
-      <div
-        id={`schedule-day-panel-${panelDayIndex}`}
-        role="tabpanel"
-        aria-labelledby={`schedule-day-tab-${panelDayIndex}`}
-        className="relative space-y-5 sm:space-y-6"
-      >
-        {!activeDay ? (
-          <section className="rounded-xl border border-veil/10 bg-veil/5 p-4">
-            <p className="text-sm text-ink-300">Loading program day...</p>
-          </section>
-        ) : activeDay.sections.length ? (
-          <>
-            <span
-              aria-hidden
-              className="absolute bottom-0 left-[63px] top-0 w-px bg-veil/10 sm:left-[75px]"
-            />
-            {activeDay.sections.map((section, sectionIndex) => (
-              <section
-                key={`${activeDay.day}-${section.title}-${sectionIndex}`}
-                className="grid grid-cols-[52px_1fr] gap-4 sm:grid-cols-[64px_1fr] sm:gap-5"
-              >
-                <div className="pt-0.5">
-                  <p className="text-sm font-semibold text-ink-100">{section.startLabel} -</p>
-                  <p className="text-sm text-ink-500">{section.endLabel}</p>
-                </div>
+      {/*
+        Every day is rendered, and the inactive ones are hidden rather than left
+        unmounted. Two reasons: the whole programme is then in the server-rendered
+        HTML, where browser translation can reach it — it used to arrive only after
+        hydration — and switching tabs moves no text nodes, so a translation the
+        browser has already applied survives the switch instead of reverting.
+      */}
+      {days.map((day, dayIndex) => (
+        <div
+          key={`${day.day}-${dayIndex}`}
+          id={`schedule-day-panel-${dayIndex}`}
+          role="tabpanel"
+          aria-labelledby={`schedule-day-tab-${dayIndex}`}
+          hidden={dayIndex !== panelDayIndex}
+          className={
+            dayIndex === panelDayIndex ? "relative space-y-5 sm:space-y-6" : "hidden"
+          }
+        >
+          {day.sections.length ? (
+            <>
+              <span
+                aria-hidden
+                className="absolute bottom-0 left-[63px] top-0 w-px bg-veil/10 sm:left-[75px]"
+              />
+              {day.sections.map((section, sectionIndex) => (
+                <section
+                  key={`${day.day}-${section.title}-${sectionIndex}`}
+                  className="grid grid-cols-[52px_1fr] gap-4 sm:grid-cols-[64px_1fr] sm:gap-5"
+                >
+                  <div className="pt-0.5">
+                    <p className="text-sm font-semibold text-ink-100">{section.startLabel} -</p>
+                    <p className="text-sm text-ink-500">{section.endLabel}</p>
+                  </div>
 
-                <div className="relative space-y-2 pl-1 sm:pl-2">
-                  <span
-                    aria-hidden
-                    className={
-                      sectionIndex === 0
-                        ? "absolute -left-[10px] top-2 h-2.5 w-2.5 rounded-full border border-brand-300/80 bg-brand-400 sm:-left-[14px]"
-                        : "absolute -left-[10px] top-2 h-2.5 w-2.5 rounded-full border border-brand-200/70 bg-surface-950 sm:-left-[14px]"
-                    }
-                  />
+                  <div className="relative space-y-2 pl-1 sm:pl-2">
+                    <span
+                      aria-hidden
+                      className={
+                        sectionIndex === 0
+                          ? "absolute -left-[10px] top-2 h-2.5 w-2.5 rounded-full border border-brand-300/80 bg-brand-400 sm:-left-[14px]"
+                          : "absolute -left-[10px] top-2 h-2.5 w-2.5 rounded-full border border-brand-200/70 bg-surface-950 sm:-left-[14px]"
+                      }
+                    />
 
-                  {section.data.map((slot) => (
-                    <ScheduleCard key={`${section.title}-${slot.id}`} slot={slot} />
-                  ))}
-                </div>
-              </section>
-            ))}
-          </>
-        ) : (
-          <section className="rounded-xl border border-veil/10 bg-veil/5 p-4">
-            <p className="text-sm text-ink-300">Program details for this day will be shared soon.</p>
-          </section>
-        )}
-      </div>
+                    {section.data.map((slot) => (
+                      <ScheduleCard key={`${section.title}-${slot.id}`} slot={slot} />
+                    ))}
+                  </div>
+                </section>
+              ))}
+            </>
+          ) : (
+            <section className="rounded-xl border border-veil/10 bg-veil/5 p-4">
+              <p className="text-sm text-ink-300">Program details for this day will be shared soon.</p>
+            </section>
+          )}
+        </div>
+      ))}
 
       <p className="inline-flex items-center gap-1 text-[11px] text-ink-500">
         <MapPinIcon className="h-3.5 w-3.5" />

@@ -28,12 +28,16 @@ export default function SummitCrewListPage({ records }: Props) {
     () => Array.from(new Set(records.flatMap((record) => crewRoles(record)))).sort(),
     [records],
   );
-  const [activeRole, setActiveRole] = useState<string | null | undefined>(undefined);
+  // Seeded to "all roles" rather than an undefined "not read yet" state, so the
+  // crew list is in the server-rendered HTML instead of a loading card. The hash
+  // is applied in the layout effect below, before first paint.
+  const [activeRole, setActiveRole] = useState<string | null>(null);
+  const hasReadHash = useRef(false);
   const tabRefs = useRef<Array<HTMLButtonElement | null>>([]);
 
   useLayoutEffect(() => {
-    const fromHash = roleFromHash(window.location.hash, roles);
-    setActiveRole(fromHash);
+    setActiveRole(roleFromHash(window.location.hash, roles));
+    hasReadHash.current = true;
   }, [roles]);
 
   useEffect(() => {
@@ -45,7 +49,7 @@ export default function SummitCrewListPage({ records }: Props) {
   }, [roles]);
 
   useEffect(() => {
-    if (activeRole === undefined) return;
+    if (!hasReadHash.current) return;
     if (!activeRole) {
       const cleanUrl = `${window.location.pathname}${window.location.search}`;
       if (window.location.hash) {
@@ -83,13 +87,13 @@ export default function SummitCrewListPage({ records }: Props) {
                 key: "__all__",
                 label: "All roles",
                 eyebrow: "Crew",
-                selected: activeRole !== undefined && activeRole === null,
+                selected: activeRole === null,
               },
               ...roles.map((role) => ({
                 key: role,
                 label: role,
                 eyebrow: "Role",
-                selected: activeRole !== undefined && activeRole === role,
+                selected: activeRole === role,
               })),
             ].map((item, index, list) => (
               <button
@@ -100,14 +104,11 @@ export default function SummitCrewListPage({ records }: Props) {
                 type="button"
                 role="tab"
                 aria-selected={item.selected}
-                tabIndex={item.selected || (activeRole === undefined && index === 0) ? 0 : -1}
-                disabled={activeRole === undefined}
+                tabIndex={item.selected ? 0 : -1}
                 onClick={() => {
-                  if (activeRole === undefined) return;
                   setActiveRole(item.key === "__all__" ? null : item.key);
                 }}
                 onKeyDown={(event) => {
-                  if (activeRole === undefined) return;
                   if (event.key === "ArrowRight") {
                     event.preventDefault();
                     const nextIndex = (index + 1) % list.length;
@@ -163,11 +164,7 @@ export default function SummitCrewListPage({ records }: Props) {
           </div>
         </div>
       ) : null}
-      {activeRole === undefined ? (
-        <section className="rounded-xl border border-veil/10 bg-veil/5 p-4">
-          <p className="text-sm text-ink-300">Loading crew role...</p>
-        </section>
-      ) : filteredRecords.length ? (
+      {filteredRecords.length ? (
         <div className="grid gap-3 sm:grid-cols-2">
           {filteredRecords.map((record) => (
             <SummitListCard

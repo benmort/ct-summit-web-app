@@ -89,15 +89,21 @@ function splitSummitName(name: string): { overline: string; title: string } {
   };
 }
 
+/**
+ * The gathering's clock, not the reader's.
+ *
+ * `toLocaleTimeString` renders in the browser's timezone, so a delegate reading
+ * this from Lima or Oslo — most of them — saw a start time hours out from the one
+ * on the programme screen. The stored value already carries the gathering's own
+ * offset, so the literal time in the string is the answer, which is how
+ * `lib/summit/schedule.ts` reads it too.
+ */
 function formatSpeakerStart(record: SummitRecord): string {
   const raw = fieldFirst(record, "DateTime Start [Schedule]");
-  const parsed = parseDateTime(raw);
-  if (!parsed) return "Time to be confirmed";
+  const match = raw.match(/^\d{4}-\d{2}-\d{2}T(\d{2}):(\d{2})/);
+  if (!match) return "Time to be confirmed";
 
-  return `Starts at ${parsed.toLocaleTimeString([], {
-    hour: "numeric",
-    minute: "2-digit",
-  })}`;
+  return `Starts at ${match[1]}:${match[2]}`;
 }
 
 function formatRoomLabel(value: string): string {
