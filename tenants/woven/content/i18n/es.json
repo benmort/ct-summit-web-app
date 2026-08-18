@@ -1,0 +1,329 @@
+{
+  "brand": {
+    "description": "Centrado en tejer la diversidad de saberes y derechos Indígenas, The Woven Project fortalece las estrategias colectivas de libre determinación y justicia climática.",
+    "eventBlurb": "Durante cinco días en Gimuy (Cairns), cincuenta líderes Indígenas, portadores de conocimiento, Elders, jóvenes y defensores del clima de todo el mundo fortalecen estrategias colectivas de justicia climática lideradas por pueblos Indígenas, impulsan la integración del conocimiento ecológico tradicional en las soluciones y políticas climáticas globales, y construyen una voz unida y poderosa."
+  },
+  "navigation": {
+    "tabs": [
+      {
+        "href": "/",
+        "label": "Inicio"
+      },
+      {
+        "href": "/program",
+        "label": "Programa"
+      },
+      {
+        "href": "/speakers",
+        "label": "Ponentes"
+      },
+      {
+        "href": "/moments",
+        "label": "Momentos"
+      }
+    ],
+    "menu": [
+      {
+        "href": "/",
+        "label": "Inicio",
+        "subtitle": "Panel del encuentro y accesos rápidos"
+      },
+      {
+        "href": "/program",
+        "label": "Programa",
+        "subtitle": "Agenda de sesiones y horarios diarios"
+      },
+      {
+        "href": "/event-guidance",
+        "label": "Guía del evento",
+        "subtitle": "Logística de viaje, accesibilidad y bienestar"
+      },
+      {
+        "href": "/speakers",
+        "label": "Ponentes",
+        "subtitle": "Conozca a nuestros ponentes y colaboradores"
+      },
+      {
+        "href": "/crew",
+        "label": "Equipo",
+        "subtitle": "Encuentre al equipo de apoyo del encuentro"
+      },
+      {
+        "href": "/moments",
+        "label": "Momentos",
+        "subtitle": "Galería de fotos y videos compartidos"
+      },
+      {
+        "href": "/venues",
+        "label": "Sedes",
+        "subtitle": "Ubicaciones, mapas y accesos de las sedes"
+      },
+      {
+        "href": "/events",
+        "label": "Eventos",
+        "subtitle": "Sesiones, pausas y bloques de actividades"
+      },
+      {
+        "href": "/attractions",
+        "label": "Atracciones",
+        "subtitle": "Qué hacer cerca"
+      },
+      {
+        "href": "/organisations",
+        "label": "Organizaciones",
+        "subtitle": "Organizaciones participantes y aliados"
+      },
+      {
+        "href": "/code-conduct",
+        "label": "Código de conducta",
+        "subtitle": "Expectativas de seguridad comunitaria y apoyo"
+      }
+    ],
+    "pageSubtitles": {
+      "home": "Panel del encuentro y accesos rápidos",
+      "program": "Agenda de sesiones y horarios diarios",
+      "eventGuidance": "Logística de viaje, accesibilidad y bienestar",
+      "speakers": "Conozca a nuestros ponentes y colaboradores",
+      "crew": "Encuentre al equipo de apoyo del encuentro",
+      "venues": "Ubicaciones, mapas y accesos de las sedes",
+      "events": "Sesiones, pausas y bloques de actividades",
+      "attractions": "Qué hacer cerca",
+      "organisations": "Organizaciones participantes y aliados",
+      "sponsors": "Aliados que respaldan el encuentro",
+      "surveys": "Formularios de comentarios y consultas rápidas",
+      "codeConduct": "Expectativas de seguridad comunitaria y apoyo",
+      "moments": "Galería de fotos y videos compartidos"
+    }
+  },
+  "onboarding": {
+    "acknowledgement": {
+      "title": "ACKNOWLEDGEMENT OF COUNTRY",
+      "sovereigntyStatement": "The Woven Project y Common Threads expresamos nuestro respeto a todos los Pueblos Indígenas que han viajado para acompañarnos en este encuentro. Esperamos recibirle en Gimuy.",
+      "paragraphs": [
+        "Reconocemos y expresamos nuestro respeto a los Traditional Custodians de la tierra en la que nos reuniremos — el pueblo Gimuy Walubara Yidinji — y a las naciones vecinas Yirrganydji, Djabugay, Buluwai, Madjandji, Dulabed y Malanbara Yidinji, Bundabarra y Wadjanbarra Yidinji, Mandingalbay Yidinji, Mamu y Ngadjon-Jii, y los pueblos Gunggandji."
+      ],
+      "acceptLabel": "Reconocer y continuar"
+    },
+    "slides": [
+      {
+        "eyebrow": "BIENVENIDA A WOVEN",
+        "heading": "Donde el conocimiento colectivo lleva a la fuerza colectiva",
+        "paragraphs": [
+          "Woven teje los conocimientos Indígenas del mundo y recupera nuestro poder para la justicia climática: fortalece la salud de nuestro planeta a la vez que fortalece los derechos de nuestros pueblos."
+        ]
+      },
+      {
+        "eyebrow": "NUESTRA VISIÓN",
+        "heading": "Comenzando con la devolución legítima de las tierras",
+        "paragraphs": [
+          "Imaginamos un futuro con estabilidad climática que incluya, valore y defienda a los pueblos Indígenas y a las soluciones climáticas lideradas por ellos, comenzando por la devolución legítima de tierras y territorios."
+        ]
+      },
+      {
+        "eyebrow": "DESDE 2009",
+        "heading": "Una visión sostenida durante diecisiete años",
+        "paragraphs": [
+          "Las raíces de Woven se remontan a la Cumbre Global de los Pueblos Indígenas sobre el Cambio Climático, celebrada en Anchorage, Alaska, en 2009. Woven se lanzó en 2025 y este es su primer encuentro global."
+        ]
+      },
+      {
+        "eyebrow": "NUESTRAS DEMANDAS",
+        "heading": "Devolución de las tierras, cumplimiento de UNDRIP, soberanía de los datos",
+        "paragraphs": [
+          "Exigimos que los Pueblos Indígenas tengan acceso y control plenos sobre sus tierras y territorios para la acción climática, así como sobre el desarrollo y el uso de sus conocimientos y datos, y el pleno reconocimiento e implementación de UNDRIP para la justicia climática."
+        ]
+      },
+      {
+        "eyebrow": "BIENVENIDA A GIMUY",
+        "heading": "Dreaming Into Our Future",
+        "paragraphs": [
+          "El encuentro inaugural de Woven reunirá en Australia a cincuenta líderes Indígenas, portadores de conocimiento, Elders, jóvenes y defensores del clima de todo el mundo, recibidos por las First Nations locales e invitados a la filosofía cultural del Dreaming."
+        ]
+      }
+    ],
+    "homescreenPrompt": {
+      "title": "GUARDAR EN LA PANTALLA DE INICIO",
+      "body": "Para acceder más rápido durante el encuentro, agregue Woven a la pantalla de inicio de su teléfono.",
+      "androidBody": "Toque Instalar para abrir el aviso de instalación de su navegador y luego confirme para agregar la aplicación.",
+      "iosSteps": [
+        "Toque el botón Compartir en Safari.",
+        "Deslice hacia abajo y seleccione Agregar a pantalla de inicio.",
+        "Toque Agregar para finalizar."
+      ],
+      "fallbackBody": "Abra el menú de su navegador y busque Instalar aplicación o Agregar a pantalla de inicio."
+    }
+  },
+  "guidance": {
+    "title": "Guía del evento",
+    "sections": [
+      {
+        "title": "Registro",
+        "paragraphs": [
+          "El registro para el Encuentro Global estará abierto en nuestro mostrador de registro, afuera del Kauri Ballroom, de 3pm a 5pm el lunes 7 de septiembre, y luego de 8am a 9am el martes 8 de septiembre, justo antes de que comience la programación del Día 1."
+        ]
+      },
+      {
+        "title": "Comidas",
+        "paragraphs": [
+          "Se proporcionarán comidas siempre que sea posible y, cuando no lo sea, se le transferirá un estipendio para cubrir el costo de sus comidas.",
+          "Reembolsaremos a las personas delegadas hasta AUD$120 por día por el costo de sus comidas:",
+          "- Desayuno — hasta AUD$25. El desayuno está incluido en su reserva de alojamiento.",
+          "- Almuerzo — hasta AUD$35. Cada día del Encuentro se ofrecen refrigerio de la mañana, almuerzo y refrigerio de la tarde.",
+          "- Cena — hasta AUD$60. Estamos planeando organizar un evento social una noche que incluirá la cena."
+        ]
+      },
+      {
+        "title": "Cómo llegar a Cairns y a la sede",
+        "paragraphs": [
+          "Por favor, descargue Uber antes de su llegada a Cairns para que podamos enviarle un vale que podrá usar en sus traslados desde y hacia el aeropuerto. Todos los demás traslados de la semana se organizarán para usted; los detalles llegarán más adelante.",
+          "Los taxis y el transporte compartido son la forma más fácil de moverse por Gimuy (Cairns)."
+        ]
+      },
+      {
+        "title": "Visas y viajes internacionales",
+        "paragraphs": [
+          "Toda persona que viaje desde fuera de Australia o Nueva Zelanda necesita una visa para ingresar al país. Su solicitud de visa para ingresar a Australia ya debería estar en trámite.",
+          "Woven y Common Threads no se encargan de presentar la solicitud en su nombre, pero le reembolsarán el costo de su trámite.",
+          "Aquí encontrará instrucciones y recursos para ayudarle con su solicitud: https://drive.google.com/drive/folders/1LNCykvhupnTKQ0XGhBHFsOrhq6zLDEjb?usp=drive_link"
+        ]
+      },
+      {
+        "title": "Viajar a Australia",
+        "paragraphs": [
+          "Antes de viajar, revise lo siguiente:",
+          "- Revise qué puede ingresar a Australia: https://immi.homeaffairs.gov.au/entering-and-leaving-australia/entering-australia/can-i-bring-it-in",
+          "- Conozca más sobre las visas y los requisitos de salud y de carácter: https://immi.homeaffairs.gov.au/entering-and-leaving-australia/entering-australia/can-i-go-to-australia",
+          "- Conozca más sobre el cruce de nuestras fronteras: https://immi.homeaffairs.gov.au/entering-and-leaving-australia/entering-australia/crossing-the-border",
+          "La vacuna contra la fiebre amarilla es obligatoria si viene de un país con alto riesgo de transmisión, algo probable para quienes viajen desde países de África, o de América Latina y el Caribe.",
+          "Se recomiendan varias vacunas, aunque no son obligatorias:",
+          "- Hepatitis A",
+          "- Poliomielitis",
+          "- COVID-19",
+          "- Influenza",
+          "- Hepatitis B",
+          "- Rabia (para viajes de larga duración o para quienes tengan contacto con animales)",
+          "- Encefalitis japonesa (según el itinerario)",
+          "- Meningitis",
+          "- Varicela",
+          "- Herpes zóster",
+          "- Tétanos, difteria y tosferina (Tdap)",
+          "- Sarampión, paperas y rubéola (MMR)",
+          "El seguro de viaje no es obligatorio, pero el Gobierno de Australia lo recomienda enfáticamente y los equipos de The Woven Project y Common Threads lo alientan con firmeza. Contratar un seguro de viaje es responsabilidad de cada persona delegada y corre por su cuenta. Conviene buscar un proveedor en su país de origen. Algunas visas pueden exigir comprobante de una cobertura adecuada."
+        ]
+      },
+      {
+        "title": "Alojamiento",
+        "paragraphs": [
+          "Nosotros nos encargamos del alojamiento; no es necesario que lo reserve por su cuenta. Es posible que deba presentar un documento de identidad al registrarse, pero no deberían pedirle un depósito de garantía.",
+          "Su alojamiento incluye el desayuno en el restaurante del hotel entre las 6:30am y las 9:30am cada día; tenga en cuenta que las jornadas del Encuentro comienzan a las 8:30am. Deje tiempo suficiente para disfrutar el desayuno y sentirse preparado para el día."
+        ]
+      },
+      {
+        "title": "Persona de apoyo",
+        "paragraphs": [
+          "Si necesita que una persona de apoyo viaje con usted, comuníquese con el equipo de Woven en info@thewovenproject.org lo antes posible para poder hacer los arreglos.",
+          "El Encuentro y las actividades paralelas y sociales cuentan con intérpretes y traductores, por lo que no se aprobará el viaje de quienes asistan únicamente para brindar traducción."
+        ]
+      },
+      {
+        "title": "El clima y qué llevar",
+        "paragraphs": [
+          "Septiembre en Gimuy (Cairns) es temporada seca tropical. Espere temperaturas promedio entre 23°C y 27°C (73°F a 80°F). El pronóstico local está aquí: https://www.bom.gov.au/qld/cairns/",
+          "Recomendamos a las personas delegadas llevar:",
+          "- Ropa adecuada para el clima — vea el pronóstico local más arriba",
+          "- Repelente de insectos",
+          "- Una botella de agua reutilizable o rellenable (de vidrio, de preferencia)",
+          "- Sombrero, protector solar, lentes de sol y otras formas de protección solar",
+          "- Zapatos cerrados para las Cultural Immersion Activities",
+          "- Un poncho o ropa impermeable ligera por si llueve",
+          "- Una cámara para tomar fotos",
+          "- Algo de efectivo para gastos menores y recuerdos"
+        ]
+      },
+      {
+        "title": "Política sobre enfermedades",
+        "paragraphs": [
+          "El Encuentro Global en Gimuy reunirá a personas de todo el mundo que trabajan en una amplia variedad de temas y desde perspectivas diversas. Nos alegra que nos acompañen Elders, niñas y niños pequeños, personas de comunidades remotas o aisladas y personas inmunocomprometidas, y queremos cuidar su seguridad y la de nuestras comunidades.",
+          "Por eso, recomendamos que quienes no se sientan bien permanezcan en casa. Si tiene síntomas de resfriado o gripe, o no se siente bien por cualquier otro motivo, le pedimos que no asista al evento.",
+          "Por favor, no asista ni viaje al Encuentro Global si:",
+          "- Tiene COVID-19 o da positivo en una prueba rápida de antígenos o en una prueba PCR",
+          "- Tiene síntomas de resfriado o gripe (por ejemplo, tos, dolor de garganta, congestión nasal, fiebre o dolor de cabeza) o no se siente bien por otro motivo",
+          "- Es contacto estrecho de un caso confirmado de COVID-19",
+          "Si no puede asistir, avísenos lo antes posible a info@thewovenproject.org",
+          "Cada persona delegada es responsable de contratar su propio seguro de viaje, que cubra sus traslados desde y hacia Australia y su estadía en Gimuy (Cairns) durante el Encuentro."
+        ]
+      },
+      {
+        "title": "Accesibilidad",
+        "paragraphs": [
+          "La sede del evento y el hotel son espacios accesibles. Si necesita un alojamiento accesible, avísenos lo antes posible.",
+          "El Encuentro contará con intérpretes que traducirán desde y hacia el inglés, el español, el ruso, el francés y el portugués.",
+          "Comuníquese con Jay Knapp, Responsable de Eventos, si tiene preguntas o inquietudes sobre accesibilidad o sobre su participación en el evento."
+        ]
+      },
+      {
+        "title": "Bienestar",
+        "paragraphs": [
+          "Este encuentro aborda la defensa de la tierra, el despojo y las pérdidas causadas por el clima. Son temas que pesan de verdad, sobre todo para las personas delegadas que los han vivido en carne propia, y es normal necesitar un momento fuera de la sala.",
+          "Tiana Jakicevich está a cargo de la Coordinación de Bienestar y Reclamos y está disponible durante todo el Encuentro para una conversación confidencial. También puede escribir al equipo a info@thewovenproject.org."
+        ]
+      },
+      {
+        "title": "El dinero en Australia",
+        "paragraphs": [
+          "- La mayoría de los comercios cuentan con EFTPOS y aceptan tarjetas de crédito. Visa y Mastercard se aceptan en todas partes; algunos comercios pequeños pueden no aceptar American Express ni Diners Club.",
+          "- En 2025, las transacciones en efectivo representaron menos del 15% de todas las transacciones en Australia.",
+          "- Conviene traer algo de efectivo, dentro de límites razonables. Entregamos un estipendio para comidas y gastos menores, pero si desea organizar o costear alguna actividad por su cuenta, asegúrese de traer lo suficiente. Todo monto superior a AUD$10,000 debe declararse.",
+          "- Las casas de cambio en los aeropuertos australianos cobran comisiones altas, así que considere cambiar dinero antes de salir de su país.",
+          "- Hay cajeros automáticos por todas partes en Australia, y muchos supermercados, gasolineras y comercios permiten retirar efectivo al pagar.",
+          "Conozca más aquí: https://www.australia-backpackersguide.com/how-to-get-cash-australia/"
+        ]
+      },
+      {
+        "title": "Gastos cubiertos",
+        "paragraphs": [
+          "Woven Project cubrirá el costo de:",
+          "- Alojamiento en Cairns del sábado 5 de septiembre al viernes 11 de septiembre, con desayuno incluido",
+          "- Vuelos de ida y vuelta en clase económica desde su ciudad de origen hasta Cairns",
+          "- Un estipendio, por confirmar, para cubrir comidas, traslados y otros gastos de bolsillo"
+        ]
+      },
+      {
+        "title": "Servicios esenciales cercanos",
+        "paragraphs": [
+          "Farmacia — Ramsay Pharmacy Cairns, abierta de 8:00am a 5:30pm de lunes a viernes: https://maps.app.goo.gl/LNxAnwAH8iC6V2jp9",
+          "Los fines de semana, pruebe Ramsay Pharmacy Cairns Medical Centre, abierta de 7:00am a 10:00pm de lunes a viernes y de 7:00am a 9:00pm los fines de semana: https://maps.app.goo.gl/QrCDtwDUf2FiQY3S6",
+          "Tienda de conveniencia — GoodFoods Supermarket, abierto de 6:00am a 12:00am todos los días: https://maps.app.goo.gl/YFrSsJjDfB4wKynZ9",
+          "Friendly Grocer Cairns, abierto de 6:00am a 10:00pm todos los días: https://maps.app.goo.gl/FcJLZcfFP1YqNYxH9",
+          "Supermercado — Woolworths, abierto de 6:00am a 10:00pm de lunes a viernes, de 7:00am a 10:00pm el sábado y de 7:00am a 9:00pm el domingo: https://maps.app.goo.gl/RKthpCPGVA9S5ama9",
+          "Coles, abierto de 7:00am a 10:00pm de lunes a sábado y de 7:00am a 9:00pm el domingo: https://maps.app.goo.gl/jtDnhyDtmitjHb7o9",
+          "Centro médico — Cairns GP Superclinic, abierto de 7:00am a 9:00pm de lunes a viernes y de 8:00am a 6:00pm los fines de semana: https://maps.app.goo.gl/BvfTuo1C9TrnyfgG6",
+          "Hospital — Cairns Hospital, abierto las 24 horas: https://maps.app.goo.gl/qAT6545WzzjAwPmW7"
+        ]
+      },
+      {
+        "title": "Wifi, tabaco, cajeros automáticos, tarjetas SIM y código de vestimenta",
+        "paragraphs": [
+          "El wifi está incluido en su alojamiento y en su participación en el Encuentro.",
+          "El Rydges Esplanade Resort Cairns es una propiedad libre de humo. Deberá salir por completo de la propiedad si desea fumar.",
+          "Los cajeros automáticos más cercanos son el atmx de Cairns Ampol: https://maps.app.goo.gl/Ed3dDDo9pDxdFVkH8 y el atmx de Cairns Night Markets: https://maps.app.goo.gl/oJk8nxfhzuNGZ8as6",
+          "Le recomendamos comprar una tarjeta SIM o eSIM antes de viajar para acompañarnos.",
+          "Vista con comodidad para el Encuentro; no tenemos un código de vestimenta formal. Solo le pedimos que se vista de forma cómoda para participar plenamente en el programa. Algunas de las Cultural Immersion Activities previstas para el lunes 7 de septiembre requerirán que use calzado cerrado."
+        ]
+      },
+      {
+        "title": "Fotografía y consentimiento",
+        "paragraphs": [
+          "Durante el encuentro se tomarán fotografías y se grabarán videos. Las imágenes y grabaciones podrán usarse para contar la historia de este evento en nuestras comunicaciones, publicaciones y redes sociales. Nos comprometemos a capturar y compartir las imágenes con respeto y en el espíritu del encuentro.",
+          "Si prefiere no aparecer en fotos ni en video, avísenos en el registro — dejaremos constancia de su preferencia y la respetaremos."
+        ]
+      }
+    ]
+  },
+  "integrations": {
+    "transport": {
+      "label": "Cómo moverse",
+      "value": "Los taxis y el transporte compartido son la forma más fácil de llegar a la sede. Se entregan vales de Uber para sus traslados al aeropuerto."
+    }
+  }
+}

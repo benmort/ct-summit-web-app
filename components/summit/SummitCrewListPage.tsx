@@ -6,7 +6,7 @@ import SummitEmpty from "@/components/summit/SummitEmpty";
 import SummitListCard from "@/components/summit/SummitListCard";
 import SummitPageHeader from "@/components/summit/SummitPageHeader";
 import { buildListItem } from "@/lib/summit/domains";
-import { fieldList, fieldString } from "@/lib/summit/fields";
+import { ORIGINAL_FIELD_SUFFIX, fieldList, fieldString } from "@/lib/summit/fields";
 import { useTenantContent } from "@/components/TenantContentProvider";
 import { roleFromHash, roleHash } from "@/lib/summit/crew-filters";
 import type { SummitRecord } from "@/lib/summit/types";
@@ -15,19 +15,45 @@ type Props = {
   records: SummitRecord[];
 };
 
-function crewRoles(record: SummitRecord): string[] {
-  const roles = fieldList(record, "Role").filter(Boolean);
-  if (roles.length > 0) return roles;
-  const fallbackRole = fieldString(record, "Role").trim();
-  return fallbackRole ? [fallbackRole] : [];
+type CrewRole = {
+  /** Stable English, used for the URL hash and for matching. */
+  key: string;
+  /** What the delegate reads, in their language. */
+  label: string;
+};
+
+/**
+ * A role is both a label and an identity.
+ *
+ * The code-of-conduct page deep-links to whoever holds the wellbeing role using
+ * the English title, and `roleHashToken` strips everything outside [a-z0-9] — so
+ * matching on the translated label would break the link in Spanish and collapse
+ * every Cyrillic role to the same empty token. Keys stay English; only labels
+ * translate.
+ */
+function crewRoleEntries(record: SummitRecord): CrewRole[] {
+  const labels = fieldList(record, "Role").filter(Boolean);
+  const originals = fieldList(record, `Role${ORIGINAL_FIELD_SUFFIX}`).filter(Boolean);
+  if (labels.length > 0) {
+    return labels.map((label, index) => ({ key: originals[index] ?? label, label }));
+  }
+  const fallback = fieldString(record, "Role").trim();
+  return fallback ? [{ key: fallback, label: fallback }] : [];
 }
 
 export default function SummitCrewListPage({ records }: Props) {
   const { navigation } = useTenantContent();
-  const roles = useMemo(
-    () => Array.from(new Set(records.flatMap((record) => crewRoles(record)))).sort(),
-    [records],
-  );
+  const roles = useMemo(() => {
+    const byKey = new Map<string, CrewRole>();
+    for (const record of records) {
+      for (const role of crewRoleEntries(record)) {
+        if (!byKey.has(role.key)) byKey.set(role.key, role);
+      }
+    }
+    return [...byKey.values()].sort((a, b) => a.label.localeCompare(b.label));
+  }, [records]);
+  const roleKeys = useMemo(() => roles.map((role) => role.key), [roles]);
+  const labelForKey = (key: string) => roles.find((role) => role.key === key)?.label ?? key;
   // Seeded to "all roles" rather than an undefined "not read yet" state, so the
   // crew list is in the server-rendered HTML instead of a loading card. The hash
   // is applied in the layout effect below, before first paint.
@@ -36,17 +62,17 @@ export default function SummitCrewListPage({ records }: Props) {
   const tabRefs = useRef<Array<HTMLButtonElement | null>>([]);
 
   useLayoutEffect(() => {
-    setActiveRole(roleFromHash(window.location.hash, roles));
+    setActiveRole(roleFromHash(window.location.hash, roleKeys));
     hasReadHash.current = true;
-  }, [roles]);
+  }, [roleKeys]);
 
   useEffect(() => {
     const onHashChange = () => {
-      setActiveRole(roleFromHash(window.location.hash, roles));
+      setActiveRole(roleFromHash(window.location.hash, roleKeys));
     };
     window.addEventListener("hashchange", onHashChange);
     return () => window.removeEventListener("hashchange", onHashChange);
-  }, [roles]);
+  }, [roleKeys]);
 
   useEffect(() => {
     if (!hasReadHash.current) return;
@@ -64,7 +90,7 @@ export default function SummitCrewListPage({ records }: Props) {
   }, [activeRole]);
 
   const filteredRecords = activeRole
-    ? records.filter((record) => crewRoles(record).includes(activeRole))
+    ? records.filter((record) => crewRoleEntries(record).some((role) => role.key === activeRole))
     : records;
 
   function moveFocus(nextIndex: number) {
@@ -90,10 +116,10 @@ export default function SummitCrewListPage({ records }: Props) {
                 selected: activeRole === null,
               },
               ...roles.map((role) => ({
-                key: role,
-                label: role,
+                key: role.key,
+                label: role.label,
                 eyebrow: "Role",
-                selected: activeRole === role,
+                selected: activeRole === role.key,
               })),
             ].map((item, index, list) => (
               <button
@@ -177,7 +203,7 @@ export default function SummitCrewListPage({ records }: Props) {
           ))}
         </div>
       ) : (
-        <SummitEmpty title="No matching crew roles yet" body={`No crew records were found with role: ${activeRole}.`} />
+        <SummitEmpty title="No matching crew roles yet" body={`No crew records were found with role: ${labelForKey(activeRole ?? "")}.`} />
       )}
     </div>
   );

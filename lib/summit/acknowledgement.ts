@@ -6,6 +6,8 @@
  * host by the browser, and each tenant is served from its own domain, so two
  * tenants never see each other's onboarding state.
  */
+import { LOCALE_COOKIE_NAME } from "@/lib/i18n/locales";
+
 export const ACKNOWLEDGEMENT_COOKIE_NAME = "ct-acknowledged-country";
 export const ACKNOWLEDGEMENT_COOKIE_MAX_AGE_SECONDS = 60 * 60 * 24 * 365;
 export const ACKNOWLEDGEMENT_ACCEPTED_EVENT = "ct:acknowledgement-accepted";
@@ -13,7 +15,12 @@ export const ACKNOWLEDGEMENT_ACCEPTED_EVENT = "ct:acknowledgement-accepted";
 export const DASHBOARD_ONBOARDING_COOKIE_NAME = "ct-dashboard-onboarding-complete";
 export const HOMESCREEN_PROMPT_COOKIE_NAME = "ct-homescreen-prompt-complete";
 
-export type OnboardingStage = "acknowledgement" | "onboarding" | "homescreenPrompt" | "ready";
+export type OnboardingStage =
+  | "language"
+  | "acknowledgement"
+  | "onboarding"
+  | "homescreenPrompt"
+  | "ready";
 
 /**
  * Which onboarding step a visitor is up to, from whichever cookie jar you have.
@@ -25,6 +32,10 @@ export type OnboardingStage = "acknowledgement" | "onboarding" | "homescreenProm
  * blank first paint for every returning delegate.
  */
 export function onboardingStageFrom(hasCookie: (name: string) => boolean): OnboardingStage {
+  // Language comes first: the next screen asks the reader to accept an
+  // Acknowledgement of Country, which is not a thing to put in front of someone
+  // in a language they do not read.
+  if (!hasCookie(LOCALE_COOKIE_NAME)) return "language";
   if (hasCookie(DASHBOARD_ONBOARDING_COOKIE_NAME)) {
     return hasCookie(HOMESCREEN_PROMPT_COOKIE_NAME) ? "ready" : "homescreenPrompt";
   }

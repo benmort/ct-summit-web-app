@@ -1,3 +1,11 @@
+/**
+ * Suffix under which a translated record keeps its untranslated value.
+ *
+ * Some values are identity as well as display text — a crew `Role` is the key the
+ * code-of-conduct page deep-links on — so translation keeps the English beside it.
+ */
+export const ORIGINAL_FIELD_SUFFIX = " [en]";
+
 import type { SummitRecord } from "@/lib/summit/types";
 
 const DEFAULT_IMAGE =

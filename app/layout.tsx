@@ -4,6 +4,7 @@ import TenantContentProvider from "@/components/TenantContentProvider";
 import { getTenantClientContent, getTenantContent } from "@/lib/tenant/content";
 import { resolveTenantFonts } from "@/lib/tenant/fonts";
 import { themeStyleSheet } from "@/lib/tenant/ramp";
+import { getLocale } from "@/lib/i18n/server";
 import { getTenantIdentity } from "@/lib/tenant/server";
 import "./globals.css";
 
@@ -79,6 +80,9 @@ export default async function RootLayout({
 }) {
   const tenant = await getTenantIdentity();
   const content = await getTenantClientContent();
+  // Tells the browser what language the page is actually in, so it stops
+  // offering to translate copy that is already translated.
+  const locale = await getLocale();
   const fonts = resolveTenantFonts(tenant.theme.fonts, tenant.slug);
   // Empty for any tenant that inherits the palette and system fonts in
   // globals.css, which is how the default tenant stays byte-identical to the
@@ -87,7 +91,7 @@ export default async function RootLayout({
 
   return (
     <html
-      lang="en"
+      lang={locale}
       data-tenant={tenant.slug}
       data-theme={tenant.theme.mode}
       className={fonts.classNames || undefined}

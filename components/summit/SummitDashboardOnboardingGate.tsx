@@ -6,7 +6,9 @@ import {
   ChevronRightIcon,
 } from "@heroicons/react/24/outline";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useRouter } from "next/navigation";
 import SummitAcknowledgementOverlay from "@/components/summit/SummitAcknowledgementOverlay";
+import SummitLanguageOverlay from "@/components/summit/SummitLanguageOverlay";
 import SummitHomescreenPromptOverlay from "@/components/summit/SummitHomescreenPromptOverlay";
 import {
   ACKNOWLEDGEMENT_ACCEPTED_EVENT,
@@ -17,14 +19,18 @@ import {
   onboardingStageFrom,
 } from "@/lib/summit/acknowledgement";
 import type { OnboardingStage } from "@/lib/summit/acknowledgement";
+import { LOCALE_COOKIE_NAME, type Locale } from "@/lib/i18n/locales";
 
 type Props = {
   children: React.ReactNode;
   /** Resolved from the request cookies on the server, so the first paint is correct. */
   initialStage: OnboardingStage;
+  /** Highlighted on the language screen, from the browser's Accept-Language. */
+  suggestedLocale: Locale;
 };
 
-type GateStage = "checking" | "acknowledgement" | "onboarding" | "homescreenPrompt" | "ready";
+/** The gate no longer has a "checking" state: the server resolves the stage. */
+type GateStage = OnboardingStage;
 
 const ONBOARDING_PANEL_VISUALS = [
   {
@@ -286,7 +292,12 @@ function SummitOnboardingOverlay({
   );
 }
 
-export default function SummitDashboardOnboardingGate({ children, initialStage }: Props) {
+export default function SummitDashboardOnboardingGate({
+  children,
+  initialStage,
+  suggestedLocale,
+}: Props) {
+  const router = useRouter();
   const { brand, onboarding } = useTenantContent();
   const [stage, setStage] = useState<GateStage>(initialStage);
   const [slideIndex, setSlideIndex] = useState(0);
@@ -321,6 +332,14 @@ export default function SummitDashboardOnboardingGate({ children, initialStage }
     image.src = brand.assets.onboardingBackground;
     hasPreloadedOnboardingBackground.current = true;
   }, [stage, brand.assets.onboardingBackground]);
+
+  const selectLocale = (locale: Locale) => {
+    setCookie(LOCALE_COOKIE_NAME, locale);
+    setStage("acknowledgement");
+    // Copy is resolved on the server, so the new language only arrives when the
+    // server components re-render.
+    router.refresh();
+  };
 
   const acceptAcknowledgement = () => {
     setCookie(ACKNOWLEDGEMENT_COOKIE_NAME, "1");
@@ -361,7 +380,11 @@ export default function SummitDashboardOnboardingGate({ children, initialStage }
         </div>
       ) : null}
 
-      {stage === "checking" ? <div aria-hidden className="fixed inset-0 z-[250] bg-surface-950" /> : null}
+      <SummitLanguageOverlay
+        open={stage === "language"}
+        suggested={suggestedLocale}
+        onSelect={selectLocale}
+      />
 
       <SummitAcknowledgementOverlay open={stage === "acknowledgement"} onAccept={acceptAcknowledgement} />
 

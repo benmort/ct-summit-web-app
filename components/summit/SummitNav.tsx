@@ -20,6 +20,7 @@ import { usePathname } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 import { SUMMIT_OPEN_MENU_EVENT } from "@/lib/summit/menu-events";
 import { useTenantContent } from "@/components/TenantContentProvider";
+import SummitLanguageMenu from "@/components/summit/SummitLanguageMenu";
 import type { SummitRecord } from "@/lib/summit/types";
 
 type NavItem = {
@@ -328,6 +329,7 @@ export default function SummitNav({ whatsappChannels = [] }: SummitNavProps) {
                     </Link>
                   );
                 })}
+                <SummitLanguageMenu onChange={closePanel} />
               </nav>
             ) : (
               <div className="space-y-3">

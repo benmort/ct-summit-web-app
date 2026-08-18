@@ -2,6 +2,7 @@ import "server-only";
 
 import { CONTENT_SLUGS, tenantContent } from "@/lib/tenant/content-registry";
 import { getTenantSlug } from "@/lib/tenant/server";
+import { getLocale } from "@/lib/i18n/server";
 import type { TenantContent } from "@/lib/tenant/content-types";
 
 /**
@@ -13,9 +14,10 @@ import type { TenantContent } from "@/lib/tenant/content-types";
  */
 export { CONTENT_SLUGS, tenantContent };
 
-/** Content for the current request's tenant. */
+/** Content for the current request's tenant, in the reader's chosen language. */
 export async function getTenantContent(): Promise<TenantContent> {
-  return tenantContent(await getTenantSlug());
+  const [slug, locale] = await Promise.all([getTenantSlug(), getLocale()]);
+  return tenantContent(slug, locale);
 }
 
 /**

@@ -1,6 +1,8 @@
 import "server-only";
 
 import { getTenantSlug } from "@/lib/tenant/server";
+import { getLocale } from "@/lib/i18n/server";
+import type { Locale } from "@/lib/i18n/locales";
 import type { SummitRecord } from "@/lib/summit/types";
 import {
   readTenantAttractions,
@@ -39,98 +41,118 @@ function ignoreViewName(_summitViewName: string): void {
   void _summitViewName;
 }
 
+/** Tenant and language for the current request, resolved once per call. */
+async function requestScope(): Promise<[string, Locale]> {
+  return Promise.all([getTenantSlug(), getLocale()]);
+}
+
 export async function getSummitsAll(): Promise<SummitRecord[]> {
-  return readTenantSummits(await getTenantSlug());
+  const [slug, locale] = await requestScope();
+  return readTenantSummits(slug, locale);
 }
 
 export async function getOrganisationsAll(): Promise<SummitRecord[]> {
-  return readTenantOrganisations(await getTenantSlug());
+  const [slug, locale] = await requestScope();
+  return readTenantOrganisations(slug, locale);
 }
 
 export async function getCrewAll(
   summitViewName = DEFAULT_SUMMIT_VIEW_NAME,
 ): Promise<SummitRecord[]> {
   ignoreViewName(summitViewName);
-  return readTenantCrew(await getTenantSlug());
+  const [slug, locale] = await requestScope();
+  return readTenantCrew(slug, locale);
 }
 
 export async function getEventsAll(
   summitViewName = DEFAULT_SUMMIT_VIEW_NAME,
 ): Promise<SummitRecord[]> {
   ignoreViewName(summitViewName);
-  return readTenantEvents(await getTenantSlug());
+  const [slug, locale] = await requestScope();
+  return readTenantEvents(slug, locale);
 }
 
 export async function getScheduleAll(
   summitViewName = DEFAULT_SUMMIT_VIEW_NAME,
 ): Promise<SummitRecord[]> {
   ignoreViewName(summitViewName);
-  return readTenantSchedule(await getTenantSlug());
+  const [slug, locale] = await requestScope();
+  return readTenantSchedule(slug, locale);
 }
 
 export async function getSpeakersAll(
   summitViewName = DEFAULT_SUMMIT_VIEW_NAME,
 ): Promise<SummitRecord[]> {
   ignoreViewName(summitViewName);
-  return readTenantSpeakers(await getTenantSlug());
+  const [slug, locale] = await requestScope();
+  return readTenantSpeakers(slug, locale);
 }
 
 export async function getProgramDaysAll(): Promise<SummitRecord[]> {
-  return readTenantProgramDays(await getTenantSlug());
+  const [slug, locale] = await requestScope();
+  return readTenantProgramDays(slug, locale);
 }
 
 export async function getSponsorsAll(
   summitViewName = DEFAULT_SUMMIT_VIEW_NAME,
 ): Promise<SummitRecord[]> {
   ignoreViewName(summitViewName);
-  return readTenantSponsors(await getTenantSlug());
+  const [slug, locale] = await requestScope();
+  return readTenantSponsors(slug, locale);
 }
 
 export async function getVenuesAll(
   summitViewName = DEFAULT_SUMMIT_VIEW_NAME,
 ): Promise<SummitRecord[]> {
   ignoreViewName(summitViewName);
-  return readTenantVenues(await getTenantSlug());
+  const [slug, locale] = await requestScope();
+  return readTenantVenues(slug, locale);
 }
 
 export async function getAttractionsAll(
   summitViewName = DEFAULT_SUMMIT_VIEW_NAME,
 ): Promise<SummitRecord[]> {
   ignoreViewName(summitViewName);
-  return readTenantAttractions(await getTenantSlug());
+  const [slug, locale] = await requestScope();
+  return readTenantAttractions(slug, locale);
 }
 
 export async function getCodeConductStatic(
   summitViewName = DEFAULT_SUMMIT_VIEW_NAME,
 ): Promise<SummitRecord | null> {
   ignoreViewName(summitViewName);
-  return readTenantCodeConduct(await getTenantSlug());
+  const [slug, locale] = await requestScope();
+  return readTenantCodeConduct(slug, locale);
 }
 
 export async function getSecurityGuidelinesStatic(
   summitViewName = DEFAULT_SUMMIT_VIEW_NAME,
 ): Promise<SummitRecord | null> {
   ignoreViewName(summitViewName);
-  return readTenantSecurityGuidelines(await getTenantSlug());
+  const [slug, locale] = await requestScope();
+  return readTenantSecurityGuidelines(slug, locale);
 }
 
 export async function getMapStatic(
   summitViewName = DEFAULT_SUMMIT_VIEW_NAME,
 ): Promise<SummitRecord | null> {
   ignoreViewName(summitViewName);
-  return readTenantMap(await getTenantSlug());
+  const [slug, locale] = await requestScope();
+  return readTenantMap(slug, locale);
 }
 
 export async function getSurveysStatic(
   summitViewName = DEFAULT_SUMMIT_VIEW_NAME,
 ): Promise<SummitRecord[]> {
   ignoreViewName(summitViewName);
-  return readTenantSurveys(await getTenantSlug());
+  const [slug, locale] = await requestScope();
+  return readTenantSurveys(slug, locale);
 }
 
 export async function getWhatsappChannelsStatic(
   summitViewName = DEFAULT_SUMMIT_VIEW_NAME,
 ): Promise<SummitRecord[]> {
   ignoreViewName(summitViewName);
-  return readTenantWhatsappChannels(await getTenantSlug());
+  const [slug, locale] = await requestScope();
+  return readTenantWhatsappChannels(slug, locale);
 }

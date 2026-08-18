@@ -2,6 +2,13 @@ import "server-only";
 
 import { DEFAULT_TENANT_SLUG } from "@/lib/tenant/domains";
 import type { TenantContent } from "@/lib/tenant/content-types";
+import { overlayTranslations } from "@/lib/i18n/merge";
+import { DEFAULT_LOCALE, type Locale } from "@/lib/i18n/locales";
+
+import wvEs from "@/tenants/woven/content/i18n/es.json";
+import wvFr from "@/tenants/woven/content/i18n/fr.json";
+import wvPt from "@/tenants/woven/content/i18n/pt.json";
+import wvRu from "@/tenants/woven/content/i18n/ru.json";
 
 import ctBrand from "@/tenants/common-threads/content/brand.json";
 import ctGuidance from "@/tenants/common-threads/content/guidance.json";
@@ -39,9 +46,39 @@ const CONTENT: Record<string, TenantContent> = {
   },
 };
 
+/**
+ * Translation overlays, laid over the English above.
+ *
+ * Partial by design — a locale with an empty overlay simply renders English, so a
+ * language can be added a file at a time without ever showing a delegate a hole.
+ *
+ * ADDING A LANGUAGE TO A TENANT: add the import and one entry here.
+ */
+const TRANSLATIONS: Record<string, Partial<Record<Locale, unknown>>> = {
+  woven: { es: wvEs, ru: wvRu, fr: wvFr, pt: wvPt },
+};
+
+const TRANSLATED_CACHE = new Map<string, TenantContent>();
+
 export const CONTENT_SLUGS = Object.keys(CONTENT);
 
-export function tenantContent(slug: string): TenantContent {
+export function tenantContent(slug: string, locale: Locale = DEFAULT_LOCALE): TenantContent {
+  const english = englishContent(slug);
+  if (locale === DEFAULT_LOCALE) return english;
+
+  const overlay = TRANSLATIONS[slug]?.[locale];
+  if (!overlay) return english;
+
+  const key = `${slug}:${locale}`;
+  let translated = TRANSLATED_CACHE.get(key);
+  if (!translated) {
+    translated = overlayTranslations(english, overlay);
+    TRANSLATED_CACHE.set(key, translated);
+  }
+  return translated;
+}
+
+function englishContent(slug: string): TenantContent {
   const content = CONTENT[slug];
   if (content) return content;
 
