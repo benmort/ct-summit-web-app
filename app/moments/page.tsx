@@ -2,6 +2,7 @@ import { Suspense } from "react";
 import { getTenantIdentity } from "@/lib/tenant/server";
 import { tenantStorage } from "@/lib/tenant/types";
 import HomePage from "@/components/HomePage";
+import { getT } from "@/lib/i18n/server-messages";
 import SummitPageHeader from "@/components/summit/SummitPageHeader";
 import SummitShell from "@/components/summit/SummitShell";
 import { getTenantContent } from "@/lib/tenant/content";
@@ -16,6 +17,7 @@ function HomeFallback() {
 }
 
 export default async function MomentsPage() {
+  const t = await getT();
   const whatsappChannels = await getWhatsappChannelsStatic();
   const { navigation } = await getTenantContent();
   const { moderationEnvPrefix } = tenantStorage(await getTenantIdentity());
@@ -23,7 +25,7 @@ export default async function MomentsPage() {
   return (
     <SummitShell whatsappChannels={whatsappChannels}>
       <div className="mb-5 w-full">
-        <SummitPageHeader title="Moments" subtitle={navigation.pageSubtitles.moments} />
+        <SummitPageHeader title={t("moments.pageTitle")} subtitle={navigation.pageSubtitles.moments} />
       </div>
       <Suspense fallback={<HomeFallback />}>
         <HomePage mode="gallery" moderationEnvPrefix={moderationEnvPrefix} />

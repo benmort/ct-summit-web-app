@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { ChevronRightIcon } from "@heroicons/react/24/outline";
 import SummitPageHeader from "@/components/summit/SummitPageHeader";
+import type { Translate } from "@/lib/i18n/messages";
+import { getT } from "@/lib/i18n/server-messages";
 import { getSummitContext } from "@/lib/summit/context";
 import { fieldString } from "@/lib/summit/fields";
 import { getVenuesAll } from "@/lib/summit/service";
@@ -24,7 +26,7 @@ function ensureSentence(value: string): string {
   return /[.!?]$/.test(trimmed) ? trimmed : `${trimmed}.`;
 }
 
-function twoSentenceVenueSummary(record: SummitRecord): string {
+function twoSentenceVenueSummary(record: SummitRecord, t: Translate): string {
   const descriptions = [
     fieldString(record, "Description"),
     fieldString(record, "Subtitle"),
@@ -41,7 +43,7 @@ function twoSentenceVenueSummary(record: SummitRecord): string {
 
   if (sentences.length < 2) {
     const address = fieldString(record, "Address");
-    if (address) sentences.push(ensureSentence(`Located at ${address}`));
+    if (address) sentences.push(ensureSentence(t("pages.venueLocatedAt", { address })));
   }
 
   return sentences.slice(0, 2).join(" ");
@@ -109,6 +111,7 @@ function toGuidanceBlocks(paragraphs: string[]): GuidanceBlock[] {
 }
 
 export default async function Page() {
+  const t = await getT();
   const context = await getSummitContext();
   const { guidance, navigation, integrations } = await getTenantContent();
   const venues = (await getVenuesAll(context.selectedSummitName)).sort((a, b) =>
@@ -122,10 +125,12 @@ export default async function Page() {
       <div className="space-y-3">
         {venues.length > 0 ? (
           <article className="rounded-xl border border-veil/10 bg-surface-900/70 p-4 sm:p-5">
-            <h2 className="text-sm font-semibold uppercase tracking-[0.16em] text-brand-200">Venues</h2>
+            <h2 className="text-sm font-semibold uppercase tracking-[0.16em] text-brand-200">
+              {t("pages.venuesHeading")}
+            </h2>
             <div className="mt-3 grid gap-3 sm:grid-cols-2">
               {venues.map((venue) => {
-                const venueName = fieldString(venue, "Name") || "Venue";
+                const venueName = fieldString(venue, "Name") || t("pages.venueFallbackName");
                 return (
                   <Link
                     key={venue.id}
@@ -137,10 +142,10 @@ export default async function Page() {
                       <ChevronRightIcon className="mt-0.5 h-4 w-4 shrink-0 text-brand-200/90 transition group-hover:text-brand-100" />
                     </div>
                     <p className="mt-2 text-xs leading-relaxed text-ink-300">
-                      {twoSentenceVenueSummary(venue)}
+                      {twoSentenceVenueSummary(venue, t)}
                     </p>
                     <p className="mt-2 text-[10px] font-semibold uppercase tracking-[0.12em] text-brand-200/90">
-                      View venue page
+                      {t("pages.viewVenuePage")}
                     </p>
                   </Link>
                 );

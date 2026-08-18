@@ -4,6 +4,7 @@ import { Dialog } from "@headlessui/react";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { useMemo, useState } from "react";
+import { useT } from "@/components/MessagesProvider";
 import PhotoLightbox from "@/components/PhotoLightbox";
 import type { Photo } from "@/lib/types/photo";
 import type { SummitVenueGalleryItem } from "@/lib/summit/venue-gallery";
@@ -13,6 +14,7 @@ type Props = {
 };
 
 export default function SummitVenueMapGallery({ items }: Props) {
+  const t = useT();
   const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
   const photos = useMemo<Photo[]>(
@@ -43,9 +45,9 @@ export default function SummitVenueMapGallery({ items }: Props) {
   return (
     <>
       <section className="rounded-xl border border-veil/10 bg-veil/5 p-4">
-        <h2 className="text-sm font-semibold text-on-scrim">Venue Maps</h2>
+        <h2 className="text-sm font-semibold text-on-scrim">{t("share.venueMapsTitle")}</h2>
         <p className="mt-2 text-sm text-on-scrim-muted">
-          Tap or click a map to open the full-screen viewer.
+          {t("share.venueMapsHint")}
         </p>
         <div className="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-2">
           {items.map((item, itemIndex) => (

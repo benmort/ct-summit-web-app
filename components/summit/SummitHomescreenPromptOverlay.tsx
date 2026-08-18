@@ -1,6 +1,7 @@
 "use client";
 
 import { useTenantContent } from "@/components/TenantContentProvider";
+import { useT } from "@/components/MessagesProvider";
 
 import { ChevronRightIcon } from "@heroicons/react/24/outline";
 import { useEffect, useMemo, useRef, useState } from "react";
@@ -39,6 +40,7 @@ function isStandaloneMode(): boolean {
 
 export default function SummitHomescreenPromptOverlay({ open, onComplete }: Props) {
   const { onboarding } = useTenantContent();
+  const t = useT();
   const [visible, setVisible] = useState(false);
   const [isCompleting, setIsCompleting] = useState(false);
   const [deferredPrompt, setDeferredPrompt] = useState<DeferredInstallPromptEvent | null>(null);
@@ -146,7 +148,7 @@ export default function SummitHomescreenPromptOverlay({ open, onComplete }: Prop
           disabled={isCompleting}
           className="mt-7 inline-flex min-h-11 w-full items-center justify-center rounded-md border border-veil/25 bg-scrim/25 px-4 py-2.5 text-sm font-semibold uppercase tracking-[0.12em] text-ink-100 transition hover:bg-scrim/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-200 disabled:opacity-80"
         >
-          Skip
+          {t("dashboard.skip")}
         </button>
         <button
           type="button"
@@ -154,7 +156,9 @@ export default function SummitHomescreenPromptOverlay({ open, onComplete }: Prop
           disabled={isCompleting}
           className="mt-3 inline-flex min-h-11 w-full items-center justify-center gap-1.5 rounded-md bg-brand-500 px-4 py-2.5 text-sm font-semibold uppercase tracking-[0.12em] text-surface-950 transition hover:bg-brand-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-200 disabled:opacity-80"
         >
-          {promptMode === "android" ? "Install and continue" : "Continue"}
+          {promptMode === "android"
+            ? t("dashboard.installAndContinue")
+            : t("dashboard.continue")}
           <ChevronRightIcon className="h-4 w-4" aria-hidden />
         </button>
       </div>

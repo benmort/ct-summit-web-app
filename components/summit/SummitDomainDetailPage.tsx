@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { ChevronLeftIcon, ChevronRightIcon } from "@heroicons/react/24/outline";
 import SummitDetailView from "@/components/summit/SummitDetailView";
 import SummitVenueMapGallery from "@/components/summit/SummitVenueMapGallery";
+import { getT } from "@/lib/i18n/server-messages";
 import { getSummitContext } from "@/lib/summit/context";
 import { buildDetail } from "@/lib/summit/domains";
 import { getDomainRecords } from "@/lib/summit/domain-data";
@@ -15,6 +16,17 @@ import type { SummitListDomain } from "@/lib/summit/types";
 type Props = {
   domain: SummitListDomain;
   id: string;
+};
+
+/** The plural noun each domain goes by on screen, e.g. in "BACK TO SPEAKERS". */
+const DOMAIN_LABEL_KEY: Record<SummitListDomain, string> = {
+  speakers: "detail.domainSpeakers",
+  events: "detail.domainEvents",
+  venues: "detail.domainVenues",
+  crew: "detail.domainCrew",
+  attractions: "detail.domainAttractions",
+  organisations: "detail.domainOrganisations",
+  sponsors: "detail.domainSponsors",
 };
 
 function crewPhoneToWhatsappUrl(phone: string): string | null {
@@ -30,6 +42,7 @@ function crewPhoneToWhatsappUrl(phone: string): string | null {
 }
 
 export default async function SummitDomainDetailPage({ domain, id }: Props) {
+  const t = await getT();
   const context = await getSummitContext();
   const records = await getDomainRecords(domain, context.selectedSummitName);
   const record = records.find((item) => item.id === id);
@@ -49,7 +62,7 @@ export default async function SummitDomainDetailPage({ domain, id }: Props) {
         rel="noreferrer"
         className="inline-flex min-h-11 items-center gap-1 rounded-md bg-brand-500 px-4 py-2.5 text-sm font-semibold uppercase tracking-[0.12em] text-surface-950 transition hover:bg-brand-400"
       >
-        Contact on WhatsApp
+        {t("detail.contactOnWhatsapp")}
         <ChevronRightIcon className="h-4 w-4" />
       </a>
     ) : undefined;
@@ -61,7 +74,7 @@ export default async function SummitDomainDetailPage({ domain, id }: Props) {
         className="inline-flex min-h-8 items-center gap-1 rounded-sm px-1 py-0.5 text-xs font-medium text-brand-200 hover:text-brand-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-300/80"
       >
         <ChevronLeftIcon className="h-3.5 w-3.5" />
-        {`BACK TO ${domain.toUpperCase()}`}
+        {t("detail.backTo", { domain: t(DOMAIN_LABEL_KEY[domain]) }).toUpperCase()}
       </Link>
       <SummitDetailView
         detail={detail}

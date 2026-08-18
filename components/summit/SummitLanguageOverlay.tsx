@@ -2,6 +2,8 @@
 
 import { ChevronRightIcon } from "@heroicons/react/24/outline";
 
+import { useT } from "@/components/MessagesProvider";
+
 import {
   LOCALES,
   LOCALE_LABELS,
@@ -26,6 +28,7 @@ type Props = {
  * speaking regions.
  */
 export default function SummitLanguageOverlay({ open, suggested, onSelect }: Props) {
+  const t = useT();
   if (!open) return null;
 
   // Say "this is machine translated" in English and in whatever the browser asked
@@ -36,9 +39,9 @@ export default function SummitLanguageOverlay({ open, suggested, onSelect }: Pro
     <div className="fixed inset-0 z-[260] flex min-h-dvh items-center justify-center bg-scrim/90 px-4 py-6 backdrop-blur-sm">
       <div className="w-full max-w-lg rounded-2xl border border-veil/15 bg-surface-950/95 p-6 shadow-2xl sm:p-8">
         <h1 className="text-center text-base font-semibold uppercase tracking-[0.16em] text-brand-200 sm:text-lg">
-          Language
+          {t("language.title")}
         </h1>
-        <p className="mt-2 text-center text-sm text-ink-300">Choose your language to continue</p>
+        <p className="mt-2 text-center text-sm text-ink-300">{t("language.choose")}</p>
 
         <div className="mt-6 grid gap-2">
           {LOCALES.map((locale) => (

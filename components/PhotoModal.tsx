@@ -12,6 +12,7 @@ import {
   useTransition,
 } from "react";
 import useKeypress from "react-use-keypress";
+import { useT } from "@/components/MessagesProvider";
 import type { Photo } from "@/lib/types/photo";
 import { useLastViewedPhoto } from "@/utils/useLastViewedPhoto";
 import { galleryPath, type GalleryMode } from "@/utils/galleryUrl";
@@ -30,6 +31,7 @@ export default function PhotoModal({
   brokenIds,
   onPhotosReload,
 }: Props) {
+  const t = useT();
   const moderation = mode === "moderation";
   const photos = useMemo(() => {
     if (moderation || !brokenIds?.size) return allPhotos;
@@ -99,12 +101,10 @@ export default function PhotoModal({
           );
           if (!res.ok) {
             if (res.status === 401) {
-              window.alert(
-                "Moderation session expired or missing. Sign in again with the moderation password.",
-              );
+              window.alert(t("photo.moderationSessionExpired"));
               return;
             }
-            window.alert("Couldn’t delete this item. Try again.");
+            window.alert(t("photo.deleteFailed"));
             return;
           }
           const idx = photos.findIndex((p) => p.id === photo.id);

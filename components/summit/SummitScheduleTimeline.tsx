@@ -8,21 +8,24 @@ import {
 import Image from "next/image";
 import Link from "next/link";
 import { useEffect, useLayoutEffect, useRef, useState } from "react";
+import { useT } from "@/components/MessagesProvider";
+import type { Translate } from "@/lib/i18n/messages";
 import type { ScheduleDay, ScheduleSlot } from "@/lib/summit/schedule";
 
 type Props = {
   days: ScheduleDay[];
 };
 
-function dayTabContent(day: ScheduleDay, index: number): {
+function dayTabContent(day: ScheduleDay, index: number, t: Translate): {
   dateLine: string;
   titleLine: string;
   venueLine: string | null;
   ariaLabel: string;
 } {
-  const dayName = day.day?.trim() || `Day ${index + 1}`;
+  const fallbackDayName = t("program.dayNumber", { number: index + 1 });
+  const dayName = day.day?.trim() || fallbackDayName;
   const dateLine = day.filterDateLabel || day.dateLabel || dayName;
-  const titleLine = day.filterTitle || `Day ${index + 1}`;
+  const titleLine = day.filterTitle || fallbackDayName;
   const venueLine = day.filterVenue || null;
   const ariaLabel = [dateLine, titleLine, venueLine].filter(Boolean).join(" - ");
   return { dateLine, titleLine, venueLine, ariaLabel };
@@ -105,12 +108,18 @@ function toneForSessionLabel(sessionLabel: string): SessionTone {
 }
 
 function ScheduleCard({ slot }: { slot: ScheduleSlot }) {
+  const t = useT();
   const href = slot.talk ? `/speakers/${slot.id}` : `/events/${slot.id}`;
-  const speakerLabel = slot.speaker || (slot.talk ? "Session speaker" : "Event session");
+  const speakerLabel =
+    slot.speaker || t(slot.talk ? "program.sessionSpeaker" : "program.eventSession");
   const locationLabel = slot.locationLabel || slot.room;
   const speakerSubLabel = slot.organisation || locationLabel;
   const speakerSubLabelIsLocation = !slot.organisation && !!locationLabel;
+  // Tone keys off the untranslated label on purpose: the colour rules match
+  // English words in the source data, so they must not see a translated string.
   const sessionLabel = slot.formatLabel || (slot.talk ? "Talk" : "Event");
+  const sessionBadgeLabel =
+    slot.formatLabel || t(slot.talk ? "program.formatTalk" : "program.formatEvent");
   const tone = toneForSessionLabel(sessionLabel);
   const cardClass = `relative overflow-hidden rounded-xl border p-3.5 transition sm:p-4 ${tone.cardClass}`;
 
@@ -122,11 +131,11 @@ function ScheduleCard({ slot }: { slot: ScheduleSlot }) {
       <article className={`${cardClass} group-hover:border-veil/30 group-hover:bg-surface-900/75`}>
         <div className="mb-2 flex flex-wrap items-center gap-1.5 pl-1">
           <span className={`rounded-sm px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-[0.14em] ${tone.typeBadgeClass}`}>
-            {formatBadge(sessionLabel)}
+            {formatBadge(sessionBadgeLabel)}
           </span>
           {slot.talk ? (
             <span className={`rounded-sm px-1.5 py-0.5 text-[9px] font-semibold uppercase tracking-[0.14em] ${tone.kindBadgeClass}`}>
-              Speaker
+              {t("program.badgeSpeaker")}
             </span>
           ) : null}
         </div>
@@ -169,7 +178,7 @@ function ScheduleCard({ slot }: { slot: ScheduleSlot }) {
             </p>
           )}
           <span className="inline-flex min-h-8 items-center gap-1 rounded-sm px-1 py-0.5 text-xs font-medium text-brand-200 transition group-hover:text-brand-100">
-            View Details
+            {t("program.viewDetails")}
             <ChevronRightIcon className="h-3.5 w-3.5" />
           </span>
         </div>
@@ -179,6 +188,7 @@ function ScheduleCard({ slot }: { slot: ScheduleSlot }) {
 }
 
 export default function SummitScheduleTimeline({ days }: Props) {
+  const t = useT();
   const [activeDayIndex, setActiveDayIndex] = useState<number | null>(null);
   const tabRefs = useRef<Array<HTMLButtonElement | null>>([]);
 
@@ -228,14 +238,14 @@ export default function SummitScheduleTimeline({ days }: Props) {
       <div
         role="tablist"
         aria-orientation="horizontal"
-        aria-label="Program days"
+        aria-label={t("program.daysTablistLabel")}
         className="grid grid-cols-2 gap-2.5 sm:gap-3"
       >
         {days.map((day, index) => {
           const selected = activeDayIndex !== null && index === activeDayIndex;
           const tabId = `schedule-day-tab-${index}`;
           const panelId = `schedule-day-panel-${index}`;
-          const tabContent = dayTabContent(day, index);
+          const tabContent = dayTabContent(day, index, t);
           const buttonClass = selected
             ? "group relative min-h-[76px] w-full cursor-pointer overflow-hidden rounded-xl border border-brand-300/45 bg-gradient-to-br from-brand-200 to-brand-100 px-3.5 py-3 text-left text-on-brand shadow-[0_10px_28px_rgba(245,158,11,0.25)] transition focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-200/80"
             : "group relative min-h-[76px] w-full cursor-pointer overflow-hidden rounded-xl border border-dashed border-ink-500/55 bg-surface-950/40 px-3.5 py-3 text-left text-ink-300/95 transition hover:-translate-y-0.5 hover:border-brand-300/45 hover:bg-surface-900/65 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-200/80";
@@ -359,7 +369,7 @@ export default function SummitScheduleTimeline({ days }: Props) {
             </>
           ) : (
             <section className="rounded-xl border border-veil/10 bg-veil/5 p-4">
-              <p className="text-sm text-ink-300">Program details for this day will be shared soon.</p>
+              <p className="text-sm text-ink-300">{t("program.dayPending")}</p>
             </section>
           )}
         </div>
@@ -367,7 +377,7 @@ export default function SummitScheduleTimeline({ days }: Props) {
 
       <p className="inline-flex items-center gap-1 text-[11px] text-ink-500">
         <MapPinIcon className="h-3.5 w-3.5" />
-        Times and rooms are subject to updates.
+        {t("program.timesSubjectToChange")}
       </p>
     </div>
   );

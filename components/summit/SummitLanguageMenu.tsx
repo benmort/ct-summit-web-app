@@ -2,6 +2,8 @@
 
 import { useRouter } from "next/navigation";
 
+import { useT } from "@/components/MessagesProvider";
+
 import {
   LOCALES,
   LOCALE_COOKIE_MAX_AGE_SECONDS,
@@ -32,6 +34,7 @@ function readLocaleCookie(): Locale | null {
  */
 export default function SummitLanguageMenu({ onChange }: Props) {
   const router = useRouter();
+  const t = useT();
 
   const select = (locale: Locale) => {
     const secure = window.location.protocol === "https:" ? "; Secure" : "";
@@ -46,7 +49,7 @@ export default function SummitLanguageMenu({ onChange }: Props) {
   return (
     <div className="lg:col-span-2">
       <p className="mb-2 text-[10px] font-semibold uppercase tracking-[0.14em] text-ink-500">
-        Language
+        {t("language.menuLabel")}
       </p>
       <div className="flex flex-wrap gap-2">
         {LOCALES.map((locale) => (

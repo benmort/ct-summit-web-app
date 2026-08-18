@@ -4,6 +4,7 @@ import { ChevronRightIcon } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { useMemo } from "react";
 import SummitPageHeader from "@/components/summit/SummitPageHeader";
+import { useT } from "@/components/MessagesProvider";
 import { roleHash } from "@/lib/summit/crew-filters";
 
 type Props = {
@@ -27,6 +28,11 @@ type ContentBlock =
   | { type: "section"; section: ConductSection }
   | { type: "principlesButton" };
 
+/**
+ * Marker line in the authored content body, matched verbatim and replaced by the
+ * PDF button. It is a parsing token, not display copy — the button's own label is
+ * translated from the message catalogue.
+ */
 const PRINCIPLES_LINE = "Please find the pintable PDF version here.";
 const WELLBEING_ROLE = "Wellbeing and Grievance Coordinator";
 const HEADING_MARKER = "## ";
@@ -86,7 +92,7 @@ function renderInlineContent(value: string, supportEmail: string): React.ReactNo
   });
 }
 
-function toContentBlocks(contentBody: string): ContentBlock[] {
+function toContentBlocks(contentBody: string, untitledSectionTitle: string): ContentBlock[] {
   const normalized = contentBody
     .replace(/\r\n/g, "\n")
     .replace(/\\n/g, "\n");
@@ -143,7 +149,7 @@ function toContentBlocks(contentBody: string): ContentBlock[] {
     if (trimmed.startsWith("- ")) {
       flushParagraph();
       if (!currentSection) {
-        currentSection = { title: "Code of Conduct", paragraphs: [], bulletItems: [] };
+        currentSection = { title: untitledSectionTitle, paragraphs: [], bulletItems: [] };
       }
       currentSection.bulletItems.push(trimmed.replace(/^-+\s*/, ""));
       continue;
@@ -164,7 +170,12 @@ export default function SummitCodeConductContent({
   supportEmail,
   pdfUrl,
 }: Props) {
-  const blocks = useMemo(() => toContentBlocks(contentBody), [contentBody]);
+  const t = useT();
+  const untitledSectionTitle = t("pages.codeConductTitle");
+  const blocks = useMemo(
+    () => toContentBlocks(contentBody, untitledSectionTitle),
+    [contentBody, untitledSectionTitle],
+  );
 
   const pdfButton = pdfUrl ? (
     <a
@@ -173,7 +184,7 @@ export default function SummitCodeConductContent({
       rel="noreferrer"
       className="inline-flex min-h-11 w-full items-center justify-center rounded-md border border-veil/25 bg-scrim/25 px-4 py-2.5 text-sm font-semibold text-ink-100 transition hover:bg-scrim/40 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-200"
     >
-      {PRINCIPLES_LINE}
+      {t("pages.codeConductPdfLink")}
     </a>
   ) : null;
 
@@ -242,14 +253,13 @@ export default function SummitCodeConductContent({
           <article className="rounded-xl border border-veil/10 bg-surface-900/70 p-4 sm:p-5">
             {pdfButton}
             <p className={`text-sm leading-relaxed text-ink-200 ${pdfButton ? "mt-4" : ""}`}>
-              If someone makes you or anyone else feel unsafe or unwelcome, please report it as soon as possible to
-              our wellbeing and grievance coordinators for a confidential conversation.
+              {t("pages.codeConductReportBody")}
             </p>
             <Link
               href={`/crew${roleHash(WELLBEING_ROLE)}`}
               className="mt-4 inline-flex min-h-11 w-full items-center justify-center gap-1.5 rounded-md bg-brand-500 px-4 py-2.5 text-sm font-semibold uppercase tracking-[0.12em] text-surface-950 transition hover:bg-brand-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-200"
             >
-              Contact wellbeing and grievance coordinators
+              {t("pages.codeConductContactWellbeing")}
               <ChevronRightIcon className="h-5 w-5 shrink-0" aria-hidden />
             </Link>
           </article>

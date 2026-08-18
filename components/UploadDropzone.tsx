@@ -1,5 +1,7 @@
 "use client";
 
+import { useT } from "@/components/MessagesProvider";
+
 import { ArrowUpTrayIcon } from "@heroicons/react/24/outline";
 import { useCallback, useId, useRef, useState } from "react";
 
@@ -14,6 +16,7 @@ export default function UploadDropzone({
   disabled,
   variant = "default",
 }: Props) {
+  const t = useT();
   const inputId = useId();
   const inputRef = useRef<HTMLInputElement>(null);
   const [dragOver, setDragOver] = useState(false);
@@ -74,7 +77,7 @@ export default function UploadDropzone({
           }`}
         >
           <ArrowUpTrayIcon className="h-4 w-4" aria-hidden />
-          <span>Tap to choose from your library</span>
+          <span>{t("share.dropzoneTap")}</span>
         </span>
         <span
           className={

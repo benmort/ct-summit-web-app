@@ -2,6 +2,7 @@
 
 import { CameraIcon, VideoCameraIcon } from "@heroicons/react/24/outline";
 import { useId, useRef, useState } from "react";
+import { useT } from "@/components/MessagesProvider";
 import { validateImageFile, validateVideoFile } from "@/lib/client-validate";
 
 type Props = {
@@ -16,6 +17,7 @@ export default function CameraCapture({
   disabled,
   onDark,
 }: Props) {
+  const t = useT();
   const photoInputId = useId();
   const videoInputId = useId();
   const photoInputRef = useRef<HTMLInputElement>(null);
@@ -75,7 +77,7 @@ export default function CameraCapture({
           <span className={iconWrapClass} aria-hidden>
             <CameraIcon className={iconClass} />
           </span>
-          <span>Take A Photo</span>
+          <span>{t("photo.takePhoto")}</span>
         </button>
         <button
           type="button"
@@ -86,7 +88,7 @@ export default function CameraCapture({
           <span className={iconWrapClass} aria-hidden>
             <VideoCameraIcon className={iconClass} />
           </span>
-          <span>Take A Video</span>
+          <span>{t("photo.takeVideo")}</span>
         </button>
       </div>
       <input

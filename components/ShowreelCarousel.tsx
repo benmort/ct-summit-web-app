@@ -1,5 +1,7 @@
 "use client";
 
+import { useT } from "@/components/MessagesProvider";
+
 import type { Photo } from "@/lib/types/photo";
 
 type Props = {
@@ -18,6 +20,7 @@ function loopSlides(photos: Photo[]): Photo[] {
 }
 
 export default function ShowreelCarousel({ photos, loading, brokenIds }: Props) {
+  const t = useT();
   const broken = brokenIds ?? new Set<string>();
   const list = (photos ?? [])
     .filter((p) => p.kind === "image" && !broken.has(p.id));
@@ -39,7 +42,7 @@ export default function ShowreelCarousel({ photos, loading, brokenIds }: Props) 
 
       {!loading && !hasSlides && (
         <p className="absolute left-1/2 top-1/2 z-10 max-w-sm -translate-x-1/2 -translate-y-1/2 px-4 text-center text-sm text-on-scrim-muted">
-          No photos yet. Add them from the main gallery page.
+          {t("moments.showreelEmpty")}
         </p>
       )}
 

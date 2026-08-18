@@ -1,5 +1,6 @@
 import Image from "next/image";
 import type { DetailView } from "@/lib/summit/types";
+import { getT } from "@/lib/i18n/server-messages";
 import { hasOffWhiteLogoBackground } from "@/lib/summit/logo-background";
 
 type Props = {
@@ -11,12 +12,13 @@ type Props = {
 
 const CIRCULAR_DETAIL_PREFIXES = ["event-", "crew-", "venue-", "speaker-", "attraction-"] as const;
 
-export default function SummitDetailView({
+export default async function SummitDetailView({
   detail,
   action,
   actionBelowHeader = false,
   pronouncedHeader = false,
 }: Props) {
+  const t = await getT();
   const headerClass = pronouncedHeader
     ? "rounded-2xl border border-veil/10 bg-gradient-to-b from-ink-700/90 via-surface-900/85 to-surface-950/92 p-5"
     : "rounded-2xl border border-veil/10 bg-gradient-to-b from-ink-800/80 to-surface-950/80 p-5";
@@ -92,7 +94,7 @@ export default function SummitDetailView({
 
       {detail.body ? (
         <section className="rounded-xl border border-veil/10 bg-veil/5 p-4">
-          <h2 className="text-sm font-semibold text-ink-50">{detail.bodyHeading ?? "Bio"}</h2>
+          <h2 className="text-sm font-semibold text-ink-50">{detail.bodyHeading ?? t("detail.bioHeading")}</h2>
           <p className="mt-2 whitespace-pre-wrap break-words text-sm leading-relaxed text-ink-200">
             {detail.body}
           </p>
@@ -101,7 +103,7 @@ export default function SummitDetailView({
 
       {detail.summary ? (
         <section className="rounded-xl border border-veil/10 bg-veil/5 p-4">
-          <h2 className="text-sm font-semibold text-ink-50">Summary</h2>
+          <h2 className="text-sm font-semibold text-ink-50">{t("detail.summaryHeading")}</h2>
           <p className="mt-2 whitespace-pre-wrap break-words text-sm leading-relaxed text-ink-200">
             {detail.summary}
           </p>
@@ -110,7 +112,7 @@ export default function SummitDetailView({
 
       {detail.sections.length > 0 ? (
         <section className="rounded-xl border border-veil/10 bg-veil/5 p-4">
-          <h2 className="text-sm font-semibold text-ink-50">Details</h2>
+          <h2 className="text-sm font-semibold text-ink-50">{t("detail.detailsHeading")}</h2>
           <dl className="mt-3 space-y-3">
             {detail.sections.map((section) => (
               <div key={section.label}>
@@ -137,7 +139,7 @@ export default function SummitDetailView({
 
       {detail.videoUrl ? (
         <section className="rounded-xl border border-veil/10 bg-veil/5 p-4">
-          <h2 className="text-sm font-semibold text-ink-50">Video</h2>
+          <h2 className="text-sm font-semibold text-ink-50">{t("detail.videoHeading")}</h2>
           <video controls preload="metadata" className="mt-2 w-full rounded-lg" src={detail.videoUrl} />
         </section>
       ) : null}

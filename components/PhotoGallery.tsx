@@ -9,6 +9,7 @@ import {
   type ReactNode,
   type RefObject,
 } from "react";
+import { useT } from "@/components/MessagesProvider";
 import type { Photo } from "@/lib/types/photo";
 import { galleryImageSrcSet } from "@/utils/galleryImageSrcSet";
 import { galleryPath, type GalleryMode } from "@/utils/galleryUrl";
@@ -77,6 +78,7 @@ function GalleryTile({
   isMobileViewport,
   innerRef,
 }: TileProps) {
+  const t = useT();
   const [loaded, setLoaded] = useState(false);
 
   const w = photo.width && photo.width > 0 ? photo.width : 3;
@@ -92,7 +94,7 @@ function GalleryTile({
     >
       {isBroken && moderationMode && (
         <span className="absolute right-2 top-2 z-20 rounded-md bg-danger-900/80 px-2 py-1 text-[10px] font-semibold uppercase tracking-wider text-danger-200 ring-1 ring-danger-500/40">
-          Missing file
+          {t("moments.missingFile")}
         </span>
       )}
       {!moderationMode && (
@@ -110,9 +112,9 @@ function GalleryTile({
             checked={selected}
             onChange={() => onToggleSelect(photo.id)}
             className="h-4 w-4 rounded border-veil/40"
-            aria-label={`Select ${photo.filename}`}
+            aria-label={t("moments.selectPhoto", { filename: photo.filename })}
           />
-          Select
+          {t("moments.select")}
         </label>
       )}
       <Link
@@ -184,6 +186,7 @@ export default function PhotoGallery({
   selectedIds = new Set(),
   onToggleSelect,
 }: Props) {
+  const t = useT();
   const brokenIds = brokenIdsProp ?? new Set<string>();
   const searchParams = useSearchParams();
   const photoIdOpen = searchParams?.get("photoId") ?? null;
@@ -280,13 +283,13 @@ export default function PhotoGallery({
       {photosLoading && (
         <div className="flex flex-col items-center justify-center gap-3 rounded-xl bg-veil/5 py-20 text-center text-sm text-on-scrim-muted ring-1 ring-inset ring-veil/10">
           <Spinner className="h-6 w-6" />
-          Loading photos…
+          {t("moments.loadingPhotos")}
         </div>
       )}
       {hasPhotos && visible.length > 0 && (
         <div className="mb-3 flex items-center justify-end gap-1">
           <span className="mr-1 text-[11px] uppercase tracking-wide text-on-scrim-muted">
-            Columns
+            {t("moments.columns")}
           </span>
           {colOptions.map((n) => (
             <button
@@ -294,7 +297,7 @@ export default function PhotoGallery({
               type="button"
               onClick={() => setCols(n)}
               aria-pressed={cols === n}
-              aria-label={`${n} columns`}
+              aria-label={t("moments.columnCount", { count: n })}
               className={`flex h-8 w-8 items-center justify-center rounded-md text-xs font-semibold ring-1 transition ${
                 cols === n
                   ? "bg-veil/15 text-on-scrim ring-veil/30"
@@ -318,7 +321,7 @@ export default function PhotoGallery({
             {group.day > 0 && (
               <div className="mb-3 flex items-baseline gap-3 border-b border-veil/10 pb-2">
                 <h2 className="text-lg font-semibold text-on-scrim sm:text-xl">
-                  Day {group.day}
+                  {t("moments.dayHeading", { day: group.day })}
                 </h2>
                 <span className="rounded-full bg-veil/10 px-2 py-0.5 text-xs font-medium text-on-scrim-muted">
                   #day-{group.day}

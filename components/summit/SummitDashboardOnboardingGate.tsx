@@ -1,6 +1,7 @@
 "use client";
 
 import { useTenantContent } from "@/components/TenantContentProvider";
+import { useT } from "@/components/MessagesProvider";
 
 import {
   ChevronRightIcon,
@@ -121,6 +122,7 @@ function SummitOnboardingOverlay({
   onSkip: () => void;
 }) {
   const { onboarding } = useTenantContent();
+  const t = useT();
   const isFinalSlide = slideIndex === onboarding.slides.length - 1;
   const [visible, setVisible] = useState(false);
   const touchStartRef = useRef<{ x: number; y: number } | null>(null);
@@ -199,7 +201,10 @@ function SummitOnboardingOverlay({
         }`}
       >
         <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-surface-800">
-          Slide {slideIndex + 1} of {onboarding.slides.length}
+          {t("dashboard.onboardingSlideCounter", {
+            current: slideIndex + 1,
+            total: onboarding.slides.length,
+          })}
         </p>
         <div className="mt-3 flex items-center gap-1.5">
           {onboarding.slides.map((slide, index) => (
@@ -270,14 +275,14 @@ function SummitOnboardingOverlay({
             onClick={onSkip}
             className="col-span-1 inline-flex min-h-11 items-center justify-center rounded-full border border-veil/25 bg-scrim/20 px-3 py-2 text-xs font-semibold uppercase tracking-[0.12em] text-on-scrim transition hover:bg-scrim/35 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-200"
           >
-            Skip
+            {t("dashboard.skip")}
           </button>
           <button
             type="button"
             onClick={onAdvance}
             className="col-span-2 inline-flex min-h-11 items-center justify-center gap-1.5 rounded-full bg-brand-500 px-4 py-2.5 text-sm font-semibold uppercase tracking-[0.12em] text-surface-950 transition hover:bg-brand-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-200"
           >
-            {isFinalSlide ? "Enter Summit" : "Next"}
+            {isFinalSlide ? t("dashboard.enterSummit") : t("dashboard.next")}
             <ChevronRightIcon className="h-4 w-4" aria-hidden />
           </button>
         </div>

@@ -8,6 +8,7 @@ import SummitPageHeader from "@/components/summit/SummitPageHeader";
 import { buildListItem } from "@/lib/summit/domains";
 import { ORIGINAL_FIELD_SUFFIX, fieldList, fieldString } from "@/lib/summit/fields";
 import { useTenantContent } from "@/components/TenantContentProvider";
+import { useT } from "@/components/MessagesProvider";
 import { roleFromHash, roleHash } from "@/lib/summit/crew-filters";
 import type { SummitRecord } from "@/lib/summit/types";
 
@@ -43,6 +44,7 @@ function crewRoleEntries(record: SummitRecord): CrewRole[] {
 
 export default function SummitCrewListPage({ records }: Props) {
   const { navigation } = useTenantContent();
+  const t = useT();
   const roles = useMemo(() => {
     const byKey = new Map<string, CrewRole>();
     for (const record of records) {
@@ -98,27 +100,27 @@ export default function SummitCrewListPage({ records }: Props) {
   }
 
   if (!records.length) {
-    return <SummitEmpty title="No crew yet" body="No crew records were found for this summit." />;
+    return <SummitEmpty title={t("lists.emptyCrewTitle")} body={t("lists.emptyCrewBody")} />;
   }
 
   return (
     <div className="space-y-4">
-      <SummitPageHeader title="Crew" subtitle={navigation.pageSubtitles.crew} />
+      <SummitPageHeader title={t("lists.crewTitle")} subtitle={navigation.pageSubtitles.crew} />
       {roles.length > 0 ? (
         <div className="space-y-2">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-ink-300">Filter by role</p>
-          <div role="tablist" aria-orientation="horizontal" aria-label="Crew roles" className="grid grid-cols-2 gap-2">
+          <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-ink-300">{t("lists.filterByRole")}</p>
+          <div role="tablist" aria-orientation="horizontal" aria-label={t("lists.crewRolesTablist")} className="grid grid-cols-2 gap-2">
             {[
               {
                 key: "__all__",
-                label: "All roles",
-                eyebrow: "Crew",
+                label: t("lists.allRoles"),
+                eyebrow: t("lists.allRolesEyebrow"),
                 selected: activeRole === null,
               },
               ...roles.map((role) => ({
                 key: role.key,
                 label: role.label,
-                eyebrow: "Role",
+                eyebrow: t("lists.roleEyebrow"),
                 selected: activeRole === role.key,
               })),
             ].map((item, index, list) => (
@@ -203,7 +205,10 @@ export default function SummitCrewListPage({ records }: Props) {
           ))}
         </div>
       ) : (
-        <SummitEmpty title="No matching crew roles yet" body={`No crew records were found with role: ${labelForKey(activeRole ?? "")}.`} />
+        <SummitEmpty
+          title={t("lists.emptyCrewRoleTitle")}
+          body={t("lists.emptyCrewRoleBody", { role: labelForKey(activeRole ?? "") })}
+        />
       )}
     </div>
   );

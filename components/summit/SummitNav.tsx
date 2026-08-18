@@ -19,6 +19,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useCallback, useEffect, useState } from "react";
 import { SUMMIT_OPEN_MENU_EVENT } from "@/lib/summit/menu-events";
+import { useT } from "@/components/MessagesProvider";
 import { useTenantContent } from "@/components/TenantContentProvider";
 import SummitLanguageMenu from "@/components/summit/SummitLanguageMenu";
 import type { SummitRecord } from "@/lib/summit/types";
@@ -138,6 +139,7 @@ function WhatsappGlyph({ className }: { className?: string }) {
 
 export default function SummitNav({ whatsappChannels = [] }: SummitNavProps) {
   const pathname = usePathname();
+  const t = useT();
   const [activePanel, setActivePanel] = useState<DrawerPanel | null>(null);
   const { brand, navigation, integrations } = useTenantContent();
   const bottomTabs: NavItem[] = navigation.tabs.map((tab) => ({
@@ -256,7 +258,9 @@ export default function SummitNav({ whatsappChannels = [] }: SummitNavProps) {
                 type="button"
                 onClick={handleWhatsappToggle}
                 aria-expanded={whatsappOpen}
-                aria-label={whatsappOpen ? "Close WhatsApp channels" : "Open WhatsApp channels"}
+                aria-label={
+                  whatsappOpen ? t("nav.whatsappClose") : t("nav.whatsappOpen")
+                }
                 className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-brand-500 text-surface-950 transition hover:bg-brand-400"
               >
                 <WhatsappGlyph className="h-5 w-5" />
@@ -268,7 +272,7 @@ export default function SummitNav({ whatsappChannels = [] }: SummitNavProps) {
               aria-expanded={menuOpen}
               className="inline-flex h-8 w-[78px] items-center justify-center rounded-xl border border-veil/35 bg-surface-900/70 text-center text-[10px] font-semibold uppercase tracking-[0.12em] text-ink-50 transition hover:border-veil/55 hover:bg-surface-900 lg:text-[12px]"
             >
-              {menuOpen ? "CLOSE" : "MENU"}
+              {menuOpen ? t("nav.menuClose") : t("nav.menuOpen")}
             </button>
           </div>
         </div>
@@ -284,7 +288,7 @@ export default function SummitNav({ whatsappChannels = [] }: SummitNavProps) {
           className={`absolute inset-0 overflow-y-auto overscroll-contain bg-surface-950 transition-transform duration-300 ease-out ${
             panelOpen ? "translate-x-0" : "translate-x-full"
           }`}
-          aria-label={menuOpen ? "Summit full menu" : "Summit WhatsApp channels"}
+          aria-label={menuOpen ? t("nav.drawerMenuLabel") : t("nav.drawerWhatsappLabel")}
         >
           <div className="mx-auto flex min-h-full w-full max-w-[1100px] flex-col px-4 pb-[calc(1.75rem+var(--album-safe-bottom))] pt-4 sm:px-6">
             {menuOpen ? (
@@ -341,7 +345,7 @@ export default function SummitNav({ whatsappChannels = [] }: SummitNavProps) {
                     onClick={closePanel}
                     className="group inline-flex min-h-11 w-full items-center justify-between rounded-md border border-brand-300/35 bg-brand-500/10 px-4 py-2.5 text-sm font-semibold tracking-[0.06em] text-brand-100 transition hover:border-brand-200/55 hover:bg-brand-500/20"
                   >
-                    <span className="truncate">Join The WhatsApp Community</span>
+                    <span className="truncate">{t("nav.joinWhatsappCommunity")}</span>
                     <ChevronRightIcon className="h-4 w-4 shrink-0 text-brand-100" aria-hidden />
                   </a>
                 ) : null}
@@ -350,7 +354,7 @@ export default function SummitNav({ whatsappChannels = [] }: SummitNavProps) {
                     <span className="inline-flex items-center gap-2 text-brand-100">
                       <WhatsappGlyph className="h-5 w-5" />
                       <span className="text-sm font-semibold uppercase tracking-[0.12em]">
-                        WhatsApp Channels
+                        {t("nav.whatsappChannelsHeading")}
                       </span>
                     </span>
                   </div>
@@ -379,7 +383,9 @@ export default function SummitNav({ whatsappChannels = [] }: SummitNavProps) {
                               <span className="mt-0.5 block truncate text-[11px] leading-4 text-ink-400 lg:text-[12.5px]">
                                 {channel.membersLabel ??
                                   channel.description ??
-                                  (isLinked ? "Open channel in WhatsApp" : "Link coming soon")}
+                                  (isLinked
+                                    ? t("nav.channelOpenInWhatsapp")
+                                    : t("nav.channelLinkComingSoon"))}
                               </span>
                             </span>
                           </span>
@@ -420,7 +426,7 @@ export default function SummitNav({ whatsappChannels = [] }: SummitNavProps) {
                     })
                   ) : (
                     <div className="px-4 py-6 text-sm text-ink-300">
-                      No WhatsApp channels configured yet.
+                      {t("nav.whatsappChannelsEmpty")}
                     </div>
                   )}
                   </div>

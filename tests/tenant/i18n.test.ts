@@ -1,11 +1,12 @@
 import assert from "node:assert/strict";
-import { readFileSync } from "node:fs";
+import { readFileSync, readdirSync } from "node:fs";
 import path from "node:path";
 import test from "node:test";
 
 import { tenantContent } from "@/lib/tenant/content-registry";
 import { tenantSummitData } from "@/lib/summit/tenant-data";
 import { LOCALES, DEFAULT_LOCALE, type Locale } from "@/lib/i18n/locales";
+import { messagesFor } from "@/lib/i18n/messages";
 import { ORIGINAL_FIELD_SUFFIX } from "@/lib/summit/fields";
 import { roleHashToken } from "@/lib/summit/crew-filters";
 
@@ -169,4 +170,62 @@ test("translation leaves record ids, schedule links and times untouched", () => 
       );
     });
   }
+});
+
+/**
+ * The UI catalogue is flat and hand-merged, so it drifts easily: a key added to
+ * English after a translation pass silently renders English to a delegate who
+ * chose another language, and a placeholder dropped in translation renders the
+ * literal "{count}".
+ */
+test("every language has the whole UI catalogue, with placeholders intact", () => {
+  const english = messagesFor(DEFAULT_LOCALE);
+  const keys = Object.keys(english);
+  const placeholders = (value: string) =>
+    [...value.matchAll(/\{(\w+)\}/g)].map((m) => m[1]).sort().join(",");
+
+  for (const locale of TRANSLATED) {
+    const catalogue = readJson(`lib/i18n/messages/${locale}.json`) as Record<string, string>;
+
+    assert.deepEqual(
+      keys.filter((key) => !(key in catalogue)),
+      [],
+      `${locale}: UI catalogue is missing keys`,
+    );
+    assert.deepEqual(
+      Object.keys(catalogue).filter((key) => !keys.includes(key)),
+      [],
+      `${locale}: UI catalogue has keys English does not`,
+    );
+
+    for (const key of keys) {
+      assert.equal(
+        placeholders(catalogue[key]),
+        placeholders(english[key]),
+        `${locale}: "${key}" changed its placeholders — it would render a literal brace`,
+      );
+    }
+  }
+});
+
+/** A key referenced by a component but absent from English renders as the raw key. */
+test("every t() key used in the app exists in the English catalogue", () => {
+  const english = messagesFor(DEFAULT_LOCALE);
+  const used = new Set<string>();
+  const walk = (dir: string) => {
+    for (const entry of readdirSync(path.join(ROOT, dir), { withFileTypes: true })) {
+      const next = `${dir}/${entry.name}`;
+      if (entry.isDirectory()) walk(next);
+      else if (entry.name.endsWith(".tsx")) {
+        const source = readFileSync(path.join(ROOT, next), "utf8");
+        for (const match of source.matchAll(/\bt\(\s*"([a-z][\w.]+)"/g)) used.add(match[1]);
+      }
+    }
+  };
+  walk("components");
+  walk("app");
+
+  const missing = [...used].filter((key) => !(key in english)).sort();
+  assert.deepEqual(missing, [], "components reference catalogue keys that do not exist");
+  assert.ok(used.size > 100, `expected the app to use the catalogue widely, saw ${used.size} keys`);
 });

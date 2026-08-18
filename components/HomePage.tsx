@@ -10,6 +10,7 @@ import {
   useRef,
   useState,
 } from "react";
+import { useT } from "@/components/MessagesProvider";
 import type { Photo } from "@/lib/types/photo";
 import { galleryPath, type GalleryMode } from "@/utils/galleryUrl";
 import ModerationLogin from "./ModerationLogin";
@@ -36,6 +37,7 @@ export default function HomePage({
   mode = "gallery",
   moderationEnvPrefix = "MODERATION",
 }: Props) {
+  const t = useT();
   const router = useRouter();
   const searchParams = useSearchParams();
   const showreel = mode === "showreel";
@@ -116,11 +118,11 @@ export default function HomePage({
         validatePhotos(list);
       })
       .catch(() => {
-        setError("We couldn’t load photos. Pull to refresh or try again.");
+        setError(t("moments.loadError"));
         setPhotos(null);
         setTotal(0);
       });
-  }, [normalizePhoto, validatePhotos]);
+  }, [normalizePhoto, validatePhotos, t]);
 
   const loadMoreInFlight = useRef(false);
   const fullListLoadedRef = useRef(false);
@@ -142,12 +144,12 @@ export default function HomePage({
         validatePhotos(newPhotos);
       })
       .catch(() => {
-        setError("Couldn’t load more photos.");
+        setError(t("moments.loadMoreError"));
       })
       .finally(() => {
         loadMoreInFlight.current = false;
       });
-  }, [photos, total, normalizePhoto, validatePhotos]);
+  }, [photos, total, normalizePhoto, validatePhotos, t]);
 
   useEffect(() => {
     const el = loadMoreSentinelRef.current;
@@ -241,16 +243,14 @@ export default function HomePage({
     );
     const failed = results.filter((r) => !r.ok);
     if (failed.length) {
-      window.alert(
-        `Could not delete ${failed.length} item(s). Check your session and try again.`,
-      );
+      window.alert(t("moments.deleteFailed", { count: failed.length }));
       return;
     }
     const remove = new Set(ids);
     setSelectedIds(new Set());
     setPhotos((prev) => prev?.filter((p) => !remove.has(p.id)) ?? null);
-    setTotal((t) => Math.max(0, t - ids.length));
-  }, []);
+    setTotal((prevTotal) => Math.max(0, prevTotal - ids.length));
+  }, [t]);
 
   const confirmDeleteSelected = useCallback(async () => {
     const ids = [...selectedIds];
@@ -277,7 +277,7 @@ export default function HomePage({
         }}
         className="mt-2 block w-full text-center font-medium text-brand-300 underline"
       >
-        Retry
+        {t("moments.retry")}
       </button>
     </div>
   );
@@ -324,7 +324,7 @@ export default function HomePage({
             role="alert"
             className="mx-auto mb-6 max-w-lg rounded-xl bg-brand-950/40 px-4 py-3 text-center text-sm text-brand-100 ring-1 ring-brand-500/30"
           >
-            <p className="font-medium">Moderation is not configured on this server.</p>
+            <p className="font-medium">{t("moments.moderationNotConfigured")}</p>
             <p className="mt-2 text-brand-100/90">
               Set <code className="rounded bg-scrim/30 px-1 py-0.5 text-xs">MODERATION_SECRET</code>{" "}
               (16+ characters) and{" "}
@@ -374,7 +374,7 @@ export default function HomePage({
                         className="inline-flex w-full items-center justify-center gap-2 rounded-lg border border-veil/15 bg-veil/5 px-3 py-2 text-sm font-medium text-on-scrim backdrop-blur-sm transition hover:bg-veil/10"
                       >
                         <ArrowLeftIcon className="h-4 w-4 shrink-0" aria-hidden />
-                        BACK TO GALLERY
+                        {t("moments.backToGallery").toUpperCase()}
                       </Link>
                       {moderationActive && selectedIds.size > 0 && (
                         <button
@@ -382,7 +382,7 @@ export default function HomePage({
                           onClick={() => setDeleteConfirmOpen(true)}
                           className="inline-flex w-full items-center justify-center rounded-lg border border-danger-500/40 bg-danger-950/50 px-3 py-2 text-sm font-medium text-danger-100 transition hover:bg-danger-950/80"
                         >
-                          Delete selected ({selectedIds.size})
+                          {t("moments.deleteSelected", { count: selectedIds.size })}
                         </button>
                       )}
                     </div>
@@ -408,10 +408,10 @@ export default function HomePage({
                 <span
                   className="h-6 w-6 animate-spin rounded-full border-2 border-veil/25 border-t-veil/80"
                   role="status"
-                  aria-label="Loading more moments"
+                  aria-label={t("moments.loadingMore")}
                 />
                 <p className="text-[11px] text-on-scrim-muted">
-                  Showing {photos.length} of {total}
+                  {t("moments.showingCount", { shown: photos.length, total })}
                 </p>
               </div>
             )}
@@ -438,8 +438,9 @@ export default function HomePage({
           <div className="flex min-h-full items-center justify-center p-3 sm:p-4">
             <Dialog.Panel className="w-full max-w-md rounded-2xl border border-veil/15 bg-surface-900/95 p-5 shadow-xl ring-1 ring-veil/10 sm:p-6">
               <Dialog.Title className="text-balance text-center text-base font-semibold leading-snug text-on-scrim sm:text-lg">
-                Delete {selectedIds.size} selected item
-                {selectedIds.size === 1 ? "" : "s"} permanently?
+                {selectedIds.size === 1
+                  ? t("moments.deleteConfirmTitleOne")
+                  : t("moments.deleteConfirmTitleMany", { count: selectedIds.size })}
               </Dialog.Title>
               <div className="mt-6 flex flex-col-reverse gap-2 sm:flex-row sm:justify-end sm:gap-3">
                 <button
@@ -447,14 +448,14 @@ export default function HomePage({
                   onClick={() => setDeleteConfirmOpen(false)}
                   className="rounded-lg border border-veil/20 bg-veil/5 px-4 py-2.5 text-sm font-medium text-on-scrim transition hover:bg-veil/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-brand-400 focus-visible:ring-offset-2 focus-visible:ring-offset-surface-900"
                 >
-                  Cancel
+                  {t("moments.cancel")}
                 </button>
                 <button
                   type="button"
                   onClick={() => void confirmDeleteSelected()}
                   className="rounded-lg border border-danger-500/50 bg-danger-950/60 px-4 py-2.5 text-sm font-medium text-danger-100 transition hover:bg-danger-950/90 focus:outline-none focus-visible:ring-2 focus-visible:ring-danger-400 focus-visible:ring-offset-2 focus-visible:ring-offset-surface-900"
                 >
-                  Delete
+                  {t("moments.delete")}
                 </button>
               </div>
             </Dialog.Panel>

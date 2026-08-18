@@ -21,6 +21,7 @@ import Image from "next/image";
 import { createPortal } from "react-dom";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useSwipeable } from "react-swipeable";
+import { useT } from "@/components/MessagesProvider";
 import type { Photo } from "@/lib/types/photo";
 import { lightboxImageSrcSet } from "@/utils/lightboxImageSrcSet";
 import { variants } from "@/utils/animationVariants";
@@ -68,6 +69,7 @@ export default function PhotoLightbox({
   closeModal,
   onDeletePhoto,
 }: Props) {
+  const t = useT();
   const [loaded, setLoaded] = useState(false);
   const [deleting, setDeleting] = useState(false);
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
@@ -417,7 +419,7 @@ export default function PhotoLightbox({
                 }
                 aria-label={
                   isMobile && !isVideo
-                    ? "Show or hide photo actions"
+                    ? t("photo.toggleActions")
                     : undefined
                 }
                 onClick={() => {
@@ -452,7 +454,7 @@ export default function PhotoLightbox({
                       <button
                         type="button"
                         className="absolute inset-0 z-10"
-                        aria-label="Show actions"
+                        aria-label={t("photo.showActions")}
                         onClick={() => setMobileUiOpen(true)}
                       />
                     )}
@@ -481,7 +483,7 @@ export default function PhotoLightbox({
                           className="h-10 w-10 animate-spin rounded-full border-2 border-veil/25 border-t-veil/80"
                           aria-hidden
                         />
-                        <span className="sr-only">Loading image…</span>
+                        <span className="sr-only">{t("photo.loadingImage")}</span>
                       </div>
                     )}
                     <div
@@ -531,7 +533,7 @@ export default function PhotoLightbox({
                   className={`absolute left-1 top-1/2 z-50 hidden -translate-y-1/2 rounded-full bg-scrim/50 p-3 text-on-scrim/90 backdrop-blur-lg transition hover:bg-scrim/75 min-h-11 min-w-11 sm:left-3 sm:flex ${FW_RING}`}
                   style={{ transform: "translate3d(0, -50%, 0)" }}
                   onClick={() => changeIndex(index - 1)}
-                  aria-label="Previous"
+                  aria-label={t("photo.previous")}
                 >
                   <ChevronLeftIcon className="h-6 w-6" />
                 </button>
@@ -542,7 +544,7 @@ export default function PhotoLightbox({
                   className={`absolute right-1 top-1/2 z-50 hidden -translate-y-1/2 rounded-full bg-scrim/50 p-3 text-on-scrim/90 backdrop-blur-lg transition hover:bg-scrim/75 min-h-11 min-w-11 sm:right-3 sm:flex ${FW_RING}`}
                   style={{ transform: "translate3d(0, -50%, 0)" }}
                   onClick={() => changeIndex(index + 1)}
-                  aria-label="Next"
+                  aria-label={t("photo.next")}
                 >
                   <ChevronRightIcon className="h-6 w-6" />
                 </button>
@@ -562,8 +564,8 @@ export default function PhotoLightbox({
                       onClick={() => updateZoom(zoom - ZOOM_STEP)}
                       disabled={zoom <= MIN_ZOOM}
                       className={`rounded-full bg-scrim/50 p-2.5 text-on-scrim/90 backdrop-blur-lg transition hover:bg-scrim/75 disabled:opacity-50 min-h-11 min-w-11 flex items-center justify-center ${FW_RING}`}
-                      title="Zoom out"
-                      aria-label="Zoom out"
+                      title={t("photo.zoomOut")}
+                      aria-label={t("photo.zoomOut")}
                     >
                       <MagnifyingGlassMinusIcon className="h-5 w-5" />
                     </button>
@@ -572,8 +574,8 @@ export default function PhotoLightbox({
                       onClick={() => updateZoom(zoom + ZOOM_STEP)}
                       disabled={zoom >= MAX_ZOOM}
                       className={`rounded-full bg-scrim/50 p-2.5 text-on-scrim/90 backdrop-blur-lg transition hover:bg-scrim/75 disabled:opacity-50 min-h-11 min-w-11 flex items-center justify-center ${FW_RING}`}
-                      title="Zoom in"
-                      aria-label="Zoom in"
+                      title={t("photo.zoomIn")}
+                      aria-label={t("photo.zoomIn")}
                     >
                       <MagnifyingGlassPlusIcon className="h-5 w-5" />
                     </button>
@@ -582,10 +584,10 @@ export default function PhotoLightbox({
                         type="button"
                         onClick={resetZoom}
                         className={`rounded-full bg-scrim/50 px-3 py-2 text-[11px] font-semibold text-on-scrim/95 backdrop-blur-lg transition hover:bg-scrim/75 min-h-11 ${FW_RING}`}
-                        title="Reset zoom"
-                        aria-label="Reset zoom"
+                        title={t("photo.resetZoom")}
+                        aria-label={t("photo.resetZoom")}
                       >
-                        {Math.round(zoom * 100)}%
+                        {t("photo.zoomLevel", { percent: Math.round(zoom * 100) })}
                       </button>
                     ) : null}
                   </>
@@ -596,8 +598,8 @@ export default function PhotoLightbox({
                     onClick={() => setShowDeleteConfirm(true)}
                     disabled={deleting}
                     className={`rounded-full bg-scrim/50 p-2.5 text-on-scrim/90 backdrop-blur-lg transition hover:bg-danger-950/70 disabled:opacity-50 min-h-11 min-w-11 flex items-center justify-center ${FW_RING}`}
-                    title="Delete"
-                    aria-label="Delete"
+                    title={t("photo.delete")}
+                    aria-label={t("photo.delete")}
                   >
                     <TrashIcon className="h-5 w-5" />
                   </button>
@@ -606,9 +608,9 @@ export default function PhotoLightbox({
                   href={current.url}
                   className={`rounded-full bg-scrim/50 p-2.5 text-on-scrim/90 backdrop-blur-lg transition hover:bg-scrim/75 min-h-11 min-w-11 flex items-center justify-center ${FW_RING}`}
                   target="_blank"
-                  title="Open full size in new tab"
+                  title={t("photo.openFullSize")}
                   rel="noreferrer"
-                  aria-label="Open full size in new tab"
+                  aria-label={t("photo.openFullSize")}
                 >
                   <ArrowTopRightOnSquareIcon className="h-5 w-5" />
                 </a>
@@ -616,8 +618,8 @@ export default function PhotoLightbox({
                   type="button"
                   onClick={() => void sharePhoto()}
                   className={`rounded-full bg-scrim/50 p-2.5 text-on-scrim/90 backdrop-blur-lg transition hover:bg-scrim/75 min-h-11 min-w-11 flex items-center justify-center ${FW_RING}`}
-                  title="Share"
-                  aria-label="Share"
+                  title={t("photo.share")}
+                  aria-label={t("photo.share")}
                 >
                   <ShareIcon className="h-5 w-5" />
                 </button>
@@ -630,8 +632,8 @@ export default function PhotoLightbox({
                     )
                   }
                   className={`rounded-full bg-scrim/50 p-2.5 text-on-scrim/90 backdrop-blur-lg transition hover:bg-scrim/75 min-h-11 min-w-11 flex items-center justify-center ${FW_RING}`}
-                  title="Download"
-                  aria-label="Download"
+                  title={t("photo.download")}
+                  aria-label={t("photo.download")}
                 >
                   <ArrowDownTrayIcon className="h-5 w-5" />
                 </button>
@@ -640,7 +642,7 @@ export default function PhotoLightbox({
                     type="button"
                     onClick={closeModal}
                     className={`rounded-full bg-scrim/50 p-2.5 text-on-scrim/90 backdrop-blur-lg transition hover:bg-scrim/75 min-h-11 min-w-11 flex items-center justify-center ${FW_RING}`}
-                    aria-label="Close viewer"
+                    aria-label={t("photo.closeViewer")}
                   >
                     <XMarkIcon className="h-5 w-5" />
                   </button>
@@ -651,7 +653,7 @@ export default function PhotoLightbox({
                   type="button"
                   onClick={closeModal}
                   className={`rounded-full bg-scrim/50 p-2.5 text-on-scrim/90 backdrop-blur-lg transition hover:bg-scrim/75 min-h-11 min-w-11 flex items-center justify-center ${FW_RING}`}
-                  aria-label="Close viewer"
+                  aria-label={t("photo.closeViewer")}
                 >
                   <XMarkIcon className="h-5 w-5" />
                 </button>
@@ -678,7 +680,7 @@ export default function PhotoLightbox({
                   key={photo.id}
                   data-thumb-index={globalIndex}
                   onClick={() => changeIndex(globalIndex)}
-                  aria-label={`View item ${globalIndex + 1}`}
+                  aria-label={t("photo.viewItem", { number: globalIndex + 1 })}
                   aria-current={active ? "true" : undefined}
                   className={`relative h-14 w-20 shrink-0 overflow-hidden rounded-md sm:h-[4.5rem] sm:w-28 ${FW_RING} ${
                     active
@@ -728,10 +730,10 @@ export default function PhotoLightbox({
               id="delete-confirm-title"
               className="text-lg font-semibold text-on-scrim"
             >
-              Delete this item?
+              {t("photo.deleteConfirmTitle")}
             </h2>
             <p className="mt-2 text-sm text-on-scrim-muted">
-              This cannot be undone. The file will be removed from the album.
+              {t("photo.deleteConfirmBody")}
             </p>
             <div className="mt-6 flex flex-wrap justify-end gap-2">
               <button
@@ -739,7 +741,7 @@ export default function PhotoLightbox({
                 className={`rounded-lg border border-veil/20 bg-veil/5 px-4 py-2 text-sm font-medium text-on-scrim transition hover:bg-veil/10 ${FW_RING}`}
                 onClick={() => setShowDeleteConfirm(false)}
               >
-                Cancel
+                {t("photo.cancel")}
               </button>
               <button
                 type="button"
@@ -747,7 +749,7 @@ export default function PhotoLightbox({
                 disabled={deleting}
                 onClick={() => void runDelete()}
               >
-                {deleting ? "Deleting…" : "Delete"}
+                {deleting ? t("photo.deleting") : t("photo.delete")}
               </button>
             </div>
           </div>

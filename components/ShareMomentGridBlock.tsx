@@ -4,6 +4,7 @@ import { ArrowLeftIcon, ArrowPathIcon } from "@heroicons/react/24/outline";
 import { upload as uploadToBlob } from "@vercel/blob/client";
 import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
+import { useT } from "@/components/MessagesProvider";
 import { validateMediaFile } from "@/lib/client-validate";
 import type { Photo } from "@/lib/types/photo";
 import { extensionForMime } from "@/lib/types/photo";
@@ -43,6 +44,7 @@ type Props = {
 };
 
 export default function ShareMomentGridBlock({ onUploadSuccess, backHref }: Props) {
+  const t = useT();
   const [items, setItems] = useState<PreviewItem[]>([]);
   const [errors, setErrors] = useState<string[]>([]);
   const [success, setSuccess] = useState(false);
@@ -140,8 +142,8 @@ export default function ShareMomentGridBlock({ onUploadSuccess, backHref }: Prop
       }
       attempts += 1;
     }
-    throw lastError instanceof Error ? lastError : new Error("Upload failed");
-  }, []);
+    throw lastError instanceof Error ? lastError : new Error(t("share.uploadFailed"));
+  }, [t]);
 
   const fetchUploadedByIds = useCallback(async (ids: string[]): Promise<Photo[]> => {
     if (!ids.length) return [];
@@ -244,9 +246,9 @@ export default function ShareMomentGridBlock({ onUploadSuccess, backHref }: Prop
             });
             reportProgress();
           } catch (error) {
-            const message = safeErrorMessage(error, "Upload failed");
+            const message = safeErrorMessage(error, t("share.uploadFailed"));
             setItemStatus(item.id, "failed", message);
-            errorList.push(`${item.file.name}: ${message}`);
+            errorList.push(t("share.uploadFileError", { filename: item.file.name, message }));
             logClientUploadEvent("upload.file-failed", {
               sessionId,
               fileClientId: item.id,
@@ -315,6 +317,7 @@ export default function ShareMomentGridBlock({ onUploadSuccess, backHref }: Prop
       parallelism,
       retryableUpload,
       setItemStatus,
+      t,
     ],
   );
 
@@ -325,7 +328,7 @@ export default function ShareMomentGridBlock({ onUploadSuccess, backHref }: Prop
     setUploadProgress(0);
     setErrors([]);
     setSuccess(false);
-    setLiveRegionMessage("Upload started");
+    setLiveRegionMessage(t("share.uploadStarted"));
     const snapshot = items.map((item) => ({ ...item }));
     try {
       if (clientBlobUpload && uploadV2) {
@@ -336,7 +339,7 @@ export default function ShareMomentGridBlock({ onUploadSuccess, backHref }: Prop
           revokeAll(done);
           return keep;
         });
-        setLiveRegionMessage("Upload complete");
+        setLiveRegionMessage(t("share.uploadComplete"));
         return;
       }
 
@@ -355,7 +358,7 @@ export default function ShareMomentGridBlock({ onUploadSuccess, backHref }: Prop
         photos?: Photo[];
       };
       if (!res.ok) {
-        const msg = data.error || "Upload failed";
+        const msg = data.error || t("share.uploadFailed");
         setErrors([msg]);
         snapshot
           .filter((item) => item.status !== "uploaded")
@@ -370,7 +373,7 @@ export default function ShareMomentGridBlock({ onUploadSuccess, backHref }: Prop
       revokeAll(snapshot);
       onUploadSuccess?.(data.photos);
     } catch {
-      setErrors(["Something went wrong. Check your connection and try again."]);
+      setErrors([t("share.uploadUnexpectedError")]);
     } finally {
       setUploading(false);
       setUploadProgress(0);
@@ -386,7 +389,7 @@ export default function ShareMomentGridBlock({ onUploadSuccess, backHref }: Prop
           aria-valuemin={0}
           aria-valuemax={100}
           aria-valuenow={Math.round(uploadProgress * 100)}
-          aria-label="Upload progress"
+          aria-label={t("share.uploadProgress")}
         >
           <div className="h-1 w-full bg-panel/15">
             <div
@@ -400,9 +403,11 @@ export default function ShareMomentGridBlock({ onUploadSuccess, backHref }: Prop
               aria-hidden
             />
             <p className="text-center text-sm font-medium text-ink-50/95">
-              Uploading…
+              {t("share.uploading")}
             </p>
-            <p className="text-center text-xs text-ink-50/75">{Math.round(uploadProgress * 100)}%</p>
+            <p className="text-center text-xs text-ink-50/75">
+              {t("share.uploadPercent", { percent: Math.round(uploadProgress * 100) })}
+            </p>
           </div>
         </div>
       )}
@@ -415,23 +420,23 @@ export default function ShareMomentGridBlock({ onUploadSuccess, backHref }: Prop
             className="inline-flex min-h-8 items-center gap-1 rounded-sm px-1 py-0.5 text-xs font-medium text-brand-200 hover:text-brand-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-300/80"
           >
             <ArrowLeftIcon className="h-3.5 w-3.5" aria-hidden />
-            BACK TO APP
+            {t("share.backToApp").toUpperCase()}
           </Link>
         ) : null}
         <p className="mt-2 text-sm leading-6 text-ink-300">
-          Add photos and videos to the shared album from your library or straight from your phone.
+          {t("share.intro")}
         </p>
-        <p className="mt-1 text-xs text-ink-400">Video max: 250 MB</p>
+        <p className="mt-1 text-xs text-ink-400">{t("share.videoMax")}</p>
 
         <div className="mt-4 flex flex-wrap items-center gap-2">
           {items.length > 0 ? (
             <span className="rounded-full border border-veil/15 bg-panel/5 px-2.5 py-1 text-[10px] uppercase tracking-[0.12em] text-ink-200">
-              {items.length} selected
+              {t("share.selectedCount", { count: items.length })}
             </span>
           ) : null}
         </div>
 
-        <section className="mt-4 flex flex-col gap-4 text-left" aria-label="Upload">
+        <section className="mt-4 flex flex-col gap-4 text-left" aria-label={t("share.uploadSection")}>
           <div className="md:hidden">
             <CameraCapture onFiles={addFiles} disabled={uploading} onDark />
           </div>
@@ -465,7 +470,7 @@ export default function ShareMomentGridBlock({ onUploadSuccess, backHref }: Prop
               role="status"
               className="text-center text-sm font-medium text-success-300"
             >
-              Added to the album.
+              {t("share.uploadSuccess")}
             </p>
           )}
 
@@ -487,8 +492,10 @@ export default function ShareMomentGridBlock({ onUploadSuccess, backHref }: Prop
                   />
                 )}
                 {uploading
-                  ? "Uploading..."
-                  : `Upload${items.length ? ` (${items.length})` : ""}`}
+                  ? t("share.uploading")
+                  : items.length
+                    ? t("share.uploadCount", { count: items.length })
+                    : t("share.upload")}
               </button>
             </div>
           ) : null}

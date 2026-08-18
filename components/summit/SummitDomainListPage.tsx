@@ -9,6 +9,7 @@ import { roleHash } from "@/lib/summit/crew-filters";
 import { buildListItem } from "@/lib/summit/domains";
 import { domainLabel, getDomainRecords } from "@/lib/summit/domain-data";
 import { fieldList, fieldString } from "@/lib/summit/fields";
+import { getT } from "@/lib/i18n/server-messages";
 import { getTenantContent } from "@/lib/tenant/content";
 import { getTenantSlug } from "@/lib/tenant/server";
 import type { SummitListDomain, SummitRecord } from "@/lib/summit/types";
@@ -34,6 +35,7 @@ function crewRolesForRecord(record: SummitRecord): string[] {
 }
 
 export default async function SummitDomainListPage({ domain, roleFilter }: Props) {
+  const t = await getT();
   const context = await getSummitContext();
   const records = await getDomainRecords(domain, context.selectedSummitName);
   const domainRecords =
@@ -64,8 +66,11 @@ export default async function SummitDomainListPage({ domain, roleFilter }: Props
   if (!domainRecords.length) {
     return (
       <SummitEmpty
-        title={`No ${label.toLowerCase()} yet`}
-        body={`No ${label.toLowerCase()} records were found for ${context.selectedSummitName}.`}
+        title={t("lists.emptyTitle", { label: label.toLowerCase() })}
+        body={t("lists.emptyBody", {
+          label: label.toLowerCase(),
+          summit: context.selectedSummitName,
+        })}
       />
     );
   }
@@ -75,7 +80,7 @@ export default async function SummitDomainListPage({ domain, roleFilter }: Props
       <SummitPageHeader title={label} subtitle={subtitle} />
       {domain === "crew" && crewRoleOptions.length > 0 ? (
         <div className="space-y-2">
-          <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-ink-300">Filter by role</p>
+          <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-ink-300">{t("lists.filterByRole")}</p>
           <div className="grid grid-cols-2 gap-2">
             <Link
               href="/crew"
@@ -104,10 +109,10 @@ export default async function SummitDomainListPage({ domain, roleFilter }: Props
                 </span>
               )}
               <span className={normalizedRoleFilter ? "block text-[9px] uppercase tracking-[0.12em] text-ink-500/90" : "block text-[9px] uppercase tracking-[0.12em] text-on-brand-muted"}>
-                Crew
+                {t("lists.allRolesEyebrow")}
               </span>
               <span className={normalizedRoleFilter ? "mt-0.5 block text-xs font-semibold leading-4 text-ink-200" : "mt-0.5 block text-xs font-semibold leading-4 text-on-brand"}>
-                All roles
+                {t("lists.allRoles")}
               </span>
             </Link>
             {crewRoleOptions.map((role) => {
@@ -141,7 +146,7 @@ export default async function SummitDomainListPage({ domain, roleFilter }: Props
                     </span>
                   )}
                   <span className={selected ? "block text-[9px] uppercase tracking-[0.12em] text-on-brand-muted" : "block text-[9px] uppercase tracking-[0.12em] text-ink-500/90"}>
-                    Role
+                    {t("lists.roleEyebrow")}
                   </span>
                   <span className={selected ? "mt-0.5 block text-xs font-semibold leading-4 text-on-brand" : "mt-0.5 block text-xs font-semibold leading-4 text-ink-200"}>
                     {role}
@@ -177,8 +182,8 @@ export default async function SummitDomainListPage({ domain, roleFilter }: Props
         )
       ) : (
         <SummitEmpty
-          title="No matching crew roles yet"
-          body={`No crew records were found with role: ${normalizedRoleFilter}.`}
+          title={t("lists.emptyCrewRoleTitle")}
+          body={t("lists.emptyCrewRoleBody", { role: normalizedRoleFilter })}
         />
       )}
     </div>

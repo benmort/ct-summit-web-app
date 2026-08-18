@@ -19,6 +19,8 @@ import { buildListItem, getSpeakerBadges } from "@/lib/summit/domains";
 import { fieldFirst, fieldString } from "@/lib/summit/fields";
 import { getTenantContent } from "@/lib/tenant/content";
 import { getSpeakersAll } from "@/lib/summit/service";
+import { getT } from "@/lib/i18n/server-messages";
+import type { Translate } from "@/lib/i18n/messages";
 import type { SummitRecord } from "@/lib/summit/types";
 
 type DirectoryEntry = {
@@ -63,10 +65,11 @@ function endTime(record: SummitRecord): number {
   return startTime(record);
 }
 
-function formatSummitRange(startRaw: string, endRaw: string): string {
+function formatSummitRange(startRaw: string, endRaw: string, t: Translate): string {
   const start = parseDateOnly(startRaw);
   const end = parseDateOnly(endRaw);
-  if (!start || !end) return [startRaw, endRaw].filter(Boolean).join(" - ") || "Date range unavailable";
+  if (!start || !end)
+    return [startRaw, endRaw].filter(Boolean).join(" - ") || t("dashboard.dateRangeUnavailable");
 
   const sameMonth = start.getMonth() === end.getMonth() && start.getFullYear() === end.getFullYear();
   if (sameMonth) {
@@ -79,12 +82,13 @@ function formatSummitRange(startRaw: string, endRaw: string): string {
   return `${startLabel} - ${endLabel}`;
 }
 
-function splitSummitName(name: string): { overline: string; title: string } {
-  if (!name) return { overline: "Summit", title: "Summit dashboard" };
+function splitSummitName(name: string, t: Translate): { overline: string; title: string } {
+  if (!name)
+    return { overline: t("dashboard.summitFallbackName"), title: t("dashboard.summitFallbackTitle") };
   const [left, ...rest] = name.split(":");
-  if (rest.length === 0) return { overline: "Summit", title: name };
+  if (rest.length === 0) return { overline: t("dashboard.summitFallbackName"), title: name };
   return {
-    overline: left.trim() || "Summit",
+    overline: left.trim() || t("dashboard.summitFallbackName"),
     title: rest.join(":").trim() || name,
   };
 }
@@ -98,12 +102,12 @@ function splitSummitName(name: string): { overline: string; title: string } {
  * offset, so the literal time in the string is the answer, which is how
  * `lib/summit/schedule.ts` reads it too.
  */
-function formatSpeakerStart(record: SummitRecord): string {
+function formatSpeakerStart(record: SummitRecord, t: Translate): string {
   const raw = fieldFirst(record, "DateTime Start [Schedule]");
   const match = raw.match(/^\d{4}-\d{2}-\d{2}T(\d{2}):(\d{2})/);
-  if (!match) return "Time to be confirmed";
+  if (!match) return t("dashboard.timeToBeConfirmed");
 
-  return `Starts at ${match[1]}:${match[2]}`;
+  return t("dashboard.startsAt", { time: `${match[1]}:${match[2]}` });
 }
 
 function formatRoomLabel(value: string): string {
@@ -133,11 +137,13 @@ function SectionHeading({ title, action }: { title: string; action?: React.React
 function SpeakerCard({
   speaker,
   imageUrl,
+  t,
 }: {
   speaker: SummitRecord;
   imageUrl: string | null;
+  t: Translate;
 }) {
-  const name = fieldString(speaker, "Full Name") || "Speaker";
+  const name = fieldString(speaker, "Full Name") || t("dashboard.speakerFallbackName");
   const title = fieldString(speaker, "Title") || name;
   const description = fieldString(speaker, "Description") || fieldString(speaker, "Bio");
   const location = formatRoomLabel(fieldString(speaker, "Room/Area"));
@@ -157,7 +163,7 @@ function SpeakerCard({
       <div className="space-y-2 p-3.5">
         <p className="inline-flex items-center gap-1.5 text-[10px] uppercase tracking-[0.15em] text-ink-400">
           <ClockIcon className="h-3.5 w-3.5 shrink-0" aria-hidden />
-          {formatSpeakerStart(speaker)}
+          {formatSpeakerStart(speaker, t)}
         </p>
         <h3 className="text-base font-semibold text-ink-50 break-words">{title}</h3>
         <p className="text-xs text-ink-300 break-words">{name}</p>
@@ -187,6 +193,7 @@ function SpeakerCard({
 
 export default async function SummitDashboardPage() {
   const context = await getSummitContext();
+  const t = await getT();
   const { brand, navigation } = await getTenantContent();
   const speakers = await getSpeakersAll(context.selectedSummitName);
   const now = Date.now();
@@ -211,41 +218,42 @@ export default async function SummitDashboardPage() {
   }));
   const summitName = context.selectedSummit
     ? fieldString(context.selectedSummit, "Name")
-    : "Summit";
+    : t("dashboard.summitFallbackName");
   const summitRange = context.selectedSummit
     ? formatSummitRange(
         fieldString(context.selectedSummit, "Start Date"),
         fieldString(context.selectedSummit, "End Date"),
+        t,
       )
-    : "Date range unavailable";
+    : t("dashboard.dateRangeUnavailable");
   const summitLocation = context.selectedSummit
     ? fieldString(context.selectedSummit, "Location")
-    : "Location unavailable";
-  const summitTitle = splitSummitName(summitName || "Summit");
+    : t("dashboard.locationUnavailable");
+  const summitTitle = splitSummitName(summitName || t("dashboard.summitFallbackName"), t);
   const heroImages = brand.assets.heroImages ?? [];
 
   const directoryEntries: DirectoryEntry[] = [
     {
       href: "/event-guidance",
-      label: "Event Guidance",
+      label: t("dashboard.directoryEventGuidance"),
       subtitle: navigation.pageSubtitles.eventGuidance,
       icon: InformationCircleIcon,
     },
     {
       href: "/crew",
-      label: "Crew",
+      label: t("dashboard.directoryCrew"),
       subtitle: navigation.pageSubtitles.crew,
       icon: UsersIcon,
     },
     {
       href: "/organisations",
-      label: "Organisations",
+      label: t("dashboard.directoryOrganisations"),
       subtitle: navigation.pageSubtitles.organisations,
       icon: BuildingOffice2Icon,
     },
     {
       href: "/venues",
-      label: "Venue/Map",
+      label: t("dashboard.directoryVenues"),
       subtitle: navigation.pageSubtitles.venues,
       icon: MapIcon,
       external: false,
@@ -273,7 +281,7 @@ export default async function SummitDashboardPage() {
             </span>
             <span className="inline-flex items-center gap-1.5">
               <MapPinIcon className="h-4 w-4" />
-              {summitLocation || "Location unavailable"}
+              {summitLocation || t("dashboard.locationUnavailable")}
             </span>
           </div>
           <div className="mt-5 flex flex-wrap justify-center gap-2">
@@ -281,7 +289,7 @@ export default async function SummitDashboardPage() {
               href="/program"
               className="inline-flex min-h-11 items-center gap-1 rounded-md bg-brand-500 px-4 py-2.5 text-sm font-semibold uppercase tracking-[0.12em] text-surface-950 hover:bg-brand-400"
             >
-              Browse program
+              {t("dashboard.browseProgram")}
               <ChevronRightIcon className="h-4 w-4" />
             </Link>
           </div>
@@ -289,7 +297,7 @@ export default async function SummitDashboardPage() {
       </section>
 
       <section>
-        <SectionHeading title="Directory" action={<SummitOpenMenuLink />} />
+        <SectionHeading title={t("dashboard.directory")} action={<SummitOpenMenuLink />} />
         <div className="grid grid-cols-2 gap-3">
           {directoryEntries.map((entry) => {
             const Icon = entry.icon;
@@ -339,13 +347,13 @@ export default async function SummitDashboardPage() {
 
       <section>
         <SectionHeading
-          title="Up Next"
+          title={t("dashboard.upNext")}
           action={
             <Link
               href="/speakers"
               className="inline-flex items-center gap-1 text-[10px] uppercase tracking-[0.14em] text-brand-300"
             >
-              View full lineup
+              {t("dashboard.viewFullLineup")}
               <ChevronRightIcon className="h-3.5 w-3.5" aria-hidden />
             </Link>
           }
@@ -357,16 +365,21 @@ export default async function SummitDashboardPage() {
                 key={entry.speaker.id}
                 speaker={entry.speaker}
                 imageUrl={entry.item.imageUrl ?? null}
+                t={t}
               />
             ))}
           </div>
         ) : (
           <SummitEmpty
-            title={isAfterProgram ? "Thanks for joining the summit" : "No program sessions yet"}
+            title={
+              isAfterProgram
+                ? t("dashboard.programEndedTitle")
+                : t("dashboard.programEmptyTitle")
+            }
             body={
               isAfterProgram
-                ? "The program has wrapped for now. Thank you for being part of it."
-                : "Program content will appear when available."
+                ? t("dashboard.programEndedBody")
+                : t("dashboard.programEmptyBody")
             }
           />
         )}

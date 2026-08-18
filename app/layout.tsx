@@ -1,10 +1,12 @@
 import type { Metadata, Viewport } from "next";
 import RegisterServiceWorker from "@/components/RegisterServiceWorker";
 import TenantContentProvider from "@/components/TenantContentProvider";
+import MessagesProvider from "@/components/MessagesProvider";
 import { getTenantClientContent, getTenantContent } from "@/lib/tenant/content";
 import { resolveTenantFonts } from "@/lib/tenant/fonts";
 import { themeStyleSheet } from "@/lib/tenant/ramp";
 import { getLocale } from "@/lib/i18n/server";
+import { getMessages } from "@/lib/i18n/server-messages";
 import { getTenantIdentity } from "@/lib/tenant/server";
 import "./globals.css";
 
@@ -83,6 +85,7 @@ export default async function RootLayout({
   // Tells the browser what language the page is actually in, so it stops
   // offering to translate copy that is already translated.
   const locale = await getLocale();
+  const messages = await getMessages();
   const fonts = resolveTenantFonts(tenant.theme.fonts, tenant.slug);
   // Empty for any tenant that inherits the palette and system fonts in
   // globals.css, which is how the default tenant stays byte-identical to the
@@ -99,7 +102,9 @@ export default async function RootLayout({
       <body className="font-sans">
         {themeCss ? <style dangerouslySetInnerHTML={{ __html: themeCss }} /> : null}
         <RegisterServiceWorker />
-        <TenantContentProvider content={content}>{children}</TenantContentProvider>
+        <MessagesProvider messages={messages}>
+          <TenantContentProvider content={content}>{children}</TenantContentProvider>
+        </MessagesProvider>
       </body>
     </html>
   );

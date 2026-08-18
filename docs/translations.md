@@ -15,6 +15,7 @@ offering to machine-translate copy that is already translated.
 | --- | --- | --- |
 | Language choice | `lib/i18n/locales.ts`, `lib/i18n/server.ts` | cookie + `Accept-Language` for the preselected button only |
 | Tenant copy | `tenants/<slug>/content/i18n/<locale>.json` | same shape as the English files, laid over them by `lib/i18n/merge.ts` |
+| UI chrome | `lib/i18n/messages/<locale>.json` | flat `key: string`, laid over English; `_notes.en.json` carries the per-key context a translator needs |
 | Event data | `tenants/<slug>/data.i18n/<locale>.json` | flat `{ english: translated }` dictionary |
 | Registration | `lib/tenant/content-registry.ts`, `lib/summit/tenant-data.ts` | one import and one entry per language |
 
@@ -80,12 +81,34 @@ Points a reviewer should look at first:
 - **`Gathering`** is translated (`el Encuentro`, `Всемирная встреча`). If Woven wants
   "Global Gathering" kept as an untranslated event name, that is a find-and-replace.
 
-## Still English
+## UI chrome
 
-The UI chrome — roughly 95 hardcoded strings across the components, things like
-`View Details`, `All roles`, `Filter by role`, `MENU` and the language screen's own
-labels — is not yet extracted into a message catalogue. Tenant copy, which is the
-overwhelming majority of the words a delegate reads, is translated.
+The app's own words — buttons, headings, empty states, screen-reader labels — live in
+`lib/i18n/messages/`, 182 flat dot-namespaced keys across five languages.
+
+    // client component
+    import { useT } from "@/components/MessagesProvider";
+    const t = useT();
+    <span>{t("program.viewDetails")}</span>
+
+    // server component
+    import { getT } from "@/lib/i18n/server-messages";
+    const t = await getT();
+
+Interpolate with named braces — `t("lists.emptyBody", { label })` — never by gluing
+translated fragments together, because word order differs between languages.
+
+`lib/i18n/messages/_notes.en.json` records, per key, where the string appears and how
+much room it has. Keep it up to date: it is the only thing telling a translator that
+a string sits in a 78px button versus being screen-reader-only.
+
+Two tests guard this. One asserts every language has every key with placeholders
+intact, so a key added to English cannot silently render English to a Spanish reader.
+The other asserts every `t("…")` key used in a component exists, so a typo fails the
+build rather than printing the raw key at a delegate.
+
+Still English by choice: the moderation login and admin dialogs, which are
+password-gated staff surfaces.
 
 ## Adding a language
 
