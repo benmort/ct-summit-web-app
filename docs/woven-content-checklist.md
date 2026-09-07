@@ -11,6 +11,15 @@ reconstruction we had guessed from your published aims. No `TO CONFIRM`
 placeholder remains, and no invented session survives. The rows still unticked
 below are the ones the brief left blank or marked TBD.
 
+**One thing to read before anything else (5.6).** The brief asked for a 2-3 sentence
+description on each session and left most of them blank. Rather than ship a programme of
+bare titles to fifty delegates, we have drafted seventeen of them. They are written from
+your own words: your mission, your three demands, the four descriptions you wrote for the
+special activities, and the structure of the day you gave us in 5.7 and 4.8. They
+deliberately say nothing about any presenter, name no format, ask for nothing to be
+brought, and promise no outcome. **They are still our words, not yours.** They are the
+first thing you should correct.
+
 ---
 
 ## Already in the app, taken from thewovenproject.org
@@ -94,7 +103,7 @@ on-site registration desk hours, but not when delegate sign-up opens or what it 
 | 5.3 | Day 1 sessions — Tuesday 8 September | TRUE | [x] twelve sessions, your times and rooms |
 | 5.4 | Day 2 sessions — Wednesday 9 September | TRUE | [x] twelve sessions including the Global Gathering Dinner |
 | 5.5 | Day 3 sessions — Thursday 10 September | TRUE | [x] eleven sessions, your times and rooms |
-| 5.6 | Session descriptions | FALSE | [ ] supplied for the four special activities and the breakout split. The panels, opening and closing remarks and report backs carry no description — send a line or two each and they will show when a delegate taps a session |
+| 5.6 | Session descriptions | FALSE | [~] **every session now has one, but 17 of them are ours, not yours.** Your words cover the four special activities and the breakout split. We drafted the rest — the six panels, the opening and closing remarks, the report backs, and the practical items — from your mission, your three demands, your own session descriptions and the shape of the day. They state no speaker, no format, no materials and no outcome. **Please read them and correct anything that is not how you would put it**, particularly the six panels, where we are inferring the subject from the title alone |
 | 5.7 | Sessions we've missed | TRUE | [x] the Grounding Activity, Gimuy Walking Tour, painting workshop and dinner are all in, with your descriptions |
 | 5.8 | On Country session | TRUE | [x] removed. It was our guess; the Gimuy Walking Tour with Minjil replaces it |
 | 5.9 | Gathering dinner | TRUE | [x] Wednesday 9 September, 6:30–9:30pm, Kauri Ballroom |

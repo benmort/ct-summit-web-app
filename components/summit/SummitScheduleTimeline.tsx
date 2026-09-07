@@ -141,7 +141,17 @@ function ScheduleCard({ slot }: { slot: ScheduleSlot }) {
         </div>
 
         <h3 className="pl-1 text-[15px] font-semibold leading-5 text-ink-50">{slot.title}</h3>
-        {slot.summary ? <p className={`mt-1.5 break-words pl-1 text-xs leading-5 ${tone.summaryClass}`}>{slot.summary}</p> : null}
+        {/*
+          Clamped, not full. The brief asks for descriptions "shown when a delegate
+          taps the session", and the detail screen prints them in full — a day of
+          three-sentence panels rendered inline turns the timeline into a wall of
+          text you cannot scan for the room you are meant to be in.
+        */}
+        {slot.summary ? (
+          <p className={`mt-1.5 line-clamp-3 break-words pl-1 text-xs leading-5 ${tone.summaryClass}`}>
+            {slot.summary}
+          </p>
+        ) : null}
 
         <div className="mt-3 flex items-end justify-between gap-3 pl-1">
           {slot.talk ? (
