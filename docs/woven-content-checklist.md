@@ -5,8 +5,10 @@ The detailed version with examples is in `woven-content-brief.md`.
 
 App: woven.commonthreads.org.au · Gathering: 5–11 September 2026, Gimuy (Cairns)
 
-**Status: the completed brief has been implemented.** Every answer supplied is now
-live in the app and no `TO CONFIRM` placeholder remains. The rows still unticked
+**Status: content brief v1 has been implemented in full.** The programme is now
+yours — 43 real sessions across Monday 7 to Thursday 10 September, replacing the
+reconstruction we had guessed from your published aims. No `TO CONFIRM`
+placeholder remains, and no invented session survives. The rows still unticked
 below are the ones the brief left blank or marked TBD.
 
 ---
@@ -75,41 +77,41 @@ on-site registration desk hours, but not when delegate sign-up opens or what it 
 | 3.1 | Gathering full name | TRUE | [x] unchanged |
 | 3.2 | Dates | TRUE | [x] Saturday 5 – Friday 11 September 2026 |
 | 3.3 | City and state | TRUE | [x] Gimuy (Cairns), Queensland |
-| 3.4 | Expected delegate numbers and countries | FALSE | [x] ~75 — 50 delegates plus 25 crew, five languages |
+| 3.4 | Expected delegate numbers and countries | FALSE | [x] roughly 50 delegates from more than 14 countries |
 | 3.5 | Dates — your site says both 6–12 and 7–11 | TRUE | [x] resolved to 5–11 September |
-| 3.6 | What happens on 6 and 12 September | TRUE | [ ] Sunday 6 September has nothing against it — arrivals only, we assume |
+| 3.6 | What happens on 5, 6 and 11 September | TRUE | [ ] the programme runs Monday 7 – Thursday 10. Saturday 5, Sunday 6 and Friday 11 have nothing against them — arrivals and departures, we assume, since accommodation covers 5–11. They carry no tab on the programme screen |
 | 3.7 | Registration — when it opens, cost, travel support | TRUE | [ ] on-site desk hours supplied; sign-up opening date and cost still unstated |
 | 4.1 | Venue name | TRUE | [x] Kauri Ballroom, Rydges Esplanade Resort Cairns |
 | 4.2 | Venue street address | TRUE | [x] 209–217 Abbott Street, Cairns QLD 4870 |
 | 4.3 | Venue description | TRUE | [x] you said not required |
 | 4.4 | Arrival and access instructions | TRUE | [x] Level 1, via the lobby stairs or three guest lifts |
 | 4.5 | Venue website and map link | TRUE | [x] both live on the venue page |
-| 4.6 | Any additional venues | TRUE | [ ] “TBD — we’ll update this as venues are confirmed” |
+| 4.6 | Any additional venues | TRUE | [x] Crystal Twig Room for breakouts, CHB Restaurant for lunch, Level 1 Foyer for registration and teas, and The Esplanade for the walking tour. All appear on the sessions that use them; only Rydges has its own venue card |
 | 4.7 | Venue photo and floor plan | FALSE | [ ] none supplied; the venue card shows a placeholder |
-| 4.8 | Room names | FALSE | [x] Kauri Ballroom only, as you asked |
-| 5.1 | Day names for all five days | TRUE | [x] Cultural Immersion Activities, then Day 1–3. **We named Friday “Day 4”** — you left it blank |
-| 5.2 | Day 1 sessions — times, titles, descriptions | TRUE | [ ] no descriptions supplied. Titles and times are still our reconstruction |
-| 5.3 | Day 2 sessions — times, titles, descriptions | TRUE | [ ] as above |
-| 5.4 | Day 3 sessions — times, titles, descriptions | TRUE | [ ] as above |
-| 5.5 | Day 4 sessions — times, titles, descriptions | TRUE | [ ] as above |
-| 5.6 | Day 5 sessions — times, titles, descriptions | TRUE | [ ] as above |
-| 5.7 | Sessions we've missed | TRUE | [ ] not answered |
-| 5.8 | On Country session — does it happen, and details | TRUE | [ ] not answered — still in the programme as a guess |
-| 5.9 | Gathering dinner — does it happen, and details | TRUE | [ ] 8.2 says a social event with dinner is planned for one evening; which night is unconfirmed |
-| 5.10 | Which regions are presenting on Day 4 | TRUE | [ ] titles now match the brief document (Argentina, Aotearoa New Zealand, Sweden and Sápmi), but the regions themselves are unconfirmed |
-| 5.11 | Session categories | FALSE | [ ] not answered |
-| 6.1 | Speakers — all 13 slots named | TRUE | [ ] all 13 now read “Speaker to be announced” rather than “TO CONFIRM” |
-| 6.2 | Speakers — organisations and roles | TRUE | [ ] outstanding |
-| 6.3 | Speakers — biographies | TRUE | [ ] outstanding |
-| 6.4 | Speakers — headshots | TRUE | [ ] outstanding |
-| 6.5 | Which sessions are panels with several speakers | FALSE | [ ] not answered |
-| 6.6 | Anyone who must not have a photo or bio published | TRUE | [ ] not answered |
-| 6.7 | Which Advisory Council members are speaking | TRUE | [ ] not answered |
+| 4.8 | Room names | FALSE | [x] every session now names its room. The four-way breakout split is written into the Breakout Groups description |
+| 5.1 | Day names | TRUE | [x] “Welcome, Grounding and Cultural Immersion Activities”, then Day 1–3. Friday is no longer a programme day |
+| 5.2 | Day 0 sessions — Monday 7 September | TRUE | [x] eight sessions, your times and rooms |
+| 5.3 | Day 1 sessions — Tuesday 8 September | TRUE | [x] twelve sessions, your times and rooms |
+| 5.4 | Day 2 sessions — Wednesday 9 September | TRUE | [x] twelve sessions including the Global Gathering Dinner |
+| 5.5 | Day 3 sessions — Thursday 10 September | TRUE | [x] eleven sessions, your times and rooms |
+| 5.6 | Session descriptions | FALSE | [ ] supplied for the four special activities and the breakout split. The panels, opening and closing remarks and report backs carry no description — send a line or two each and they will show when a delegate taps a session |
+| 5.7 | Sessions we've missed | TRUE | [x] the Grounding Activity, Gimuy Walking Tour, painting workshop and dinner are all in, with your descriptions |
+| 5.8 | On Country session | TRUE | [x] removed. It was our guess; the Gimuy Walking Tour with Minjil replaces it |
+| 5.9 | Gathering dinner | TRUE | [x] Wednesday 9 September, 6:30–9:30pm, Kauri Ballroom |
+| 5.10 | Regional presentations | TRUE | [x] withdrawn — those sessions were our invention and are gone |
+| 5.11 | Session categories | FALSE | [x] Welcome, Special Activity, Panel, Breakout, Report Backs, Opening, Closing, Break, Dinner and Logistics |
+| 6.1 | Speakers section | TRUE | [x] **removed on your instruction.** The 13 invented speaker slots are deleted and the Speakers tab is gone from the app |
+| 6.2 | Panel presenters | TRUE | [x] the five names you gave appear as “Presented by …” on their session, and nowhere else — no page, no photo, no bio |
+| 6.3 | Speakers — biographies | TRUE | [x] none published, as you asked |
+| 6.4 | Speakers — headshots | TRUE | [x] none published, as you asked |
+| 6.5 | Which sessions are panels with several speakers | FALSE | [x] none — one presenter per panel |
+| 6.6 | Panel #3 presenter | FALSE | [ ] Intergenerational Dialogue and Action is the one panel with no name against it |
+| 6.7 | Which Advisory Council members are speaking | TRUE | [ ] not answered — moot while the section stays down |
 | 7.1 | Wellbeing job title — exact wording | TRUE | [x] Wellbeing and Grievance Coordinator — matches the crew list exactly, so the code-of-conduct link works |
-| 7.2 | Who holds the wellbeing role | TRUE | [x] Tiana Jakicevich |
-| 7.3 | All crew members — names, roles, photos, contacts | TRUE | [ ] ten names and roles are in. Photos, emails and languages are not — so no crew member is contactable from their card |
-| 7.4 | Are crew phone numbers public | TRUE | [ ] Jay Knapp only, but **the number was never supplied**, so 8.9’s “reach out to Jay Knapp” currently dead-ends |
-| 8.1 | Guidance — registration | TRUE | [x] 3–5pm Mon 7, then 8–9am Tue 8 |
+| 7.2 | Who holds the wellbeing role | TRUE | [x] Jai Deranger. **This was wrong until now** — the app had the role against Tiana Jakicevich, so the code-of-conduct link sent a grievance to the wrong person |
+| 7.3 | All crew members — names, roles, photos, contacts | TRUE | [ ] all thirteen names and roles are in, including the two interpreters and Sarah Hernandez. Photos, emails and languages are still missing, so every card shows a placeholder |
+| 7.4 | Are crew phone numbers public | TRUE | [x] Jay Knapp only — 0435 209 203, tappable to call and to WhatsApp |
+| 8.1 | Guidance — registration | TRUE | [x] 8:30–9am and 4:30–5pm Mon 7, then 8:30–9am Tue 8 |
 | 8.2 | Guidance — meals and dietary requirements | TRUE | [x] including the per-meal reimbursement caps |
 | 8.3 | Guidance — getting to Cairns and the venue | TRUE | [x] Uber vouchers for airport transfers |
 | 8.4 | Guidance — visas and international travel | TRUE | [x] plus your Drive folder, and a new Travelling to Australia section |
@@ -117,31 +119,31 @@ on-site registration desk hours, but not when delegate sign-up opens or what it 
 | 8.6 | Guidance — children | TRUE | [x] replaced with Support Person, as you asked |
 | 8.7 | Guidance — weather and what to pack | TRUE | [x] with the BOM forecast link and your packing list |
 | 8.8 | Guidance — illness policy | TRUE | [x] in full |
-| 8.9 | Guidance — accessibility and translation | TRUE | [x] five interpreted languages; contact Jay Knapp — see 7.4 |
-| 8.10 | Guidance — wellbeing support | TRUE | [ ] “no idea — need to check”. We drafted a short section pointing to Tiana; it needs your words |
+| 8.9 | Guidance — accessibility and translation | TRUE | [x] interpreters cover English, Spanish and Portuguese; contact Jay Knapp. The app itself still reads in five languages |
+| 8.10 | Guidance — wellbeing support | TRUE | [x] your words, including the Rah Rah Boardroom as the quiet space and smudging outdoors |
 | 8.11 | Guidance — nearby essentials | TRUE | [x] pharmacy, convenience, supermarket, medical centre and hospital, with map links |
-| 8.12 | Guidance — wifi, prayer space, dress code, other | FALSE | [x] split into two sections: practicalities, and photography and consent |
+| 8.12 | Guidance — wifi, prayer space, dress code, other | FALSE | [x] split into three sections: practicalities, water safety, and photography and consent |
 | 9.1 | Code of conduct — full text | TRUE | [x] intro plus three headed sections |
 | 9.2 | Code of conduct — page subtitle | FALSE | [x] your bullet list became the Our Shared Commitments section |
-| 9.3 | Code of conduct — how to report a concern | TRUE | [x] reports go to Tiana Jakicevich; the page deep-links to her on the crew screen |
+| 9.3 | Code of conduct — how to report a concern | TRUE | [x] reports go to Jai Deranger; the page deep-links to them on the crew screen |
 | 9.4 | Code of conduct — printable PDF | FALSE | [x] none, so the download button is now hidden rather than serving the Common Threads PDF |
 | 10.1 | Participating organisations | FALSE | [x] The Woven Project and Common Threads, with logos |
-| 10.2 | Sponsors and funders | FALSE | [x] N/A — the Sponsors screen is removed from the menu |
+| 10.2 | Suppliers and thanks | FALSE | [x] the Sponsors screen is now **Suppliers and Thanks**, carrying all 24 of your acknowledgements. No logos supplied, so the cards are text |
 | 10.3 | Any organisation that must not be listed | TRUE | [x] N/A |
 | 11.1 | Delegate group chat link | FALSE | [ ] TBD — the WhatsApp button stays hidden |
 | 11.2 | Topic channels | FALSE | [ ] TBD — the two placeholder channels are removed |
 | 11.3 | Feedback forms or surveys | FALSE | [ ] TBD — the Surveys screen is removed from the menu |
 | 11.4 | Public transport link | FALSE | [x] replaced with taxis and rideshare, per your note |
 | 11.5 | Should social accounts appear in the app | FALSE | [ ] not answered |
-| 12.1 | Things to do nearby | FALSE | [x] eight places. **Mandingalbay tours excluded** on your advice, so nobody double-books the Monday tour |
+| 12.1 | Things to do nearby | FALSE | [x] eleven places. **Mandingalbay tours excluded** on your advice. Bush Medijina, Voices of Kin and The Ghosts of Lani Mulgrave Blair have no photo or map link — send those and they will match the rest |
 | 13.1 | Photo gallery — on or off | FALSE | [x] on |
-| 13.2 | Photo gallery — who moderates | FALSE | [x] six moderators named — they still need the password, sent separately |
+| 13.2 | Photo gallery — who moderates | FALSE | [x] seven moderators named — they still need the password, sent separately |
 | 13.3 | Photography consent and protocols | TRUE | [ ] TBD. Your photography paragraph from 8.12 is in the guidance screen meanwhile |
 | 13.4 | Photo upload terms | FALSE | [x] standard terms, now naming Indigenous Climate Action |
 | 14.1 | Welcome background photo | FALSE | [x] using your own photo; higher-res original still wanted |
 | 14.2 | Home screen background video | FALSE | [ ] still borrowed from Common Threads |
 | 14.3 | Social sharing image | FALSE | [ ] TBD — generated from your name and colours meanwhile |
-| 14.4 | Session and topic images | FALSE | [ ] TBD |
+| 14.4 | Session and topic images | FALSE | [ ] you pointed us at a folder of photos we do not have. Sessions currently reuse your existing app photography |
 
 ---
 

@@ -14,8 +14,8 @@
         "label": "Programme"
       },
       {
-        "href": "/speakers",
-        "label": "Intervenants"
+        "href": "/event-guidance",
+        "label": "Guide"
       },
       {
         "href": "/moments",
@@ -37,11 +37,6 @@
         "href": "/event-guidance",
         "label": "Informations pratiques",
         "subtitle": "Logistique de voyage, accessibilité et bien-être"
-      },
-      {
-        "href": "/speakers",
-        "label": "Intervenants",
-        "subtitle": "Découvrez nos intervenants et contributeurs"
       },
       {
         "href": "/crew",
@@ -74,6 +69,11 @@
         "subtitle": "Organisations participantes et partenaires"
       },
       {
+        "href": "/sponsors",
+        "label": "Prestataires et remerciements",
+        "subtitle": "Toutes celles et ceux dont le travail a rendu ce Rassemblement possible"
+      },
+      {
         "href": "/code-conduct",
         "label": "Code de conduite",
         "subtitle": "Attentes en matière de sécurité collective et soutien"
@@ -83,13 +83,12 @@
       "home": "Tableau de bord du rassemblement et liens rapides",
       "program": "Ordre du jour des sessions et horaires quotidiens",
       "eventGuidance": "Logistique de voyage, accessibilité et bien-être",
-      "speakers": "Découvrez nos intervenants et contributeurs",
       "crew": "Trouvez l'équipe d'appui du rassemblement",
       "venues": "Adresses des lieux, plans et accès",
       "events": "Sessions, pauses et plages d'activités",
       "attractions": "Que faire aux alentours",
       "organisations": "Organisations participantes et partenaires",
-      "sponsors": "Les partenaires qui soutiennent le rassemblement",
+      "sponsors": "Toutes celles et ceux dont le travail a rendu ce Rassemblement possible",
       "surveys": "Formulaires de retour et sondages rapides",
       "codeConduct": "Attentes en matière de sécurité collective et soutien",
       "moments": "Galerie de photos et de vidéos partagées"
@@ -159,7 +158,7 @@
       {
         "title": "Inscription",
         "paragraphs": [
-          "L'inscription au Global Gathering sera ouverte à notre bureau d'accueil, devant le Kauri Ballroom, de 3pm à 5pm le lundi 7 septembre, puis de 8am à 9am le mardi 8 septembre, juste avant le début du programme du Jour 1."
+          "L'inscription au Global Gathering sera ouverte à notre bureau d'accueil, devant le Kauri Ballroom, de 8:30am à 9:00am puis de 4:30pm à 5:00pm le lundi 7 septembre. Elle rouvre de 8:30am à 9:00am le mardi 8 septembre, juste avant le début du programme du Jour 1."
         ]
       },
       {
@@ -169,13 +168,14 @@
           "Nous rembourserons aux délégués jusqu'à AUD$120 par jour pour le coût de vos repas :",
           "- Petit-déjeuner — jusqu'à AUD$25. Le petit-déjeuner est compris dans votre réservation d'hébergement.",
           "- Déjeuner — jusqu'à AUD$35. Une collation en matinée, le déjeuner et une collation en après-midi sont fournis chaque jour du rassemblement.",
-          "- Dîner — jusqu'à AUD$60. Nous prévoyons d'organiser un moment convivial un soir, dîner compris."
+          "- Dîner — jusqu'à AUD$60. Le Dîner du Rassemblement mondial est offert le mercredi 9 septembre."
         ]
       },
       {
         "title": "Se rendre à Cairns et sur le lieu du rassemblement",
         "paragraphs": [
           "Veillez à télécharger Uber avant votre arrivée à Cairns afin que nous puissions vous envoyer un bon à utiliser pour vos trajets depuis et vers l'aéroport. Tous vos autres déplacements de la semaine seront organisés pour vous ; les détails suivront.",
+          "Si vous n'avez pas reçu de bon Uber, contactez Jay Knapp.",
           "Les taxis et les VTC sont le moyen le plus simple de se déplacer dans Gimuy (Cairns)."
         ]
       },
@@ -183,7 +183,7 @@
         "title": "Visas et voyages internationaux",
         "paragraphs": [
           "Si vous voyagez depuis un pays autre que Australia ou la Nouvelle-Zélande, vous devez obtenir un visa pour entrer dans le pays. Votre demande de visa pour entrer en Australia devrait déjà être en cours.",
-          "Woven et Common Threads ne se chargent pas de faire la demande à votre place, mais vous rembourseront les frais de votre demande.",
+          "Woven et Common Threads ne se chargent pas de faire la demande à votre place, mais vous rembourseront le montant de votre demande ainsi que tous les autres frais ou coûts associés.",
           "Vous trouverez ici des instructions et des ressources pour vous aider dans votre demande : https://drive.google.com/drive/folders/1LNCykvhupnTKQ0XGhBHFsOrhq6zLDEjb?usp=drive_link"
         ]
       },
@@ -214,8 +214,9 @@
       {
         "title": "Hébergement",
         "paragraphs": [
-          "Nous nous occupons de votre hébergement ; vous n'avez pas besoin de réserver vous-même. Une pièce d'identité pourra vous être demandée à l'arrivée, mais aucune caution ne devrait vous être réclamée.",
-          "Votre hébergement comprend le petit-déjeuner au restaurant de l'hôtel, servi chaque jour entre 6:30am et 9:30am, sachant que nos journées commencent à 8:30am. Prévoyez suffisamment de temps pour profiter du petit-déjeuner et bien démarrer la journée."
+          "Nous nous occupons de votre hébergement ; vous n'avez pas besoin de réserver vous-même, sauf si vous choisissez de prolonger votre séjour. Une pièce d'identité pourra vous être demandée à l'arrivée, mais aucune caution ne devrait vous être réclamée.",
+          "Votre hébergement comprend le petit-déjeuner au restaurant de l'hôtel, servi chaque jour entre 6:30am et 9:30am, sachant que nos journées commencent à 9:00am. Prévoyez suffisamment de temps pour profiter du petit-déjeuner et bien démarrer la journée.",
+          "Votre hébergement ne comprend ni le service en chambre ni aucun autre repas au restaurant de l'hôtel. Vous pouvez laisser vos coordonnées bancaires à l'arrivée afin d'imputer vos extras à votre chambre pendant le séjour. Il sera demandé aux déléguées et délégués de régler leurs extras au départ."
         ]
       },
       {
@@ -229,6 +230,7 @@
         "title": "Météo et affaires à emporter",
         "paragraphs": [
           "En septembre, Gimuy (Cairns) est en saison sèche tropicale. Attendez-vous à des températures moyennes comprises entre 23°C et 27°C (73°F à 80°F). Les prévisions locales sont ici : https://www.bom.gov.au/qld/cairns/",
+          "La tenue est « confortable avant tout ». Vous pouvez emporter ou porter des regalia ou des vêtements qui vous représentent, vous, votre communauté ou votre région, et nous vous invitons à les porter lors du Dîner du Rassemblement mondial, le mercredi 9 septembre.",
           "Nous encourageons les délégués à emporter :",
           "- Des vêtements adaptés au climat — voir les prévisions locales ci-dessus",
           "- Un répulsif anti-insectes",
@@ -237,7 +239,15 @@
           "- Des chaussures fermées pour les Cultural Immersion Activities",
           "- Un poncho ou un vêtement imperméable léger en cas de pluie",
           "- Un appareil photo",
-          "- Un peu d'argent liquide pour les petits achats et les souvenirs"
+          "- Un peu d'argent liquide pour les petits achats et les souvenirs",
+          "- Un objet à exposer ou à partager dans le cadre de l'activité d'ancrage"
+        ]
+      },
+      {
+        "title": "Sécurité dans l'eau",
+        "paragraphs": [
+          "Sachez que l'eau et la plage à Gimuy (Cairns) ne sont pas toujours sûres. Ne nagez dans aucune étendue d'eau dont vous ne voyez pas le fond.",
+          "Des méduses dangereuses peuvent être présentes dans l'océan, et des crocodiles vivent aussi dans d'autres cours d'eau : rivières, ruisseaux et fossés en bord de route. Pour votre sécurité, baignez-vous uniquement dans la piscine de l'hôtel."
         ]
       },
       {
@@ -257,7 +267,7 @@
         "title": "Accessibilité",
         "paragraphs": [
           "Le lieu de l'événement et l'hôtel sont des espaces accessibles. Si vous avez besoin d'un hébergement accessible, faites-le-nous savoir dès que possible.",
-          "Le rassemblement sera accompagné d'interprètes qui traduiront depuis et vers l'anglais, l'espagnol, le russe, le français et le portugais.",
+          "Le rassemblement sera accompagné d'interprètes qui traduiront depuis et vers l'anglais, l'espagnol et le portugais.",
           "N'hésitez pas à contacter Jay Knapp, responsable de l'événement, pour toute question ou préoccupation concernant l'accessibilité ou votre participation à l'événement."
         ]
       },
@@ -265,7 +275,9 @@
         "title": "Bien-être",
         "paragraphs": [
           "Ce rassemblement aborde la défense des terres, la dépossession et les pertes liées au climat. Ces sujets pèsent lourd, en particulier pour les délégués qui les ont vécus, et il est normal d'avoir besoin de sortir un moment de la salle.",
-          "Tiana Jakicevich assure la coordination du bien-être et des plaintes et reste disponible tout au long du rassemblement pour un échange confidentiel. Vous pouvez aussi joindre l'équipe à info@thewovenproject.org."
+          "Prenez le temps dont vous avez besoin pour vous reposer, vous ressourcer et décompresser entre les sessions. Mener ce combat a un coût ; nous sommes là pour vous soutenir autant que possible.",
+          "Rendez-vous à la Rah Rah Boardroom, notre espace de travail d'équipe, si vous avez besoin d'un moment au calme, de vous servir en produits de soin ou de faire une fumigation. Merci de faire les fumigations à l'extérieur.",
+          "Jai Deranger assure la coordination du bien-être et des plaintes et reste disponible tout au long du rassemblement pour un échange confidentiel. Vous pouvez aussi joindre l'équipe à info@thewovenproject.org."
         ]
       },
       {

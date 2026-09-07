@@ -190,6 +190,7 @@ export function buildDetail(
     }
     case "events": {
       const title = fieldString(record, "Title");
+      const presenter = fieldString(record, "Presenter");
       return {
         id: record.id,
         title,
@@ -203,6 +204,7 @@ export function buildDetail(
         sections: [
           { label: "Time", value: formatRange(record, "DateTime Start [Schedule]", "DateTime End [Schedule]") },
           { label: "Location", value: `${fieldFirst(record, "Venue Name")} - ${fieldString(record, "Room/Area")}` },
+          ...(presenter ? [{ label: "Presented by", value: presenter }] : []),
           ...(presentationLink
             ? [{ label: "Presentation", value: presentationLink, href: presentationLink }]
             : []),

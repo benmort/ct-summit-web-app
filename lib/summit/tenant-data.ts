@@ -17,7 +17,7 @@ import wvDataRu from "@/tenants/woven/data.i18n/ru.json";
  * and must survive untouched, or the joins between events, speakers and schedule
  * slots break.
  */
-const TRANSLATABLE_FIELDS: Record<string, string[]> = {
+export const TRANSLATABLE_FIELDS: Record<string, string[]> = {
   summits: ["Name", "Location"],
   events: ["Title", "Description", "Tags", "Room/Area"],
   speakers: ["Full Name", "Title", "Bio", "Description", "Tags", "Talk Format", "Room/Area"],
@@ -25,6 +25,7 @@ const TRANSLATABLE_FIELDS: Record<string, string[]> = {
   crew: ["Role"],
   attractions: ["Title", "Description", "Tags"],
   organisations: ["Name", "Country", "Summary"],
+  sponsors: ["Name", "Level", "Description"],
   programDays: ["Day Of Week", "Date Label", "Title"],
   codeConduct: ["Content Body"],
   securityGuidelines: ["Content Body"],

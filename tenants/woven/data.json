@@ -10,481 +10,12 @@
       }
     }
   ],
-  "speakers": [
-    {
-      "id": "woven-speaker-1",
-      "fields": {
-        "Full Name": "Speaker to be announced",
-        "Title": "Welcome to Country and Opening Ceremony",
-        "Organisation": [
-          "Woven"
-        ],
-        "Bio": "",
-        "Description": "Welcome to Country",
-        "Tags": [
-          "Speaker"
-        ],
-        "Headshot": [
-          {
-            "url": "/tenants/woven/placeholder.svg"
-          }
-        ],
-        "DateTime Start [Schedule]": [
-          "2026-09-07T09:30:00.000+10:00"
-        ],
-        "DateTime End [Schedule]": [
-          "2026-09-07T10:30:00.000+10:00"
-        ],
-        "Venue Name": [
-          "Rydges Esplanade Resort Cairns"
-        ],
-        "Room/Area": "Kauri Ballroom",
-        "Schedule": [
-          "woven-schedule-slot-2"
-        ],
-        "Talk Format": [
-          "Keynote"
-        ]
-      }
-    },
-    {
-      "id": "woven-speaker-2",
-      "fields": {
-        "Full Name": "Speaker to be announced",
-        "Title": "Opening Plenary: Dreaming into our Future",
-        "Organisation": [
-          "Woven"
-        ],
-        "Bio": "",
-        "Description": "Opening plenary",
-        "Tags": [
-          "Speaker"
-        ],
-        "Headshot": [
-          {
-            "url": "/tenants/woven/placeholder.svg"
-          }
-        ],
-        "DateTime Start [Schedule]": [
-          "2026-09-07T11:00:00.000+10:00"
-        ],
-        "DateTime End [Schedule]": [
-          "2026-09-07T12:30:00.000+10:00"
-        ],
-        "Venue Name": [
-          "Rydges Esplanade Resort Cairns"
-        ],
-        "Room/Area": "Kauri Ballroom",
-        "Schedule": [
-          "woven-schedule-slot-4"
-        ],
-        "Talk Format": [
-          "Keynote"
-        ]
-      }
-    },
-    {
-      "id": "woven-speaker-3",
-      "fields": {
-        "Full Name": "Speaker to be announced",
-        "Title": "Why We Gather: Climate Justice and Indigenous Rights",
-        "Organisation": [
-          "Woven"
-        ],
-        "Bio": "",
-        "Description": "Framing session",
-        "Tags": [
-          "Speaker"
-        ],
-        "Headshot": [
-          {
-            "url": "/tenants/woven/placeholder.svg"
-          }
-        ],
-        "DateTime Start [Schedule]": [
-          "2026-09-07T13:30:00.000+10:00"
-        ],
-        "DateTime End [Schedule]": [
-          "2026-09-07T15:00:00.000+10:00"
-        ],
-        "Venue Name": [
-          "Rydges Esplanade Resort Cairns"
-        ],
-        "Room/Area": "Kauri Ballroom",
-        "Schedule": [
-          "woven-schedule-slot-6"
-        ],
-        "Talk Format": [
-          "Keynote"
-        ]
-      }
-    },
-    {
-      "id": "woven-speaker-4",
-      "fields": {
-        "Full Name": "Speaker to be announced",
-        "Title": "Mapping Indigenous Peoples in the Global Movement",
-        "Organisation": [
-          "Woven"
-        ],
-        "Bio": "",
-        "Description": "Research launch",
-        "Tags": [
-          "Speaker"
-        ],
-        "Headshot": [
-          {
-            "url": "/tenants/woven/placeholder.svg"
-          }
-        ],
-        "DateTime Start [Schedule]": [
-          "2026-09-08T09:00:00.000+10:00"
-        ],
-        "DateTime End [Schedule]": [
-          "2026-09-08T10:30:00.000+10:00"
-        ],
-        "Venue Name": [
-          "Rydges Esplanade Resort Cairns"
-        ],
-        "Room/Area": "Kauri Ballroom",
-        "Schedule": [
-          "woven-schedule-slot-8"
-        ],
-        "Talk Format": [
-          "Keynote"
-        ]
-      }
-    },
-    {
-      "id": "woven-speaker-5",
-      "fields": {
-        "Full Name": "Speaker to be announced",
-        "Title": "Indigenous Caucuses: Achievements and Challenges",
-        "Organisation": [
-          "Woven"
-        ],
-        "Bio": "",
-        "Description": "Panel conversation",
-        "Tags": [
-          "Speaker"
-        ],
-        "Headshot": [
-          {
-            "url": "/tenants/woven/placeholder.svg"
-          }
-        ],
-        "DateTime Start [Schedule]": [
-          "2026-09-08T11:00:00.000+10:00"
-        ],
-        "DateTime End [Schedule]": [
-          "2026-09-08T12:30:00.000+10:00"
-        ],
-        "Venue Name": [
-          "Rydges Esplanade Resort Cairns"
-        ],
-        "Room/Area": "Kauri Ballroom",
-        "Schedule": [
-          "woven-schedule-slot-10"
-        ],
-        "Talk Format": [
-          "Panel"
-        ]
-      }
-    },
-    {
-      "id": "woven-speaker-6",
-      "fields": {
-        "Full Name": "Speaker to be announced",
-        "Title": "Climate Finance Mechanisms and Access",
-        "Organisation": [
-          "Woven"
-        ],
-        "Bio": "",
-        "Description": "Workshop",
-        "Tags": [
-          "Speaker"
-        ],
-        "Headshot": [
-          {
-            "url": "/tenants/woven/placeholder.svg"
-          }
-        ],
-        "DateTime Start [Schedule]": [
-          "2026-09-08T13:30:00.000+10:00"
-        ],
-        "DateTime End [Schedule]": [
-          "2026-09-08T15:00:00.000+10:00"
-        ],
-        "Venue Name": [
-          "Rydges Esplanade Resort Cairns"
-        ],
-        "Room/Area": "Kauri Ballroom",
-        "Schedule": [
-          "woven-schedule-slot-12"
-        ],
-        "Talk Format": [
-          "Lightning Talk"
-        ]
-      }
-    },
-    {
-      "id": "woven-speaker-7",
-      "fields": {
-        "Full Name": "Speaker to be announced",
-        "Title": "Traditional Ecological Knowledge in Climate Policy",
-        "Organisation": [
-          "Woven"
-        ],
-        "Bio": "",
-        "Description": "Keynote",
-        "Tags": [
-          "Speaker"
-        ],
-        "Headshot": [
-          {
-            "url": "/tenants/woven/placeholder.svg"
-          }
-        ],
-        "DateTime Start [Schedule]": [
-          "2026-09-09T09:00:00.000+10:00"
-        ],
-        "DateTime End [Schedule]": [
-          "2026-09-09T10:30:00.000+10:00"
-        ],
-        "Venue Name": [
-          "Rydges Esplanade Resort Cairns"
-        ],
-        "Room/Area": "Kauri Ballroom",
-        "Schedule": [
-          "woven-schedule-slot-14"
-        ],
-        "Talk Format": [
-          "Keynote"
-        ]
-      }
-    },
-    {
-      "id": "woven-speaker-8",
-      "fields": {
-        "Full Name": "Speaker to be announced",
-        "Title": "Land Defence and Self-Determination",
-        "Organisation": [
-          "Woven"
-        ],
-        "Bio": "",
-        "Description": "Panel conversation",
-        "Tags": [
-          "Speaker"
-        ],
-        "Headshot": [
-          {
-            "url": "/tenants/woven/placeholder.svg"
-          }
-        ],
-        "DateTime Start [Schedule]": [
-          "2026-09-09T11:00:00.000+10:00"
-        ],
-        "DateTime End [Schedule]": [
-          "2026-09-09T12:30:00.000+10:00"
-        ],
-        "Venue Name": [
-          "Rydges Esplanade Resort Cairns"
-        ],
-        "Room/Area": "Kauri Ballroom",
-        "Schedule": [
-          "woven-schedule-slot-16"
-        ],
-        "Talk Format": [
-          "Panel"
-        ]
-      }
-    },
-    {
-      "id": "woven-speaker-9",
-      "fields": {
-        "Full Name": "Speaker to be announced",
-        "Title": "Stories from the Regions: Argentina",
-        "Organisation": [
-          "Woven"
-        ],
-        "Bio": "",
-        "Description": "Regional story",
-        "Tags": [
-          "Speaker"
-        ],
-        "Headshot": [
-          {
-            "url": "/tenants/woven/placeholder.svg"
-          }
-        ],
-        "DateTime Start [Schedule]": [
-          "2026-09-10T09:00:00.000+10:00"
-        ],
-        "DateTime End [Schedule]": [
-          "2026-09-10T10:30:00.000+10:00"
-        ],
-        "Venue Name": [
-          "Rydges Esplanade Resort Cairns"
-        ],
-        "Room/Area": "Kauri Ballroom",
-        "Schedule": [
-          "woven-schedule-slot-20"
-        ],
-        "Talk Format": [
-          "Keynote"
-        ]
-      }
-    },
-    {
-      "id": "woven-speaker-10",
-      "fields": {
-        "Full Name": "Speaker to be announced",
-        "Title": "Stories from the Regions: Aotearoa New Zealand",
-        "Organisation": [
-          "Woven"
-        ],
-        "Bio": "",
-        "Description": "Regional story",
-        "Tags": [
-          "Speaker"
-        ],
-        "Headshot": [
-          {
-            "url": "/tenants/woven/placeholder.svg"
-          }
-        ],
-        "DateTime Start [Schedule]": [
-          "2026-09-10T11:00:00.000+10:00"
-        ],
-        "DateTime End [Schedule]": [
-          "2026-09-10T12:30:00.000+10:00"
-        ],
-        "Venue Name": [
-          "Rydges Esplanade Resort Cairns"
-        ],
-        "Room/Area": "Kauri Ballroom",
-        "Schedule": [
-          "woven-schedule-slot-22"
-        ],
-        "Talk Format": [
-          "Keynote"
-        ]
-      }
-    },
-    {
-      "id": "woven-speaker-11",
-      "fields": {
-        "Full Name": "Speaker to be announced",
-        "Title": "Stories from the Regions: Sweden and Sápmi",
-        "Organisation": [
-          "Woven"
-        ],
-        "Bio": "",
-        "Description": "Regional story",
-        "Tags": [
-          "Speaker"
-        ],
-        "Headshot": [
-          {
-            "url": "/tenants/woven/placeholder.svg"
-          }
-        ],
-        "DateTime Start [Schedule]": [
-          "2026-09-10T13:30:00.000+10:00"
-        ],
-        "DateTime End [Schedule]": [
-          "2026-09-10T15:00:00.000+10:00"
-        ],
-        "Venue Name": [
-          "Rydges Esplanade Resort Cairns"
-        ],
-        "Room/Area": "Kauri Ballroom",
-        "Schedule": [
-          "woven-schedule-slot-24"
-        ],
-        "Talk Format": [
-          "Keynote"
-        ]
-      }
-    },
-    {
-      "id": "woven-speaker-12",
-      "fields": {
-        "Full Name": "Speaker to be announced",
-        "Title": "Building a Unified Voice",
-        "Organisation": [
-          "Woven"
-        ],
-        "Bio": "",
-        "Description": "Closing plenary",
-        "Tags": [
-          "Speaker"
-        ],
-        "Headshot": [
-          {
-            "url": "/tenants/woven/placeholder.svg"
-          }
-        ],
-        "DateTime Start [Schedule]": [
-          "2026-09-11T09:00:00.000+10:00"
-        ],
-        "DateTime End [Schedule]": [
-          "2026-09-11T10:30:00.000+10:00"
-        ],
-        "Venue Name": [
-          "Rydges Esplanade Resort Cairns"
-        ],
-        "Room/Area": "Kauri Ballroom",
-        "Schedule": [
-          "woven-schedule-slot-26"
-        ],
-        "Talk Format": [
-          "Keynote"
-        ]
-      }
-    },
-    {
-      "id": "woven-speaker-13",
-      "fields": {
-        "Full Name": "Speaker to be announced",
-        "Title": "Network Building: Where To From Here",
-        "Organisation": [
-          "Woven"
-        ],
-        "Bio": "",
-        "Description": "Workshop",
-        "Tags": [
-          "Speaker"
-        ],
-        "Headshot": [
-          {
-            "url": "/tenants/woven/placeholder.svg"
-          }
-        ],
-        "DateTime Start [Schedule]": [
-          "2026-09-11T11:00:00.000+10:00"
-        ],
-        "DateTime End [Schedule]": [
-          "2026-09-11T12:30:00.000+10:00"
-        ],
-        "Venue Name": [
-          "Rydges Esplanade Resort Cairns"
-        ],
-        "Room/Area": "Kauri Ballroom",
-        "Schedule": [
-          "woven-schedule-slot-28"
-        ],
-        "Talk Format": [
-          "Lightning Talk"
-        ]
-      }
-    }
-  ],
+  "speakers": [],
   "events": [
     {
       "id": "woven-event-1",
       "fields": {
-        "Title": "Registration",
+        "Title": "Registration Open",
         "Venue Name": "Rydges Esplanade Resort Cairns",
         "Description": "",
         "Tags": [
@@ -495,9 +26,9 @@
             "url": "/images/woven/tiles/collage-3.webp"
           }
         ],
-        "DateTime Start [Schedule]": "2026-09-07T15:00:00.000+10:00",
-        "DateTime End [Schedule]": "2026-09-07T17:00:00.000+10:00",
-        "Room/Area": "Kauri Ballroom",
+        "DateTime Start [Schedule]": "2026-09-07T08:30:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-07T09:00:00.000+10:00",
+        "Room/Area": "Level 1 Foyer",
         "Schedule": [
           "woven-schedule-slot-1"
         ]
@@ -506,18 +37,18 @@
     {
       "id": "woven-event-2",
       "fields": {
-        "Title": "Welcome to Country and Opening Ceremony",
+        "Title": "Welcome to Country, Introductions, Grounding Activity",
         "Venue Name": "Rydges Esplanade Resort Cairns",
-        "Description": "",
+        "Description": "Building the Altar is our introduction activity. We are asking that delegates bring something from their home territory or something that is special to them — a small jar of water from your lands, a book that is special to you, plant medicines, rocks, an article of clothing, a banner or flag from your community, a photo of your family, a cultural item or piece of jewellery. Everyone will take their items home, but they will stay on the altar for the duration of the Gathering so other delegates can see what has been brought. Important: please review Australia's strict biosecurity laws around what you can and cannot bring into the country. Some items may not be able to be brought through Customs.",
         "Tags": [
-          "Opening"
+          "Welcome"
         ],
         "Headshot": [
           {
             "url": "/images/woven/tiles/collage-1.webp"
           }
         ],
-        "DateTime Start [Schedule]": "2026-09-07T09:30:00.000+10:00",
+        "DateTime Start [Schedule]": "2026-09-07T09:00:00.000+10:00",
         "DateTime End [Schedule]": "2026-09-07T10:30:00.000+10:00",
         "Room/Area": "Kauri Ballroom",
         "Schedule": [
@@ -528,20 +59,20 @@
     {
       "id": "woven-event-3",
       "fields": {
-        "Title": "Morning Tea",
-        "Venue Name": "Rydges Esplanade Resort Cairns",
-        "Description": "",
+        "Title": "Walk to the northern end of The Esplanade for our Gimuy Walking Tour with Minjil",
+        "Venue Name": "The Esplanade, Gimuy (Cairns)",
+        "Description": "Please meet near the Fun Ship Playground.",
         "Tags": [
-          "Break"
+          "Logistics"
         ],
         "Headshot": [
           {
-            "url": "/images/woven/events/morning-tea.webp"
+            "url": "/images/woven/tiles/collage-2.webp"
           }
         ],
         "DateTime Start [Schedule]": "2026-09-07T10:30:00.000+10:00",
         "DateTime End [Schedule]": "2026-09-07T11:00:00.000+10:00",
-        "Room/Area": "Kauri Ballroom",
+        "Room/Area": "",
         "Schedule": [
           "woven-schedule-slot-3"
         ]
@@ -550,20 +81,20 @@
     {
       "id": "woven-event-4",
       "fields": {
-        "Title": "Opening Plenary: Dreaming into our Future",
-        "Venue Name": "Rydges Esplanade Resort Cairns",
-        "Description": "",
+        "Title": "Gimuy Walking Tour",
+        "Venue Name": "The Esplanade, Gimuy (Cairns)",
+        "Description": "Please join us for a local walking tour of Gimuy (Cairns), hosted by local business Minjil. You'll receive a deep and rich understanding of local Bama culture in a unique and immersive experience. The tour begins with a smoking ceremony or welcome on the beach, followed by stories about Yidinydji Country and culture and the connection of other clans, families and tribes in the area. You'll also get the opportunity to try your hand at spear and boomerang throwing and taste some native teas and jams.",
         "Tags": [
-          "Plenary"
+          "Special Activity"
         ],
         "Headshot": [
           {
-            "url": "/images/woven/tiles/collage-4.webp"
+            "url": "/images/woven/events/on-country.webp"
           }
         ],
         "DateTime Start [Schedule]": "2026-09-07T11:00:00.000+10:00",
-        "DateTime End [Schedule]": "2026-09-07T12:30:00.000+10:00",
-        "Room/Area": "Kauri Ballroom",
+        "DateTime End [Schedule]": "2026-09-07T13:00:00.000+10:00",
+        "Room/Area": "Northern end of The Esplanade",
         "Schedule": [
           "woven-schedule-slot-4"
         ]
@@ -571,6 +102,28 @@
     },
     {
       "id": "woven-event-5",
+      "fields": {
+        "Title": "Walk to Rydges Esplanade Resort",
+        "Venue Name": "The Esplanade, Gimuy (Cairns)",
+        "Description": "",
+        "Tags": [
+          "Logistics"
+        ],
+        "Headshot": [
+          {
+            "url": "/images/woven/tiles/collage-2.webp"
+          }
+        ],
+        "DateTime Start [Schedule]": "2026-09-07T13:00:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-07T13:30:00.000+10:00",
+        "Room/Area": "",
+        "Schedule": [
+          "woven-schedule-slot-5"
+        ]
+      }
+    },
+    {
+      "id": "woven-event-6",
       "fields": {
         "Title": "Lunch",
         "Venue Name": "Rydges Esplanade Resort Cairns",
@@ -583,31 +136,9 @@
             "url": "/images/woven/events/lunch.webp"
           }
         ],
-        "DateTime Start [Schedule]": "2026-09-07T12:30:00.000+10:00",
-        "DateTime End [Schedule]": "2026-09-07T13:30:00.000+10:00",
-        "Room/Area": "Kauri Ballroom",
-        "Schedule": [
-          "woven-schedule-slot-5"
-        ]
-      }
-    },
-    {
-      "id": "woven-event-6",
-      "fields": {
-        "Title": "Why We Gather: Climate Justice and Indigenous Rights",
-        "Venue Name": "Rydges Esplanade Resort Cairns",
-        "Description": "",
-        "Tags": [
-          "Plenary"
-        ],
-        "Headshot": [
-          {
-            "url": "/images/woven/tiles/collage-5.webp"
-          }
-        ],
         "DateTime Start [Schedule]": "2026-09-07T13:30:00.000+10:00",
-        "DateTime End [Schedule]": "2026-09-07T15:00:00.000+10:00",
-        "Room/Area": "Kauri Ballroom",
+        "DateTime End [Schedule]": "2026-09-07T14:30:00.000+10:00",
+        "Room/Area": "CHB Restaurant",
         "Schedule": [
           "woven-schedule-slot-6"
         ]
@@ -616,18 +147,18 @@
     {
       "id": "woven-event-7",
       "fields": {
-        "Title": "Regional Introductions and Yarning Circles",
+        "Title": "Aboriginal Painting Workshop with Munganbana",
         "Venue Name": "Rydges Esplanade Resort Cairns",
-        "Description": "",
+        "Description": "Please join us for a painting workshop with local artist Munganbana (Norman Miller). He is a celebrated Indigenous artist, author and educator, and a cornerstone of the Gimuy art community for more than 30 years. This hands-on workshop explores themes around rainforest and reef and is suitable for all ages and levels of experience. You'll be painting your own calico swag bag — the perfect memento to take home from your time spent with us.",
         "Tags": [
-          "Yarning"
+          "Special Activity"
         ],
         "Headshot": [
           {
-            "url": "/images/woven/tiles/collage-2.webp"
+            "url": "/images/woven/tiles/collage-5.webp"
           }
         ],
-        "DateTime Start [Schedule]": "2026-09-07T15:00:00.000+10:00",
+        "DateTime Start [Schedule]": "2026-09-07T14:30:00.000+10:00",
         "DateTime End [Schedule]": "2026-09-07T16:30:00.000+10:00",
         "Room/Area": "Kauri Ballroom",
         "Schedule": [
@@ -636,9 +167,9 @@
       }
     },
     {
-      "id": "woven-event-31",
+      "id": "woven-event-8",
       "fields": {
-        "Title": "Registration",
+        "Title": "Registration Open",
         "Venue Name": "Rydges Esplanade Resort Cairns",
         "Description": "",
         "Tags": [
@@ -649,31 +180,9 @@
             "url": "/images/woven/tiles/collage-3.webp"
           }
         ],
-        "DateTime Start [Schedule]": "2026-09-08T08:00:00.000+10:00",
-        "DateTime End [Schedule]": "2026-09-08T09:00:00.000+10:00",
-        "Room/Area": "Kauri Ballroom",
-        "Schedule": [
-          "woven-schedule-slot-31"
-        ]
-      }
-    },
-    {
-      "id": "woven-event-8",
-      "fields": {
-        "Title": "Mapping Indigenous Peoples in the Global Movement",
-        "Venue Name": "Rydges Esplanade Resort Cairns",
-        "Description": "",
-        "Tags": [
-          "Plenary"
-        ],
-        "Headshot": [
-          {
-            "url": "/images/woven/tiles/collage-4.webp"
-          }
-        ],
-        "DateTime Start [Schedule]": "2026-09-08T09:00:00.000+10:00",
-        "DateTime End [Schedule]": "2026-09-08T10:30:00.000+10:00",
-        "Room/Area": "Kauri Ballroom",
+        "DateTime Start [Schedule]": "2026-09-07T16:30:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-07T17:00:00.000+10:00",
+        "Room/Area": "Level 1 Foyer",
         "Schedule": [
           "woven-schedule-slot-8"
         ]
@@ -682,20 +191,20 @@
     {
       "id": "woven-event-9",
       "fields": {
-        "Title": "Morning Tea",
+        "Title": "Registration Open",
         "Venue Name": "Rydges Esplanade Resort Cairns",
         "Description": "",
         "Tags": [
-          "Break"
+          "Logistics"
         ],
         "Headshot": [
           {
-            "url": "/images/woven/events/morning-tea.webp"
+            "url": "/images/woven/tiles/collage-3.webp"
           }
         ],
-        "DateTime Start [Schedule]": "2026-09-08T10:30:00.000+10:00",
-        "DateTime End [Schedule]": "2026-09-08T11:00:00.000+10:00",
-        "Room/Area": "Kauri Ballroom",
+        "DateTime Start [Schedule]": "2026-09-08T08:30:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-08T09:00:00.000+10:00",
+        "Room/Area": "Level 1 Foyer",
         "Schedule": [
           "woven-schedule-slot-9"
         ]
@@ -704,19 +213,19 @@
     {
       "id": "woven-event-10",
       "fields": {
-        "Title": "Indigenous Caucuses: Achievements and Challenges",
+        "Title": "Day 1 Opening Remarks",
         "Venue Name": "Rydges Esplanade Resort Cairns",
         "Description": "",
         "Tags": [
-          "Panel"
+          "Opening"
         ],
         "Headshot": [
           {
-            "url": "/images/woven/tiles/collage-2.webp"
+            "url": "/images/woven/tiles/collage-1.webp"
           }
         ],
-        "DateTime Start [Schedule]": "2026-09-08T11:00:00.000+10:00",
-        "DateTime End [Schedule]": "2026-09-08T12:30:00.000+10:00",
+        "DateTime Start [Schedule]": "2026-09-08T09:00:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-08T09:45:00.000+10:00",
         "Room/Area": "Kauri Ballroom",
         "Schedule": [
           "woven-schedule-slot-10"
@@ -726,117 +235,7 @@
     {
       "id": "woven-event-11",
       "fields": {
-        "Title": "Lunch",
-        "Venue Name": "Rydges Esplanade Resort Cairns",
-        "Description": "",
-        "Tags": [
-          "Break"
-        ],
-        "Headshot": [
-          {
-            "url": "/images/woven/events/lunch.webp"
-          }
-        ],
-        "DateTime Start [Schedule]": "2026-09-08T12:30:00.000+10:00",
-        "DateTime End [Schedule]": "2026-09-08T13:30:00.000+10:00",
-        "Room/Area": "Kauri Ballroom",
-        "Schedule": [
-          "woven-schedule-slot-11"
-        ]
-      }
-    },
-    {
-      "id": "woven-event-12",
-      "fields": {
-        "Title": "Climate Finance Mechanisms and Access",
-        "Venue Name": "Rydges Esplanade Resort Cairns",
-        "Description": "",
-        "Tags": [
-          "Workshop"
-        ],
-        "Headshot": [
-          {
-            "url": "/images/woven/tiles/collage-5.webp"
-          }
-        ],
-        "DateTime Start [Schedule]": "2026-09-08T13:30:00.000+10:00",
-        "DateTime End [Schedule]": "2026-09-08T15:00:00.000+10:00",
-        "Room/Area": "Kauri Ballroom",
-        "Schedule": [
-          "woven-schedule-slot-12"
-        ]
-      }
-    },
-    {
-      "id": "woven-event-13",
-      "fields": {
-        "Title": "Capacity Building Breakouts",
-        "Venue Name": "Rydges Esplanade Resort Cairns",
-        "Description": "",
-        "Tags": [
-          "Breakout"
-        ],
-        "Headshot": [
-          {
-            "url": "/images/woven/tiles/collage-3.webp"
-          }
-        ],
-        "DateTime Start [Schedule]": "2026-09-08T15:00:00.000+10:00",
-        "DateTime End [Schedule]": "2026-09-08T16:30:00.000+10:00",
-        "Room/Area": "Kauri Ballroom",
-        "Schedule": [
-          "woven-schedule-slot-13"
-        ]
-      }
-    },
-    {
-      "id": "woven-event-14",
-      "fields": {
-        "Title": "Traditional Ecological Knowledge in Climate Policy",
-        "Venue Name": "Rydges Esplanade Resort Cairns",
-        "Description": "",
-        "Tags": [
-          "Plenary"
-        ],
-        "Headshot": [
-          {
-            "url": "/images/woven/tiles/collage-1.webp"
-          }
-        ],
-        "DateTime Start [Schedule]": "2026-09-09T09:00:00.000+10:00",
-        "DateTime End [Schedule]": "2026-09-09T10:30:00.000+10:00",
-        "Room/Area": "Kauri Ballroom",
-        "Schedule": [
-          "woven-schedule-slot-14"
-        ]
-      }
-    },
-    {
-      "id": "woven-event-15",
-      "fields": {
-        "Title": "Morning Tea",
-        "Venue Name": "Rydges Esplanade Resort Cairns",
-        "Description": "",
-        "Tags": [
-          "Break"
-        ],
-        "Headshot": [
-          {
-            "url": "/images/woven/events/morning-tea.webp"
-          }
-        ],
-        "DateTime Start [Schedule]": "2026-09-09T10:30:00.000+10:00",
-        "DateTime End [Schedule]": "2026-09-09T11:00:00.000+10:00",
-        "Room/Area": "Kauri Ballroom",
-        "Schedule": [
-          "woven-schedule-slot-15"
-        ]
-      }
-    },
-    {
-      "id": "woven-event-16",
-      "fields": {
-        "Title": "Land Defence and Self-Determination",
+        "Title": "Panel #1: Building Global Cooperation amongst Indigenous Peoples",
         "Venue Name": "Rydges Esplanade Resort Cairns",
         "Description": "",
         "Tags": [
@@ -847,16 +246,83 @@
             "url": "/images/woven/tiles/collage-4.webp"
           }
         ],
-        "DateTime Start [Schedule]": "2026-09-09T11:00:00.000+10:00",
-        "DateTime End [Schedule]": "2026-09-09T12:30:00.000+10:00",
+        "DateTime Start [Schedule]": "2026-09-08T09:45:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-08T10:45:00.000+10:00",
         "Room/Area": "Kauri Ballroom",
         "Schedule": [
-          "woven-schedule-slot-16"
+          "woven-schedule-slot-11"
+        ],
+        "Presenter": "Graeme Reed"
+      }
+    },
+    {
+      "id": "woven-event-12",
+      "fields": {
+        "Title": "Morning Tea",
+        "Venue Name": "Rydges Esplanade Resort Cairns",
+        "Description": "",
+        "Tags": [
+          "Break"
+        ],
+        "Headshot": [
+          {
+            "url": "/images/woven/events/morning-tea.webp"
+          }
+        ],
+        "DateTime Start [Schedule]": "2026-09-08T10:45:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-08T11:00:00.000+10:00",
+        "Room/Area": "Level 1 Foyer",
+        "Schedule": [
+          "woven-schedule-slot-12"
         ]
       }
     },
     {
-      "id": "woven-event-17",
+      "id": "woven-event-13",
+      "fields": {
+        "Title": "Breakout Groups",
+        "Venue Name": "Rydges Esplanade Resort Cairns",
+        "Description": "Groups break into four for the breakout sessions — three English-speaking groups and one multilingual group. The multilingual group stays in the Kauri Ballroom along with one of the English-speaking groups.",
+        "Tags": [
+          "Breakout"
+        ],
+        "Headshot": [
+          {
+            "url": "/images/woven/tiles/collage-3.webp"
+          }
+        ],
+        "DateTime Start [Schedule]": "2026-09-08T11:00:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-08T12:00:00.000+10:00",
+        "Room/Area": "Kauri Ballroom and Crystal Twig Room",
+        "Schedule": [
+          "woven-schedule-slot-13"
+        ]
+      }
+    },
+    {
+      "id": "woven-event-14",
+      "fields": {
+        "Title": "Report Backs",
+        "Venue Name": "Rydges Esplanade Resort Cairns",
+        "Description": "",
+        "Tags": [
+          "Report Backs"
+        ],
+        "Headshot": [
+          {
+            "url": "/images/woven/tiles/collage-2.webp"
+          }
+        ],
+        "DateTime Start [Schedule]": "2026-09-08T12:00:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-08T13:00:00.000+10:00",
+        "Room/Area": "Kauri Ballroom",
+        "Schedule": [
+          "woven-schedule-slot-14"
+        ]
+      }
+    },
+    {
+      "id": "woven-event-15",
       "fields": {
         "Title": "Lunch",
         "Venue Name": "Rydges Esplanade Resort Cairns",
@@ -869,9 +335,54 @@
             "url": "/images/woven/events/lunch.webp"
           }
         ],
-        "DateTime Start [Schedule]": "2026-09-09T12:30:00.000+10:00",
-        "DateTime End [Schedule]": "2026-09-09T13:30:00.000+10:00",
+        "DateTime Start [Schedule]": "2026-09-08T13:00:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-08T14:00:00.000+10:00",
+        "Room/Area": "CHB Restaurant",
+        "Schedule": [
+          "woven-schedule-slot-15"
+        ]
+      }
+    },
+    {
+      "id": "woven-event-16",
+      "fields": {
+        "Title": "Panel #2: Reclamation of Cultural Authority & Restoring Matriarchy",
+        "Venue Name": "Rydges Esplanade Resort Cairns",
+        "Description": "",
+        "Tags": [
+          "Panel"
+        ],
+        "Headshot": [
+          {
+            "url": "/images/woven/tiles/collage-5.webp"
+          }
+        ],
+        "DateTime Start [Schedule]": "2026-09-08T14:00:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-08T15:00:00.000+10:00",
         "Room/Area": "Kauri Ballroom",
+        "Schedule": [
+          "woven-schedule-slot-16"
+        ],
+        "Presenter": "Janene Yazzie"
+      }
+    },
+    {
+      "id": "woven-event-17",
+      "fields": {
+        "Title": "Afternoon Tea",
+        "Venue Name": "Rydges Esplanade Resort Cairns",
+        "Description": "",
+        "Tags": [
+          "Break"
+        ],
+        "Headshot": [
+          {
+            "url": "/images/woven/events/morning-tea.webp"
+          }
+        ],
+        "DateTime Start [Schedule]": "2026-09-08T15:00:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-08T15:15:00.000+10:00",
+        "Room/Area": "Level 1 Foyer",
         "Schedule": [
           "woven-schedule-slot-17"
         ]
@@ -880,20 +391,20 @@
     {
       "id": "woven-event-18",
       "fields": {
-        "Title": "On Country Session",
+        "Title": "Breakout Groups",
         "Venue Name": "Rydges Esplanade Resort Cairns",
-        "Description": "",
+        "Description": "Groups break into four for the breakout sessions — three English-speaking groups and one multilingual group. The multilingual group stays in the Kauri Ballroom along with one of the English-speaking groups.",
         "Tags": [
-          "Workshop"
+          "Breakout"
         ],
         "Headshot": [
           {
-            "url": "/images/woven/events/on-country.webp"
+            "url": "/images/woven/tiles/collage-3.webp"
           }
         ],
-        "DateTime Start [Schedule]": "2026-09-09T13:30:00.000+10:00",
-        "DateTime End [Schedule]": "2026-09-09T15:00:00.000+10:00",
-        "Room/Area": "Kauri Ballroom",
+        "DateTime Start [Schedule]": "2026-09-08T15:15:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-08T16:15:00.000+10:00",
+        "Room/Area": "Kauri Ballroom and Crystal Twig Room",
         "Schedule": [
           "woven-schedule-slot-18"
         ]
@@ -902,20 +413,19 @@
     {
       "id": "woven-event-19",
       "fields": {
-        "Title": "Gathering Dinner",
+        "Title": "Report Backs",
         "Venue Name": "Rydges Esplanade Resort Cairns",
         "Description": "",
         "Tags": [
-          "Dinner",
-          "Social"
+          "Report Backs"
         ],
         "Headshot": [
           {
-            "url": "/images/woven/events/dinner.webp"
+            "url": "/images/woven/tiles/collage-2.webp"
           }
         ],
-        "DateTime Start [Schedule]": "2026-09-09T18:30:00.000+10:00",
-        "DateTime End [Schedule]": "2026-09-09T21:00:00.000+10:00",
+        "DateTime Start [Schedule]": "2026-09-08T16:15:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-08T17:00:00.000+10:00",
         "Room/Area": "Kauri Ballroom",
         "Schedule": [
           "woven-schedule-slot-19"
@@ -925,19 +435,19 @@
     {
       "id": "woven-event-20",
       "fields": {
-        "Title": "Stories from the Regions: Argentina",
+        "Title": "Closing Remarks",
         "Venue Name": "Rydges Esplanade Resort Cairns",
         "Description": "",
         "Tags": [
-          "Plenary"
+          "Closing"
         ],
         "Headshot": [
           {
-            "url": "/images/woven/tiles/collage-5.webp"
+            "url": "/images/woven/tiles/collage-1.webp"
           }
         ],
-        "DateTime Start [Schedule]": "2026-09-10T09:00:00.000+10:00",
-        "DateTime End [Schedule]": "2026-09-10T10:30:00.000+10:00",
+        "DateTime Start [Schedule]": "2026-09-08T17:00:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-08T17:15:00.000+10:00",
         "Room/Area": "Kauri Ballroom",
         "Schedule": [
           "woven-schedule-slot-20"
@@ -947,19 +457,19 @@
     {
       "id": "woven-event-21",
       "fields": {
-        "Title": "Morning Tea",
+        "Title": "Day 2 Opening and Reflections",
         "Venue Name": "Rydges Esplanade Resort Cairns",
         "Description": "",
         "Tags": [
-          "Break"
+          "Opening"
         ],
         "Headshot": [
           {
-            "url": "/images/woven/events/morning-tea.webp"
+            "url": "/images/woven/tiles/collage-1.webp"
           }
         ],
-        "DateTime Start [Schedule]": "2026-09-10T10:30:00.000+10:00",
-        "DateTime End [Schedule]": "2026-09-10T11:00:00.000+10:00",
+        "DateTime Start [Schedule]": "2026-09-09T09:00:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-09T09:45:00.000+10:00",
         "Room/Area": "Kauri Ballroom",
         "Schedule": [
           "woven-schedule-slot-21"
@@ -969,19 +479,19 @@
     {
       "id": "woven-event-22",
       "fields": {
-        "Title": "Stories from the Regions: Aotearoa New Zealand",
+        "Title": "Panel #3: Intergenerational Dialogue and Action",
         "Venue Name": "Rydges Esplanade Resort Cairns",
         "Description": "",
         "Tags": [
-          "Plenary"
+          "Panel"
         ],
         "Headshot": [
           {
-            "url": "/images/woven/tiles/collage-2.webp"
+            "url": "/images/woven/tiles/collage-4.webp"
           }
         ],
-        "DateTime Start [Schedule]": "2026-09-10T11:00:00.000+10:00",
-        "DateTime End [Schedule]": "2026-09-10T12:30:00.000+10:00",
+        "DateTime Start [Schedule]": "2026-09-09T09:45:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-09T10:45:00.000+10:00",
         "Room/Area": "Kauri Ballroom",
         "Schedule": [
           "woven-schedule-slot-22"
@@ -990,94 +500,6 @@
     },
     {
       "id": "woven-event-23",
-      "fields": {
-        "Title": "Lunch",
-        "Venue Name": "Rydges Esplanade Resort Cairns",
-        "Description": "",
-        "Tags": [
-          "Break"
-        ],
-        "Headshot": [
-          {
-            "url": "/images/woven/events/lunch.webp"
-          }
-        ],
-        "DateTime Start [Schedule]": "2026-09-10T12:30:00.000+10:00",
-        "DateTime End [Schedule]": "2026-09-10T13:30:00.000+10:00",
-        "Room/Area": "Kauri Ballroom",
-        "Schedule": [
-          "woven-schedule-slot-23"
-        ]
-      }
-    },
-    {
-      "id": "woven-event-24",
-      "fields": {
-        "Title": "Stories from the Regions: Sweden and Sápmi",
-        "Venue Name": "Rydges Esplanade Resort Cairns",
-        "Description": "",
-        "Tags": [
-          "Plenary"
-        ],
-        "Headshot": [
-          {
-            "url": "/images/woven/tiles/collage-3.webp"
-          }
-        ],
-        "DateTime Start [Schedule]": "2026-09-10T13:30:00.000+10:00",
-        "DateTime End [Schedule]": "2026-09-10T15:00:00.000+10:00",
-        "Room/Area": "Kauri Ballroom",
-        "Schedule": [
-          "woven-schedule-slot-24"
-        ]
-      }
-    },
-    {
-      "id": "woven-event-25",
-      "fields": {
-        "Title": "Amplifying Local Solutions",
-        "Venue Name": "Rydges Esplanade Resort Cairns",
-        "Description": "",
-        "Tags": [
-          "Breakout"
-        ],
-        "Headshot": [
-          {
-            "url": "/images/woven/tiles/collage-4.webp"
-          }
-        ],
-        "DateTime Start [Schedule]": "2026-09-10T15:00:00.000+10:00",
-        "DateTime End [Schedule]": "2026-09-10T16:30:00.000+10:00",
-        "Room/Area": "Kauri Ballroom",
-        "Schedule": [
-          "woven-schedule-slot-25"
-        ]
-      }
-    },
-    {
-      "id": "woven-event-26",
-      "fields": {
-        "Title": "Building a Unified Voice",
-        "Venue Name": "Rydges Esplanade Resort Cairns",
-        "Description": "",
-        "Tags": [
-          "Plenary"
-        ],
-        "Headshot": [
-          {
-            "url": "/images/woven/tiles/collage-1.webp"
-          }
-        ],
-        "DateTime Start [Schedule]": "2026-09-11T09:00:00.000+10:00",
-        "DateTime End [Schedule]": "2026-09-11T10:30:00.000+10:00",
-        "Room/Area": "Kauri Ballroom",
-        "Schedule": [
-          "woven-schedule-slot-26"
-        ]
-      }
-    },
-    {
-      "id": "woven-event-27",
       "fields": {
         "Title": "Morning Tea",
         "Venue Name": "Rydges Esplanade Resort Cairns",
@@ -1090,38 +512,60 @@
             "url": "/images/woven/events/morning-tea.webp"
           }
         ],
-        "DateTime Start [Schedule]": "2026-09-11T10:30:00.000+10:00",
-        "DateTime End [Schedule]": "2026-09-11T11:00:00.000+10:00",
-        "Room/Area": "Kauri Ballroom",
+        "DateTime Start [Schedule]": "2026-09-09T10:45:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-09T11:00:00.000+10:00",
+        "Room/Area": "Level 1 Foyer",
         "Schedule": [
-          "woven-schedule-slot-27"
+          "woven-schedule-slot-23"
         ]
       }
     },
     {
-      "id": "woven-event-28",
+      "id": "woven-event-24",
       "fields": {
-        "Title": "Network Building: Where To From Here",
+        "Title": "Breakout Groups",
         "Venue Name": "Rydges Esplanade Resort Cairns",
-        "Description": "",
+        "Description": "Groups break into four for the breakout sessions — three English-speaking groups and one multilingual group. The multilingual group stays in the Kauri Ballroom along with one of the English-speaking groups.",
         "Tags": [
-          "Workshop"
+          "Breakout"
         ],
         "Headshot": [
           {
-            "url": "/images/woven/tiles/collage-5.webp"
+            "url": "/images/woven/tiles/collage-3.webp"
           }
         ],
-        "DateTime Start [Schedule]": "2026-09-11T11:00:00.000+10:00",
-        "DateTime End [Schedule]": "2026-09-11T12:30:00.000+10:00",
-        "Room/Area": "Kauri Ballroom",
+        "DateTime Start [Schedule]": "2026-09-09T11:00:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-09T12:00:00.000+10:00",
+        "Room/Area": "Kauri Ballroom and Crystal Twig Room",
         "Schedule": [
-          "woven-schedule-slot-28"
+          "woven-schedule-slot-24"
         ]
       }
     },
     {
-      "id": "woven-event-29",
+      "id": "woven-event-25",
+      "fields": {
+        "Title": "Report Backs",
+        "Venue Name": "Rydges Esplanade Resort Cairns",
+        "Description": "",
+        "Tags": [
+          "Report Backs"
+        ],
+        "Headshot": [
+          {
+            "url": "/images/woven/tiles/collage-2.webp"
+          }
+        ],
+        "DateTime Start [Schedule]": "2026-09-09T12:00:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-09T13:00:00.000+10:00",
+        "Room/Area": "Kauri Ballroom",
+        "Schedule": [
+          "woven-schedule-slot-25"
+        ]
+      }
+    },
+    {
+      "id": "woven-event-26",
       "fields": {
         "Title": "Lunch",
         "Venue Name": "Rydges Esplanade Resort Cairns",
@@ -1134,9 +578,76 @@
             "url": "/images/woven/events/lunch.webp"
           }
         ],
-        "DateTime Start [Schedule]": "2026-09-11T12:30:00.000+10:00",
-        "DateTime End [Schedule]": "2026-09-11T13:30:00.000+10:00",
+        "DateTime Start [Schedule]": "2026-09-09T13:00:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-09T14:00:00.000+10:00",
+        "Room/Area": "CHB Restaurant",
+        "Schedule": [
+          "woven-schedule-slot-26"
+        ]
+      }
+    },
+    {
+      "id": "woven-event-27",
+      "fields": {
+        "Title": "Panel #4: Artivism and Protecting Territory",
+        "Venue Name": "Rydges Esplanade Resort Cairns",
+        "Description": "",
+        "Tags": [
+          "Panel"
+        ],
+        "Headshot": [
+          {
+            "url": "/images/woven/tiles/collage-5.webp"
+          }
+        ],
+        "DateTime Start [Schedule]": "2026-09-09T14:00:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-09T15:00:00.000+10:00",
         "Room/Area": "Kauri Ballroom",
+        "Schedule": [
+          "woven-schedule-slot-27"
+        ],
+        "Presenter": "Djalma Ramalho Gonçalves"
+      }
+    },
+    {
+      "id": "woven-event-28",
+      "fields": {
+        "Title": "Afternoon Tea",
+        "Venue Name": "Rydges Esplanade Resort Cairns",
+        "Description": "",
+        "Tags": [
+          "Break"
+        ],
+        "Headshot": [
+          {
+            "url": "/images/woven/events/morning-tea.webp"
+          }
+        ],
+        "DateTime Start [Schedule]": "2026-09-09T15:00:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-09T15:15:00.000+10:00",
+        "Room/Area": "Level 1 Foyer",
+        "Schedule": [
+          "woven-schedule-slot-28"
+        ]
+      }
+    },
+    {
+      "id": "woven-event-29",
+      "fields": {
+        "Title": "Breakout Groups",
+        "Venue Name": "Rydges Esplanade Resort Cairns",
+        "Description": "Groups break into four for the breakout sessions — three English-speaking groups and one multilingual group. The multilingual group stays in the Kauri Ballroom along with one of the English-speaking groups.",
+        "Tags": [
+          "Breakout"
+        ],
+        "Headshot": [
+          {
+            "url": "/images/woven/tiles/collage-3.webp"
+          }
+        ],
+        "DateTime Start [Schedule]": "2026-09-09T15:15:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-09T16:15:00.000+10:00",
+        "Room/Area": "Kauri Ballroom and Crystal Twig Room",
         "Schedule": [
           "woven-schedule-slot-29"
         ]
@@ -1145,7 +656,29 @@
     {
       "id": "woven-event-30",
       "fields": {
-        "Title": "Shared Commitments and Closing Ceremony",
+        "Title": "Report Backs",
+        "Venue Name": "Rydges Esplanade Resort Cairns",
+        "Description": "",
+        "Tags": [
+          "Report Backs"
+        ],
+        "Headshot": [
+          {
+            "url": "/images/woven/tiles/collage-2.webp"
+          }
+        ],
+        "DateTime Start [Schedule]": "2026-09-09T16:15:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-09T17:00:00.000+10:00",
+        "Room/Area": "Kauri Ballroom",
+        "Schedule": [
+          "woven-schedule-slot-30"
+        ]
+      }
+    },
+    {
+      "id": "woven-event-31",
+      "fields": {
+        "Title": "Closing Remarks",
         "Venue Name": "Rydges Esplanade Resort Cairns",
         "Description": "",
         "Tags": [
@@ -1153,14 +686,280 @@
         ],
         "Headshot": [
           {
-            "url": "/images/woven/team.webp"
+            "url": "/images/woven/tiles/collage-1.webp"
           }
         ],
-        "DateTime Start [Schedule]": "2026-09-11T13:30:00.000+10:00",
-        "DateTime End [Schedule]": "2026-09-11T15:00:00.000+10:00",
+        "DateTime Start [Schedule]": "2026-09-09T17:00:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-09T17:15:00.000+10:00",
         "Room/Area": "Kauri Ballroom",
         "Schedule": [
-          "woven-schedule-slot-30"
+          "woven-schedule-slot-31"
+        ]
+      }
+    },
+    {
+      "id": "woven-event-32",
+      "fields": {
+        "Title": "Global Gathering Dinner",
+        "Venue Name": "Rydges Esplanade Resort Cairns",
+        "Description": "Please join us for a three-course meal at the hotel. We hope to take the time outside the program to connect with one another and enjoy some delicious food and a performance by local dancers. We invite you to wear any regalia you have brought with you.",
+        "Tags": [
+          "Dinner"
+        ],
+        "Headshot": [
+          {
+            "url": "/images/woven/events/dinner.webp"
+          }
+        ],
+        "DateTime Start [Schedule]": "2026-09-09T18:30:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-09T21:30:00.000+10:00",
+        "Room/Area": "Kauri Ballroom",
+        "Schedule": [
+          "woven-schedule-slot-32"
+        ]
+      }
+    },
+    {
+      "id": "woven-event-33",
+      "fields": {
+        "Title": "Day 3 Opening and Reflections",
+        "Venue Name": "Rydges Esplanade Resort Cairns",
+        "Description": "",
+        "Tags": [
+          "Opening"
+        ],
+        "Headshot": [
+          {
+            "url": "/images/woven/tiles/collage-1.webp"
+          }
+        ],
+        "DateTime Start [Schedule]": "2026-09-10T09:00:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-10T09:45:00.000+10:00",
+        "Room/Area": "Kauri Ballroom",
+        "Schedule": [
+          "woven-schedule-slot-33"
+        ]
+      }
+    },
+    {
+      "id": "woven-event-34",
+      "fields": {
+        "Title": "Panel #5: Land Back: Beyond Extraction Economies",
+        "Venue Name": "Rydges Esplanade Resort Cairns",
+        "Description": "",
+        "Tags": [
+          "Panel"
+        ],
+        "Headshot": [
+          {
+            "url": "/images/woven/tiles/collage-4.webp"
+          }
+        ],
+        "DateTime Start [Schedule]": "2026-09-10T09:45:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-10T10:45:00.000+10:00",
+        "Room/Area": "Kauri Ballroom",
+        "Schedule": [
+          "woven-schedule-slot-34"
+        ],
+        "Presenter": "Eriel Tchekwie Deranger"
+      }
+    },
+    {
+      "id": "woven-event-35",
+      "fields": {
+        "Title": "Morning Tea",
+        "Venue Name": "Rydges Esplanade Resort Cairns",
+        "Description": "",
+        "Tags": [
+          "Break"
+        ],
+        "Headshot": [
+          {
+            "url": "/images/woven/events/morning-tea.webp"
+          }
+        ],
+        "DateTime Start [Schedule]": "2026-09-10T10:45:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-10T11:00:00.000+10:00",
+        "Room/Area": "Level 1 Foyer",
+        "Schedule": [
+          "woven-schedule-slot-35"
+        ]
+      }
+    },
+    {
+      "id": "woven-event-36",
+      "fields": {
+        "Title": "Breakout Groups",
+        "Venue Name": "Rydges Esplanade Resort Cairns",
+        "Description": "Groups break into four for the breakout sessions — three English-speaking groups and one multilingual group. The multilingual group stays in the Kauri Ballroom along with one of the English-speaking groups.",
+        "Tags": [
+          "Breakout"
+        ],
+        "Headshot": [
+          {
+            "url": "/images/woven/tiles/collage-3.webp"
+          }
+        ],
+        "DateTime Start [Schedule]": "2026-09-10T11:00:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-10T12:00:00.000+10:00",
+        "Room/Area": "Kauri Ballroom and Crystal Twig Room",
+        "Schedule": [
+          "woven-schedule-slot-36"
+        ]
+      }
+    },
+    {
+      "id": "woven-event-37",
+      "fields": {
+        "Title": "Report Backs",
+        "Venue Name": "Rydges Esplanade Resort Cairns",
+        "Description": "",
+        "Tags": [
+          "Report Backs"
+        ],
+        "Headshot": [
+          {
+            "url": "/images/woven/tiles/collage-2.webp"
+          }
+        ],
+        "DateTime Start [Schedule]": "2026-09-10T12:00:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-10T13:00:00.000+10:00",
+        "Room/Area": "Kauri Ballroom",
+        "Schedule": [
+          "woven-schedule-slot-37"
+        ]
+      }
+    },
+    {
+      "id": "woven-event-38",
+      "fields": {
+        "Title": "Lunch",
+        "Venue Name": "Rydges Esplanade Resort Cairns",
+        "Description": "",
+        "Tags": [
+          "Break"
+        ],
+        "Headshot": [
+          {
+            "url": "/images/woven/events/lunch.webp"
+          }
+        ],
+        "DateTime Start [Schedule]": "2026-09-10T13:00:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-10T14:00:00.000+10:00",
+        "Room/Area": "CHB Restaurant",
+        "Schedule": [
+          "woven-schedule-slot-38"
+        ]
+      }
+    },
+    {
+      "id": "woven-event-39",
+      "fields": {
+        "Title": "Panel #6: Mapping Our Needs: Research and Resource Development to support global movements",
+        "Venue Name": "Rydges Esplanade Resort Cairns",
+        "Description": "",
+        "Tags": [
+          "Panel"
+        ],
+        "Headshot": [
+          {
+            "url": "/images/woven/tiles/collage-5.webp"
+          }
+        ],
+        "DateTime Start [Schedule]": "2026-09-10T14:00:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-10T15:00:00.000+10:00",
+        "Room/Area": "Kauri Ballroom",
+        "Schedule": [
+          "woven-schedule-slot-39"
+        ],
+        "Presenter": "Heather O'Watch"
+      }
+    },
+    {
+      "id": "woven-event-40",
+      "fields": {
+        "Title": "Afternoon Tea",
+        "Venue Name": "Rydges Esplanade Resort Cairns",
+        "Description": "",
+        "Tags": [
+          "Break"
+        ],
+        "Headshot": [
+          {
+            "url": "/images/woven/events/morning-tea.webp"
+          }
+        ],
+        "DateTime Start [Schedule]": "2026-09-10T15:00:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-10T15:15:00.000+10:00",
+        "Room/Area": "Level 1 Foyer",
+        "Schedule": [
+          "woven-schedule-slot-40"
+        ]
+      }
+    },
+    {
+      "id": "woven-event-41",
+      "fields": {
+        "Title": "Breakout Groups",
+        "Venue Name": "Rydges Esplanade Resort Cairns",
+        "Description": "Groups break into four for the breakout sessions — three English-speaking groups and one multilingual group. The multilingual group stays in the Kauri Ballroom along with one of the English-speaking groups.",
+        "Tags": [
+          "Breakout"
+        ],
+        "Headshot": [
+          {
+            "url": "/images/woven/tiles/collage-3.webp"
+          }
+        ],
+        "DateTime Start [Schedule]": "2026-09-10T15:15:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-10T16:15:00.000+10:00",
+        "Room/Area": "Kauri Ballroom and Crystal Twig Room",
+        "Schedule": [
+          "woven-schedule-slot-41"
+        ]
+      }
+    },
+    {
+      "id": "woven-event-42",
+      "fields": {
+        "Title": "Report Backs",
+        "Venue Name": "Rydges Esplanade Resort Cairns",
+        "Description": "",
+        "Tags": [
+          "Report Backs"
+        ],
+        "Headshot": [
+          {
+            "url": "/images/woven/tiles/collage-2.webp"
+          }
+        ],
+        "DateTime Start [Schedule]": "2026-09-10T16:15:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-10T17:00:00.000+10:00",
+        "Room/Area": "Kauri Ballroom",
+        "Schedule": [
+          "woven-schedule-slot-42"
+        ]
+      }
+    },
+    {
+      "id": "woven-event-43",
+      "fields": {
+        "Title": "Day 3 Reflections and Closing Remarks",
+        "Venue Name": "Rydges Esplanade Resort Cairns",
+        "Description": "",
+        "Tags": [
+          "Closing"
+        ],
+        "Headshot": [
+          {
+            "url": "/images/woven/tiles/collage-1.webp"
+          }
+        ],
+        "DateTime Start [Schedule]": "2026-09-10T17:00:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-10T17:15:00.000+10:00",
+        "Room/Area": "Kauri Ballroom",
+        "Schedule": [
+          "woven-schedule-slot-43"
         ]
       }
     }
@@ -1171,8 +970,8 @@
       "fields": {
         "Day Of Week": "Monday",
         "Venue Name": "Rydges Esplanade Resort Cairns",
-        "DateTime Start [Schedule]": "2026-09-07T15:00:00.000+10:00",
-        "DateTime End [Schedule]": "2026-09-07T17:00:00.000+10:00"
+        "DateTime Start [Schedule]": "2026-09-07T08:30:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-07T09:00:00.000+10:00"
       }
     },
     {
@@ -1180,7 +979,7 @@
       "fields": {
         "Day Of Week": "Monday",
         "Venue Name": "Rydges Esplanade Resort Cairns",
-        "DateTime Start [Schedule]": "2026-09-07T09:30:00.000+10:00",
+        "DateTime Start [Schedule]": "2026-09-07T09:00:00.000+10:00",
         "DateTime End [Schedule]": "2026-09-07T10:30:00.000+10:00"
       }
     },
@@ -1188,7 +987,7 @@
       "id": "woven-schedule-slot-3",
       "fields": {
         "Day Of Week": "Monday",
-        "Venue Name": "Rydges Esplanade Resort Cairns",
+        "Venue Name": "The Esplanade, Gimuy (Cairns)",
         "DateTime Start [Schedule]": "2026-09-07T10:30:00.000+10:00",
         "DateTime End [Schedule]": "2026-09-07T11:00:00.000+10:00"
       }
@@ -1197,17 +996,17 @@
       "id": "woven-schedule-slot-4",
       "fields": {
         "Day Of Week": "Monday",
-        "Venue Name": "Rydges Esplanade Resort Cairns",
+        "Venue Name": "The Esplanade, Gimuy (Cairns)",
         "DateTime Start [Schedule]": "2026-09-07T11:00:00.000+10:00",
-        "DateTime End [Schedule]": "2026-09-07T12:30:00.000+10:00"
+        "DateTime End [Schedule]": "2026-09-07T13:00:00.000+10:00"
       }
     },
     {
       "id": "woven-schedule-slot-5",
       "fields": {
         "Day Of Week": "Monday",
-        "Venue Name": "Rydges Esplanade Resort Cairns",
-        "DateTime Start [Schedule]": "2026-09-07T12:30:00.000+10:00",
+        "Venue Name": "The Esplanade, Gimuy (Cairns)",
+        "DateTime Start [Schedule]": "2026-09-07T13:00:00.000+10:00",
         "DateTime End [Schedule]": "2026-09-07T13:30:00.000+10:00"
       }
     },
@@ -1217,7 +1016,7 @@
         "Day Of Week": "Monday",
         "Venue Name": "Rydges Esplanade Resort Cairns",
         "DateTime Start [Schedule]": "2026-09-07T13:30:00.000+10:00",
-        "DateTime End [Schedule]": "2026-09-07T15:00:00.000+10:00"
+        "DateTime End [Schedule]": "2026-09-07T14:30:00.000+10:00"
       }
     },
     {
@@ -1225,26 +1024,17 @@
       "fields": {
         "Day Of Week": "Monday",
         "Venue Name": "Rydges Esplanade Resort Cairns",
-        "DateTime Start [Schedule]": "2026-09-07T15:00:00.000+10:00",
+        "DateTime Start [Schedule]": "2026-09-07T14:30:00.000+10:00",
         "DateTime End [Schedule]": "2026-09-07T16:30:00.000+10:00"
-      }
-    },
-    {
-      "id": "woven-schedule-slot-31",
-      "fields": {
-        "Day Of Week": "Tuesday",
-        "Venue Name": "Rydges Esplanade Resort Cairns",
-        "DateTime Start [Schedule]": "2026-09-08T08:00:00.000+10:00",
-        "DateTime End [Schedule]": "2026-09-08T09:00:00.000+10:00"
       }
     },
     {
       "id": "woven-schedule-slot-8",
       "fields": {
-        "Day Of Week": "Tuesday",
+        "Day Of Week": "Monday",
         "Venue Name": "Rydges Esplanade Resort Cairns",
-        "DateTime Start [Schedule]": "2026-09-08T09:00:00.000+10:00",
-        "DateTime End [Schedule]": "2026-09-08T10:30:00.000+10:00"
+        "DateTime Start [Schedule]": "2026-09-07T16:30:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-07T17:00:00.000+10:00"
       }
     },
     {
@@ -1252,8 +1042,8 @@
       "fields": {
         "Day Of Week": "Tuesday",
         "Venue Name": "Rydges Esplanade Resort Cairns",
-        "DateTime Start [Schedule]": "2026-09-08T10:30:00.000+10:00",
-        "DateTime End [Schedule]": "2026-09-08T11:00:00.000+10:00"
+        "DateTime Start [Schedule]": "2026-09-08T08:30:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-08T09:00:00.000+10:00"
       }
     },
     {
@@ -1261,8 +1051,8 @@
       "fields": {
         "Day Of Week": "Tuesday",
         "Venue Name": "Rydges Esplanade Resort Cairns",
-        "DateTime Start [Schedule]": "2026-09-08T11:00:00.000+10:00",
-        "DateTime End [Schedule]": "2026-09-08T12:30:00.000+10:00"
+        "DateTime Start [Schedule]": "2026-09-08T09:00:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-08T09:45:00.000+10:00"
       }
     },
     {
@@ -1270,8 +1060,8 @@
       "fields": {
         "Day Of Week": "Tuesday",
         "Venue Name": "Rydges Esplanade Resort Cairns",
-        "DateTime Start [Schedule]": "2026-09-08T12:30:00.000+10:00",
-        "DateTime End [Schedule]": "2026-09-08T13:30:00.000+10:00"
+        "DateTime Start [Schedule]": "2026-09-08T09:45:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-08T10:45:00.000+10:00"
       }
     },
     {
@@ -1279,8 +1069,8 @@
       "fields": {
         "Day Of Week": "Tuesday",
         "Venue Name": "Rydges Esplanade Resort Cairns",
-        "DateTime Start [Schedule]": "2026-09-08T13:30:00.000+10:00",
-        "DateTime End [Schedule]": "2026-09-08T15:00:00.000+10:00"
+        "DateTime Start [Schedule]": "2026-09-08T10:45:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-08T11:00:00.000+10:00"
       }
     },
     {
@@ -1288,161 +1078,278 @@
       "fields": {
         "Day Of Week": "Tuesday",
         "Venue Name": "Rydges Esplanade Resort Cairns",
-        "DateTime Start [Schedule]": "2026-09-08T15:00:00.000+10:00",
-        "DateTime End [Schedule]": "2026-09-08T16:30:00.000+10:00"
+        "DateTime Start [Schedule]": "2026-09-08T11:00:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-08T12:00:00.000+10:00"
       }
     },
     {
       "id": "woven-schedule-slot-14",
       "fields": {
-        "Day Of Week": "Wednesday",
+        "Day Of Week": "Tuesday",
         "Venue Name": "Rydges Esplanade Resort Cairns",
-        "DateTime Start [Schedule]": "2026-09-09T09:00:00.000+10:00",
-        "DateTime End [Schedule]": "2026-09-09T10:30:00.000+10:00"
+        "DateTime Start [Schedule]": "2026-09-08T12:00:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-08T13:00:00.000+10:00"
       }
     },
     {
       "id": "woven-schedule-slot-15",
       "fields": {
-        "Day Of Week": "Wednesday",
+        "Day Of Week": "Tuesday",
         "Venue Name": "Rydges Esplanade Resort Cairns",
-        "DateTime Start [Schedule]": "2026-09-09T10:30:00.000+10:00",
-        "DateTime End [Schedule]": "2026-09-09T11:00:00.000+10:00"
+        "DateTime Start [Schedule]": "2026-09-08T13:00:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-08T14:00:00.000+10:00"
       }
     },
     {
       "id": "woven-schedule-slot-16",
       "fields": {
-        "Day Of Week": "Wednesday",
+        "Day Of Week": "Tuesday",
         "Venue Name": "Rydges Esplanade Resort Cairns",
-        "DateTime Start [Schedule]": "2026-09-09T11:00:00.000+10:00",
-        "DateTime End [Schedule]": "2026-09-09T12:30:00.000+10:00"
+        "DateTime Start [Schedule]": "2026-09-08T14:00:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-08T15:00:00.000+10:00"
       }
     },
     {
       "id": "woven-schedule-slot-17",
       "fields": {
-        "Day Of Week": "Wednesday",
+        "Day Of Week": "Tuesday",
         "Venue Name": "Rydges Esplanade Resort Cairns",
-        "DateTime Start [Schedule]": "2026-09-09T12:30:00.000+10:00",
-        "DateTime End [Schedule]": "2026-09-09T13:30:00.000+10:00"
+        "DateTime Start [Schedule]": "2026-09-08T15:00:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-08T15:15:00.000+10:00"
       }
     },
     {
       "id": "woven-schedule-slot-18",
       "fields": {
-        "Day Of Week": "Wednesday",
+        "Day Of Week": "Tuesday",
         "Venue Name": "Rydges Esplanade Resort Cairns",
-        "DateTime Start [Schedule]": "2026-09-09T13:30:00.000+10:00",
-        "DateTime End [Schedule]": "2026-09-09T15:00:00.000+10:00"
+        "DateTime Start [Schedule]": "2026-09-08T15:15:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-08T16:15:00.000+10:00"
       }
     },
     {
       "id": "woven-schedule-slot-19",
       "fields": {
-        "Day Of Week": "Wednesday",
+        "Day Of Week": "Tuesday",
         "Venue Name": "Rydges Esplanade Resort Cairns",
-        "DateTime Start [Schedule]": "2026-09-09T18:30:00.000+10:00",
-        "DateTime End [Schedule]": "2026-09-09T21:00:00.000+10:00"
+        "DateTime Start [Schedule]": "2026-09-08T16:15:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-08T17:00:00.000+10:00"
       }
     },
     {
       "id": "woven-schedule-slot-20",
       "fields": {
-        "Day Of Week": "Thursday",
+        "Day Of Week": "Tuesday",
         "Venue Name": "Rydges Esplanade Resort Cairns",
-        "DateTime Start [Schedule]": "2026-09-10T09:00:00.000+10:00",
-        "DateTime End [Schedule]": "2026-09-10T10:30:00.000+10:00"
+        "DateTime Start [Schedule]": "2026-09-08T17:00:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-08T17:15:00.000+10:00"
       }
     },
     {
       "id": "woven-schedule-slot-21",
       "fields": {
-        "Day Of Week": "Thursday",
+        "Day Of Week": "Wednesday",
         "Venue Name": "Rydges Esplanade Resort Cairns",
-        "DateTime Start [Schedule]": "2026-09-10T10:30:00.000+10:00",
-        "DateTime End [Schedule]": "2026-09-10T11:00:00.000+10:00"
+        "DateTime Start [Schedule]": "2026-09-09T09:00:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-09T09:45:00.000+10:00"
       }
     },
     {
       "id": "woven-schedule-slot-22",
       "fields": {
-        "Day Of Week": "Thursday",
+        "Day Of Week": "Wednesday",
         "Venue Name": "Rydges Esplanade Resort Cairns",
-        "DateTime Start [Schedule]": "2026-09-10T11:00:00.000+10:00",
-        "DateTime End [Schedule]": "2026-09-10T12:30:00.000+10:00"
+        "DateTime Start [Schedule]": "2026-09-09T09:45:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-09T10:45:00.000+10:00"
       }
     },
     {
       "id": "woven-schedule-slot-23",
       "fields": {
-        "Day Of Week": "Thursday",
+        "Day Of Week": "Wednesday",
         "Venue Name": "Rydges Esplanade Resort Cairns",
-        "DateTime Start [Schedule]": "2026-09-10T12:30:00.000+10:00",
-        "DateTime End [Schedule]": "2026-09-10T13:30:00.000+10:00"
+        "DateTime Start [Schedule]": "2026-09-09T10:45:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-09T11:00:00.000+10:00"
       }
     },
     {
       "id": "woven-schedule-slot-24",
       "fields": {
-        "Day Of Week": "Thursday",
+        "Day Of Week": "Wednesday",
         "Venue Name": "Rydges Esplanade Resort Cairns",
-        "DateTime Start [Schedule]": "2026-09-10T13:30:00.000+10:00",
-        "DateTime End [Schedule]": "2026-09-10T15:00:00.000+10:00"
+        "DateTime Start [Schedule]": "2026-09-09T11:00:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-09T12:00:00.000+10:00"
       }
     },
     {
       "id": "woven-schedule-slot-25",
       "fields": {
-        "Day Of Week": "Thursday",
+        "Day Of Week": "Wednesday",
         "Venue Name": "Rydges Esplanade Resort Cairns",
-        "DateTime Start [Schedule]": "2026-09-10T15:00:00.000+10:00",
-        "DateTime End [Schedule]": "2026-09-10T16:30:00.000+10:00"
+        "DateTime Start [Schedule]": "2026-09-09T12:00:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-09T13:00:00.000+10:00"
       }
     },
     {
       "id": "woven-schedule-slot-26",
       "fields": {
-        "Day Of Week": "Friday",
+        "Day Of Week": "Wednesday",
         "Venue Name": "Rydges Esplanade Resort Cairns",
-        "DateTime Start [Schedule]": "2026-09-11T09:00:00.000+10:00",
-        "DateTime End [Schedule]": "2026-09-11T10:30:00.000+10:00"
+        "DateTime Start [Schedule]": "2026-09-09T13:00:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-09T14:00:00.000+10:00"
       }
     },
     {
       "id": "woven-schedule-slot-27",
       "fields": {
-        "Day Of Week": "Friday",
+        "Day Of Week": "Wednesday",
         "Venue Name": "Rydges Esplanade Resort Cairns",
-        "DateTime Start [Schedule]": "2026-09-11T10:30:00.000+10:00",
-        "DateTime End [Schedule]": "2026-09-11T11:00:00.000+10:00"
+        "DateTime Start [Schedule]": "2026-09-09T14:00:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-09T15:00:00.000+10:00"
       }
     },
     {
       "id": "woven-schedule-slot-28",
       "fields": {
-        "Day Of Week": "Friday",
+        "Day Of Week": "Wednesday",
         "Venue Name": "Rydges Esplanade Resort Cairns",
-        "DateTime Start [Schedule]": "2026-09-11T11:00:00.000+10:00",
-        "DateTime End [Schedule]": "2026-09-11T12:30:00.000+10:00"
+        "DateTime Start [Schedule]": "2026-09-09T15:00:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-09T15:15:00.000+10:00"
       }
     },
     {
       "id": "woven-schedule-slot-29",
       "fields": {
-        "Day Of Week": "Friday",
+        "Day Of Week": "Wednesday",
         "Venue Name": "Rydges Esplanade Resort Cairns",
-        "DateTime Start [Schedule]": "2026-09-11T12:30:00.000+10:00",
-        "DateTime End [Schedule]": "2026-09-11T13:30:00.000+10:00"
+        "DateTime Start [Schedule]": "2026-09-09T15:15:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-09T16:15:00.000+10:00"
       }
     },
     {
       "id": "woven-schedule-slot-30",
       "fields": {
-        "Day Of Week": "Friday",
+        "Day Of Week": "Wednesday",
         "Venue Name": "Rydges Esplanade Resort Cairns",
-        "DateTime Start [Schedule]": "2026-09-11T13:30:00.000+10:00",
-        "DateTime End [Schedule]": "2026-09-11T15:00:00.000+10:00"
+        "DateTime Start [Schedule]": "2026-09-09T16:15:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-09T17:00:00.000+10:00"
+      }
+    },
+    {
+      "id": "woven-schedule-slot-31",
+      "fields": {
+        "Day Of Week": "Wednesday",
+        "Venue Name": "Rydges Esplanade Resort Cairns",
+        "DateTime Start [Schedule]": "2026-09-09T17:00:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-09T17:15:00.000+10:00"
+      }
+    },
+    {
+      "id": "woven-schedule-slot-32",
+      "fields": {
+        "Day Of Week": "Wednesday",
+        "Venue Name": "Rydges Esplanade Resort Cairns",
+        "DateTime Start [Schedule]": "2026-09-09T18:30:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-09T21:30:00.000+10:00"
+      }
+    },
+    {
+      "id": "woven-schedule-slot-33",
+      "fields": {
+        "Day Of Week": "Thursday",
+        "Venue Name": "Rydges Esplanade Resort Cairns",
+        "DateTime Start [Schedule]": "2026-09-10T09:00:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-10T09:45:00.000+10:00"
+      }
+    },
+    {
+      "id": "woven-schedule-slot-34",
+      "fields": {
+        "Day Of Week": "Thursday",
+        "Venue Name": "Rydges Esplanade Resort Cairns",
+        "DateTime Start [Schedule]": "2026-09-10T09:45:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-10T10:45:00.000+10:00"
+      }
+    },
+    {
+      "id": "woven-schedule-slot-35",
+      "fields": {
+        "Day Of Week": "Thursday",
+        "Venue Name": "Rydges Esplanade Resort Cairns",
+        "DateTime Start [Schedule]": "2026-09-10T10:45:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-10T11:00:00.000+10:00"
+      }
+    },
+    {
+      "id": "woven-schedule-slot-36",
+      "fields": {
+        "Day Of Week": "Thursday",
+        "Venue Name": "Rydges Esplanade Resort Cairns",
+        "DateTime Start [Schedule]": "2026-09-10T11:00:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-10T12:00:00.000+10:00"
+      }
+    },
+    {
+      "id": "woven-schedule-slot-37",
+      "fields": {
+        "Day Of Week": "Thursday",
+        "Venue Name": "Rydges Esplanade Resort Cairns",
+        "DateTime Start [Schedule]": "2026-09-10T12:00:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-10T13:00:00.000+10:00"
+      }
+    },
+    {
+      "id": "woven-schedule-slot-38",
+      "fields": {
+        "Day Of Week": "Thursday",
+        "Venue Name": "Rydges Esplanade Resort Cairns",
+        "DateTime Start [Schedule]": "2026-09-10T13:00:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-10T14:00:00.000+10:00"
+      }
+    },
+    {
+      "id": "woven-schedule-slot-39",
+      "fields": {
+        "Day Of Week": "Thursday",
+        "Venue Name": "Rydges Esplanade Resort Cairns",
+        "DateTime Start [Schedule]": "2026-09-10T14:00:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-10T15:00:00.000+10:00"
+      }
+    },
+    {
+      "id": "woven-schedule-slot-40",
+      "fields": {
+        "Day Of Week": "Thursday",
+        "Venue Name": "Rydges Esplanade Resort Cairns",
+        "DateTime Start [Schedule]": "2026-09-10T15:00:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-10T15:15:00.000+10:00"
+      }
+    },
+    {
+      "id": "woven-schedule-slot-41",
+      "fields": {
+        "Day Of Week": "Thursday",
+        "Venue Name": "Rydges Esplanade Resort Cairns",
+        "DateTime Start [Schedule]": "2026-09-10T15:15:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-10T16:15:00.000+10:00"
+      }
+    },
+    {
+      "id": "woven-schedule-slot-42",
+      "fields": {
+        "Day Of Week": "Thursday",
+        "Venue Name": "Rydges Esplanade Resort Cairns",
+        "DateTime Start [Schedule]": "2026-09-10T16:15:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-10T17:00:00.000+10:00"
+      }
+    },
+    {
+      "id": "woven-schedule-slot-43",
+      "fields": {
+        "Day Of Week": "Thursday",
+        "Venue Name": "Rydges Esplanade Resort Cairns",
+        "DateTime Start [Schedule]": "2026-09-10T17:00:00.000+10:00",
+        "DateTime End [Schedule]": "2026-09-10T17:15:00.000+10:00"
       }
     }
   ],
@@ -1452,7 +1359,7 @@
       "fields": {
         "Day Of Week": "Monday",
         "Date Label": "Monday 7th September",
-        "Title": "Cultural Immersion Activities",
+        "Title": "Welcome, Grounding and Cultural Immersion Activities",
         "Venue Name": "Rydges Esplanade Resort Cairns"
       }
     },
@@ -1480,15 +1387,6 @@
         "Day Of Week": "Thursday",
         "Date Label": "Thursday 10th September",
         "Title": "Day 3",
-        "Venue Name": "Rydges Esplanade Resort Cairns"
-      }
-    },
-    {
-      "id": "2026-09-11",
-      "fields": {
-        "Day Of Week": "Friday",
-        "Date Label": "Friday 11th September",
-        "Title": "Day 4",
         "Venue Name": "Rydges Esplanade Resort Cairns"
       }
     }
@@ -1529,7 +1427,8 @@
           {
             "url": "/tenants/woven/placeholder.svg"
           }
-        ]
+        ],
+        "Phone [Network Data]": "0435 209 203"
       }
     },
     {
@@ -1537,13 +1436,15 @@
       "fields": {
         "Shortname": "Larissa Baldwin-Roberts",
         "Role": [
-          "Speaker",
-          "Facilitator"
+          "CEO"
         ],
         "Headshot": [
           {
             "url": "/tenants/woven/placeholder.svg"
           }
+        ],
+        "Organisation [Network Data]": [
+          "Common Threads"
         ]
       }
     },
@@ -1594,7 +1495,7 @@
       "fields": {
         "Shortname": "Tiana Jakicevich",
         "Role": [
-          "Wellbeing and Grievance Coordinator"
+          "Facilitator"
         ],
         "Headshot": [
           {
@@ -1608,12 +1509,15 @@
       "fields": {
         "Shortname": "Eriel Tchekwie Deranger",
         "Role": [
-          "Speaker Support"
+          "President"
         ],
         "Headshot": [
           {
             "url": "/tenants/woven/placeholder.svg"
           }
+        ],
+        "Organisation [Network Data]": [
+          "The Woven Project"
         ]
       }
     },
@@ -1650,7 +1554,50 @@
       "fields": {
         "Shortname": "Jai Deranger",
         "Role": [
-          "Delegate Support"
+          "Wellbeing and Grievance Coordinator",
+          "Registration"
+        ],
+        "Headshot": [
+          {
+            "url": "/tenants/woven/placeholder.svg"
+          }
+        ]
+      }
+    },
+    {
+      "id": "woven-crew-sarah-hernandez",
+      "fields": {
+        "Shortname": "Sarah Hernandez",
+        "Role": [
+          "Registration Support"
+        ],
+        "Headshot": [
+          {
+            "url": "/tenants/woven/placeholder.svg"
+          }
+        ]
+      }
+    },
+    {
+      "id": "woven-crew-marisa-martinez",
+      "fields": {
+        "Shortname": "Marisa Martinez",
+        "Role": [
+          "Spanish Interpreter"
+        ],
+        "Headshot": [
+          {
+            "url": "/tenants/woven/placeholder.svg"
+          }
+        ]
+      }
+    },
+    {
+      "id": "woven-crew-sergio-corella",
+      "fields": {
+        "Shortname": "Sergio Corella",
+        "Role": [
+          "Portuguese Interpreter"
         ],
         "Headshot": [
           {
@@ -1787,6 +1734,36 @@
           }
         ]
       }
+    },
+    {
+      "id": "woven-attraction-bush-medijina",
+      "fields": {
+        "Title": "Bush Medijina",
+        "Description": "",
+        "Tags": [
+          "Attraction"
+        ]
+      }
+    },
+    {
+      "id": "woven-attraction-voices-of-kin",
+      "fields": {
+        "Title": "Voices of Kin Music Festival",
+        "Description": "",
+        "Tags": [
+          "Attraction"
+        ]
+      }
+    },
+    {
+      "id": "woven-attraction-ghosts-of-lani",
+      "fields": {
+        "Title": "The Ghosts of Lani Mulgrave Blair",
+        "Description": "An art exhibition at NorthSite Contemporary Arts.",
+        "Tags": [
+          "Attraction"
+        ]
+      }
     }
   ],
   "organisations": [
@@ -1821,14 +1798,183 @@
       }
     }
   ],
-  "sponsors": [],
+  "sponsors": [
+    {
+      "id": "woven-thanks-traditional-custodians",
+      "fields": {
+        "Name": "The Traditional Custodians of the land on which we gather",
+        "Description": "The Gimuy Walubara Yidinji People — and neighbouring nations Yirrganydji, Djabugay, Buluwai, Madjandji, Dulabed and Malanbara Yidinji, Bundabarra and Wadjanbarra Yidinji, Mandingalbay Yidinji, Mamu and Ngadjon-Jii, and Gunggandji Peoples."
+      }
+    },
+    {
+      "id": "woven-thanks-henrietta-marrie",
+      "fields": {
+        "Name": "Professor Henrietta Marrie",
+        "Description": "For her Welcome to Country."
+      }
+    },
+    {
+      "id": "woven-thanks-interpreters",
+      "fields": {
+        "Name": "Marisa Martinez and Sergio Corella",
+        "Description": "Our Spanish and Portuguese interpreters, who travelled from so far away to be with us to ensure the success and full participation of delegates."
+      }
+    },
+    {
+      "id": "woven-thanks-rydges",
+      "fields": {
+        "Name": "Rydges Esplanade Resort",
+        "Description": "Tina Briers, Sarah Mooney and the entire staff."
+      }
+    },
+    {
+      "id": "woven-thanks-switched-on-av",
+      "fields": {
+        "Name": "Switched On AV",
+        "Description": "Rien van Hoepen."
+      }
+    },
+    {
+      "id": "woven-thanks-minjil",
+      "fields": {
+        "Name": "Minjil",
+        "Description": "Maaroon Fourmile and Maria Morrison."
+      }
+    },
+    {
+      "id": "woven-thanks-munganbana",
+      "fields": {
+        "Name": "Munganbana Aboriginal Art Gallery",
+        "Description": "Norman and Barbara Miller."
+      }
+    },
+    {
+      "id": "woven-thanks-murrawah-johnson",
+      "fields": {
+        "Name": "Murrawah Johnson",
+        "Description": "For her connections with local Community."
+      }
+    },
+    {
+      "id": "woven-thanks-diydg",
+      "fields": {
+        "Name": "Deadly Inspiring Youth Doing Good",
+        "Description": "Glenda Christian."
+      }
+    },
+    {
+      "id": "woven-thanks-intravel-group",
+      "fields": {
+        "Name": "InTravel Group",
+        "Description": "Dwayne Good, Leanne Jones and Vashna Verma."
+      }
+    },
+    {
+      "id": "woven-thanks-worimi-collective",
+      "fields": {
+        "Name": "Worimi Collective",
+        "Description": "Jay Walton and Karen Peronce."
+      }
+    },
+    {
+      "id": "woven-thanks-promo-gear",
+      "fields": {
+        "Name": "Promo Gear",
+        "Description": "Rachelle Borger."
+      }
+    },
+    {
+      "id": "woven-thanks-millard-signs",
+      "fields": {
+        "Name": "Millard Signs",
+        "Description": "Ty Millard."
+      }
+    },
+    {
+      "id": "woven-thanks-activ-embroidery",
+      "fields": {
+        "Name": "Activ Embroidery Designs",
+        "Description": "Michael Fazio."
+      }
+    },
+    {
+      "id": "woven-thanks-mandura",
+      "fields": {
+        "Name": "Mandura",
+        "Description": "Sonya Grossart."
+      }
+    },
+    {
+      "id": "woven-thanks-dreamtime-tuka",
+      "fields": {
+        "Name": "Dreamtime Tuka",
+        "Description": "Herb Smith and the team."
+      }
+    },
+    {
+      "id": "woven-thanks-sandhills-artefacts",
+      "fields": {
+        "Name": "Sandhills Artefacts",
+        "Description": "Michael Lyons and Aloma Simpson."
+      }
+    },
+    {
+      "id": "woven-thanks-flight-centre",
+      "fields": {
+        "Name": "Flight Centre",
+        "Description": "Leticia Kean-Howley and Jayne Soe."
+      }
+    },
+    {
+      "id": "woven-thanks-jala-jala",
+      "fields": {
+        "Name": "Jala Jala",
+        "Description": "Sharon Brindley."
+      }
+    },
+    {
+      "id": "woven-thanks-ochre-dawn",
+      "fields": {
+        "Name": "Ochre Dawn",
+        "Description": "Rebecca (Bex) Hunter-Harvey and the entire team."
+      }
+    },
+    {
+      "id": "woven-thanks-nicole-hutton-lewis",
+      "fields": {
+        "Name": "Nicole Hutton-Lewis",
+        "Description": "For capturing our inaugural event."
+      }
+    },
+    {
+      "id": "woven-thanks-tiana-jakicevich",
+      "fields": {
+        "Name": "Tiana Jakicevich",
+        "Description": "For being unable to say no to any requests for help."
+      }
+    },
+    {
+      "id": "woven-thanks-woven-staff",
+      "fields": {
+        "Name": "The entire staff at the Woven Project",
+        "Description": ""
+      }
+    },
+    {
+      "id": "woven-thanks-common-threads-staff",
+      "fields": {
+        "Name": "The entire staff at Common Threads",
+        "Description": ""
+      }
+    }
+  ],
   "surveys": [],
   "whatsappChannels": [],
   "codeConduct": {
     "id": "woven-code-conduct",
     "fields": {
       "Subtitle": "Code of Conduct - A Shared Commitment",
-      "Content Body": "The Woven Project and Common Threads are committed to creating a safe and inclusive experience at the Global Gathering for everyone, regardless of your gender, gender identity, sexual orientation, ethnicity, nationality, disability, physical appearance, body size, race, age, religion, economic status, immigration status or refugee status. We do not tolerate harassment of participants, staff or volunteers in any form, and any person who violates these rules may be removed from the event.\n\nThere is huge strength in our shared values and collective vision for the future, as well as strength in the diversity of our opinions, perspectives, experiences and approaches to creating change.\n\nThere is a responsibility on all of us to help create a space grounded in respect, care, and collective responsibility where everyone can speak, listen, learn, connect and belong. As such, we’ve developed a set of principles for how we show up in the space, alongside a code of conduct.\n\n## Our Shared Commitments\n\nBy attending the Global Gathering, we agree to:\n\n- Respect all identities, experiences and perspectives\n- Listen — even in disagreements\n- Create a safe place for ourselves and other delegates\n- Prevent and speak out against any forms of lateral violence\n- Hold space for others, especially unheard voices\n- Protect the confidentiality of shared stories\n- Contribute to a safe and inclusive environment\n\n## How We Show Up\n\nWe agree to:\n\n- Speak from your own experience\n- Address ideas, not the person or people behind them\n- Share space — be prepared to step up or step back\n- Be mindful around accessibility and ensure everyone can participate\n\n## Shared Responsibility\n\nCreating this space is something we do together. Let’s show up with care, courage, and respect and make this a place where everyone has a place to belong. Common Threads staff are available throughout the summit if you need assistance, support or guidance.\n\n## Reporting\n\nTo report any behaviour that makes you feel uncomfortable or unsafe, please reach out to Tiana Jakicevich, our Wellbeing and Grievance Coordinator. You can also contact us at info@thewovenproject.org."
+      "Content Body": "The Woven Project and Common Threads are committed to creating a safe and inclusive experience at the Global Gathering for everyone, regardless of your gender, gender identity, sexual orientation, ethnicity, nationality, disability, physical appearance, body size, race, age, religion, economic status, immigration status or refugee status. We do not tolerate harassment of participants, staff or volunteers in any form, and any person who violates these rules may be removed from the event.\n\nThere is huge strength in our shared values and collective vision for the future, as well as strength in the diversity of our opinions, perspectives, experiences and approaches to creating change.\n\nThere is a responsibility on all of us to help create a space grounded in respect, care, and collective responsibility where everyone can speak, listen, learn, connect and belong. As such, we’ve developed a set of principles for how we show up in the space, alongside a code of conduct.\n\n## Our Shared Commitments\n\nBy attending the Global Gathering, we agree to:\n\n- Respect all identities, experiences and perspectives\n- Listen — even in disagreements\n- Create a safe place for ourselves and other delegates\n- Prevent and speak out against any forms of lateral violence\n- Hold space for others, especially unheard voices\n- Protect the confidentiality of shared stories\n- Contribute to a safe and inclusive environment\n\n## How We Show Up\n\nWe agree to:\n\n- Speak from your own experience\n- Address ideas, not the person or people behind them\n- Share space — be prepared to step up or step back\n- Be mindful around accessibility and ensure everyone can participate\n\n## Shared Responsibility\n\nCreating this space is something we do together. Let’s show up with care, courage, and respect and make this a place where everyone has a place to belong. Common Threads staff are available throughout the summit if you need assistance, support or guidance.\n\n## Reporting\n\nTo report any behaviour that makes you feel uncomfortable or unsafe, please reach out to Jai Deranger, our Wellbeing and Grievance Coordinator. You can also contact us at info@thewovenproject.org."
     }
   },
   "securityGuidelines": {

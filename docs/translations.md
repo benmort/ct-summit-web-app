@@ -1,7 +1,9 @@
 # Translations
 
 Woven is offered in English, Spanish, Russian, French and Portuguese — the
-languages its delegates travel from, and the ones its interpreters cover.
+languages its delegates travel from. Interpreters in the room cover a narrower
+set: English, Spanish and Portuguese (brief 8.9), so for a French- or
+Russian-speaking delegate the app is the only thing in their own language.
 
 ## How it fits together
 
@@ -28,10 +30,11 @@ translated array must keep the same length and order. `tests/tenant/i18n.test.ts
 enforces that.
 
 **The data dictionary is keyed by the English string,** not by record and field.
-The programme repeats itself heavily — one venue name across thirty-one events —
-so this turns ~500 fields into 92 things to write once.
+The programme repeats itself heavily — one venue name across forty-three events —
+so this turns well over a thousand fields into 142 things to write once.
 `tenants/woven/data.i18n/_source.en.json` is the generated source list; regenerate
-it if the English data changes.
+it with `pnpm generate:i18n-source woven` whenever the English data changes, then
+fill the four dictionaries — the i18n suite fails until their keys match.
 
 ## Two traps
 
@@ -60,9 +63,9 @@ exists to prevent. `tests/tenant/i18n.test.ts` asserts the terms survive.
 
 These translations were produced by an AI, not a professional translator, and the
 language screen says so in English and in the reader's own language
-(`LOCALE_MACHINE_TRANSLATION_NOTICE`). Woven funds interpreters in exactly these
-four languages; they are the right people to review, and each file replaces
-one-for-one.
+(`LOCALE_MACHINE_TRANSLATION_NOTICE`). Woven funds Spanish and Portuguese
+interpreters, who are the right people to review those two; French and Russian
+have no reviewer attached to the gathering. Each file replaces one-for-one.
 
 Points a reviewer should look at first:
 

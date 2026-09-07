@@ -14,8 +14,8 @@
         "label": "Programa"
       },
       {
-        "href": "/speakers",
-        "label": "Ponentes"
+        "href": "/event-guidance",
+        "label": "Guía"
       },
       {
         "href": "/moments",
@@ -37,11 +37,6 @@
         "href": "/event-guidance",
         "label": "Guía del evento",
         "subtitle": "Logística de viaje, accesibilidad y bienestar"
-      },
-      {
-        "href": "/speakers",
-        "label": "Ponentes",
-        "subtitle": "Conozca a nuestros ponentes y colaboradores"
       },
       {
         "href": "/crew",
@@ -74,6 +69,11 @@
         "subtitle": "Organizaciones participantes y aliados"
       },
       {
+        "href": "/sponsors",
+        "label": "Proveedores y agradecimientos",
+        "subtitle": "Todas las personas cuyo trabajo hizo posible este Encuentro"
+      },
+      {
         "href": "/code-conduct",
         "label": "Código de conducta",
         "subtitle": "Expectativas de seguridad comunitaria y apoyo"
@@ -83,13 +83,12 @@
       "home": "Panel del encuentro y accesos rápidos",
       "program": "Agenda de sesiones y horarios diarios",
       "eventGuidance": "Logística de viaje, accesibilidad y bienestar",
-      "speakers": "Conozca a nuestros ponentes y colaboradores",
       "crew": "Encuentre al equipo de apoyo del encuentro",
       "venues": "Ubicaciones, mapas y accesos de las sedes",
       "events": "Sesiones, pausas y bloques de actividades",
       "attractions": "Qué hacer cerca",
       "organisations": "Organizaciones participantes y aliados",
-      "sponsors": "Aliados que respaldan el encuentro",
+      "sponsors": "Todas las personas cuyo trabajo hizo posible este Encuentro",
       "surveys": "Formularios de comentarios y consultas rápidas",
       "codeConduct": "Expectativas de seguridad comunitaria y apoyo",
       "moments": "Galería de fotos y videos compartidos"
@@ -159,7 +158,7 @@
       {
         "title": "Registro",
         "paragraphs": [
-          "El registro para el Encuentro Global estará abierto en nuestro mostrador de registro, afuera del Kauri Ballroom, de 3pm a 5pm el lunes 7 de septiembre, y luego de 8am a 9am el martes 8 de septiembre, justo antes de que comience la programación del Día 1."
+          "El registro para el Encuentro Global estará abierto en nuestro mostrador de registro, afuera del Kauri Ballroom, de 8:30am a 9:00am y nuevamente de 4:30pm a 5:00pm el lunes 7 de septiembre. Vuelve a abrir de 8:30am a 9:00am el martes 8 de septiembre, justo antes de que comience la programación del Día 1."
         ]
       },
       {
@@ -169,13 +168,14 @@
           "Reembolsaremos a las personas delegadas hasta AUD$120 por día por el costo de sus comidas:",
           "- Desayuno — hasta AUD$25. El desayuno está incluido en su reserva de alojamiento.",
           "- Almuerzo — hasta AUD$35. Cada día del Encuentro se ofrecen refrigerio de la mañana, almuerzo y refrigerio de la tarde.",
-          "- Cena — hasta AUD$60. Estamos planeando organizar un evento social una noche que incluirá la cena."
+          "- Cena — hasta AUD$60. La Cena del Encuentro Global se ofrece el miércoles 9 de septiembre."
         ]
       },
       {
         "title": "Cómo llegar a Cairns y a la sede",
         "paragraphs": [
           "Por favor, descargue Uber antes de su llegada a Cairns para que podamos enviarle un vale que podrá usar en sus traslados desde y hacia el aeropuerto. Todos los demás traslados de la semana se organizarán para usted; los detalles llegarán más adelante.",
+          "Si no ha recibido un vale de Uber, comuníquese con Jay Knapp.",
           "Los taxis y el transporte compartido son la forma más fácil de moverse por Gimuy (Cairns)."
         ]
       },
@@ -183,7 +183,7 @@
         "title": "Visas y viajes internacionales",
         "paragraphs": [
           "Toda persona que viaje desde fuera de Australia o Nueva Zelanda necesita una visa para ingresar al país. Su solicitud de visa para ingresar a Australia ya debería estar en trámite.",
-          "Woven y Common Threads no se encargan de presentar la solicitud en su nombre, pero le reembolsarán el costo de su trámite.",
+          "Woven y Common Threads no se encargan de presentar la solicitud en su nombre, pero le reembolsarán el valor de su trámite, así como cualquier otra tasa o costo asociado.",
           "Aquí encontrará instrucciones y recursos para ayudarle con su solicitud: https://drive.google.com/drive/folders/1LNCykvhupnTKQ0XGhBHFsOrhq6zLDEjb?usp=drive_link"
         ]
       },
@@ -214,8 +214,9 @@
       {
         "title": "Alojamiento",
         "paragraphs": [
-          "Nosotros nos encargamos del alojamiento; no es necesario que lo reserve por su cuenta. Es posible que deba presentar un documento de identidad al registrarse, pero no deberían pedirle un depósito de garantía.",
-          "Su alojamiento incluye el desayuno en el restaurante del hotel entre las 6:30am y las 9:30am cada día; tenga en cuenta que las jornadas del Encuentro comienzan a las 8:30am. Deje tiempo suficiente para disfrutar el desayuno y sentirse preparado para el día."
+          "Nosotros nos encargamos del alojamiento; no es necesario que lo reserve por su cuenta, salvo que decida extender su estadía. Es posible que deba presentar un documento de identidad al registrarse, pero no deberían pedirle un depósito de garantía.",
+          "Su alojamiento incluye el desayuno en el restaurante del hotel entre las 6:30am y las 9:30am cada día; tenga en cuenta que las jornadas del Encuentro comienzan a las 9:00am. Deje tiempo suficiente para disfrutar el desayuno y sentirse preparado para el día.",
+          "Su alojamiento no incluye el servicio a la habitación ni ninguna otra comida en el restaurante del hotel. Puede dejar los datos de su tarjeta de crédito al registrarse para cargar los gastos menores a su habitación durante la estadía. Se pedirá a las personas delegadas que salden los gastos menores al momento de la salida."
         ]
       },
       {
@@ -229,6 +230,7 @@
         "title": "El clima y qué llevar",
         "paragraphs": [
           "Septiembre en Gimuy (Cairns) es temporada seca tropical. Espere temperaturas promedio entre 23°C y 27°C (73°F a 80°F). El pronóstico local está aquí: https://www.bom.gov.au/qld/cairns/",
+          "El código de vestimenta es “vestir con comodidad”. Puede llevar o vestir regalia o ropa que le represente a usted, a su comunidad o a su lugar de origen, y le invitamos a usarla en la Cena del Encuentro Global el miércoles 9 de septiembre.",
           "Recomendamos a las personas delegadas llevar:",
           "- Ropa adecuada para el clima — vea el pronóstico local más arriba",
           "- Repelente de insectos",
@@ -237,7 +239,15 @@
           "- Zapatos cerrados para las Cultural Immersion Activities",
           "- Un poncho o ropa impermeable ligera por si llueve",
           "- Una cámara para tomar fotos",
-          "- Algo de efectivo para gastos menores y recuerdos"
+          "- Algo de efectivo para gastos menores y recuerdos",
+          "- Un objeto para mostrar o compartir como parte de la actividad de conexión"
+        ]
+      },
+      {
+        "title": "Seguridad en el agua",
+        "paragraphs": [
+          "Tenga en cuenta que el agua y la playa en Gimuy (Cairns) pueden no ser seguras. No debe nadar en ningún cuerpo de agua cuyo fondo no pueda ver.",
+          "Puede haber medusas peligrosas en el mar, y también viven cocodrilos en otros cuerpos de agua como ríos, arroyos y zanjas al costado de la carretera. Por su seguridad, nade únicamente en la piscina del hotel."
         ]
       },
       {
@@ -257,7 +267,7 @@
         "title": "Accesibilidad",
         "paragraphs": [
           "La sede del evento y el hotel son espacios accesibles. Si necesita un alojamiento accesible, avísenos lo antes posible.",
-          "El Encuentro contará con intérpretes que traducirán desde y hacia el inglés, el español, el ruso, el francés y el portugués.",
+          "El Encuentro contará con intérpretes que traducirán desde y hacia el inglés, el español y el portugués.",
           "Comuníquese con Jay Knapp, Responsable de Eventos, si tiene preguntas o inquietudes sobre accesibilidad o sobre su participación en el evento."
         ]
       },
@@ -265,7 +275,9 @@
         "title": "Bienestar",
         "paragraphs": [
           "Este encuentro aborda la defensa de la tierra, el despojo y las pérdidas causadas por el clima. Son temas que pesan de verdad, sobre todo para las personas delegadas que los han vivido en carne propia, y es normal necesitar un momento fuera de la sala.",
-          "Tiana Jakicevich está a cargo de la Coordinación de Bienestar y Reclamos y está disponible durante todo el Encuentro para una conversación confidencial. También puede escribir al equipo a info@thewovenproject.org."
+          "Tómese el tiempo que necesite para descansar, recargar energías y despejarse entre sesiones. Dar la buena batalla puede pasar factura; estamos aquí para apoyarle en lo que podamos.",
+          "Visite la Rah Rah Boardroom, nuestro espacio de trabajo del equipo, si necesita un momento en un área tranquila, o para tomar artículos de autocuidado o hacer un sahumerio. Por favor, haga los sahumerios al aire libre.",
+          "Jai Deranger está a cargo de la Coordinación de Bienestar y Reclamos y está disponible durante todo el Encuentro para una conversación confidencial. También puede escribir al equipo a info@thewovenproject.org."
         ]
       },
       {

@@ -172,10 +172,17 @@ function ScheduleCard({ slot }: { slot: ScheduleSlot }) {
               </div>
             </div>
           ) : (
-            <p className="inline-flex items-center gap-1 text-[11px] uppercase tracking-[0.12em] text-ink-500 break-words">
-              <MapPinIcon className="h-3 w-3 shrink-0" aria-hidden />
-              <span>{locationLabel}</span>
-            </p>
+            <div className="min-w-0 flex-1 space-y-1">
+              {slot.presenter ? (
+                <p className="text-xs font-medium text-ink-200 break-words">
+                  {t("program.presentedBy", { name: slot.presenter })}
+                </p>
+              ) : null}
+              <p className="inline-flex items-center gap-1 text-[11px] uppercase tracking-[0.12em] text-ink-500 break-words">
+                <MapPinIcon className="h-3 w-3 shrink-0" aria-hidden />
+                <span>{locationLabel}</span>
+              </p>
+            </div>
           )}
           <span className="inline-flex min-h-8 items-center gap-1 rounded-sm px-1 py-0.5 text-xs font-medium text-brand-200 transition group-hover:text-brand-100">
             {t("program.viewDetails")}

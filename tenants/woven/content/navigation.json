@@ -9,8 +9,8 @@
       "label": "Program"
     },
     {
-      "href": "/speakers",
-      "label": "Speakers"
+      "href": "/event-guidance",
+      "label": "Guidance"
     },
     {
       "href": "/moments",
@@ -32,11 +32,6 @@
       "href": "/event-guidance",
       "label": "Event Guidance",
       "subtitle": "Travel logistics, access and wellbeing"
-    },
-    {
-      "href": "/speakers",
-      "label": "Speakers",
-      "subtitle": "Meet our speakers and contributors"
     },
     {
       "href": "/crew",
@@ -69,6 +64,11 @@
       "subtitle": "Participating organisations and partners"
     },
     {
+      "href": "/sponsors",
+      "label": "Suppliers and Thanks",
+      "subtitle": "Everyone whose work made this Gathering possible"
+    },
+    {
       "href": "/code-conduct",
       "label": "Code of Conduct",
       "subtitle": "Community safety expectations and support"
@@ -78,13 +78,12 @@
     "home": "Gathering dashboard and quick links",
     "program": "Session agenda and daily timings",
     "eventGuidance": "Travel logistics, access and wellbeing",
-    "speakers": "Meet our speakers and contributors",
     "crew": "Find the gathering support team",
     "venues": "Venue locations, maps and access",
     "events": "Sessions, breaks and activity blocks",
     "attractions": "Things to do nearby",
     "organisations": "Participating organisations and partners",
-    "sponsors": "Supporting partners behind the gathering",
+    "sponsors": "Everyone whose work made this Gathering possible",
     "surveys": "Feedback forms and pulse checks",
     "codeConduct": "Community safety expectations and support",
     "moments": "Shared photos and videos gallery"

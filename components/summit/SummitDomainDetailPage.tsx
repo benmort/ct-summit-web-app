@@ -7,6 +7,7 @@ import { getT } from "@/lib/i18n/server-messages";
 import { getSummitContext } from "@/lib/summit/context";
 import { buildDetail } from "@/lib/summit/domains";
 import { getDomainRecords } from "@/lib/summit/domain-data";
+import { tenantDomainLabel } from "@/lib/summit/domain-names";
 import { fieldString } from "@/lib/summit/fields";
 import { venueGalleryForName } from "@/lib/summit/venue-gallery";
 import { getTenantContent } from "@/lib/tenant/content";
@@ -18,7 +19,12 @@ type Props = {
   id: string;
 };
 
-/** The plural noun each domain goes by on screen, e.g. in "BACK TO SPEAKERS". */
+/**
+ * The plural noun each domain goes by on screen, e.g. in "BACK TO SPEAKERS".
+ *
+ * A tenant that renames the section in its navigation wins over this, so the
+ * back link matches the menu entry the delegate arrived through.
+ */
 const DOMAIN_LABEL_KEY: Record<SummitListDomain, string> = {
   speakers: "detail.domainSpeakers",
   events: "detail.domainEvents",
@@ -48,7 +54,10 @@ export default async function SummitDomainDetailPage({ domain, id }: Props) {
   const record = records.find((item) => item.id === id);
   if (!record) notFound();
 
-  const [tenantSlug, { integrations }] = await Promise.all([getTenantSlug(), getTenantContent()]);
+  const [tenantSlug, { integrations, navigation }] = await Promise.all([
+    getTenantSlug(),
+    getTenantContent(),
+  ]);
   const detail = buildDetail(domain, record, { tenantSlug, transport: integrations.transport });
   const pronouncedHeader = domain === "speakers" || domain === "events" || domain === "crew";
   const venueGalleryItems = domain === "venues" ? venueGalleryForName(fieldString(record, "Name")) : [];
@@ -74,7 +83,9 @@ export default async function SummitDomainDetailPage({ domain, id }: Props) {
         className="inline-flex min-h-8 items-center gap-1 rounded-sm px-1 py-0.5 text-xs font-medium text-brand-200 hover:text-brand-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-300/80"
       >
         <ChevronLeftIcon className="h-3.5 w-3.5" />
-        {t("detail.backTo", { domain: t(DOMAIN_LABEL_KEY[domain]) }).toUpperCase()}
+        {t("detail.backTo", {
+          domain: tenantDomainLabel(domain, navigation, t(DOMAIN_LABEL_KEY[domain])),
+        }).toUpperCase()}
       </Link>
       <SummitDetailView
         detail={detail}

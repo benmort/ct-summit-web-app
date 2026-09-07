@@ -16,9 +16,10 @@ import SummitHeroVideo from "@/components/summit/SummitHeroVideo";
 import SummitOpenMenuLink from "@/components/summit/SummitOpenMenuLink";
 import { getSummitContext } from "@/lib/summit/context";
 import { buildListItem, getSpeakerBadges } from "@/lib/summit/domains";
-import { fieldFirst, fieldString } from "@/lib/summit/fields";
+import { fieldFirst, fieldList, fieldString } from "@/lib/summit/fields";
 import { getTenantContent } from "@/lib/tenant/content";
-import { getSpeakersAll } from "@/lib/summit/service";
+import { getTenantSlug } from "@/lib/tenant/server";
+import { getEventsAll, getSpeakersAll } from "@/lib/summit/service";
 import { getT } from "@/lib/i18n/server-messages";
 import type { Translate } from "@/lib/i18n/messages";
 import type { SummitRecord } from "@/lib/summit/types";
@@ -102,7 +103,7 @@ function splitSummitName(name: string, t: Translate): { overline: string; title:
  * offset, so the literal time in the string is the answer, which is how
  * `lib/summit/schedule.ts` reads it too.
  */
-function formatSpeakerStart(record: SummitRecord, t: Translate): string {
+function formatSessionStart(record: SummitRecord, t: Translate): string {
   const raw = fieldFirst(record, "DateTime Start [Schedule]");
   const match = raw.match(/^\d{4}-\d{2}-\d{2}T(\d{2}):(\d{2})/);
   if (!match) return t("dashboard.timeToBeConfirmed");
@@ -134,45 +135,59 @@ function SectionHeading({ title, action }: { title: string; action?: React.React
   );
 }
 
-function SpeakerCard({
-  speaker,
+/**
+ * One upcoming session on the dashboard.
+ *
+ * Reads a speaker record or an event record: the two share `Title`,
+ * `Description`, `Room/Area` and the schedule datetimes, and differ only in who
+ * is presenting — a speaker carries `Full Name`, an event carries `Presenter`,
+ * and a break carries neither.
+ */
+function SessionCard({
+  session,
+  domain,
   imageUrl,
   t,
 }: {
-  speaker: SummitRecord;
+  session: SummitRecord;
+  domain: "speakers" | "events";
   imageUrl: string | null;
   t: Translate;
 }) {
-  const name = fieldString(speaker, "Full Name") || t("dashboard.speakerFallbackName");
-  const title = fieldString(speaker, "Title") || name;
-  const description = fieldString(speaker, "Description") || fieldString(speaker, "Bio");
-  const location = formatRoomLabel(fieldString(speaker, "Room/Area"));
-  const tags = getSpeakerBadges(speaker);
+  const presenter = fieldString(session, "Full Name") || fieldString(session, "Presenter");
+  const title = fieldString(session, "Title") || presenter;
+  const description = fieldString(session, "Description") || fieldString(session, "Bio");
+  const location = formatRoomLabel(fieldString(session, "Room/Area"));
+  const tags = domain === "speakers" ? getSpeakerBadges(session) : fieldList(session, "Tags");
 
   return (
     <Link
-      href={`/speakers/${speaker.id}`}
+      href={`/${domain}/${session.id}`}
       className="group overflow-hidden rounded-xl border border-veil/10 bg-surface-900/70 transition hover:border-veil/20 hover:bg-surface-900"
     >
       <div className="relative aspect-[16/10] overflow-hidden bg-scrim/40">
         {imageUrl ? (
-          <SummitSpeakerCardImage src={imageUrl} alt={name} />
+          <SummitSpeakerCardImage src={imageUrl} alt={title} />
         ) : null}
         <div className="absolute inset-0 bg-gradient-to-t from-scrim/70 via-transparent to-transparent" />
       </div>
       <div className="space-y-2 p-3.5">
         <p className="inline-flex items-center gap-1.5 text-[10px] uppercase tracking-[0.15em] text-ink-400">
           <ClockIcon className="h-3.5 w-3.5 shrink-0" aria-hidden />
-          {formatSpeakerStart(speaker, t)}
+          {formatSessionStart(session, t)}
         </p>
         <h3 className="text-base font-semibold text-ink-50 break-words">{title}</h3>
-        <p className="text-xs text-ink-300 break-words">{name}</p>
+        {presenter ? (
+          <p className="text-xs text-ink-300 break-words">
+            {domain === "events" ? t("program.presentedBy", { name: presenter }) : presenter}
+          </p>
+        ) : null}
         {description ? <p className="text-xs text-ink-400 break-words">{description}</p> : null}
         <div className="pt-1">
           <div className="flex min-h-5 flex-wrap gap-1">
             {tags.map((tag) => (
               <span
-                key={`${speaker.id}-${tag}`}
+                key={`${session.id}-${tag}`}
                 className="rounded-full border border-brand-300/30 bg-brand-500/10 px-2 py-0.5 text-[10px] uppercase tracking-[0.08em] text-brand-100"
               >
                 {tag}
@@ -195,26 +210,34 @@ export default async function SummitDashboardPage() {
   const context = await getSummitContext();
   const t = await getT();
   const { brand, navigation } = await getTenantContent();
+  // Up Next is the next few things on the programme. A tenant that publishes
+  // speaker records gets the richer card; one that publishes none — Woven, whose
+  // presenters are named on the session and nowhere else — gets its events, so
+  // the section is never empty while the gathering is still running.
   const speakers = await getSpeakersAll(context.selectedSummitName);
+  const sessionDomain: "speakers" | "events" = speakers.length > 0 ? "speakers" : "events";
+  const sessions =
+    sessionDomain === "speakers" ? speakers : await getEventsAll(context.selectedSummitName);
   const now = Date.now();
-  const speakersWithTimes = speakers.map((speaker) => ({
-    speaker,
-    start: startTime(speaker),
-    end: endTime(speaker),
+  const sessionsWithTimes = sessions.map((session) => ({
+    session,
+    start: startTime(session),
+    end: endTime(session),
   }));
-  const upcomingSpeakers = speakersWithTimes
+  const upcomingSessions = sessionsWithTimes
     .filter(({ start }) => start !== Number.MAX_SAFE_INTEGER && start >= now)
     .sort((a, b) => a.start - b.start)
     .slice(0, 6)
-    .map(({ speaker }) => speaker);
-  const latestSessionEnd = speakersWithTimes.reduce(
+    .map(({ session }) => session);
+  const latestSessionEnd = sessionsWithTimes.reduce(
     (latest, { end }) => (end !== Number.MAX_SAFE_INTEGER ? Math.max(latest, end) : latest),
     Number.NEGATIVE_INFINITY,
   );
   const isAfterProgram = latestSessionEnd !== Number.NEGATIVE_INFINITY && now > latestSessionEnd;
-  const upcomingSpeakerItems = upcomingSpeakers.map((speaker) => ({
-    speaker,
-    item: buildListItem("speakers", speaker),
+  const tenantSlug = await getTenantSlug();
+  const upcomingSessionItems = upcomingSessions.map((session) => ({
+    session,
+    item: buildListItem(sessionDomain, session, tenantSlug),
   }));
   const summitName = context.selectedSummit
     ? fieldString(context.selectedSummit, "Name")
@@ -350,20 +373,23 @@ export default async function SummitDashboardPage() {
           title={t("dashboard.upNext")}
           action={
             <Link
-              href="/speakers"
+              href={sessionDomain === "speakers" ? "/speakers" : "/program"}
               className="inline-flex items-center gap-1 text-[10px] uppercase tracking-[0.14em] text-brand-300"
             >
-              {t("dashboard.viewFullLineup")}
+              {sessionDomain === "speakers"
+                ? t("dashboard.viewFullLineup")
+                : t("dashboard.browseProgram")}
               <ChevronRightIcon className="h-3.5 w-3.5" aria-hidden />
             </Link>
           }
         />
-        {upcomingSpeakerItems.length > 0 ? (
+        {upcomingSessionItems.length > 0 ? (
           <div className="grid grid-cols-1 gap-3 lg:grid-cols-2 lg:gap-4">
-            {upcomingSpeakerItems.map((entry) => (
-              <SpeakerCard
-                key={entry.speaker.id}
-                speaker={entry.speaker}
+            {upcomingSessionItems.map((entry) => (
+              <SessionCard
+                key={entry.session.id}
+                session={entry.session}
+                domain={sessionDomain}
                 imageUrl={entry.item.imageUrl ?? null}
                 t={t}
               />

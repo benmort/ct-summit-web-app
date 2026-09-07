@@ -7,6 +7,8 @@ export type ScheduleSlot = {
   talk: boolean;
   title: string;
   speaker?: string;
+  /** Named on the session itself, for a tenant that publishes no speaker records. */
+  presenter?: string;
   room: string;
   summary: string;
   time: string;
@@ -246,6 +248,7 @@ export function buildScheduleDays(
         talk: isTalk,
         title,
         speaker: fieldString(matching, "Full Name"),
+        presenter: fieldString(matching, "Presenter"),
         room: roomLabel || "Location to be confirmed",
         summary: fieldString(matching, "Description"),
         time: toTimeLabel(startRaw, endRaw),

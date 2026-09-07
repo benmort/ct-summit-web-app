@@ -17,6 +17,7 @@
     "test:uploads": "tsx --conditions=react-server --test tests/uploads/**/*.test.ts",
     "loadtest:uploads": "tsx scripts/load-test-upload.ts",
     "generate:summit-qr": "tsx scripts/generate-summit-qr.ts",
+    "generate:i18n-source": "tsx --conditions=react-server scripts/generate-i18n-source.ts",
     "extract:brand-assets": "tsx scripts/extract-brand-assets.ts",
     "import:highlights": "tsx scripts/import-highlights.ts",
     "rebuild:moments": "tsx scripts/rebuild-moments.ts",

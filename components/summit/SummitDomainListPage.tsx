@@ -7,7 +7,8 @@ import Link from "next/link";
 import { getSummitContext } from "@/lib/summit/context";
 import { roleHash } from "@/lib/summit/crew-filters";
 import { buildListItem } from "@/lib/summit/domains";
-import { domainLabel, getDomainRecords } from "@/lib/summit/domain-data";
+import { getDomainRecords } from "@/lib/summit/domain-data";
+import { tenantDomainLabel } from "@/lib/summit/domain-names";
 import { fieldList, fieldString } from "@/lib/summit/fields";
 import { getT } from "@/lib/i18n/server-messages";
 import { getTenantContent } from "@/lib/tenant/content";
@@ -59,8 +60,8 @@ export default async function SummitDomainListPage({ domain, roleFilter }: Props
     href: `/${domain}/${record.id}`,
     item: buildListItem(domain, record, tenantSlug),
   }));
-  const label = domainLabel(domain);
   const { navigation } = await getTenantContent();
+  const label = tenantDomainLabel(domain, navigation);
   const subtitle = navigation.pageSubtitles[domain] || label;
 
   if (!domainRecords.length) {
